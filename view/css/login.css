@@ -1,0 +1,71 @@
+html, body {
+    background: repeating-linear-gradient( #16F57E, #13D4A3, #21E4EB, #139AD4, #1677F5);
+    height: 100%;
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+    
+}
+
+* {
+    font-style: oblique;
+}
+
+nav {
+    width: 100%;
+    height: 80px;
+    display: inline-flex;
+    background-color: #16f57e;
+    /* margin-top: 0%; */
+    /* border:  dashed deepskyblue 1px; */
+    justify-content: space-around;
+}
+nav h1 {
+    position: absolute;
+    left: 2%;
+}
+
+nav h2{
+    position: absolute;
+    right: 2%;
+}
+
+form {
+    text-align: center;
+    margin-top: 100px;
+}
+
+input {
+    /* border:  dashed deepskyblue 1px; */
+    width: 50%;
+    height: 80px;
+    /* margin-top: 30px; */
+    background: none;
+    border-radius: 0px 20px 20px 0px;
+    border-style: solid solid solid none;
+    
+}
+
+.password {
+    border-radius: 20px 0px 0px 20px;
+    border-style: solid none solid solid;
+}
+
+::placeholder{
+    color: #1677F5;
+    text-align: center;
+    font-weight: bold;
+}
+ .submit {
+    cursor: pointer;
+} 
+
+a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    display: block;
+    /* width: 300px; */
+    border:  dashed deepskyblue 1px;
+}
