@@ -1,57 +1,80 @@
+:root{
+    --ColorX: repeating-linear-gradient( #16F57E, #13D4A3, #21E4EB); /*background Color*/
+    --Color0: #21E4EB;
+    --Color1: #ffffff; /*font h Color*/
+    --Color2: #ffffff; /*font p Color*/
+    --Color3: #ffffff; /*button Color*/
+    --Color4: #ffffff; /*border Color*/
+
+}
 html, body {
-    background: repeating-linear-gradient( #16F57E, #13D4A3, #21E4EB, #139AD4, #1677F5);
+    background: var(--Color0);
     height: 100%;
     width: 100%;
     padding: 0%;
-    margin: 0%;
-    
+    margin: auto;
+    /* overflow: hidden; */
 }
-
+/*font style of all element*/
 * {
     font-style: oblique;
 }
 
-nav {
+.navBar {
     width: 100%;
     height: 80px;
     display: inline-flex;
     background-color: #16f57e;
-    /* margin-top: 0%; */
-    /* border:  dashed deepskyblue 1px; */
     justify-content: space-around;
 }
-nav h1 {
+.navBar h1 {
     position: absolute;
     left: 2%;
 }
 
-nav h2{
+.navBar h2{
     position: absolute;
     right: 2%;
 }
 
-form {
+.form {
     text-align: center;
     margin-top: 100px;
+    width: 70%;
+    height: 340px;
+    /* border: coral dashed 1px; */
+    margin-left: 15%;
 }
 
-input {
-    /* border:  dashed deepskyblue 1px; */
-    width: 50%;
+.form input:focus{
+    outline-style: none;
+}
+
+.form .right {
+    width: calc(100% - 43px);
     height: 80px;
-    /* margin-top: 30px; */
     background: none;
-    border-radius: 0px 20px 20px 0px;
+    border-radius: 0px 40px 40px 0px;
     border-style: solid solid solid none;
-    border-color: #333;
+    border-color: #fff;
     font-size: 30px;
+    float: right;
     
 }
+
 /*input password*/
 
-.password {
-    border-radius: 20px 0px 0px 20px;
+.form .left {
+    width: calc(100% - 43px);
+    height: 80px;
+    background: none;
+    border-color: #fff;
+    font-size: 30px;
+    border-radius: 40px 0px 0px 40px;
+    margin-top: -2px;
+    margin-bottom: -2px;
     border-style: solid none solid solid;
+    float: left;
 }
 
 ::placeholder{
@@ -61,14 +84,26 @@ input {
 }
  .submit {
     cursor: pointer;
+    color: #1677F5;
+    font-weight: bold;
+    /* text-align: center; */
 } 
 
-a {
-    text-decoration: none;
-    font-size: 20px;
+.forgetPass, .logUpIn {
+    background: var(--ColorX);
+    font-weight: bold;
     color: #fff;
+    margin-top: 20px;
+    display: inline-block;
+    width: 40%;
+    min-width: 150px;
+    border-radius: 20px;
+    text-decoration: none;
     text-align: center;
-    display: block;
-    /* width: 300px; */
-    border:  dashed deepskyblue 1px;
 }
+.forgetPass::slotted{
+    border-radius: 20px;
+    background-color: #fff;
+}
+.forgetPass {float: right; min-width: 150px; max-width: 300px;}
+.logUpIn {float: left; min-width: 100px; max-width: 300px;}
