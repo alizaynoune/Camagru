@@ -1,0 +1,22 @@
+.navBar {
+    width: 100%;
+    height: 80px;
+    display: inline-flex;
+    background-color: var(--Color2);
+    justify-content: space-around;
+    color: var(--ColorMainFont);
+}
+
+.navBar a{
+    text-decoration: none;
+    color: var(--ColorMainFont);
+}
+.navBar .navLeft {
+    position: absolute;
+    left: 2%;
+}
+
+.navBar .navRight{
+    position: absolute;
+    right: 2%;
+}

@@ -1,40 +1,32 @@
-:root{
-    --ColorX: repeating-linear-gradient( #16F57E, #13D4A3, #21E4EB); /*background Color*/
-    --Color0: #21E4EB;
-    --Color1: #ffffff; /*font h Color*/
-    --Color2: #ffffff; /*font p Color*/
-    --Color3: #ffffff; /*button Color*/
-    --Color4: #ffffff; /*border Color*/
+@import "header.css";
+@import "footer.css";
 
+:root{
+     /*background Color*/
+    --Color0: #846DF8;
+    --Color1: #5F6CD9; /*font h Color*/
+    --Color2: #75A2F0; /*font p Color*/
+    --Color3: #5FACD9; /*button Color*/
+    --Color4: #6DE9F8; /*border Color*/
+    --Colorfont : #fff;
+    --ColorMainFont : #000;
+    --ColorX: repeating-linear-gradient( var(--Color0), var(--Color1), var(--Color2), var(--Color3), var(--Color4));
 }
+
+
+
 html, body {
-    background: var(--Color0);
+    background: var(--ColorX);
     height: 100%;
     width: 100%;
     padding: 0%;
     margin: auto;
+    background-attachment: fixed;
     /* overflow: hidden; */
 }
 /*font style of all element*/
 * {
     font-style: oblique;
-}
-
-.navBar {
-    width: 100%;
-    height: 80px;
-    display: inline-flex;
-    background-color: #16f57e;
-    justify-content: space-around;
-}
-.navBar h1 {
-    position: absolute;
-    left: 2%;
-}
-
-.navBar h2{
-    position: absolute;
-    right: 2%;
 }
 
 .form {
@@ -78,21 +70,21 @@ html, body {
 }
 
 ::placeholder{
-    color: #1677F5;
+    color: var(--Colorfont);
     text-align: center;
     font-weight: bold;
 }
  .submit {
     cursor: pointer;
-    color: #1677F5;
+    color: var(--Colorfont);
     font-weight: bold;
     /* text-align: center; */
 } 
 
-.forgetPass, .logUpIn {
+.leftBtn, .rightBtn {
     background: var(--ColorX);
     font-weight: bold;
-    color: #fff;
+    color: var(--Colorfont);
     margin-top: 20px;
     display: inline-block;
     width: 40%;
@@ -101,9 +93,13 @@ html, body {
     text-decoration: none;
     text-align: center;
 }
-.forgetPass::slotted{
+.rightBtn::slotted{
     border-radius: 20px;
     background-color: #fff;
 }
-.forgetPass {float: right; min-width: 150px; max-width: 300px;}
-.logUpIn {float: left; min-width: 100px; max-width: 300px;}
+.leftBtn {float: right; min-width: 150px; max-width: 300px;}
+.rightBtn {float: left; min-width: 100px; max-width: 300px;}
+
+@media only screen and (max-width: 800px){
+    .form{width: 94%; margin-left: 3%;}
+}
