@@ -1,15 +1,13 @@
-@import "header.css";
-@import "footer.css";
+@import "headerFooter.css";
 
 :root{
-     /*background Color*/
-    --Color0: #846DF8;
-    --Color1: #5F6CD9; /*font h Color*/
-    --Color2: #75A2F0; /*font p Color*/
-    --Color3: #5FACD9; /*button Color*/
-    --Color4: #6DE9F8; /*border Color*/
-    --Colorfont : #fff;
-    --ColorMainFont : #000;
+    --Color0:       #846DF8;
+    --Color1:       #5F6CD9;
+    --Color2:       #75A2F0;
+    --Color3:       #5FACD9;
+    --Color4:       #6DE9F8;
+    --Colorfont:    #fff;
+    --ColorMainFont:#000;
     --ColorX: repeating-linear-gradient( var(--Color0), var(--Color1), var(--Color2), var(--Color3), var(--Color4));
 }
 
@@ -22,18 +20,18 @@ html, body {
     padding: 0%;
     margin: auto;
     background-attachment: fixed;
-    /* overflow: hidden; */
 }
-/*font style of all element*/
+
 * {
     font-style: oblique;
 }
 
 .form {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 50px;
     width: 70%;
-    height: 340px;
+    height: auto;
+    display: inline-block;
     /* border: coral dashed 1px; */
     margin-left: 15%;
 }
@@ -48,7 +46,7 @@ html, body {
     background: none;
     border-radius: 0px 40px 40px 0px;
     border-style: solid solid solid none;
-    border-color: #fff;
+    border-color: var(--Colorfont);
     font-size: 30px;
     float: right;
     
@@ -60,7 +58,7 @@ html, body {
     width: calc(100% - 43px);
     height: 80px;
     background: none;
-    border-color: #fff;
+    border-color: var(--Colorfont);
     font-size: 30px;
     border-radius: 40px 0px 0px 40px;
     margin-top: -2px;
@@ -73,33 +71,57 @@ html, body {
     color: var(--Colorfont);
     text-align: center;
     font-weight: bold;
+    opacity: 0.3;
 }
+
+.form .right::placeholder{
+    padding-right: 80px;
+}
+
  .submit {
     cursor: pointer;
     color: var(--Colorfont);
     font-weight: bold;
-    /* text-align: center; */
-} 
+    background: var(--Colorfont);
+    font-size: 28px;
+    /* background-size: 200px; */
+}
+  
+  .submit:hover{
+    /* background-color: rgb(132, 109, 248, 0.5); */
+    font-size: 40px;
+    
+  }
+
+.submit:active{
+    color: var(--ColorMainFont);
+}
+
+.buttomBtn {
+    /* border: black dashed 1px; */
+    width: 100%;
+    height: 52px;
+    display: inline-block;
+    margin-top: 20px;
+}
 
 .leftBtn, .rightBtn {
-    background: var(--ColorX);
+    /* padding: .75rem .1rem; */
+    border-radius: 10rem;
+    background: var(--Color1);
     font-weight: bold;
     color: var(--Colorfont);
-    margin-top: 20px;
-    display: inline-block;
-    width: 40%;
+    width: 30%;
     min-width: 150px;
-    border-radius: 20px;
     text-decoration: none;
     text-align: center;
 }
-.rightBtn::slotted{
-    border-radius: 20px;
-    background-color: #fff;
-}
+
+
 .leftBtn {float: right; min-width: 150px; max-width: 300px;}
 .rightBtn {float: left; min-width: 100px; max-width: 300px;}
 
 @media only screen and (max-width: 800px){
-    .form{width: 94%; margin-left: 3%;}
+    .form, .buttomBtn{width: 94%; margin-left: 3%;}
+    
 }

@@ -10,13 +10,15 @@
         <div class="form">
 		<form action="login.php" method="POST">
             <h1>Recover Password</h1>
-            <input class="left" type="text" placeholder="Username" name="login"/></br>
-			<input class="right" type="email" placeholder="Email" name="login"/></br>
+            <input class="left" type="text" placeholder="Username" name="login" required/></br>
+			<input class="right" type="email" placeholder="E-mail" name="login" required/></br>
 			<input class="submit left" type="submit" name="submit" value="OK"/></br>
 		</form>
+		</div>
+		<div class="buttomBtn">
 			<a class="leftBtn" href="SignUp.php"><p>Create New Account</p></a>
 			<a class="rightBtn" href="LogIn.php"><p>SignIn</p></a>
-        </div>
+		</div>
         <?php include'footer.php'; ?>
 	</body>
 </html>
