@@ -32,64 +32,61 @@ html, body {
     width: 70%;
     height: auto;
     display: inline-block;
-    /* border: coral dashed 1px; */
     margin-left: 15%;
+    /* border: dashed deeppink 1px; */
 }
 
 .form input:focus{
     outline-style: none;
 }
 
-.form .right {
-    width: calc(100% - 43px);
-    height: 80px;
+.form input{
+    width: calc(100% - 60px);
+    height: 60px;
     background: none;
-    border-radius: 0px 40px 40px 0px;
-    border-style: solid solid solid none;
     border-color: var(--Colorfont);
-    font-size: 30px;
-    float: right;
-    
+    font-size: 25px;
 }
 
-/*input password*/
+.form .right {    
+    border-radius: 0px 40px 40px 0px;
+    border-style: solid solid solid none;
+    float: right;
+    padding-right: 28px;
+}
 
 .form .left {
-    width: calc(100% - 43px);
-    height: 80px;
-    background: none;
-    border-color: var(--Colorfont);
-    font-size: 30px;
     border-radius: 40px 0px 0px 40px;
     margin-top: -2px;
     margin-bottom: -2px;
     border-style: solid none solid solid;
     float: left;
+    padding-left: 28px;
 }
 
-::placeholder{
+
+.form ::placeholder{
+    padding-right: 80px;
     color: var(--Colorfont);
     text-align: center;
     font-weight: bold;
     opacity: 0.3;
 }
 
-.form .right::placeholder{
-    padding-right: 80px;
-}
-
- .submit {
-    cursor: pointer;
+ .form .submit {
+    cursor: pointer;    
     color: var(--Colorfont);
     font-weight: bold;
-    background: var(--Colorfont);
-    font-size: 28px;
-    /* background-size: 200px; */
+    width: calc(100% - 38px);
 }
   
   .submit:hover{
+<<<<<<< HEAD
     font-size: 40px;
     
+=======
+    font-size: 35px;
+>>>>>>> refs/remotes/origin/main
   }
 
 .submit:active{
@@ -99,8 +96,12 @@ html, body {
 .buttomBtn {
     /* border: black dashed 1px; */
     width: 70%;
+<<<<<<< HEAD
     margin-left: 15%;
+=======
+>>>>>>> refs/remotes/origin/main
     height: 52px;
+    margin-left: 15%;
     display: inline-block;
     margin-top: 20px;
 }
@@ -115,6 +116,11 @@ html, body {
     min-width: 150px;
     text-decoration: none;
     text-align: center;
+}
+
+.leftBtn:focus, .rightBtn:focus, .submit:focus{
+    background-color: var(--Color0);
+    outline-style: none;
 }
 
 

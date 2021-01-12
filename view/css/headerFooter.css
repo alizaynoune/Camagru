@@ -11,6 +11,12 @@
     text-decoration: none;
     color: var(--ColorMainFont);
 }
+
+.navBar a:focus{
+    outline-style: none;
+    color: var(--Colorfont);
+}
+
 .navBar .navLeft {
     position: absolute;
     left: 2%;
