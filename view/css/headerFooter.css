@@ -22,15 +22,17 @@
 }
 
 .footer{
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    margin-top: 15px;
-    height: 2.5rem; 
-    background-color: var(--ColorX);
+    /* margin-top: 15px; */
+    height: 2.2rem; 
+    background-color: var(--Color2);
 }
 
 .footer p{
-    display: -webkit-inline-flex;
     font-weight: bold;
     float: right;
+    margin-top: 6px;
     padding-right: 10px;
-}
+} 

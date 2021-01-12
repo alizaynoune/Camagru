@@ -88,7 +88,6 @@ html, body {
 }
   
   .submit:hover{
-    /* background-color: rgb(132, 109, 248, 0.5); */
     font-size: 40px;
     
   }
@@ -99,7 +98,8 @@ html, body {
 
 .buttomBtn {
     /* border: black dashed 1px; */
-    width: 100%;
+    width: 70%;
+    margin-left: 15%;
     height: 52px;
     display: inline-block;
     margin-top: 20px;

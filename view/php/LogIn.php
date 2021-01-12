@@ -20,5 +20,6 @@
 			<a class="rightBtn" href="ForgetPass.php"><p>Forgotten password?</p></a>
 		</div>
 		<?php include'footer.php'; ?>
+		<script type="text/javascript" src="../../controller/validateForm.js"></script>
 	</body>
 </html>
