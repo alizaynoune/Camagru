@@ -31,9 +31,10 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    /* margin-top: 15px; */
+    margin-top: 15px;
     height: 2.2rem; 
     background-color: var(--Color2);
+    border: darkblue dashed 1px;
 }
 
 .footer p{

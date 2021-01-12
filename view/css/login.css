@@ -20,6 +20,7 @@ html, body {
     padding: 0%;
     margin: auto;
     background-attachment: fixed;
+    overflow: auto;
 }
 
 * {
@@ -33,7 +34,7 @@ html, body {
     height: auto;
     display: inline-block;
     margin-left: 15%;
-    /* border: dashed deeppink 1px; */
+    border: dashed deeppink 1px;
 }
 
 .form input:focus{
@@ -46,6 +47,7 @@ html, body {
     background: none;
     border-color: var(--Colorfont);
     font-size: 25px;
+    
 }
 
 .form .right {    
@@ -81,29 +83,21 @@ html, body {
 }
   
   .submit:hover{
-<<<<<<< HEAD
-    font-size: 40px;
-    
-=======
     font-size: 35px;
->>>>>>> refs/remotes/origin/main
-  }
+}
 
 .submit:active{
     color: var(--ColorMainFont);
 }
 
 .buttomBtn {
-    /* border: black dashed 1px; */
+    border: black dashed 1px;
     width: 70%;
-<<<<<<< HEAD
-    margin-left: 15%;
-=======
->>>>>>> refs/remotes/origin/main
     height: 52px;
     margin-left: 15%;
     display: inline-block;
     margin-top: 20px;
+    margin-bottom: 90px;
 }
 
 .leftBtn, .rightBtn {
@@ -116,6 +110,7 @@ html, body {
     min-width: 150px;
     text-decoration: none;
     text-align: center;
+    height: 100%;
 }
 
 .leftBtn:focus, .rightBtn:focus, .submit:focus{
@@ -127,7 +122,9 @@ html, body {
 .leftBtn {float: right; min-width: 150px; max-width: 300px;}
 .rightBtn {float: left; min-width: 100px; max-width: 300px;}
 
-@media only screen and (max-width: 800px){
+@media (pointer:none), (pointer:coarse){
     .form, .buttomBtn{width: 94%; margin-left: 3%;}
+    .form input {height: 100px; font-size: 60px;}
+    .buttomBtn{height: 70px; margin-top: 40px;}
     
 }
