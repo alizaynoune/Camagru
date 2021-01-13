@@ -2,6 +2,7 @@
 <html>
 	<head>
     <meta charset="UTF-8" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Camagru</title>
   <link class="_css" rel="stylesheet" type="text/css" href="../css/login.css" />
 	</head>
@@ -11,8 +12,10 @@
 		<form action="login.php" method="POST">
 			<h1>Log In</h1>
 			<input class="left User" type="text" placeholder="Username" name="login" required/></br>
-			<input class="right Pass" type="password" placeholder="Password" name="passwd" required/></br>
+			<input class="right Passwd" type="password" placeholder="Password" name="passwd" required/>
+			<span class="fa fa-eye" onclick='togglePasswd(this)'></span></br>
 			<input class="submit left" type="submit" name="submit" value="OK"/></br>
+			
 		</form>
         </div>
 		<div class="buttomBtn">
