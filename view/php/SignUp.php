@@ -14,7 +14,7 @@
             <input class="right" type="text" placeholder="Last Name" name="lastName" required/></br>
             <input class="left" type="email" placeholder="E-mail Address" name="email" required/></br>
 			<input class="right" type="password" placeholder="Password" name="passwd" required/></br>
-            <input class="left" type="password" placeholder="Confirm Password" name="passwd" required/></br>
+            <input class="left" type="password" placeholder="Confirm Password" name="confPasswd" required/></br>
 			<input class="submit right" type="submit" name="submit" value="OK"/></br>
 		</form>
         </div>
@@ -23,5 +23,6 @@
 
         </div>
         <?php include'footer.php'; ?>
+        <script type="text/javascript" src="../../controller/validateForm.js"></script>
 	</body>
 </html>

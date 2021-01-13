@@ -5,6 +5,7 @@
     background-color: var(--Color2);
     justify-content: space-around;
     color: var(--ColorMainFont);
+    position: relative;
 }
 
 .navBar a{
@@ -34,7 +35,7 @@
     margin-top: 15px;
     height: 2.2rem; 
     background-color: var(--Color2);
-    border: darkblue dashed 1px;
+    /* border: darkblue dashed 1px; */
 }
 
 .footer p{
@@ -42,4 +43,8 @@
     float: right;
     margin-top: 6px;
     padding-right: 10px;
-} 
+}
+
+/* .navBarOnScroll{
+    height: 60;
+} */

@@ -19,6 +19,7 @@
 			<a class="leftBtn" href="SignUp.php"><p>Create New Account</p></a>
 			<a class="rightBtn" href="LogIn.php"><p>SignIn</p></a>
 		</div>
-        <?php include'footer.php'; ?>
+		<?php include'footer.php'; ?>
+		<script type="text/javascript" src="../../controller/validateForm.js"></script>
 	</body>
 </html>

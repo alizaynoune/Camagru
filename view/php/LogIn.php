@@ -10,8 +10,8 @@
         <div class="form">
 		<form action="login.php" method="POST">
 			<h1>Log In</h1>
-			<input class="left" type="text" placeholder="Username" name="login" required/></br>
-			<input class="right" type="password" placeholder="Password" name="passwd" required/></br>
+			<input class="left User" type="text" placeholder="Username" name="login" required/></br>
+			<input class="right Pass" type="password" placeholder="Password" name="passwd" required/></br>
 			<input class="submit left" type="submit" name="submit" value="OK"/></br>
 		</form>
         </div>

@@ -8,6 +8,7 @@
     --Color4:       #6DE9F8;
     --Colorfont:    #fff;
     --ColorMainFont:#000;
+    --ColorError:   #ff0000;
     --ColorX: repeating-linear-gradient( var(--Color0), var(--Color1), var(--Color2), var(--Color3), var(--Color4));
 }
 
@@ -21,6 +22,7 @@ html, body {
     margin: auto;
     background-attachment: fixed;
     overflow: auto;
+    overflow-x: hidden;
 }
 
 * {
@@ -34,7 +36,7 @@ html, body {
     height: auto;
     display: inline-block;
     margin-left: 15%;
-    border: dashed deeppink 1px;
+    /* border: dashed deeppink 1px; */
 }
 
 .form input:focus{
@@ -91,7 +93,7 @@ html, body {
 }
 
 .buttomBtn {
-    border: black dashed 1px;
+    /* border: black dashed 1px; */
     width: 70%;
     height: 52px;
     margin-left: 15%;
@@ -118,6 +120,9 @@ html, body {
     outline-style: none;
 }
 
+.error{
+    color: var(--ColorError);
+}
 
 .leftBtn {float: right; min-width: 150px; max-width: 300px;}
 .rightBtn {float: left; min-width: 100px; max-width: 300px;}
