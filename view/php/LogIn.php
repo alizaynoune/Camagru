@@ -13,7 +13,7 @@
 			<h1>Log In</h1>
 			<input class="left User" type="text" placeholder="Username" name="login" required/></br>
 			<input class="right Passwd" type="password" placeholder="Password" name="passwd" required/>
-			<span class="fa fa-eye" onclick='togglePasswd(this)'></span></br>
+			<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span></br>
 			<input class="submit left" type="submit" name="submit" value="OK"/></br>
 			
 		</form>
@@ -24,5 +24,6 @@
 		</div>
 		<?php include'footer.php'; ?>
 		<script type="text/javascript" src="../../controller/validateForm.js"></script>
+		<script type="text/javascript" src="../js/form.js"></script>
 	</body>
 </html>

@@ -37,7 +37,7 @@ function        validationEmail(Input){
 
 
 function        validationLogin(Input){
-    let RExp = /^[\w-\.]+$/;
+    let RExp = /^[\w-]+$/;
     if (!RExp.test(Input.value) || Input.value.length > 15 || Input.value.length < 8)
         return(1);
     else
@@ -100,7 +100,7 @@ function        eventPasswd(Input){
             Input.classList.remove('PasswdMed');
             Input.classList.remove('PasswdGood');
         }
-        console.log(Pass);
+        // console.log(Pass);
     });
 }
 
@@ -137,27 +137,34 @@ for (var i = 0; i < inputs.length; i++){
         eventPasswd(inputs[i]);
     else if (inputs[i].type === 'email')
         eventEmail(inputs[i]);
-    
+}
+
+function        validationAll(form){
+const inputs = form.querySelectorAll('input');
+var Ret = 0;
+for (var i = 0; i < inputs.length; i++){
+    if (inputs[i].name === 'login')
+        Ret = validationLogin(inputs[i]);
+    else if (inputs[i].name === 'firstName' ||
+                inputs[i].name === 'lastName')
+        Ret = validationName(inputs[i]);
+    else if (inputs[i].name === 'confPasswd')
+        Ret = validationConfPasswd(inputs[i], form.querySelector('input[name="passwd"]'));
+    else if (inputs[i].name === 'passwd')
+        Ret = validationPasswd(inputs[i]);
+    else if (inputs[i].type === 'email')
+        Ret = validationEmail(inputs[i]);
+    if (Ret > 0)
+        return(1);
+}
+return (0);
 }
 
 document.querySelector('form').addEventListener('submit', (e) =>{
-    console.log('done');
-    // validitForm();
-    // alert('ttt');
-     e.preventDefault();
-    // console.log(e);
-   
-    e.stopPropagation();
+    console.log(e);
+    const form = document.querySelector('form');
+    if (validationAll(form))
+        e.preventDefault();
     return false;
 });
 
-function        togglePasswd(elem){
-    var prev = elem.previousElementSibling;
-    elem.classList.toggle('fa-eye');
-    elem.classList.toggle('fa-eye-slash');
-    if (elem.className === 'fa fa-eye-slash'){
-        prev.type = 'text';
-    }
-    else
-        prev.type = 'password';
-}

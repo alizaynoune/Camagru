@@ -96,7 +96,7 @@ html, body {
     display: table-footer-group;
     position: initial;
     float: left;
-    border-color: var(--Colorfont);
+    color: var(--ColorMainFont);
     height: 60px;
     font-size: 25px;
     width: 25px;
@@ -148,7 +148,13 @@ html, body {
 
 @media (pointer:none), (pointer:coarse){
     .form, .buttomBtn{width: 94%; margin-left: 3%;}
-    .form input {height: 100px; font-size: 60px; width: calc(100% - 90px);}
+    .form input {
+        height: 100px;
+        font-size: 60px;
+        width: calc(100% - 90px);
+        border-width: 3px;
+    }
+    .form .left{margin-top: -3px;}
     .buttomBtn{height: 70px; margin-top: 40px;}
     .fa{font-size: 50px;}
     /* .form .left{padding-left: 50px;} */

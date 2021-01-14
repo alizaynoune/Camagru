@@ -16,9 +16,9 @@
             <input class="left" type="text" placeholder="Username" name="login" required/>
             <input class="right" type="email" placeholder="E-mail Address" name="email" required/>
             <input class="left" type="password" placeholder="Password" name="passwd" required/>
-            <span class="fa fa-eye" onclick='togglePasswd(this)'></span>
+            <span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
             <input class="right" type="password" placeholder="Confirm Password" name="confPasswd" required/>
-            <span class="fa fa-eye" onclick='togglePasswd(this)'></span>
+            <span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
             <input class="submit left" type="submit" name="submit" value="OK"/>
             
 		</form>
@@ -29,5 +29,7 @@
         </div>
         <?php include'footer.php'; ?>
         <script type="text/javascript" src="../../controller/validateForm.js"></script>
+        <script type="text/javascript" src="../js/form.js"></script>
+
 	</body>
 </html>

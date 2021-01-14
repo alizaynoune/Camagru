@@ -21,5 +21,7 @@
 		</div>
 		<?php include'footer.php'; ?>
 		<script type="text/javascript" src="../../controller/validateForm.js"></script>
+		<script type="text/javascript" src="../js/form.js"></script>
+
 	</body>
 </html>

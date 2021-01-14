@@ -1,0 +1,15 @@
+table Users
+		=> id login emailActive dateCreate
+table Usersinfo
+		=> idUser idphoto firstName lastName email
+table UserPasswd
+		=>idUser hasPasswd
+table UserPosts
+		=> id idUser dateCreate PostLink
+table UserComment
+		=> id idUser dateCreate Comment
+table PhotoLikes
+		=>idPost idPhoto dateCreate idUserLike
+table CommentLikes
+		=>idPost idComment dateCreate idUserLike
+
