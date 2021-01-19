@@ -5,9 +5,9 @@ class DBClass {
 	private		$DB_USER;
 	private		$DB_PASSWORD;
 	private		$DB_NAME;
-	private		$DB_CONN;
+	protected	$DB_CONN;
 
-	private function DB_init(){
+	private function Connect_init(){
 		$this->DB_DNS = '127.0.0.1';
 		$this->DB_USER = 'Camagru1337';
 		$this->DB_PASSWORD = 'ali';
@@ -20,23 +20,36 @@ class DBClass {
 			PDO::ATTR_CASE => PDO::CASE_NATURAL,
 			PDO::ATTR_ORACLE_NULLS => PDO::NULL_EMPTY_STRING
 		];
-		$this->DB_init();
+		$this->Connect_init();
 		try {
-			$this->DB_CONN = new PDO("mysql:host=".$this->DB_DNS, $this->DB_USER, $this->DB_PASSWORD, $this->options);
+			$this->DB_CONN = new PDO("mysql:host=".$this->DB_DNS.";dbname=".$this->DB_NAME, $this->DB_USER, $this->DB_PASSWORD, $this->options);
 		}catch(PDOException $e){
 			die('Database Connection failed: ' . $e->getMessage());
 		}
-		// return($this->DB_CONN);
+		return($this->DB_CONN);
 	}
 }
 
 class	DBConnect extends DBClass{
-	public function DB_Connect(){
+	protected function DB_Connect(){
 		$this->Connect();
 		return($this->DB_CONN);
 	}
 }
 
-class	
+class	DB_execute extends DBConnect{
+	public		$RSLT;
+	private		$STM;
+
+	public function	CMDexecute($name){
+		$this->DB_Connect();
+		$this->STM = $this->DB_CONN->prepare($name);
+		$this->STM->execute();
+		$this->RSLT = $this->STM->fetchAll(PDO::FETCH_NUM);
+		$this->DB_CONN = NULL;
+		return($this->RSLT);
+	}
+}
+
 
 ?>
