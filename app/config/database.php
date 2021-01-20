@@ -4,7 +4,7 @@ class DBClass {
 	private		$DB_DNS;
 	private		$DB_USER;
 	private		$DB_PASSWORD;
-	private		$DB_NAME;
+	protected	$DB_NAME;
 	protected	$DB_CONN;
 
 	private function Connect_init(){
@@ -20,36 +20,73 @@ class DBClass {
 			PDO::ATTR_CASE => PDO::CASE_NATURAL,
 			PDO::ATTR_ORACLE_NULLS => PDO::NULL_EMPTY_STRING
 		];
-		$this->Connect_init();
+		self::Connect_init();
 		try {
-			$this->DB_CONN = new PDO("mysql:host=".$this->DB_DNS.";dbname=".$this->DB_NAME, $this->DB_USER, $this->DB_PASSWORD, $this->options);
+			$this->DB_CONN = new PDO("mysql:host=".$this->DB_DNS, $this->DB_USER, $this->DB_PASSWORD, $this->options);
 		}catch(PDOException $e){
 			die('Database Connection failed: ' . $e->getMessage());
+			exit(false);
 		}
-		return($this->DB_CONN);
+		return(true);
 	}
 }
 
-class	DBConnect extends DBClass{
-	protected function DB_Connect(){
-		$this->Connect();
-		return($this->DB_CONN);
-	}
-}
-
-class	DB_execute extends DBConnect{
+class	DB_execute extends DBClass{
 	public		$RSLT;
 	private		$STM;
 
 	public function	CMDexecute($name){
-		$this->DB_Connect();
+		parent::Connect();
 		$this->STM = $this->DB_CONN->prepare($name);
-		$this->STM->execute();
+		$this->STM->execute([$name]);
 		$this->RSLT = $this->STM->fetchAll(PDO::FETCH_NUM);
 		$this->DB_CONN = NULL;
 		return($this->RSLT);
 	}
 }
 
+class	DB_Exists extends DB_execute{
+	private		$STM;
+
+	private function		if_Exists(){
+		parent::Connect();
+		$this->STM = $this->DB_CONN->prepare("SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '".$this->DB_NAME . "'");
+		$this->STM->execute();
+		$this->DB_CONN = NULL;
+		if ($this->STM->fetchColumn() > 0)
+			return (true);
+		else
+			return (false);
+	}
+
+	public	function	DB_USE(){
+		if (self::if_Exists() === true){
+			return (true);
+		}
+		else
+			return (false);
+	}
+
+}
+
+class	Table_Exists extends DB_Exists{
+
+}
+
+class	DB_Creat extends DBClass{
+
+}
+
+class	Table_Creat extends DBClass{
+
+}
+
+class	DB_Drop extends DBClass{
+
+}
+
+class	Table_Drop extends DBClass{
+
+}
 
 ?>
