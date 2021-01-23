@@ -20,23 +20,21 @@ class	DB_SETUP extends DBClass{
 		self::DB_EXEC("CREATE DATABASE `$this->DB_NAME`");
 	}
 
-	public	function create_TB($ARRAY){
+	function __construct($ARRAY){
 		self::create_DB();
 		self::DB_EXEC("USE `$this->DB_NAME`");
 		self::DB_EXEC($ARRAY["_table"]._users_.' ( id '.$ARRAY["_aid"].', login '.$ARRAY["_login"].' , active '.$ARRAY["_true_false"].' , dateCreate '.$ARRAY["_date"].')');
-		self::DB_EXEC($ARRAY["_table"]._usersinfo_.' ( uid '.$ARRAY["_id"].' , photid '. $ARRAY["_id_0"]. ' , firstname '.$ARRAY["_name"].' , lastname '. $ARRAY["_name"]. ' , '.$ARRAY["_email"].')');
+		self::DB_EXEC($ARRAY["_table"]._usersinfo_.' ( uid '.$ARRAY["_id"].' , photoid '. $ARRAY["_id_0"]. ' , firstname '.$ARRAY["_name"].' , lastname '. $ARRAY["_name"]. ' , '.$ARRAY["_email"].')');
 		self::DB_EXEC($ARRAY["_table"]._passwd_. ' ( uid '.$ARRAY["_id"]. ' , '. $ARRAY["_pwd"].')');
-		self::DB_EXEC($ARRAY["_table"]._posts_. ' ( pid '.$ARRAY["_aid"] . ' , uid ' . $ARRAY['_id'] . ' , pLink ' . $ARRAY['_string'] . ' , likes ' . $ARRAY['_id_0'] . ' , dateCreate ' . $ARRAY['_date'] .')');
-		self::DB_EXEC($ARRAY["_table"]._comment_. '( cid '.$ARRAY['_aid'] . ' , uid ' . $ARRAY['_id'] . ' , pid ' . $ARRAY['_id'] . ' , Comment ' . $ARRAY['_comment'] . ' , likes '. $ARRAY['_id_0'] .' , dateCreate ' . $ARRAY['_date'] .')');
-		self::DB_EXEC($ARRAY["_table"]._Plike_. '( like_id '. $ARRAY['_aid'] . ' , post_id '. $ARRAY['_id'] . ' , uid ' . $ARRAY['_id'] . ' , dateCreate ' . $ARRAY['_date'] .')');
-		self::DB_EXEC($ARRAY["_table"]._Clike_. '( like_id '. $ARRAY['_aid'] . ' , comment_id '. $ARRAY['_id'] . ' , uid ' . $ARRAY['_id'] . ' , dateCreate ' . $ARRAY['_date'] .')');
-
+		self::DB_EXEC($ARRAY["_table"]._posts_. ' ( post_id '.$ARRAY["_aid"] . ' , uid ' . $ARRAY['_id'] . ' , path ' . $ARRAY['_string'] . ' , likes ' . $ARRAY['_id_0'] . ' , dateCreate ' . $ARRAY['_date'] .')');
+		self::DB_EXEC($ARRAY["_table"]._comment_. '( comment_id '.$ARRAY['_aid'] . ' , uid ' . $ARRAY['_id'] . ' , post_id ' . $ARRAY['_id'] . ' , Comment ' . $ARRAY['_comment'] . ' , likes '. $ARRAY['_id_0'] .' , dateCreate ' . $ARRAY['_date'] .')');
+		self::DB_EXEC($ARRAY["_table"]._Postlike_. '( like_id '. $ARRAY['_aid'] . ' , post_id '. $ARRAY['_id'] . ' , uid ' . $ARRAY['_id'] . ' , dateCreate ' . $ARRAY['_date'] .')');
+		self::DB_EXEC($ARRAY["_table"]._Commentlike_. '( like_id '. $ARRAY['_aid'] . ' , comment_id '. $ARRAY['_id'] . ' , uid ' . $ARRAY['_id'] . ' , dateCreate ' . $ARRAY['_date'] .')');
+		$this->DB_CONN = NULL;
 	}
 }
 
 
-$test = new DB_SETUP();
-echo $test->create_TB($DB_CREATE);
-// print_r ($DB_CREATE);
+$test = new DB_SETUP($DB_CREATE);
 
 ?>

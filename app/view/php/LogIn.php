@@ -9,9 +9,9 @@
 	<body>
 	<?php include'header.php'; ?>
         <div class="form">
-		<form action="login.php" method="POST">
+		<form action="../../model/login.php" method="POST">
 			<h1>Log In</h1>
-			<input class="left User" type="text" placeholder="Username" name="login" required/></br>
+			<input class="left User" type="text" placeholder="Username" name="login" value="<?php echo $_POST["login"]?>" required/></br>
 			<input class="right Passwd" type="password" placeholder="Password" name="passwd" required/>
 			<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span></br>
 			<input class="submit left" type="submit" name="submit" value="OK"/></br>

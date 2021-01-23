@@ -5,8 +5,8 @@ define("_usersinfo_", "UsersInfo");
 define("_passwd_", "UserPasswd");
 define("_comment_", "Comments");
 define("_posts_", "Posts");
-define("_Plike_", "PostLikes");
-define("_Clike_", "CommentLikes");
+define("_Postlike_", "PostLikes");
+define("_Commentlike_", "CommentLikes");
 
 $DB_CREATE = array(
     "_table"        => " CREATE TABLE ",

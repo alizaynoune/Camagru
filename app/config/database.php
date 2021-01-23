@@ -74,9 +74,6 @@ class	Table_Exists extends DB_Exists{
 
 }
 
-// class	DB_Creat extends DBClass{
-
-// }
 
 class	Table_Creat extends DBClass{
 
