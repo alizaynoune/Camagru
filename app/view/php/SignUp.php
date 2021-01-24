@@ -11,10 +11,10 @@
         <div class="form">
 		<form action="../../model/create.php" method="POST">
 			<h1>Sign Up</h1>
-			<input class="left" type="text" placeholder="First Name" name="firstName" required/>
-            <input class="right" type="text" placeholder="Last Name" name="lastName" value="<?= $_POST['lastName']?>" required/>
-            <input class="left" type="text" placeholder="Username" name="login" value="<?= $_POST['login']?>" required/>
-            <input class="right" type="email" placeholder="E-mail Address" name="email" value="<?= $_POST['email']?>" required/>
+			<input class="left" type="text" placeholder="First Name" name="firstName" value="<?php echo $_POST['firstName'];?>" required/>
+            <input class="right" type="text" placeholder="Last Name" name="lastName" value="<?php echo $_POST['lastName'];?>" required/>
+            <input class="left" type="text" placeholder="Username" name="login" value="<?php echo $_POST['login'];?>" required/>
+            <input class="right" type="email" placeholder="E-mail Address" name="email" value="<?php echo $_POST['email'];?>" required/>
             <input class="left" type="password" placeholder="Password" name="passwd" required/>
             <span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
             <input class="right" type="password" placeholder="Confirm Password" name="confPasswd" required/>

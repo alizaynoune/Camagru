@@ -1,28 +1,25 @@
 <?php
-function    filter_email($email){
 
-}
-
-function    filter_login($login){
-
-}
-
-function    filter_name($name){
-
-}
-
-function    filter_pwd($pwd){
-
-}
 
 function    filter_inputs(){
-    return(0);
-
+	$firstName = $_POST['firstName'];
+	$lastName = $_POST['lastName'];
+	$login = $_POST['login'];
+	$email = $_POST['email'];
+	$pwd = $_POST['passwd'];
+	$cnfpwd = $_POST['confPasswd'];
+	if (empty($firstName) || empty($lastName) || empty($login) || empty($email) || empty($pwd) || empty($cnfpwd))
+		return(false);
+	
+	
 }
 
-if (filter_inputs() == 0){
+if ($_SERVER['REQUSET_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK' || filter_inputs() == false){
+	header('HTTP/1.1 307 Temporary Redirect');
 	header("Location: ../view/php/SignUp.php");
 	exit;
 }
+
+print_r($_POST);
 
 ?>

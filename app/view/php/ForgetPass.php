@@ -9,9 +9,9 @@
     <?php include'header.php'; ?>
         <div class="form">
 		<form action="login.php" method="POST">
-            <h1>Recover Password</h1>
+            <h1>Recovery Password</h1>
             <input class="left" type="text" placeholder="Username" name="login" required/></br>
-			<input class="right" type="email" placeholder="E-mail" name="login" required/></br>
+			<input class="right" type="email" placeholder="E-mail" name="email" required/></br>
 			<input class="submit left" type="submit" name="submit" value="OK"/></br>
 		</form>
 		</div>
