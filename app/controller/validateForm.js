@@ -16,6 +16,8 @@ function        validationPasswd(Input){
         Ret++;
     if (!RExp4.test(Input.value))
         Ret++;
+    if (Input.value.length > 20)
+        Ret = 5;
     return (Ret);
 }
 
@@ -28,7 +30,7 @@ function        validationConfPasswd(Input, passwd){
 
 function        validationEmail(Input){
     let RExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    if (!RExp.test(Input.value))
+    if (!RExp.test(Input.value) || Input.value.length > 50)
         return(1);
     else
         return(0);
@@ -161,7 +163,6 @@ return (0);
 }
 
 document.querySelector('form').addEventListener('submit', (e) =>{
-    console.log(e);
     const form = document.querySelector('form');
     if (validationAll(form))
         e.preventDefault();

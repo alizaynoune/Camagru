@@ -30,62 +30,23 @@ class DBClass {
 		}
 		return(true);
 	}
-}
 
-class	DB_execute extends DBClass{
-	public		$RSLT;
-	private		$STM;
-
-	public function	CMDexecute($name){
-		parent::Connect();
-		$this->STM = $this->DB_CONN->prepare($name);
-		$this->STM->execute([$name]);
-		$this->RSLT = $this->STM->fetchAll(PDO::FETCH_NUM);
-		$this->DB_CONN = NULL;
-		return($this->RSLT);
-	}
-}
-
-class	DB_Exists extends DB_execute{
-	private		$STM;
-
-	private function		if_Exists(){
-		parent::Connect();
-		$this->STM = $this->DB_CONN->prepare("SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '".$this->DB_NAME . "'");
-		$this->STM->execute();
-		$this->DB_CONN = NULL;
-		if ($this->STM->fetchColumn() > 0)
-			return (true);
-		else
-			return (false);
-	}
-
-	public	function	DB_USE(){
-		if (self::if_Exists() === true){
-			return (true);
+	protected	function Connect_use(){
+		self::Connect_init();
+		try {
+			$this->DB_CONN = new PDO("mysql:host=".$this->DB_DNS.';dbname='.$this->DB_NAME, $this->DB_USER, $this->DB_PASSWORD, $this->OPTIONS);
+		}catch(PDOException $e){
+			die('Database Connection failed: ' . $e->getMessage());
+			exit(false);
 		}
-		else
-			return (false);
+		return(true);
 	}
-
+	protected function	Desconnect(){
+		unset($this->DB_CONN);
+	}
 }
 
-class	Table_Exists extends DB_Exists{
 
-}
-
-
-class	Table_Creat extends DBClass{
-
-}
-
-class	DB_Drop extends DBClass{
-
-}
-
-class	Table_Drop extends DBClass{
-
-}
 
 
 ?>

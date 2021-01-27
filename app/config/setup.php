@@ -1,40 +1,49 @@
 <?php
-include 'database.php';
-require_once'schimaDefine.php';
+require_once 'database.php';
 
 class	DB_SETUP extends DBClass{
-
-	private	function DB_EXEC($cmd){
-		$this->DB_CONN->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	private	$st;
+	private	$sql;
+	
+	private	function DBquery($cmd){
 		try{
-			$this->DB_CONN->exec($cmd);
+			$this->DB_CONN->query($cmd);
 		} catch(PDOException $e){
 			die ("Error : ". $e->getMessage());
 		}
 	}
 
-	private function create_DB(){
-		parent::Connect();
-		
-		self::DB_EXEC("DROP DATABASE IF EXISTS `$this->DB_NAME`");
-		self::DB_EXEC("CREATE DATABASE `$this->DB_NAME`");
+	private	function tables(){
+		try{
+			$this->DB_CONN->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$this->sql = file_get_contents('Camagru.sql');
+			$this->st = $this->DB_CONN->prepare($this->sql);
+			$this->st->execute();
+		}catch(PDOException $e){
+			die ("Error : ". $e->getMessage());
+			exit();
+		}
+		echo "Create tables".PHP_EOL;
+		// print_r($this->st);
 	}
 
-	function __construct($ARRAY){
+	private function create_DB(){
+		parent::Connect();
+		self::DBquery("DROP DATABASE IF EXISTS `$this->DB_NAME`");
+		self::DBquery("CREATE DATABASE `$this->DB_NAME`");
+		echo'Create database '.$this->DB_NAME .PHP_EOL;
+	}
+
+	function __construct(){
 		self::create_DB();
-		self::DB_EXEC("USE `$this->DB_NAME`");
-		self::DB_EXEC($ARRAY["_table"]._users_.' ( id '.$ARRAY["_aid"].', login '.$ARRAY["_login"].' , active '.$ARRAY["_true_false"].' , dateCreate '.$ARRAY["_date"].')');
-		self::DB_EXEC($ARRAY["_table"]._usersinfo_.' ( uid '.$ARRAY["_id"].' , photoid '. $ARRAY["_id_0"]. ' , firstname '.$ARRAY["_name"].' , lastname '. $ARRAY["_name"]. ' , '.$ARRAY["_email"].')');
-		self::DB_EXEC($ARRAY["_table"]._passwd_. ' ( uid '.$ARRAY["_id"]. ' , '. $ARRAY["_pwd"].')');
-		self::DB_EXEC($ARRAY["_table"]._posts_. ' ( post_id '.$ARRAY["_aid"] . ' , uid ' . $ARRAY['_id'] . ' , path ' . $ARRAY['_string'] . ' , likes ' . $ARRAY['_id_0'] . ' , dateCreate ' . $ARRAY['_date'] .')');
-		self::DB_EXEC($ARRAY["_table"]._comment_. '( comment_id '.$ARRAY['_aid'] . ' , uid ' . $ARRAY['_id'] . ' , post_id ' . $ARRAY['_id'] . ' , Comment ' . $ARRAY['_comment'] . ' , likes '. $ARRAY['_id_0'] .' , dateCreate ' . $ARRAY['_date'] .')');
-		self::DB_EXEC($ARRAY["_table"]._Postlike_. '( like_id '. $ARRAY['_aid'] . ' , post_id '. $ARRAY['_id'] . ' , uid ' . $ARRAY['_id'] . ' , dateCreate ' . $ARRAY['_date'] .')');
-		self::DB_EXEC($ARRAY["_table"]._Commentlike_. '( like_id '. $ARRAY['_aid'] . ' , comment_id '. $ARRAY['_id'] . ' , uid ' . $ARRAY['_id'] . ' , dateCreate ' . $ARRAY['_date'] .')');
+		self::DBquery("USE `$this->DB_NAME`");
+		echo 'Connect to database '.$this->DB_NAME .PHP_EOL;
+		self::tables();
 		$this->DB_CONN = NULL;
 	}
 }
 
 
-$test = new DB_SETUP($DB_CREATE);
+new DB_SETUP();
 
 ?>
