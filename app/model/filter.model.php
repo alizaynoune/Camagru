@@ -35,8 +35,11 @@ function    filter_comment($comment){
 }
 
 function    exist_email($email){
-	$new_get = new DBGet();
-	$rslt = $new_get->select('email', 'Users', 'email', $email);
+
+	$select = new dbselect();
+	$rslt = $select->select($DB_SELECT['_email'], array(''));
+	// $new_get = new DBGet();
+	// $rslt = $new_get->select('email', 'Users', 'email', $email);
 	if (!empty($rslt))
 		return(true);
 	return(false);

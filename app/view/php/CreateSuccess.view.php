@@ -2,6 +2,7 @@
 session_start();
 if ($_SESSION['login'])
 	header("Location: home.view.php?");
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,8 +19,8 @@ if ($_SESSION['login'])
 
 		<?php
 		require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
-		$test = new DBGet();
-		$rslt = $test->select('*', 'Users', 'email', 'ali@ali.com');
+		$test = new dbselect();
+		$rslt = $test->select($DB_SELECT['_user'], '1');
 		print_r($rslt);
 		echo "done";
 		?>

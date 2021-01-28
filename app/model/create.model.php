@@ -1,7 +1,7 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/insert.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
@@ -28,8 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK' || filter
 	exit;
 }
 else{
-	insert_User($DB_INSERT['_user']." ( '".$login."', '".$firstName."', '".$lastName."', '".$email. "', '".$pwd. "', NOW())");
+	new insert($DB_INSERT['_user'], array($login , $firstName, $lastName, $email, $pwd));
 	header("Location: ../view/php/CreateSuccess.view.php");
+	exit();
 }
 
 ?>

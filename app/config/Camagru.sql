@@ -26,7 +26,7 @@ CREATE TABLE `CommentLikes` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `cid` int unsigned NOT NULL,
   `uid` int unsigned NOT NULL,
-  `Date` datetime NOT NULL,
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -53,7 +53,7 @@ CREATE TABLE `Comments` (
   `pid` int unsigned NOT NULL,
   `Comment` varchar(255) NOT NULL,
   `likes` int unsigned NOT NULL DEFAULT '0',
-  `Date` datetime NOT NULL,
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -78,7 +78,7 @@ CREATE TABLE `PostLikes` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `pid` int unsigned NOT NULL,
   `uid` int unsigned NOT NULL,
-  `Date` datetime NOT NULL,
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -102,9 +102,9 @@ DROP TABLE IF EXISTS `Posts`;
 CREATE TABLE `Posts` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `uid` int unsigned NOT NULL,
-  `link` varchar(200) NOT NULL,
+  `url` varchar(200) NOT NULL,
   `likes` int unsigned NOT NULL DEFAULT '0',
-  `Date` datetime NOT NULL,
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -135,7 +135,7 @@ CREATE TABLE `Users` (
   `active` enum('true','false') NOT NULL DEFAULT 'false',
   `notif` enum('true','false') NOT NULL DEFAULT 'true',
   `pwd` varchar(255) NOT NULL,
-  `Date` datetime NOT NULL,
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

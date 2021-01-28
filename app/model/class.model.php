@@ -1,64 +1,73 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/database.php';
 
-class	Insert extends db_conn {
-	private		$stmt;
+class	insert extends db_conn {
+    private		$stmt;
+    private     $sql;
 
-	function	__construct($cmd){
-		self::connect_use();
+	function	__construc($ins, $values){
+        self::connect_use();
 		try{
-			$this->conn->exec('INSERT INTO '.$cmd);
+            $this->stmt = $this->conn->prepare($ins);
+            $this->stmt->execute($values);
 		} catch(PDOException $e){
-			die ("Error : ". $e->getMessage());
-		}
-	}
+            die ("Error : ". $e->getMessage());
+            exit();
+        }
+        self::Desconnect();
+    }
+    
 }
 
-class   DBGet extends db_conn {
+class   dbselect extends db_conn {
     private     $stmt;
     private     $rslt;
+    private     $bnd;
 
-    public function    select($selct, $table, $where, $equ){
+    public function    select($select, $values){
         self::connect_use();
+        // if (!is_null($this->conn))
+                // return($this->conn);
         try{
-            $this->stmt = $this->conn->prepare('SELECT '. $selct .' FROM '. $table .' WHERE '. $where .' = ?');
-            $this->stmt->execute([$equ]);
+
+            $this->stmt = $this->conn->prepare("SELECT  login FROM Users WHERE id = ?");
+            // return($this->stmt);
+            // echo $select;
+            $this->stm->bindParam(1, 1, PDO::PARAM_INT);
+            // $values = 'ali-zaynoune';
+            $this->stmt->execute();
             $this->rslt = $this->stmt->fetch(PDO::FETCH_ASSOC);
-            unset($this->stmt);
             self::Desconnect();
             return ($this->rslt);
         }catch(PDOException $e){
-			die ("Error : ". $e->getMessage());
-		}
-        
-    }
-
-    public  function    selectByLogin($select, $table, $login){
-
+            self::Desconnect();
+            die ("Error : ". $e->getMessage());
+            exit();
+        }
     }
 }
 
-class   Session extends DBGet {
-    private static $user;
+// class   Session extends DBGet {
+//     private static $user;
 
-    public function start($newlogin){
-        self::$user = self::select('login, id', 'Users', 'login', $newlogin);
-        if (!empty(self::$user)){
-            session_start();
-            $_SESSION['login'] = self::$user['login'];
-            $_SESSION['uid'] = self::$user['id'];
-            return(true);
-        }
-        else{
-            return(false);
-        }
-    }
+//     public function start($newlogin){
+//         self::$user = self::select('login, id', 'Users', 'login', $newlogin);
+//         if (!empty(self::$user)){
+//             session_start();
+//             $_SESSION['login'] = self::$user['login'];
+//             $_SESSION['uid'] = self::$user['id'];
+//             return(true);
+//         }
+//         else{
+//             return(false);
+//         }
+//     }
 
-    public  function logout(){
-        session_start();
-        unset($_SESSION["login"]);
-        unset($_SESSION["id"]);
-    }
-}
+//     public  function logout(){
+//         session_start();
+//         unset($_SESSION["login"]);
+//         unset($_SESSION["id"]);
+//     }
+// }
 
 ?>
