@@ -1,7 +1,7 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/insert.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/insert.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
 
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
@@ -24,12 +24,12 @@ function    filter_inputs(){
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK' || filter_inputs() == false){
 	header('HTTP/1.1 307 Temporary Redirect');
-	header("Location: ../view/php/SignUp.php");
+	header("Location: ../view/php/signup.view.php");
 	exit;
 }
 else{
 	insert_User($DB_INSERT['_user']." ( '".$login."', '".$firstName."', '".$lastName."', '".$email. "', '".$pwd. "', NOW())");
-	header("Location: ../view/php/CreateSuccess.php");
+	header("Location: ../view/php/CreateSuccess.view.php");
 }
 
 ?>

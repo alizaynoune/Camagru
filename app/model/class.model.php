@@ -1,27 +1,27 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/database.php';
 
-class	Insert extends DBClass {
+class	Insert extends db_conn {
 	private		$stmt;
 
 	function	__construct($cmd){
 		self::connect_use();
 		try{
-			$this->DB_CONN->exec('INSERT INTO '.$cmd);
+			$this->conn->exec('INSERT INTO '.$cmd);
 		} catch(PDOException $e){
 			die ("Error : ". $e->getMessage());
 		}
 	}
 }
 
-class   DBGet extends DBClass {
+class   DBGet extends db_conn {
     private     $stmt;
     private     $rslt;
 
     public function    select($selct, $table, $where, $equ){
         self::connect_use();
         try{
-            $this->stmt = $this->DB_CONN->prepare('SELECT '. $selct .' FROM '. $table .' WHERE '. $where .' = ?');
+            $this->stmt = $this->conn->prepare('SELECT '. $selct .' FROM '. $table .' WHERE '. $where .' = ?');
             $this->stmt->execute([$equ]);
             $this->rslt = $this->stmt->fetch(PDO::FETCH_ASSOC);
             unset($this->stmt);

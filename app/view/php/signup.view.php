@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['login'])
-	header("Location: home.php");
+	header("Location: home.view.php");
 ?>
 
 <!DOCTYPE html>
@@ -13,9 +13,9 @@ if ($_SESSION['login'])
   <link class="_css" rel="stylesheet" type="text/css" href="../css/login.css" />
 	</head>
 	<body>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.php'; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
         <div class="form">
-		<form action="../../model/create.php" method="POST">
+		<form action="../../model/create.model.php" method="POST">
 			<h1>Sign Up</h1>
 			<input class="left" type="text" placeholder="First Name" name="firstName" value="<?php echo $_POST['firstName'];?>" required/>
             <input class="right" type="text" placeholder="Last Name" name="lastName" value="<?php echo $_POST['lastName'];?>" required/>
@@ -30,10 +30,10 @@ if ($_SESSION['login'])
 		</form>
         </div>
         <div class="buttomBtn">
-        <a class="leftBtn" href="LogIn.php"><p>SignIn</p></a>
+        <a class="leftBtn" href="login.view.php"><p>SignIn</p></a>
 
         </div>
-        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.php'; ?>
+        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
         <script type="text/javascript" src="../../controller/validateForm.js"></script>
         <script type="text/javascript" src="../js/form.js"></script>
 

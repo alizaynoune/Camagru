@@ -1,19 +1,19 @@
 <?php
 
-class DBClass {
-	private		$DB_DNS;
-	private		$DB_USER;
-	private		$DB_PASSWORD;
-	protected	$DB_NAME;
-	protected	$DB_CONN;
+class db_conn {
+	private		$db_dns;
+	private		$db_user;
+	private		$db_password;
+	protected	$db_name;
+	protected	$conn;
 	protected	$OPTIONS;
 
 	private function Connect_init(){
-		$this->DB_DNS = '127.0.0.1';
-		$this->DB_USER = 'Camagru1337';
-		$this->DB_PASSWORD = 'ali';
-		$this->DB_NAME = 'Camagru';
-		$this->DB_CONN = NULL;
+		$this->db_dns = '127.0.0.1';
+		$this->db_user = 'Camagru1337';
+		$this->db_password = 'ali';
+		$this->db_name = 'Camagru';
+		$this->conn = NULL;
 		$this->OPTIONS = [
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 			PDO::ATTR_CASE => PDO::CASE_NATURAL,
@@ -23,7 +23,7 @@ class DBClass {
 	protected	function Connect(){
 		self::Connect_init();
 		try {
-			$this->DB_CONN = new PDO("mysql:host=".$this->DB_DNS, $this->DB_USER, $this->DB_PASSWORD, $this->OPTIONS);
+			$this->conn = new PDO("mysql:host=".$this->db_dns, $this->db_user, $this->db_password, $this->OPTIONS);
 		}catch(PDOException $e){
 			die('Database Connection failed: ' . $e->getMessage());
 			exit(false);
@@ -34,7 +34,7 @@ class DBClass {
 	protected	function Connect_use(){
 		self::Connect_init();
 		try {
-			$this->DB_CONN = new PDO("mysql:host=".$this->DB_DNS.';dbname='.$this->DB_NAME, $this->DB_USER, $this->DB_PASSWORD, $this->OPTIONS);
+			$this->conn = new PDO("mysql:host=".$this->db_dns.';dbname='.$this->db_name, $this->db_user, $this->db_password, $this->OPTIONS);
 		}catch(PDOException $e){
 			die('Database Connection failed: ' . $e->getMessage());
 			exit(false);
@@ -42,11 +42,7 @@ class DBClass {
 		return(true);
 	}
 	protected function	Desconnect(){
-		unset($this->DB_CONN);
+		$this->conn = null;
 	}
 }
-
-
-
-
 ?>

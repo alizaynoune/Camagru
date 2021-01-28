@@ -1,49 +1,49 @@
 <?php
 require_once 'database.php';
 
-class	DB_SETUP extends DBClass{
+class	db_setup extends db_conn{
 	private	$st;
 	private	$sql;
 	
 	private	function DBquery($cmd){
 		try{
-			$this->DB_CONN->query($cmd);
+			$this->conn->query($cmd);
 		} catch(PDOException $e){
 			die ("Error : ". $e->getMessage());
+			exit();
 		}
 	}
 
 	private	function tables(){
 		try{
-			$this->DB_CONN->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->sql = file_get_contents('Camagru.sql');
-			$this->st = $this->DB_CONN->prepare($this->sql);
+			$this->st = $this->conn->prepare($this->sql);
 			$this->st->execute();
 		}catch(PDOException $e){
 			die ("Error : ". $e->getMessage());
 			exit();
 		}
 		echo "Create tables".PHP_EOL;
-		// print_r($this->st);
 	}
 
 	private function create_DB(){
 		parent::Connect();
-		self::DBquery("DROP DATABASE IF EXISTS `$this->DB_NAME`");
-		self::DBquery("CREATE DATABASE `$this->DB_NAME`");
-		echo'Create database '.$this->DB_NAME .PHP_EOL;
+		self::DBquery("DROP DATABASE IF EXISTS `$this->db_name`");
+		self::DBquery("CREATE DATABASE `$this->db_name`");
+		echo'Create database '.$this->db_name .PHP_EOL;
 	}
 
 	function __construct(){
 		self::create_DB();
-		self::DBquery("USE `$this->DB_NAME`");
-		echo 'Connect to database '.$this->DB_NAME .PHP_EOL;
+		self::DBquery("USE `$this->db_name`");
+		echo 'Connect to database '.$this->db_name .PHP_EOL;
 		self::tables();
-		$this->DB_CONN = NULL;
+		$this->conn = NULL;
 	}
 }
 
 
-new DB_SETUP();
+new db_setup();
 
 ?>

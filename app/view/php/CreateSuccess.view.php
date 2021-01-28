@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['login'])
-	header("Location: home.php?");
+	header("Location: home.view.php?");
 ?>
 
 <!DOCTYPE html>
@@ -13,18 +13,18 @@ if ($_SESSION['login'])
   <link class="_css" rel="stylesheet" type="text/css" href="../css/login.css"/>
 	</head>
 	<body>
-	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.php'; ?>
+	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
 
 
 		<?php
-		require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.php';
+		require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		$test = new DBGet();
 		$rslt = $test->select('*', 'Users', 'email', 'ali@ali.com');
 		print_r($rslt);
 		echo "done";
 		?>
 
-		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.php'; ?>
+		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 
 	</body>
 </html>

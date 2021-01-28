@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 function    filter_email($email){
 	if (strlen($email) > 50 || !filter_var($email, FILTER_VALIDATE_EMAIL))
 		return(false);

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,10 +11,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.php';
   <link class="_css" rel="stylesheet" type="text/css" href="../css/login.css"/>
 	</head>
 	<body>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.php';
+    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';
         // print_r($_SESSION);
         // echo "done";
     ?>
-		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.php'; ?>
+		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 	</body>
 </html>

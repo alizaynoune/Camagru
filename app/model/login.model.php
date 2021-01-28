@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/auth.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
 
 $login = $_POST['login'];
 $pwd = $_POST['passwd'];
@@ -22,10 +22,10 @@ function    filter_inputs(){
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK' || filter_inputs() === false){
     header('HTTP/1.1 307 Temporary Redirect');
-	header("Location: ../view/php/LogIn.php?error=".$_error_);
+	header("Location: ../view/php/login.view.php?error=".$_error_);
 	exit();
 }
 else{
-    header("Location: ../view/php/home.php?");
+    header("Location: ../view/php/home.view.php?");
 }
 ?>
