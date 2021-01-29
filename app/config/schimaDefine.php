@@ -6,11 +6,19 @@ define("_posts_", "Posts");
 define("_Postlike_", "PostLikes");
 define("_Commentlike_", "CommentLikes");
 
+$PARAM = array(
+    'int'   => PDO::PARAM_INT,
+    'str'   => PDO::PARAM_STR,
+    'bool'  => PDO::PARAM_BOOL,
+    'null'  => PDO::PARAM_NULL, 
+);
 
 $DB_SELECT = array (
-    "_user"         => "SELECT  login FROM Users WHERE id = ?",
-    "_passowrd"     => "SELECT `pwd` FROM Users WHERE id = ?",
-    "_email"        => "SELECT `email` FROM Users WHERE id = ?",
+    "_id"       => "SELECT :select: FROM :table: WHERE id = ?",
+    "_login"    => "SELECT :select: FROM :table: WHERE login = ?",
+    "_email"    => "SELECT :select: FROM :table: WHERE email = ?",
+    "_uid"      => "SELECT :select: FROM :table: WHERE uid = ?",
+    
     "_userinfo"     => "SELECT `login`, `email`,`frestname`, `lastname`, `potoid`, `notif` FROM Users WHERE id = ?",
     "_posts"        => "SELECT `url`, `id` FROM Posts WHERE uid = ?",
     "_photoProfile" => "SELECT `url` FROM Posts WHERE id = ?",

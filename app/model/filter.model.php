@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 function    filter_email($email){
 	if (strlen($email) > 50 || !filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -26,7 +27,8 @@ function    filter_pwd($pwd){
 function    filter_config_pwd($pwd, $cnfpwd){
 	if ($pwd === $cnfpwd)
 		return(true);
-	return(false);
+	else
+		return(false);
 }
 
 function    filter_comment($comment){
@@ -35,27 +37,24 @@ function    filter_comment($comment){
 }
 
 function    exist_email($email){
-
-	$select = new dbselect();
-	$rslt = $select->select($DB_SELECT['_email'], array(''));
-	// $new_get = new DBGet();
-	// $rslt = $new_get->select('email', 'Users', 'email', $email);
-	if (!empty($rslt))
-		return(true);
-	return(false);
+	global $DB_SELECT;	
+	$rslt = (new dbselect())->select($DB_SELECT['_email'], 'email', 'Users', $email, $PARAM['str']);
+	if (empty($rslt))
+		return(false);
+	return(true);
 }
 
 function    exist_login($login){
-	$new_get = new DBGet();
-	$rslt = $new_get->select('login', 'Users', 'login', $login);
-	if (!empty($rslt))
-		return(true);
-    return(false);
+	global $DB_SELECT;	
+	$rslt = (new dbselect())->select($DB_SELECT['_login'], 'login', 'Users', $login, $PARAM['str']);
+	if (empty($rslt))
+		return(false);
+    return(true);
 }
 
 function	exist_pwd($login, $pwd){
-	$new_get = new DBGet();
-	$rslt = $new_get->select('pwd', 'Users', 'login', $login);
+	global $DB_SELECT;	
+	$rslt = (new dbselect())->select($DB_SELECT['_login'], 'pwd', 'Users', $login, $PARAM['str']);
 	if (empty($rslt) || $pwd !== $rslt['pwd'])
 		return(false);
     return(true);

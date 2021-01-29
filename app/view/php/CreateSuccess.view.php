@@ -19,8 +19,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 
 		<?php
 		require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
-		$test = new dbselect();
-		$rslt = $test->select($DB_SELECT['_user'], '1');
+		$rslt = (new dbselect())->select($DB_SELECT['_email'], 'login, id', 'Users', 'ali@ali.com', $PARAM['int']);
 		print_r($rslt);
 		echo "done";
 		?>

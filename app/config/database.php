@@ -45,4 +45,3 @@ class db_conn {
 		$this->conn = null;
 	}
 }
-?>
