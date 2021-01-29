@@ -2,15 +2,17 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/database.php';
 
-class	insert extends db_conn {
+class	dbinsert extends db_conn {
     private		$stmt;
     private     $sql;
 
-	function	__construc($ins, $values){
+	public function	user($ins, $values, $param){
         self::connect_use();
 		try{
             $this->stmt = $this->conn->prepare($ins);
-            $this->stmt->binParam($values);
+            foreach ($values as $key => &$value){
+                $this->stmt->bindParam($key + 1 , $value, $param[$key]);
+            }
             $this->stmt->execute();
 		} catch(PDOException $e){
             die ("Error : ". $e->getMessage());
@@ -28,11 +30,9 @@ class   dbselect extends db_conn {
     private     $sql;
 
     public function    select($cmd, $select, $table, $values, $param){
-        // echo 'done';
         self::connect_use();
         $this->sql = str_replace(':select:', $select, $cmd);
         $this->sql = str_replace(':table:', $table, $this->sql);
-        // echo $this->sql;
         try{
             $this->stmt = $this->conn->prepare($this->sql);
             $this->stmt->bindParam(1, $values, $param);
@@ -53,8 +53,7 @@ class   Session extends dbselect {
     public function start($newlogin){
         global $DB_SELECT;
         self::$user = (new dbselect())->select($DB_SELECT['_login'], 'login, id', 'Users', $newlogin, $PARAM['str']);
-        // self::$user = self::select('login, id', 'Users', 'login', $newlogin);
-        if (!empty(self::$user)){
+        if (!empty(self::$user)){ ///check if active email !!!!!!!!!!!!!!!!
             session_start();
             $_SESSION['login'] = self::$user['login'];
             $_SESSION['uid'] = self::$user['id'];
@@ -68,7 +67,7 @@ class   Session extends dbselect {
     public  function logout(){
         session_start();
         unset($_SESSION["login"]);
-        unset($_SESSION["id"]);
+        unset($_SESSION["uid"]);
     }
 }
 

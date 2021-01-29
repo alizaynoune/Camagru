@@ -1,8 +1,123 @@
-.menu{
-    width: 80px;
+.head_profile {
+    /* border: brown dashed 1px; */
+    display: inline-block;
 }
+
+.menuBtn {
+    float: right;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+.menuLine{
+    height: 3px;
+    width: 20px;
+    display: block;
+    margin-top: 2px;
+    background-color: var(--ColorMainFont);
+    transition: all 0.5s;
+    
+}
+
+.list {
+    list-style: none;
+    position: fixed;
+    width: 300px;
+    height: 80%;
+    right: 0%;
+    transform: translateX(100%);
+    align-items: center;
+    transform: translateX(100%);
+    background-color: rgba(255,255,255,0.3);
+    transition: all 0.4s;
+    border-radius: 20px 0 0 20px;
+}
+
+.list li a{
+    position: relative;
+}
+
+.list li {
+    justify-content: space-around;
+    text-align: left;
+    margin-top: 4px;
+    font-size: 28px;
+    height: 80px;
+    font-weight:bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    padding: 0px;
+  }
+    
+  
+    
+  
+  .list li::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: rgba(255,255,255,0.5);
+    border-bottom-color: rgba(255,255,255,0.5);
+    transform: scale(0.1, 1);
+  }
+  .list li:hover {
+    letter-spacing: 2px;
+  }
+  .list li:hover::before {
+    opacity: 1;
+    transform: scale(1, 1); 
+  }
+  .list li::after {
+    content: '';
+    position: absolute;
+    transition: all 0.3s;
+  }
+  .list li:hover::after {
+    opacity: 0; 
+    transform: scale(0.1, 1);
+  }
+  
 
 .img {
     width: 80px;
+    height: 80px;
     border-radius: 50%;
 }
+
+.btnActive [id='line1'] {
+    transform: rotate(-45deg) translate(-1px,9px);
+    width: 25px;
+  }
+  .btnActive [id='line2'] {
+    opacity: 0;
+    background: none;
+  }
+  .btnActive [id='line3'] {
+    transform: rotate(45deg) translate(1px,-6px);
+    width: 25px;
+   
+  }
+
+  .hidden li{
+      transform: translateX(120%);
+      transition: all 0.5s;
+  }
+
+  .show {
+    transform: translateX(0%);
+    transition: all 0.5s;
+  }
+
+  .show li{
+    transform: translateX(0%);
+    transition: all 0.5s;
+  }

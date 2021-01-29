@@ -28,7 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK' || filter
 	exit;
 }
 else{
-	new insert($DB_INSERT['_user'], array($login , $firstName, $lastName, $email, $pwd));
+	(new dbinsert())->user(
+		$DB_INSERT['_user'],
+		array($login , $firstName, $lastName, $email, $pwd),
+		array($PARAM['str'], $PARAM['str'], $PARAM['str'], $PARAM['str'], $PARAM['str'])
+	);
 	header("Location: ../view/php/CreateSuccess.view.php");
 	exit();
 }

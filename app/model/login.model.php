@@ -26,6 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK' || filter
 	exit();
 }
 else{
-    header("Location: ../view/php/home.view.php?");
+    header("Location: ../view/php/profile.view.php");
 }
 ?>

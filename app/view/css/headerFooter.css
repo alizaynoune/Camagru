@@ -20,12 +20,12 @@
 
 .navBar .navLeft {
     position: absolute;
-    left: 2%;
+    left: 10px;
 }
 
 .navBar .navRight{
     position: absolute;
-    right: 2%;
+    right: 10px;
 }
 
 .footer{
