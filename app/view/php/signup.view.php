@@ -17,7 +17,8 @@ if ($_SESSION && $_SESSION['login'])
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
         <div class="form">
 		<form action="../../model/create.model.php" method="POST">
-			<h1>Sign Up</h1>
+            <h1>Sign Up</h1>
+            <h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
 			<input class="left" type="text" placeholder="First Name" name="firstName" value="<?php echo ($_POST && $_POST['firstName']) ? $_POST['firstName'] : "";?>" required/>
             <input class="right" type="text" placeholder="Last Name" name="lastName" value="<?php echo ($_POST && $_POST['lastName']) ? $_POST['lastName'] : "";?>" required/>
             <input class="left" type="text" placeholder="Username" name="login" value="<?php echo ($_POST && $_POST['login']) ? $_POST['login'] : "";?>" required/>
@@ -31,6 +32,7 @@ if ($_SESSION && $_SESSION['login'])
 		</form>
         </div>
         <div class="buttomBtn">
+        <a class="rightBtn" href="forgetpwd.view.php"><p>Forgotten password?</p></a>
         <a class="leftBtn" href="login.view.php"><p>SignIn</p></a>
 
         </div>

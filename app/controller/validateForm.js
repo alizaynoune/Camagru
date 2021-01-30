@@ -29,7 +29,7 @@ function        validationConfPasswd(Input, passwd){
 }
 
 function        validationEmail(Input){
-    let RExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    let RExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (!RExp.test(Input.value) || Input.value.length > 50)
         return(1);
     else
@@ -40,7 +40,7 @@ function        validationEmail(Input){
 
 function        validationLogin(Input){
     let RExp = /^[\w-]+$/;
-    if (!RExp.test(Input.value) || Input.value.length > 15 || Input.value.length < 8)
+    if (!RExp.test(Input.value) || Input.value.length > 20 || Input.value.length < 8)
         return(1);
     else
         return(0);
@@ -48,7 +48,7 @@ function        validationLogin(Input){
 
 function        validationName(Input){
     let RExp = /^[a-zA-Z]+$/;
-    if (!RExp.test(Input.value) || Input.value.length > 10)
+    if (!RExp.test(Input.value) || Input.value.length > 20 || Input.value.length < 3)
         return(1);
     else
         return(0);

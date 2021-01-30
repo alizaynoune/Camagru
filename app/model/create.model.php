@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
@@ -11,11 +12,22 @@ $pwd = $_POST['passwd'];
 $cnfpwd = $_POST['confPasswd'];
 
 function    filter_inputs(){
-	global $firstName, $lastName, $login, $email, $pwd, $cnfpwd;
+	global $firstName, $lastName, $login, $email, $pwd, $cnfpwd, $ERROR;
+	$ERROR = "";
 	if (empty($firstName) || empty($lastName) || empty($login) || empty($email) || empty($pwd) || empty($cnfpwd))
 		return(false);
-	if (exist_login($login) === true || exist_email($email) === true)
+	if (filter_name($firstName) === false || filter_name($lastName) === false ||
+		filter_login($login) === false || filter_email($email) === false ||
+		filter_pwd($pwd) === false || filter_config_pwd($pwd, $cnfpwd) === false)
 		return(false);
+	if (exist_login($login) === true){
+		$ERROR = 'login already exists';
+		return(false);
+	}
+	if (exist_email($email) === true){
+		$ERROR = 'email already exists';
+		return(false);
+	}
 	$pwd = hash('whirlpool', 'ali'.$pwd.'zaynoune');
 	return(true);
 	
@@ -23,8 +35,9 @@ function    filter_inputs(){
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK' || filter_inputs() == false){
+	$ERROR = (!empty($ERROR)) ? "?error=".$ERROR : '';
 	header('HTTP/1.1 307 Temporary Redirect');
-	header("Location: ../view/php/signup.view.php");
+	header("Location: ../view/php/signup.view.php".$ERROR);
 	exit;
 }
 else{

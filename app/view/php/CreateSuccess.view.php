@@ -17,13 +17,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
 
+	<div class='Success'>
+		<h1>Welcome to Camagru</h1>
+		<h3>Your account has ben successfully created in order to activate your account. Confirm your email</h3>
 
-		<?php
-		require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
-		$rslt = (new dbselect())->select($DB_SELECT['_email'], 'login, id', 'Users', 'ali@ali.com', $PARAM['int']);
-		print_r($rslt);
-		echo "done";
-		?>
+	</div>
 
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 

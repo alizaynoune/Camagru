@@ -18,14 +18,21 @@
     color: var(--Colorfont);
 }
 
-.navBar .navLeft {
+.navLeft{
     position: absolute;
+    /* border: blueviolet dashed 1px; */
+    height: 100%;
+    width: calc(50% - 11px);
     left: 10px;
 }
 
-.navBar .navRight{
+.navRight{
     position: absolute;
+    height: 100%;
     right: 10px;
+    text-align: end;
+    /* border: blueviolet dashed 1px; */
+    width: calc(50% - 11px);
 }
 
 .footer{
@@ -45,6 +52,8 @@
     padding-right: 10px;
 }
 
-/* .navBarOnScroll{
-    height: 60;
-} */
+@media (pointer:none), (pointer:coarse) {
+    .navBar {
+        height: 100px;
+    }
+  }

@@ -1,33 +1,59 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 function    filter_email($email){
-	if (strlen($email) > 50 || !filter_var($email, FILTER_VALIDATE_EMAIL))
+	global $ERROR;
+	$ERROR = 'email';
+	$reg = '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/';
+	if (strlen($email) > 50 || !preg_match($reg, $email))
 		return(false);
+	$ERROR = "";
 	return(true);
 }
 
 function    filter_login($login){
+	global $ERROR;
+	$ERROR = 'login invalide';
 	$REG = "/^[\w-]+$/";
-	if (strlet($login) < 8 || strlen($login) > 15)
+	if (strlen($login) < 8 || strlen($login) > 20 || !preg_match($REG, $login))
 		return(false);
+	$ERROR = "";
+	return(true);
 }
 
 function    filter_name($name){
-	
-	if (strlen($name) > 10)
+	global $ERROR;
+	$ERROR = 'firstname or last name invalide';
+	$reg = '/^[a-zA-Z]+$/';
+	if (strlen($name) > 20 || strlen($name) < 3 || !preg_match($reg, $name))
 		return(false);
+	$ERROR = "";
+	return (true);
 }
 
 function    filter_pwd($pwd){
+	global $ERROR;
+	$ERROR = 'password invalid';
 	if (strlen($pwd) < 8 || strlen($pwd) > 20)
 		return(false);
+	if (!preg_match('/^.*[a-z].*$/', $pwd))
+		return(false);
+	if (!preg_match('/^.*[A-Z].*$/', $pwd))
+		return(false);
+	if (!preg_match('/^.*[0-9].*$/', $pwd))
+		return(false);
+	if (!preg_match('/^.*[~!@#$%^&*()\_\-\+=\\\.\?<>,\[\]\{\}:\'";\/].*$/', $pwd))
+		return(false);
+	$ERROR = "";
+	return(true);
 }
 
 function    filter_config_pwd($pwd, $cnfpwd){
+	global $ERROR;
 	if ($pwd === $cnfpwd)
 		return(true);
-	else
+	$ERROR = 'password confirm not mach';
 		return(false);
 }
 
@@ -45,7 +71,8 @@ function    exist_email($email){
 }
 
 function    exist_login($login){
-	global $DB_SELECT, $PARAM;	
+	global $DB_SELECT, $PARAM;
+		
 	$rslt = (new dbselect())->select($DB_SELECT['_login'], 'login', 'Users', $login, $PARAM['str']);
 	if (empty($rslt))
 		return(false);
