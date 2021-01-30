@@ -1,27 +1,12 @@
 function    clickbtn(elem){
-    // var elem = document.getElementsByClassName('menuBtn');
     elem.classList.toggle('btnActive');
     var list = document.querySelector('.list');
     list.classList.toggle('show');
     var children = list.children;
-    console.log(children);
     
-    // console.log(children[0]);
-    // children.forEach(e => {
-        // console.log(e)
-    // });
-    // children.forEach(element => {
-    //     console.log(element);
-    // });
-    // console.log(children);
-    // $('.menuBtn').toggleClass('btnClose');
-    // $('.navLinks').toggleClass('toggleNavLinks');
-    // var allChild = $('.navLinks').children();
-    // if ($('.btnClose').length > 0){
-    //     allChild.each(function(index, elem){
-    //         $(elem).css('transition', `all ease ${index / 1.5}s`);
-    //     });
-    // }
-    // if (active)
-    //     console.log(active);
+    if (list.classList.contains('show')){
+        for (var i = 0; i < children.length; i++){
+            children[i].style.transition = `all ease ${i / 1.5}s`;
+        }
+    }
 }

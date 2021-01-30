@@ -52,11 +52,12 @@ class   Session extends dbselect {
 
     public function start($newlogin){
         global $DB_SELECT, $PARAM;
-        self::$user = (new dbselect())->select($DB_SELECT['_login'], 'login, id', 'Users', $newlogin, $PARAM['str']);
+        self::$user = (new dbselect())->select($DB_SELECT['_login'], 'id, login, firstname', 'Users', $newlogin, $PARAM['str']);
         if (!empty(self::$user)){ ///check if active email !!!!!!!!!!!!!!!!
             session_start();
             $_SESSION['login'] = self::$user['login'];
             $_SESSION['uid'] = self::$user['id'];
+            $_SESSION['name'] = self::$user['firstname'];
             return(true);
         }
         else{
@@ -68,6 +69,7 @@ class   Session extends dbselect {
         session_start();
         unset($_SESSION["login"]);
         unset($_SESSION["uid"]);
+        unset($_SESSION['firstname']);
     }
 }
 

@@ -9,6 +9,7 @@ if ($_SESSION && $_SESSION['login'])
 	<head>
     <meta charset="UTF-8" />
   <title>Camagru</title>
+  <link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
   <link class="_css" rel="stylesheet" type="text/css" href="../css/login.css" />
 	</head>
 	<body>
