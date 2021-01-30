@@ -51,7 +51,7 @@ class   Session extends dbselect {
     private static $user;
 
     public function start($newlogin){
-        global $DB_SELECT;
+        global $DB_SELECT, $PARAM;
         self::$user = (new dbselect())->select($DB_SELECT['_login'], 'login, id', 'Users', $newlogin, $PARAM['str']);
         if (!empty(self::$user)){ ///check if active email !!!!!!!!!!!!!!!!
             session_start();

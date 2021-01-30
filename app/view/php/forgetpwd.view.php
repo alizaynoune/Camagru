@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['login'])
+if ($_SESSION && $_SESSION['login'])
 	header("Location: home.view.php?");
 ?>
 

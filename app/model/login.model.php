@@ -17,7 +17,7 @@ function    filter_inputs(){
         $GLOBALS['_error_'] = "incorrect login or password";
         return(false);
     }
-    return(ture);
+    return(true);
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK' || filter_inputs() === false){

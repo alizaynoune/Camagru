@@ -3,7 +3,7 @@
     <div class="navLeft">
         <a  href="/app/view/php/home.view.php"><h1 >
         <?php 
-                session_start();
+                // session_start();
                 if (!empty($_SESSION['login'])) :?>
                    <a href="/app/view/php/profile.view.php"><h1><?php echo $_SESSION['login']; ?><h1></a>
                <?php else :?>

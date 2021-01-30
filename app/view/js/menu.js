@@ -3,10 +3,12 @@ function    clickbtn(elem){
     elem.classList.toggle('btnActive');
     var list = document.querySelector('.list');
     list.classList.toggle('show');
-    var children = document.querySelector('.list').children;
+    var children = list.children;
+    console.log(children);
+    
     // console.log(children[0]);
     // children.forEach(e => {
-    //     console.log(e)
+        // console.log(e)
     // });
     // children.forEach(element => {
     //     console.log(element);

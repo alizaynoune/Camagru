@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['login'])
+if (!empty($_SESSION) && $_SESSION['login'])
 	header("Location: home.view.php");
 ?>
 
@@ -17,8 +17,8 @@ if ($_SESSION['login'])
         <div class="form">
 		<form action="../../model/login.model.php" method="POST">
 			<h1>Sign In</h1>
-			<h2 class="error"><?= $_GET['error'] ? $_GET['error'] : ''; ?></h2>
-			<input class="left User" type="text" placeholder="Username" name="login" value="<?php echo $_POST["login"]?>" required/></br>
+			<h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
+			<input class="left User" type="text" placeholder="Username" name="login" value="<?= !empty($_POST) && $_POST["login"] ? $_POST["login"] : "";?>" required/></br>
 			<input class="right Passwd" type="password" placeholder="Password" name="passwd" required/>
 			<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span></br>
 			<input class="submit left" type="submit" name="submit" value="OK"/></br>

@@ -1,10 +1,10 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
-session_start();
+// session_start();
 
 function    get_image_profile(){
-    global $DB_SELECT;    
+    global $DB_SELECT, $PARAM;    
     $id_imge = (new dbselect())->select($DB_SELECT['_id'], 'photoid', 'Users', $_SESSION['uid'],    $PARAM['int']);
     $url =     (new dbselect())->select($DB_SELECT['_id'], 'url',     'Posts', $id_imge['photoid'], $PARAM['int']);
     echo($url['url']);
@@ -20,11 +20,11 @@ function    get_image_profile(){
           <div class="menuLine" id="line3"></div>
     </div>
     <ul class="list hidden">
-        <a href="/app/view/php/camera.view.php"><li>Camera</li></a>
-        <a href="/app/view/php/profile.view.php"><li>your profile</li></a>
-        <a href="/app/view/php/home.view.php"><li>home</li></a>
-        <a href="/app/view/php/settings.view.php"><li>settings</li></a>
-        <a href="/app/view/php/logout.view.php"><li>logout</li></a>
-    <ul>
+        <li onclick="location.href='/app/view/php/camera.view.php'">Camera</li>
+        <li onclick="location.href='/app/view/php/profile.view.php'">your profile</li>
+        <li onclick="location.href='/app/view/php/home.view.php'">home</li>
+        <li onclick="location.href='/app/view/php/settings.view.php'">settings</li>
+        <li onclick="location.href='/app/view/php/logout.view.php'">logout</li>
+    </ul>
 </div>
 <script type="text/javascript" src="../js/menu.js"></script>

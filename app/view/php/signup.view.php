@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['login'])
+if ($_SESSION && $_SESSION['login'])
 	header("Location: home.view.php");
 ?>
 
@@ -17,10 +17,10 @@ if ($_SESSION['login'])
         <div class="form">
 		<form action="../../model/create.model.php" method="POST">
 			<h1>Sign Up</h1>
-			<input class="left" type="text" placeholder="First Name" name="firstName" value="<?php echo $_POST['firstName'];?>" required/>
-            <input class="right" type="text" placeholder="Last Name" name="lastName" value="<?php echo $_POST['lastName'];?>" required/>
-            <input class="left" type="text" placeholder="Username" name="login" value="<?php echo $_POST['login'];?>" required/>
-            <input class="right" type="email" placeholder="E-mail Address" name="email" value="<?php echo $_POST['email'];?>" required/>
+			<input class="left" type="text" placeholder="First Name" name="firstName" value="<?php echo ($_POST && $_POST['firstName']) ? $_POST['firstName'] : "";?>" required/>
+            <input class="right" type="text" placeholder="Last Name" name="lastName" value="<?php echo ($_POST && $_POST['lastName']) ? $_POST['lastName'] : "";?>" required/>
+            <input class="left" type="text" placeholder="Username" name="login" value="<?php echo ($_POST && $_POST['login']) ? $_POST['login'] : "";?>" required/>
+            <input class="right" type="email" placeholder="E-mail Address" name="email" value="<?php echo ($_POST && $_POST['email']) ? $_POST['email'] : "";?>" required/>
             <input class="left" type="password" placeholder="Password" name="passwd" required/>
             <span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
             <input class="right" type="password" placeholder="Confirm Password" name="confPasswd" required/>

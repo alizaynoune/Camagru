@@ -1,6 +1,7 @@
 .head_profile {
     /* border: brown dashed 1px; */
     display: inline-block;
+    padding: 0%;
 }
 
 .menuBtn {
@@ -21,7 +22,7 @@
 
 .list {
     list-style: none;
-    position: fixed;
+    position:fixed;
     width: 300px;
     height: 80%;
     right: 0%;
@@ -31,10 +32,6 @@
     background-color: rgba(255,255,255,0.3);
     transition: all 0.4s;
     border-radius: 20px 0 0 20px;
-}
-
-.list li a{
-    position: relative;
 }
 
 .list li {
@@ -74,7 +71,7 @@
   }
   .list li:hover::before {
     opacity: 1;
-    transform: scale(1, 1); 
+    transform: scale(1.2, 1); 
   }
   .list li::after {
     content: '';

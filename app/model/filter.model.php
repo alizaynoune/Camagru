@@ -37,7 +37,7 @@ function    filter_comment($comment){
 }
 
 function    exist_email($email){
-	global $DB_SELECT;	
+	global $DB_SELECT, $PARAM;	
 	$rslt = (new dbselect())->select($DB_SELECT['_email'], 'email', 'Users', $email, $PARAM['str']);
 	if (empty($rslt))
 		return(false);
@@ -45,7 +45,7 @@ function    exist_email($email){
 }
 
 function    exist_login($login){
-	global $DB_SELECT;	
+	global $DB_SELECT, $PARAM;	
 	$rslt = (new dbselect())->select($DB_SELECT['_login'], 'login', 'Users', $login, $PARAM['str']);
 	if (empty($rslt))
 		return(false);
@@ -53,7 +53,7 @@ function    exist_login($login){
 }
 
 function	exist_pwd($login, $pwd){
-	global $DB_SELECT;	
+	global $DB_SELECT, $PARAM;
 	$rslt = (new dbselect())->select($DB_SELECT['_login'], 'pwd', 'Users', $login, $PARAM['str']);
 	if (empty($rslt) || $pwd !== $rslt['pwd'])
 		return(false);
