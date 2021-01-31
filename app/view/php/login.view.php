@@ -1,7 +1,10 @@
 <?php
 session_start();
-if (!empty($_SESSION) && $_SESSION['login'])
+if (!empty($_SESSION) && !empty($_SESSION['login'])){
+	// session_destroy();
 	header("Location: home.view.php");
+}
+	
 ?>
 
 <!DOCTYPE html>

@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 function    filter_email($email){
 	global $ERROR;
 	$ERROR = 'email';
-	$reg = '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/';
+	$reg = '/^[a-zA-Z0-9]+([\w-\+\!\#\$\%\&\'\*\=\?\^\`\{\|]+[\.]{0,1})+[a-zA-Z0-9]+@([a-z0-9]{1})+(\.{0,1}[a-z0-9-]+)*(\.[a-z]{2,4})$/';
 	if (strlen($email) > 50 || !preg_match($reg, $email))
 		return(false);
 	$ERROR = "";

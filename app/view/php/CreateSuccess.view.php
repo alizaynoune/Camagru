@@ -1,7 +1,14 @@
 <?php
 session_start();
-if ($_SESSION && $_SESSION['login'])
-	header("Location: home.view.php?");
+if (!empty($_SESSION) || !empty($_SESSION['login'])){
+	header("Location: login.view.php");
+}
+else if (empty($_POST['login'])){
+	session_destroy();
+	header("Location: login.view.php");
+}
+else
+	session_destroy();
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 ?>
 
@@ -18,8 +25,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
 
 	<div class='Success'>
-		<h1>Welcome to Camagru</h1>
-		<h3>Your account has ben successfully created in order to activate your account. Confirm your email</h3>
+	<?php
+	echo("<h3>Your account was successfully created! <br><br>Please open your    email and click the activation link to activate your account.
+		<br><br>If you do not see your account information in your inbox within 60 seconds please check your spam</h3>");
+	?>
+		<!-- <h1>Welcome to Camagru</h1>
+		<h3>Your account has ben successfully created in order to activate your account. Confirm your email</h3> -->
 
 	</div>
 

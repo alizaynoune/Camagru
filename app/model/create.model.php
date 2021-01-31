@@ -3,6 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/sendMail.model.php';
 
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
@@ -46,6 +47,9 @@ else{
 		array($login , $firstName, $lastName, $email, $pwd),
 		array($PARAM['str'], $PARAM['str'], $PARAM['str'], $PARAM['str'], $PARAM['str'])
 	);
+	$info = (new dbselect())->select($DB_SELECT['_login'], 'id, email', 'Users', $login, $PARAM['str']);
+	send_mail($info['id'], $info['email']);
+	header('HTTP/1.1 307 Temporary Redirect');
 	header("Location: ../view/php/CreateSuccess.view.php");
 	exit();
 }

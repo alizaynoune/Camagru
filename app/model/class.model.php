@@ -70,6 +70,7 @@ class   Session extends dbselect {
         unset($_SESSION["login"]);
         unset($_SESSION["uid"]);
         unset($_SESSION['firstname']);
+        session_destroy();
     }
 }
 

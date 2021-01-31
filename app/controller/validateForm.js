@@ -29,7 +29,7 @@ function        validationConfPasswd(Input, passwd){
 }
 
 function        validationEmail(Input){
-    let RExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    let RExp = /^[a-zA-Z0-9]+([\w-\+\!\#\$\%\&\'\*\=\?\^\`\{\|]+[\.]{0,1})+[a-zA-Z0-9]+@([a-z0-9]{1})+(\.{0,1}[a-z0-9-]+)*(\.[a-z]{2,4})$/;
     if (!RExp.test(Input.value) || Input.value.length > 50)
         return(1);
     else
