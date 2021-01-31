@@ -118,8 +118,9 @@
 
   @media (pointer:none), (pointer:coarse) {
     .img {
-      height: 100px;
-      width: 100px;
+      /* height: 100px; */
+      /* width: 100px; */
+      display: none;
     }
     .list{
       margin-top: 100px;
