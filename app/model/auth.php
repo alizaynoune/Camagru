@@ -13,6 +13,10 @@ function    auth($login, $pwd){
       $ERROR = 'passowrd invalide';
       return(false);
     }
+    if (email_active($login) === false){
+      $ERROR = "account doesn't activate yet";
+      return(false);
+    }
     else {
       $user = new Session();
       return($user->start($login));

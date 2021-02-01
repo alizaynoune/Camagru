@@ -27,6 +27,8 @@ class	dbinsert extends db_conn {
         }
         self::Desconnect();
     }
+
+    
     
 }
 
@@ -55,12 +57,12 @@ class   dbselect extends db_conn {
 }
 
 class   Session extends dbselect {
-    private static $user;
+    static $user;
 
-    public function start($newlogin){
+    static function start($newlogin){
         global $DB_SELECT, $PARAM;
         self::$user = (new dbselect())->select($DB_SELECT['_login'], 'id, login, firstname', 'Users', $newlogin, $PARAM['str']);
-        if (!empty(self::$user)){ ///check if active email !!!!!!!!!!!!!!!!
+        if (!empty(self::$user)){
             session_start();
             $_SESSION['login'] = self::$user['login'];
             $_SESSION['uid'] = self::$user['id'];
@@ -72,7 +74,7 @@ class   Session extends dbselect {
         }
     }
 
-    public  function logout(){
+    static function logout(){
         session_start();
         unset($_SESSION["login"]);
         unset($_SESSION["uid"]);

@@ -38,15 +38,17 @@ $DB_INSERT = array(
 
 $DB_UPDATE = array(
 
+    "_id" => "UPDATE :table: SET :set: = ? WHERE id = ?",
     "_photoProfile" => "UPDATE Users SET photoid = ? WHERE id = ?;",
-    "_activeEmail"  => "UPDATE Users SET active = 'true' WHERE id = ?;",
+    "_activeEmail"  => "UPDATE Users SET active = ? WHERE id = ?;",
     "_changePasswd" => "UPDATE Users SET pwd = ? WHERE id = ?;",
     "_email"        => "UPDATE Users SET email = ? WHERE id = ?;",
-    "_notif"        => "UPDATE Users SET notif = 'false' WHERE id = ?;",
+    "_notif"        => "UPDATE Users SET notif = ? WHERE id = ?;",
 );
 
 $DB_DELETE = array(
     "_user"         => "",
+    "_isactive"              => "",
     "_post"         => "",
     "_like_comment" => "",
     "_like_post"    => "",
