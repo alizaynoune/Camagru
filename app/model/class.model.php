@@ -4,16 +4,23 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/database.php';
 
 class	dbinsert extends db_conn {
     private		$stmt;
-    private     $sql;
+    private     $stmt_id;
+    protected   $lasr_id;
 
-	public function	user($ins, $values, $param){
+	public function	insert($ins, $values, $param, $ret_id){
         self::connect_use();
 		try{
             $this->stmt = $this->conn->prepare($ins);
             foreach ($values as $key => &$value){
                 $this->stmt->bindParam($key + 1 , $value, $param[$key]);
             }
+            if ($ret_id === 1)
+                $this->stmt_id = $this->conn->prepare('SELECT LAST_INSERT_ID() AS `id`');
             $this->stmt->execute();
+            if ($ret_id){
+                $this->stmt_id->execute();
+                return($this->stmt_id->fetch(PDO::FETCH_ASSOC));
+            }
 		} catch(PDOException $e){
             die ("Error : ". $e->getMessage());
             exit();

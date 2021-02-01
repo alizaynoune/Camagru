@@ -132,7 +132,7 @@ CREATE TABLE `Users` (
   `firstname` varchar(20) NOT NULL,
   `lastname` varchar(20) NOT NULL,
   `photoid` int unsigned NOT NULL DEFAULT '1',
-  `email` varchar(50) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `active` enum('true','false') NOT NULL DEFAULT 'false',
   `notif` enum('true','false') NOT NULL DEFAULT 'true',
   `pwd` varchar(255) NOT NULL,
@@ -159,5 +159,29 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+--
+-- Table structure for table `tempemail`
+--
+
+DROP TABLE IF EXISTS `tempemail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tempemail` (
+  `uid` int unsigned NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `token` VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Posts`
+--
+
+LOCK TABLES `tempemail` WRITE;
+/*!40000 ALTER TABLE `tempemail` DISABLE KEYS */;
+
+/*!40000 ALTER TABLE `tempemail` ENABLE KEYS */;
+UNLOCK TABLES;
 
 -- Dump completed on 2021-01-27 14:35:28

@@ -42,13 +42,20 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK' || filter
 	exit;
 }
 else{
-	(new dbinsert())->user(
+	$id = (new dbinsert())->insert(
 		$DB_INSERT['_user'],
-		array($login , $firstName, $lastName, $email, $pwd),
-		array($PARAM['str'], $PARAM['str'], $PARAM['str'], $PARAM['str'], $PARAM['str'])
+		array($login , $firstName, $lastName, $pwd),
+		array($PARAM['str'], $PARAM['str'], $PARAM['str'], $PARAM['str']),
+		1
 	);
-	$info = (new dbselect())->select($DB_SELECT['_login'], 'id, email', 'Users', $login, $PARAM['str']);
-	send_mail($info['id'], $info['email']);
+	$token = md5(rand(1000, 5000));
+	(new dbinsert())->insert(
+		$DB_INSERT['_email_user'],
+		array($id['id'] , $email, $token),
+		array($PARAM['int'], $PARAM['str'], $PARAM['str']),
+		0
+	);
+	send_mail($id['id'], $email, $token);
 	header('HTTP/1.1 307 Temporary Redirect');
 	header("Location: ../view/php/CreateSuccess.view.php");
 	exit();

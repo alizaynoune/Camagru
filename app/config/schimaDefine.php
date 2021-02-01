@@ -18,7 +18,6 @@ $DB_SELECT = array (
     "_login"    => "SELECT :select: FROM :table: WHERE login = ?",
     "_email"    => "SELECT :select: FROM :table: WHERE email = ?",
     "_uid"      => "SELECT :select: FROM :table: WHERE uid = ?",
-    
     "_userinfo"     => "SELECT `login`, `email`,`frestname`, `lastname`, `potoid`, `notif` FROM Users WHERE id = ?",
     "_posts"        => "SELECT `url`, `id` FROM Posts WHERE uid = ?",
     "_photoProfile" => "SELECT `url` FROM Posts WHERE id = ?",
@@ -28,7 +27,8 @@ $DB_SELECT = array (
 );
 
 $DB_INSERT = array(
-    "_user"         => "INSERT INTO Users (login, firstname, lastname, email, pwd) VALUES (?, ?, ?, ?, ?)",
+    "_user"         => "INSERT INTO Users (login, firstname, lastname, pwd) VALUES (?, ?, ?, ?)",
+    "_email_user"   => "INSERT INTO tempemail (uid, email, token) VALUES (?, ?, ?)",
     "_post"         => "Posts (uid, url, Date) VALUES(?, ?, NOW());",
     "_comment"      => "Comment (uid, pid, Comment, Date) VALUES(?, ?, ?, NOW());",
     "_like_post"    => "PostLikes (pid, uid, Date) VALUES(?, ?, NOW());",
