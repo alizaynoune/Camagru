@@ -18,7 +18,8 @@ if (!empty($_SESSION) && !empty($_SESSION['login'])){
 	</head>
 	<body>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
-        <div class="form">
+    <div class="content">    
+    <div class="form">
 		<form action="../../model/create.model.php" method="POST">
             <h1>Sign Up</h1>
             <h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
@@ -38,6 +39,7 @@ if (!empty($_SESSION) && !empty($_SESSION['login'])){
         <a class="rightBtn" href="forgetpwd.view.php"><p>Forgotten password?</p></a>
         <a class="leftBtn" href="login.view.php"><p>SignIn</p></a>
 
+        </div>
         </div>
         <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
         <script type="text/javascript" src="../../controller/validateForm.js"></script>

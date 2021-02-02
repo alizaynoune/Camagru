@@ -20,6 +20,7 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 	</head>
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
+	<div class="content">
 	<h1>settings</h1>
 	<div class="img_text">
 		<img class="img_profile" src="<?php get_image_profile(); ?>" />
@@ -48,7 +49,8 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 				<input class="submit right" type="submit" name="submit" value="OK"/></br>
 				
 			</form>
-        </div>
+		</div>
+		</div>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 	<script type="text/javascript" src="../../controller/validateForm.js"></script>
     <script type="text/javascript" src="../js/form.js"></script>

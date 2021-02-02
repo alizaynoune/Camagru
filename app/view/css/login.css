@@ -14,20 +14,28 @@
 }
 
 
-
 html, body {
     background: var(--ColorX);
     height: 100%;
     width: 100%;
     padding: 0%;
+    /* border: forestgreen dashed 2px; */
     margin: auto;
     background-attachment: fixed;
     overflow: auto;
     overflow-x: hidden;
+    /* overflow-y: hidden; */
 }
 
 * {
     font-style: oblique;
+}
+
+.content {
+    height: auto;
+    min-height: 78%;
+    padding: 0%;
+    /* border: red dashed 1px; */
 }
 
 .form {
@@ -50,7 +58,7 @@ html, body {
     height: 60px;
     border-width: 3px;
     background: none;
-    border-color: var(--ColorMainFont);
+    border-color: var(--Colorfont);
     font-size: 25px;
     /* -webkit-appearance:none; */
     

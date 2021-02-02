@@ -11,8 +11,6 @@ function    get_image_profile(){
 }
 
 ?>
-
-<div class="head_profile">
     <img class="img btn" src="<?php get_image_profile(); ?>" onclick="clickbtn(this)" />
     <ul class="list hidden">
         <li onclick="location.href='/app/view/php/camera.view.php'">Camera</li>
@@ -21,5 +19,4 @@ function    get_image_profile(){
         <li onclick="location.href='/app/view/php/settings.view.php'">settings</li>
         <li onclick="location.href='/app/view/php/logout.view.php'">logout</li>
     </ul>
-</div>
 <script type="text/javascript" src="../js/menu.js"></script>

@@ -17,7 +17,8 @@ if (!empty($_SESSION) && !empty($_SESSION['login'])){
 	</head>
 	<body>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
-        <div class="form">
+	<div class="content">	
+	<div class="form">
 		<form action="login.model.php" method="POST">
             <h1>Recovery Password</h1>
             <input class="left" type="text" placeholder="Username" name="login" required/></br>
@@ -28,6 +29,7 @@ if (!empty($_SESSION) && !empty($_SESSION['login'])){
 		<div class="buttomBtn">
 			<a class="leftBtn" href="signup.view.php"><p>Create New Account</p></a>
 			<a class="rightBtn" href="login.view.php"><p>SignIn</p></a>
+		</div>
 		</div>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 		<script type="text/javascript" src="../../controller/validateForm.js"></script>
