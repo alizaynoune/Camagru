@@ -40,21 +40,26 @@ html, body {
     /* border: dashed deeppink 1px; */
 }
 
-.form input:focus{
+.form input:focus, .form select:focus{
     outline-style: none;
+    /* -moz-outline-style: none; */
 }
 
-.form input{
+.form input, .form select{
     width: calc(100% - 60px);
     height: 60px;
+    border-width: 3px;
     background: none;
-    border-color: var(--Colorfont);
+    border-color: var(--ColorMainFont);
     font-size: 25px;
+    /* -webkit-appearance:none; */
     
 }
 
 .form .right {    
     border-radius: 0px 40px 40px 0px;
+    -webkit-border-radius: 0px 40px 40px 0px;
+    -moz-border-radius: 0px 40px 40px 0px;
     border-style: solid solid solid none;
     float: right;
     padding-right: 28px;
@@ -62,8 +67,10 @@ html, body {
 
 .form .left {
     border-radius: 40px 0px 0px 40px;
-    margin-top: -2px;
-    margin-bottom: -2px;
+    -webkit-border-radius: 40px 0px 0px 40px;
+    -moz-border-radius: 40px 0px 0px 40px;
+    margin-top: -3px;
+    margin-bottom: -3px;
     border-style: solid none solid solid;
     float: left;
     padding-left: 28px;
@@ -80,7 +87,7 @@ html, body {
 
  .form .submit {
     cursor: pointer;    
-    color: var(--Colorfont);
+    color: var(--ColorMainFont);
     font-weight: bold;
     width: calc(100% - 38px);
 }
@@ -98,16 +105,13 @@ html, body {
     position: initial;
     float: left;
     color: var(--ColorMainFont);
-    /* height: 60px; */
     font-size: 25px;
     width: 25px;
     text-align: center;
     cursor: pointer;
-    /* border: hotpink dashed 1px; */
 }
 
 .buttomBtn {
-    /* border: black dashed 1px; */
     width: 70%;
     height: 52px;
     margin-left: 15%;
@@ -117,7 +121,6 @@ html, body {
 }
 
 .leftBtn, .rightBtn {
-    /* padding: .75rem .1rem; */
     border-radius: 10rem;
     background: var(--Color1);
     font-weight: bold;
@@ -157,7 +160,7 @@ html, body {
         width: calc(100% - 90px);
         border-width: 3px;
     }
-    .form .left{margin-top: -3px;}
+    .form .left .select{margin-top: -3px;}
     .buttomBtn{height: 70px; margin-top: 40px;}
     .fa{font-size: 50px;}
     /* .form .left{padding-left: 50px;} */

@@ -16,7 +16,7 @@ function    filter_email($email){
 function    filter_login($login){
 	global $ERROR;
 	$ERROR = 'login invalide';
-	$REG = "/^[\w_-\.\d]+$/";
+	$REG = "/^[\w-_\.\d]+$/";
 	if (strlen($login) < 8 || strlen($login) > 20 || !preg_match($REG, $login))
 		return(false);
 	$ERROR = "";

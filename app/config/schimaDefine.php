@@ -47,7 +47,7 @@ $DB_UPDATE = array(
 );
 
 $DB_DELETE = array(
-    "_user"         => "",
+    "_active_email"         => "DELETE FROM :table: WHERE :where: = ? ",
     "_isactive"              => "",
     "_post"         => "",
     "_like_comment" => "",

@@ -4,39 +4,9 @@
     padding: 0%;
 }
 
-.menuBtn {
-    float: right;
-    margin-top: 50px;
-    cursor: pointer;
-}
-
-.menuLine{
-    height: 3px;
-    width: 20px;
-    display: block;
-    margin-top: 2px;
-    background-color: var(--ColorMainFont);
-    transition: all 0.5s;
-    
-}
-
-.btnActive [id='line1'] {
-  transform: rotate(-45deg) translate(-1px,9px);
-  width: 25px;
-}
-.btnActive [id='line2'] {
-  opacity: 0;
-  background: none;
-}
-.btnActive [id='line3'] {
-  transform: rotate(45deg) translate(1px,-6px);
-  width: 25px;
- 
-}
-
 .list {
     list-style: none;
-    margin-top: 80px;
+    margin-top: 0;
     justify-content: space-around;
     display: block;
     position: absolute;
@@ -47,6 +17,8 @@
     background-color: rgba(255,255,255,0.3);
     transition: all 1s;
     border-radius: 20px 0 0 20px;
+    -webkit-border-radius: 20px 0 0 20px;
+    -moz-border-radius: 20px 0 0 20px;
 }
 
 .list li {
@@ -101,8 +73,9 @@
 .img {
     width: 80px;
     height: 80px;
-    position: absolute;
-    left: calc(0% - 40px);
+    /* position: absolute; */
+    /* left: calc(0% - 40px); */
+    cursor: pointer;
     border-radius: 50%;
 }
 
@@ -118,14 +91,13 @@
 
   @media (pointer:none), (pointer:coarse) {
     .img {
-      /* height: 100px; */
-      /* width: 100px; */
-      display: none;
+      height: 100px;
+      width: 100px;
     }
-    .list{
+    /* .list{
       margin-top: 100px;
-    }
-    .menuLine{
+    } */
+    /* .menuLine{
       width: 40px;
       height: 5px;
       margin-top: 5px;
@@ -140,7 +112,7 @@
       transform: rotate(45deg) translate(-9px,-5px);
       width: 45px;
      
-    }
+    } */
 
   }
 

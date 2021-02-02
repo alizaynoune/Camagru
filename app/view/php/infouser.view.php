@@ -13,12 +13,7 @@ function    get_image_profile(){
 ?>
 
 <div class="head_profile">
-    <img class="img" src="<?php get_image_profile(); ?>" />
-    <div class="menuBtn" onclick="clickbtn(this)">
-          <div class="menuLine" id="line1"></div>
-          <div class="menuLine" id="line2"></div>
-          <div class="menuLine" id="line3"></div>
-    </div>
+    <img class="img btn" src="<?php get_image_profile(); ?>" onclick="clickbtn(this)" />
     <ul class="list hidden">
         <li onclick="location.href='/app/view/php/camera.view.php'">Camera</li>
         <li onclick="location.href='/app/view/php/profile.view.php'">your profile</li>

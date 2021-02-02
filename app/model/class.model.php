@@ -27,7 +27,37 @@ class	dbinsert extends db_conn {
         }
         self::Desconnect();
     }
+    public  function    update($cmd, $table, $set, $values, $param){
+        self::connect_use();
+        $this->sql = str_replace(':table:', $table, $cmd);
+        $this->sql = str_replace(':set:', $set, $this->sql);
+        try{
+            $this->stmt = $this->conn->prepare($this->sql);
+            foreach ($values as $key => &$value){
+                $this->stmt->bindParam($key + 1, $value, $param[$key]);
+            }
+            $this->stmt->execute();
+        }catch(PDOException $e){
+            self::Desconnect();
+            die ("Error : ". $e->getMessage());
+        }
+        self::Desconnect();
+    }
+    public  function drop($cmd, $table, $where, $value, $param){
+        self::connect_use();
+        $this->sql = str_replace(':table:', $table, $cmd);
+        $this->sql = str_replace(':where:', $where, $this->sql);
+        try{
+            $this->stmt = $this->conn->prepare($this->sql);
+            $this->stmt->bindParam(1, $value, $param);
+            $this->stmt->execute();
 
+        }catch(PDOException $e){
+            self::Desconnect();
+            die ("Error : ". $e->getMessage());
+        }
+        self::Desconnect();
+    }
     
     
 }
@@ -53,8 +83,11 @@ class   dbselect extends db_conn {
             self::Desconnect();
             die ("Error : ". $e->getMessage());
         }
+        self::Desconnect();
     }
+
 }
+
 
 class   Session extends dbselect {
     static $user;
@@ -82,4 +115,3 @@ class   Session extends dbselect {
         session_destroy();
     }
 }
-

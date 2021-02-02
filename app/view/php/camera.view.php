@@ -18,6 +18,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	<body>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
     <h1>camera</h1>
-		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
+	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 	</body>
 </html>
