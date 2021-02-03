@@ -23,7 +23,7 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 		<div class="content">
 			<h1>settings</h1>
 			<div class="conten_img">
-				<img class="change_avatar" src="<?php get_avatar(); ?>" />
+				<img class="change_avatar" src="<?php get_avatar(); ?>" onclick="show_modal()" />
 			</div>
 			<form action="../../model/updateinformatio.model.php" method="POST">
 				<div class="modal">
@@ -32,11 +32,9 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 					<input class="camera" type="file" id="camera" name="img_db" />
 					<label for="camera" class="btn-2">profile</label>
 					<input class="submitImg" id="submitImg" type="submit" name="submit" value="OK"/>
-					<label class="cancel">cancel</label>
+					<label class="cancel" onclick="hedin_modal()">cancel</label>
 				</div>
-			<!-- </form> -->
 				<div class="form">
-					<!-- <form action="../../model/updateinformatio.model.php" method="POST"> -->
 						<h1>your information</h1>
 						<h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
 						<select class="select right" name="notif">
@@ -59,6 +57,7 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 		</div>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 		<script type="text/javascript" src="../../controller/validateForm.js"></script>
-    	<script type="text/javascript" src="../js/form.js"></script>
+		<script type="text/javascript" src="../js/form.js"></script>
+		<script type="text/javascript" src="../js/settings.js"></script>
 	</body>
 </html>

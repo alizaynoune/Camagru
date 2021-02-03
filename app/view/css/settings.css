@@ -8,7 +8,8 @@
     margin-left: calc(50% - 100px);
     border-radius: 20%;
     cursor: pointer;
-    border: dashed 1px green;
+    /* border: dashed 1px green; */
+    display: block;
     overflow: hidden;
   }
   
@@ -16,38 +17,37 @@
     width: 100%;
     height: 100%;
     border-radius: 20%;
-    overflow: hidden;
     -webkit-border-radius: 20%;
     -moz-border-radius: 20%;
 }
 
-.conten_img::before {
+.conten_img::after {
   content: "click to change";
   position: absolute;
-  margin-top: 100px;
-  margin-left: 50px;
-  display: none;
+  top: -50%;
+  left: -50%;
+  background: none;
+  position: relative;
+  transition: all 0.3s
 }
 
-.conten_img:hover::before {
-  display: block;  
+.conten_img:hover::after {
+  left: 20%;
+  
 }
-
 
 .modal{
-  display: inline-block;
-  border-radius: 20px;
-  height: 500px;
-  width: 90%;
-  max-width: 1000px;
-  padding: 0%;
-  /* align-self: center; */
   top: 80px;
+  border-radius: 20px;
+  width: 0px;
+  height: 0px;
+  margin-left: calc(50% - 360px);
+  margin-right: calc(50% - 360px);
   position: absolute;
   background-color: rgba(255,255,255,0.8);
-  /* justify-content: space-around; */
-  /* border: orangered dashed 2px; */
-}
+  transition: all 0.5s
+
+  }
 
 .btn-1{left: 20px;}
 .btn-2{right: calc(50% - 40px);}
@@ -59,10 +59,10 @@
 }
 
 .modal label{
+  display: none;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  display: inline-block;
   font-weight: bold;
   outline: none;
   padding: 1rem 50px;
