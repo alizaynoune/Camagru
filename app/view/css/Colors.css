@@ -1,0 +1,13 @@
+:root{
+    --Color0:       #846DF8;
+    --Color1:       #5F6CD9;
+    --Color2:       #75A2F0;
+    --Color3:       #5FACD9;
+    --Color4:       #6DE9F8;
+    --Colorfont:    #fff;
+    --ColorMainFont:#000;
+    --ColorError:   #ff0000;
+    --Button:       #99c793;
+    --ButtonActive: #497f42;
+    --ColorX: repeating-linear-gradient( var(--Color0), var(--Color1), var(--Color2), var(--Color3), var(--Color4));
+}

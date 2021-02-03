@@ -1,7 +1,7 @@
 table Users
 		=> id login active dateCreate
 table UsersInfo
-		=> uid photoid firstname lastname email
+		=> uid avatar firstname lastname email
 table UserPasswd
 		=>uid pwd
 table Posts

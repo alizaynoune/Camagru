@@ -3,15 +3,15 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 // session_start();
 
-function    get_image_profile(){
+function    get_avatar(){
     global $DB_SELECT, $PARAM;    
-    $id_imge = (new dbselect())->select($DB_SELECT['_id'], 'photoid', 'Users', $_SESSION['uid'],    $PARAM['int']);
-    $url =     (new dbselect())->select($DB_SELECT['_id'], 'url',     'Posts', $id_imge['photoid'], $PARAM['int']);
+    $id_imge = (new dbselect())->select($DB_SELECT['_id'], 'avatar', 'Users', $_SESSION['uid'],    $PARAM['int']);
+    $url =     (new dbselect())->select($DB_SELECT['_id'], 'url',     'Posts', $id_imge['avatar'], $PARAM['int']);
     echo($url['url']);
 }
 
 ?>
-    <img class="img btn" src="<?php get_image_profile(); ?>" onclick="clickbtn(this)" />
+    <img class="img btn" src="<?php get_avatar(); ?>" onclick="clickbtn(this)" />
     <ul class="list hidden">
         <li onclick="location.href='/app/view/php/camera.view.php'">Camera</li>
         <li onclick="location.href='/app/view/php/profile.view.php'">your profile</li>

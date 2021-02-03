@@ -1,17 +1,6 @@
 @import "headerFooter.css";
 @import "menu.css";
-
-:root{
-    --Color0:       #846DF8;
-    --Color1:       #5F6CD9;
-    --Color2:       #75A2F0;
-    --Color3:       #5FACD9;
-    --Color4:       #6DE9F8;
-    --Colorfont:    #fff;
-    --ColorMainFont:#000;
-    --ColorError:   #ff0000;
-    --ColorX: repeating-linear-gradient( var(--Color0), var(--Color1), var(--Color2), var(--Color3), var(--Color4));
-}
+@import "Colors.css";
 
 
 html, body {
@@ -128,7 +117,7 @@ html, body {
 
 .leftBtn, .rightBtn {
     border-radius: 10rem;
-    background: var(--Color1);
+    background: var(--Button);
     font-weight: bold;
     color: var(--Colorfont);
     width: 30%;
@@ -137,6 +126,8 @@ html, body {
     text-align: center;
     height: 100%;
 }
+
+.leftBtn:hover, .rightBtn:hover{background: var(--ButtonActive);}
 
 .leftBtn:focus, .rightBtn:focus, .submit:focus{
     background-color: var(--Color0);

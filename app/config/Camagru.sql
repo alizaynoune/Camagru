@@ -131,7 +131,7 @@ CREATE TABLE `Users` (
   `login` varchar(20) NOT NULL,
   `firstname` varchar(20) NOT NULL,
   `lastname` varchar(20) NOT NULL,
-  `photoid` int unsigned NOT NULL DEFAULT '1',
+  `avatar` int unsigned NOT NULL DEFAULT '1',
   `email` varchar(50) DEFAULT NULL,
   `active` enum('true','false') DEFAULT 'false',
   `notif` enum('true','false') DEFAULT 'true',

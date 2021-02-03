@@ -6,6 +6,8 @@
     /* position:fixed; */
     /* position:-ms-page; */
     position: absolute;
+    /* display: block; */
+    /* position: relative; */
     width: 300px;
     height: calc(100% * 6);
     right: 0%;
@@ -13,7 +15,7 @@
     /* right: 0%; */
     transform: translateX(110%);
     background-color: rgba(110, 235, 249,0.5);
-    transition: all 1s;
+    transition: all 0.5s;
     border-radius: 20px 0 0 20px;
     -webkit-border-radius: 20px 0 0 20px;
     -moz-border-radius: 20px 0 0 20px;

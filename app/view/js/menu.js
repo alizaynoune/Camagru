@@ -6,7 +6,7 @@ function    clickbtn(elem){
     
     if (list.classList.contains('show')){
         for (var i = 0; i < children.length; i++){
-            children[i].style.transition = `all ease ${i / 1.5}s`;
+            children[i].style.transition = `all ease ${i / 2.3}s`;
         }
     }
 }
