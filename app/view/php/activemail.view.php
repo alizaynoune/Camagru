@@ -21,7 +21,9 @@ if (emailactive() === false)
 	<body>
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';
+    echo '<div class="content">';
     echo "<h3>Your account was successfully actevite!</h3>";
+    echo '</div>';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php';
     ?>
     </body>

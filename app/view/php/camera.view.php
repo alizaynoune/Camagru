@@ -16,8 +16,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
   <link class="_css" rel="stylesheet" type="text/css" href="../css/login.css"/>
 	</head>
 	<body>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
-    <h1>camera</h1>
+	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
+	<div class="content">
+		<h1>camera</h1>
+	</div>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 	</body>
 </html>

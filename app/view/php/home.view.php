@@ -13,13 +13,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
   <link class="_css" rel="stylesheet" type="text/css" href="../css/login.css"/>
 	</head>
 	<body>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
-	<h1>home</h1>
-	<?php
-	// print_r($_SERVER);
-	// echo $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/includes.php';
-
-	?>
-		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
+	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
+	<div class="content">
+		<h1>home</h1>
+	</div>
+	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 	</body>
 </html>

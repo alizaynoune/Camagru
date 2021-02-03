@@ -24,7 +24,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
 
-	<div class='Success'>
+	<div class='Success content'>
 	<?php
 	echo("<h3>Your account was successfully created! <br><br>Please open your    email and click the activation link to activate your account.
 		<br><br>If you do not see your account information in your inbox within 60 seconds please check your spam</h3>");

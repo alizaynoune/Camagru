@@ -24,7 +24,7 @@ html, body {
     background-attachment: fixed;
     overflow: auto;
     overflow-x: hidden;
-    /* overflow-y: hidden; */
+    /* display:table-cell; */
 }
 
 * {
@@ -33,12 +33,10 @@ html, body {
 
 .content {
     height: auto;
-    min-height: 78%;
-    padding: 0%;
-    /* border: red dashed 1px; */
+    margin-bottom: 3rem;
 }
 
-.form {
+.form{
     text-align: center;
     margin-top: 50px;
     width: 70%;
@@ -64,7 +62,7 @@ html, body {
     
 }
 
-.form .right {    
+.right {    
     border-radius: 0px 40px 40px 0px;
     -webkit-border-radius: 0px 40px 40px 0px;
     -moz-border-radius: 0px 40px 40px 0px;
@@ -73,7 +71,7 @@ html, body {
     padding-right: 28px;
 }
 
-.form .left {
+.left {
     border-radius: 40px 0px 0px 40px;
     -webkit-border-radius: 40px 0px 0px 40px;
     -moz-border-radius: 40px 0px 0px 40px;
@@ -93,7 +91,7 @@ html, body {
     opacity: 0.3;
 }
 
- .form .submit {
+.submit {
     cursor: pointer;    
     color: var(--ColorMainFont);
     font-weight: bold;

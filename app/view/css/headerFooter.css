@@ -36,23 +36,15 @@
 }
 
 .footer{
-    /* flex-shrink: 0; */
-    /* flex: 1; */
-    /* position: sticky; */
-    /* margin-top: 0%; */
-    /* position: relative; */
-    /* margin-top: 20px; */
-    /* position: absolute; */
-    /* flex: 1; */
-    /* margin-bottom: 0px; */
-    /* bottom: 0px; */
-    /* width: 100%; */
-
-
-    /* margin-top: 15px; */
-    height: 2.2rem; 
+    /* position: relative;
+    bottom: 0%; */
+    /* vertical-align:bottom; */
+    position: fixed;
+    height: 2.2rem;
+    bottom:  0;
+    width: 100%;
     background-color: var(--Color2);
-    border: darkblue dashed 1px;
+    /* border: darkblue dashed 1px; */
 }
 
 .footer p{
