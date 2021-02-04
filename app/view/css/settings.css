@@ -25,7 +25,7 @@
   content: "click to change";
   position: absolute;
   top: -50%;
-  left: -50%;
+  left: -60%;
   background: none;
   position: relative;
   transition: all 0.3s
@@ -33,7 +33,6 @@
 
 .conten_img:hover::after {
   left: 20%;
-  
 }
 
 .modal{
@@ -41,22 +40,31 @@
   border-radius: 20px;
   width: 0px;
   height: 0px;
-  margin-left: calc(50% - 360px);
-  margin-right: calc(50% - 360px);
+  margin-left: calc(50% - 300px);
+  margin-right: calc(50% - 300px);
   position: absolute;
   background-color: rgba(255,255,255,0.8);
   transition: all 0.5s
 
   }
 
+.modal-show{
+  width: 600px;
+  height: 500px;
+}
+
+
+
 .btn-1{left: 20px;}
-.btn-2{right: calc(50% - 40px);}
-.cancel{right: 20px;}
+.btn-2{right: calc(50% - 70px);}
+.cancel{right: 20px; top: 20px;}
+.ok{right: 20px;}
 
 .modal input{
   overflow: hidden;
   display: none;
 }
+
 
 .modal label{
   display: none;
@@ -69,7 +77,28 @@
   position: absolute;
   transition: all 0.3s;
   bottom: 20px;
-  
+  height: 25px;
+  width: 40px;
+}
+
+.modal img{
+  display: none;
+}
+
+.modal-show label{
+  display: block;
+}
+
+.modal-show img{
+  display: block;
+  width: 400px;
+  height: 400px;
+  outline: none;
+  border-radius: 20px;
+  margin-left: 20px;
+  margin-top: 15px;
+  /* border : none; */
+  /* border: orangered dashed 2px; */
 }
 
 .modal label{
@@ -100,4 +129,37 @@ label::before{
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+.msj_new_av{
+  text-align: center;
+  color: white;
+}
+
+@media only screen and (max-width: 600px){
+  .modal-show{
+    width: 100%;
+    height: 80%;
+    margin: 0%;
+  }
+
+  .modal-show img {
+    margin-top: calc(100% - 200px);
+    margin-left: calc(50% - 200px);
+  }
+
+  .btn-1{left: 20px;}
+  .btn-2{
+    right: 20px;
+  }
+  .ok{
+    top: 20px;
+    left: 20px;
+  }
+  label::before{
+    right: 75%;
+  }
+  .conten_img::after {
+    left: 20%;
+  }
 }

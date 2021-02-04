@@ -15,10 +15,10 @@ function    emailactive(){
            
             }
             else{
-                (new dbinsert())->update($DB_UPDATE['_id'], 'Users', 'email', array($rslt['email'], $rslt['uid']), array($PARAM['str'], $PARAM['int']));
+                (new dbinsert())->update($DB_UPDATE['_id'], 'Users', 'email=?', array($rslt['email'], $rslt['uid']), array($PARAM['str'], $PARAM['int']));
                 if ($is_active['active'] !== 'true')
-                    (new dbinsert())->update($DB_UPDATE['_id'], 'Users', 'active', array('true', $rslt['uid']), array($PARAM['bool'], $PARAM['int']));
-                (new dbinsert())->drop($DB_DELETE['_active_email'], 'tempemail', 'email', $rslt['email'], $PARAM['str']);    
+                    (new dbinsert())->update($DB_UPDATE['_id'], 'Users', 'active=?', array('true', $rslt['uid']), array($PARAM['bool'], $PARAM['int']));
+                    (new dbinsert())->drop($DB_DELETE['_active_email'], 'tempemail', 'email', $rslt['email'], $PARAM['str']);    
             }
             if (!mkdir($_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$is_active['login'], 0777, true))
                 echo 'error';

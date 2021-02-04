@@ -8,7 +8,7 @@
                    echo "</a>";
                 }
                else{
-                echo "<a href=\"/app/view/php/login.view.php\">";
+                echo "<a href=\"/app/view/php/home.view.php\">";
                 echo "<h1>Camagru</h1>";
                 echo "</a>";
                }

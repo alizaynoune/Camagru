@@ -38,7 +38,7 @@ $DB_INSERT = array(
 
 $DB_UPDATE = array(
 
-    "_id" => "UPDATE :table: SET :set: = ? WHERE id = ?",
+    "_id" => "UPDATE :table: SET :set: WHERE id = ?",
     "_photoProfile" => "UPDATE Users SET avatar = ? WHERE id = ?;",
     "_activeEmail"  => "UPDATE Users SET active = ? WHERE id = ?;",
     "_changePasswd" => "UPDATE Users SET pwd = ? WHERE id = ?;",

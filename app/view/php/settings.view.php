@@ -23,23 +23,26 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 		<div class="content">
 			<h1>settings</h1>
 			<div class="conten_img">
-				<img class="change_avatar" src="<?php get_avatar(); ?>" onclick="show_modal()" />
+				<img class="change_avatar" onclick="show_modal()" />
 			</div>
-			<form action="../../model/updateinformatio.model.php" method="POST">
+			<form action="../../model/updateinformatio.model.php" method="POST" enctype="multipart/form-data">
 				<div class="modal">
-					<input class="upload" type="file" id="image" name="img_user" accept="image/*"/>
-				  	<label for="image" class="btn-1" accept="image/*">upload</label>
-					<input class="camera" type="file" id="camera" name="img_db" />
+					<input class="upload" type="file" id="image" name="img_user" accept="image/*" onchange="load_img(event)" />
+				  	<label for="image" class="btn-1">upload</label>
+					<input class="camera" type="file" id="camera" name="img_db" accept="image/*"/>
+					<!-- get avatar from profile not fenish yat -->
 					<label for="camera" class="btn-2">profile</label>
-					<input class="submitImg" id="submitImg" type="submit" name="submit" value="OK"/>
+					<label class="ok" onclick="valid_img()">OK</label>
+					<img id="src_avatar"/>
 					<label class="cancel" onclick="hedin_modal()">cancel</label>
 				</div>
+				<h3 class="msj_new_av"></h3>
 				<div class="form">
 						<h1>your information</h1>
 						<h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
 						<select class="select right" name="notif">
-						  <option value="active">notification active</option>
-						  <option value="desactive">notification Desactive</option>
+						  <option value="true">active notification</option>
+						  <option value="false">Desactive notification</option>
 						</select>
 						<input class="left" type="text" placeholder="First Name" name="firstName" value="<?php echo $usr_info['firstname'];?>"/>
     	        		<input class="right" type="text" placeholder="Last Name" name="lastName" value="<?php echo $usr_info['lastname'];?>"/>
@@ -51,7 +54,7 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
     	        		<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
 						<input class="left" type="password" placeholder="Confirm Password" name="confnewPasswd" />
     	        		<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
-						<input class="submit right" type="submit" name="submit" value="OK"/></br>
+						<input class="submit right" type="submit" name="submit" value="Submit"/></br>
 					</form>
 			</div>
 		</div>
