@@ -6,8 +6,9 @@
     --Color4:       #6DE9F8;
     --Colorfont:    #fff;
     --ColorMainFont:#000;
-    --ColorError:   #ff0000;
     --Button:       #99c793;
     --ButtonActive: #497f42;
+    --Success:      #33FF3C;
+    --Error:        #FF0000;
     --ColorX: repeating-linear-gradient( var(--Color0), var(--Color1), var(--Color2), var(--Color3), var(--Color4));
 }

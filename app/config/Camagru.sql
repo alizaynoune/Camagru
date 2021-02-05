@@ -115,8 +115,33 @@ CREATE TABLE `Posts` (
 
 LOCK TABLES `Posts` WRITE;
 /*!40000 ALTER TABLE `Posts` DISABLE KEYS */;
-INSERT INTO `Posts` (uid, url) VALUES(0, '/public/icone/defult.png'),(1, '/public/usersData/profile.jpg');
 /*!40000 ALTER TABLE `Posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Avatar`
+--
+
+DROP TABLE IF EXISTS `Avatar`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Avatar` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `uid` int unsigned NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Posts`
+--
+
+LOCK TABLES `Avatar` WRITE;
+/*!40000 ALTER TABLE `Avatar` DISABLE KEYS */;
+-- INSERT INTO `Avatar` (uid, url) VALUES(0, '/public/icone/defult.png'),(1, '/public/usersData/profile.jpg');
+/*!40000 ALTER TABLE `Avatar` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -131,7 +156,6 @@ CREATE TABLE `Users` (
   `login` varchar(20) NOT NULL,
   `firstname` varchar(20) NOT NULL,
   `lastname` varchar(20) NOT NULL,
-  `avatar` int unsigned NOT NULL DEFAULT '1',
   `email` varchar(50) DEFAULT NULL,
   `active` enum('true','false') DEFAULT 'false',
   `notif` enum('true','false') DEFAULT 'true',
@@ -147,10 +171,10 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'ali-zaynoune','ali','ali',2,'ali@ali.com','true','false','b0c0f1cbe3c345594e6e2df6133d812ef2868e5875a6ac7bb9ff0f1e1474ecbe3f876503ef115de937551a3d114afd476b845e10d9b0c56cf65ade294e1e44dc','2021-01-25 17:26:02'),
-(2,'ali-zaynoune2','ali','zaynoune',1,'simo@simo.com','true','false','ee099310b7f4ee7e32b03ce73493065ff9fcc69a88131b6c876d52e776025bec94c836a75bb840bad579b33313d1edde0c96cfcba3490319d95c348e245a5bcc','2021-01-26 10:45:21'),
-(3,'alizaynoune','ali','zaynoune',1,'simo@simo.com2','true','false','b0c0f1cbe3c345594e6e2df6133d812ef2868e5875a6ac7bb9ff0f1e1474ecbe3f876503ef115de937551a3d114afd476b845e10d9b0c56cf65ade294e1e44dc','2021-01-26 10:48:44'),
-(4,'alializaynoun','ali','zaynoune',1,'ali@ali.ma','true','false','b0c0f1cbe3c345594e6e2df6133d812ef2868e5875a6ac7bb9ff0f1e1474ecbe3f876503ef115de937551a3d114afd476b845e10d9b0c56cf65ade294e1e44dc','2021-01-26 10:57:44');
+-- INSERT INTO `Users` VALUES (1,'ali-zaynoune','ali','ali',2,'ali@ali.com','true','false','b0c0f1cbe3c345594e6e2df6133d812ef2868e5875a6ac7bb9ff0f1e1474ecbe3f876503ef115de937551a3d114afd476b845e10d9b0c56cf65ade294e1e44dc','2021-01-25 17:26:02'),
+-- (2,'ali-zaynoune2','ali','zaynoune',1,'simo@simo.com','true','false','ee099310b7f4ee7e32b03ce73493065ff9fcc69a88131b6c876d52e776025bec94c836a75bb840bad579b33313d1edde0c96cfcba3490319d95c348e245a5bcc','2021-01-26 10:45:21'),
+-- (3,'alizaynoune','ali','zaynoune',1,'simo@simo.com2','true','false','b0c0f1cbe3c345594e6e2df6133d812ef2868e5875a6ac7bb9ff0f1e1474ecbe3f876503ef115de937551a3d114afd476b845e10d9b0c56cf65ade294e1e44dc','2021-01-26 10:48:44'),
+-- (4,'alializaynoun','ali','zaynoune',1,'ali@ali.ma','true','false','b0c0f1cbe3c345594e6e2df6133d812ef2868e5875a6ac7bb9ff0f1e1474ecbe3f876503ef115de937551a3d114afd476b845e10d9b0c56cf65ade294e1e44dc','2021-01-26 10:57:44');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

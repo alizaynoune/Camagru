@@ -1,13 +1,27 @@
 <?php
 session_start();
-if (!empty($_SESSION) || !empty($_SESSION['login'])){
-	header("Location: profile.view.php");
-}
-session_destroy();
+$msg = '';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/emailActive.model.php';
-if (emailactive() === false)
-        header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/login.view.php');
+if ($_GET['param'] == 'active' && empty($_SESSION['login'])){
+  session_destroy();
+  if (emailactive() === false){
+    header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/home.view.php');
+    exit();
+  }
+  $msg = '<h3>Your account was successfully actevite!</h3>';
+}
 
+else if ($_GET['param'] === 'update'){
+  if (emailupdate() === false){
+    header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/home.view.php');
+    exit();
+  }
+  $msg = '<h3>Your email was successfully update!</h3>';
+}
+else{
+  header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/home.view.php');
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +36,7 @@ if (emailactive() === false)
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';
     echo '<div class="content">';
-    echo "<h3>Your account was successfully actevite!</h3>";
+    echo $msg;
     echo '</div>';
     require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php';
     ?>

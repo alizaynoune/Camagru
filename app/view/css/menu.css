@@ -2,17 +2,10 @@
     list-style: none;
     margin-top: 0;
     justify-content: space-around;
-    /* display: block; */
-    /* position:fixed; */
-    /* position:-ms-page; */
     position: absolute;
-    /* display: block; */
-    /* position: relative; */
     width: 300px;
     height: calc(100% * 6);
     right: 0%;
-    /* padding: auto; */
-    /* right: 0%; */
     transform: translateX(110%);
     background-color: rgba(110, 235, 249,0.5);
     transition: all 0.5s;

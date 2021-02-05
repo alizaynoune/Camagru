@@ -6,7 +6,7 @@ if (!isset($_SESSION) || empty($_SESSION['login'])){
 }
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
-$usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, login, email, notif', 'Users', $_SESSION['uid'], $PARAM['int']);
+$usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, login, email, notif', 'Users', $_SESSION['uid'], $PARAM['int'], 0);
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,9 +40,10 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 				<div class="form">
 						<h1>your information</h1>
 						<h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
+						<h2 class="success"><?= !empty($_GET) && $_GET['success'] ? $_GET['success'] : ''; ?></h2>
 						<select class="select right" name="notif">
-						  <option value="true">active notification</option>
-						  <option value="false">Desactive notification</option>
+						  <option value="<?php echo $usr_info['notif'] === 'true'?'true':'false'; ?>"><?php echo $usr_info['notif'] === 'true'? 'active notification' :'Desactive notification' ; ?></option>
+						  <option value="<?php echo $usr_info['notif'] === 'true'?'false':'true'; ?>"><?php echo $usr_info['notif'] === 'true'? 'Desactive notification' : 'active notification' ; ?></option>
 						</select>
 						<input class="left" type="text" placeholder="First Name" name="firstName" value="<?php echo $usr_info['firstname'];?>"/>
     	        		<input class="right" type="text" placeholder="Last Name" name="lastName" value="<?php echo $usr_info['lastname'];?>"/>
@@ -56,6 +57,9 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
     	        		<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
 						<input class="submit right" type="submit" name="submit" value="Submit"/></br>
 					</form>
+			</div>
+			<div class="delete">
+				<a class="button" href="delete_account.view.php"><p>delet account</p></a>
 			</div>
 		</div>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>

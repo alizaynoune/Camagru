@@ -55,7 +55,7 @@ else{
 		array($PARAM['int'], $PARAM['str'], $PARAM['str']),
 		0
 	);
-	send_mail($id['id'], $login, $email, $token);
+	send_mail($id['id'], $login, $email, $token, 'active');
 	header('HTTP/1.1 307 Temporary Redirect');
 	header("Location: ../view/php/CreateSuccess.view.php");
 	exit();

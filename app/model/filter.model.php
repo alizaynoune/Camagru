@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 function    filter_email($email){
 	global $ERROR;
-	$ERROR = 'email';
+	$ERROR = 'email invalide';
 	$reg = '/^[a-zA-Z]+(([\.]{0,1})[\w_-])+@[\w\.]+\.([a-z]{2,4})$/';
 	// $reg = '/^[a-zA-Z0-9]+([\w-\+\!\#\$\%\&\'\*\=\?\^\`\{\|]+[\.]{0,1})+[a-zA-Z0-9]+@([a-z0-9]{1})+(\.{0,1}[a-z0-9-]+)*(\.[a-z]{2,4})$/';
 	if (strlen($email) > 50 || !preg_match($reg, $email))
@@ -65,7 +65,7 @@ function    filter_comment($comment){
 
 function    exist_email($email){
 	global $DB_SELECT, $PARAM;	
-	$rslt = (new dbselect())->select($DB_SELECT['_email'], 'email', 'Users', $email, $PARAM['str']);
+	$rslt = (new dbselect())->select($DB_SELECT['_email'], 'email', 'Users', $email, $PARAM['str'], 0);
 	if (empty($rslt))
 		return(false);
 	return(true);
@@ -74,7 +74,7 @@ function    exist_email($email){
 function    exist_login($login){
 	global $DB_SELECT, $PARAM;
 		
-	$rslt = (new dbselect())->select($DB_SELECT['_login'], 'login', 'Users', $login, $PARAM['str']);
+	$rslt = (new dbselect())->select($DB_SELECT['_login'], 'login', 'Users', $login, $PARAM['str'], 0);
 	if (empty($rslt))
 		return(false);
     return(true);
@@ -82,7 +82,7 @@ function    exist_login($login){
 
 function	exist_pwd($login, $pwd){
 	global $DB_SELECT, $PARAM;
-	$rslt = (new dbselect())->select($DB_SELECT['_login'], 'pwd', 'Users', $login, $PARAM['str']);
+	$rslt = (new dbselect())->select($DB_SELECT['_login'], 'pwd', 'Users', $login, $PARAM['str'], 0);
 	if (empty($rslt) || $pwd !== $rslt['pwd'])
 		return(false);
     return(true);
@@ -90,7 +90,7 @@ function	exist_pwd($login, $pwd){
 
 function	email_active($login){
 	global $DB_SELECT, $PARAM;
-	$rslt = (new dbselect())->select($DB_SELECT['_login'], 'active', 'Users', $login, $PARAM['str']);
+	$rslt = (new dbselect())->select($DB_SELECT['_login'], 'active', 'Users', $login, $PARAM['str'], 0);
 	if (!isset($rslt) || !isset($rslt['active']) || $rslt['active'] === 'false'){
 		return(false);
 	}

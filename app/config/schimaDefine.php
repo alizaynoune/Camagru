@@ -29,6 +29,7 @@ $DB_SELECT = array (
 $DB_INSERT = array(
     "_user"         => "INSERT INTO Users (login, firstname, lastname, pwd) VALUES (?, ?, ?, ?)",
     "_email_user"   => "INSERT INTO tempemail (uid, email, token) VALUES (?, ?, ?)",
+    "_avatar"       => "INSERT INTO Avatar (uid, url) VALUES(?, ?)",
     "_post"         => "Posts (uid, url, Date) VALUES(?, ?, NOW());",
     "_comment"      => "Comment (uid, pid, Comment, Date) VALUES(?, ?, ?, NOW());",
     "_like_post"    => "PostLikes (pid, uid, Date) VALUES(?, ?, NOW());",
@@ -38,7 +39,8 @@ $DB_INSERT = array(
 
 $DB_UPDATE = array(
 
-    "_id" => "UPDATE :table: SET :set: WHERE id = ?",
+    "_id"           => "UPDATE :table: SET :set: WHERE id = ?",
+    "_uid"          => "UPDATE :table: SET :set: WHERE uid = ?",
     "_photoProfile" => "UPDATE Users SET avatar = ? WHERE id = ?;",
     "_activeEmail"  => "UPDATE Users SET active = ? WHERE id = ?;",
     "_changePasswd" => "UPDATE Users SET pwd = ? WHERE id = ?;",

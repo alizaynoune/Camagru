@@ -115,27 +115,28 @@ html, body {
     margin-bottom: 90px;
 }
 
-.leftBtn, .rightBtn {
+.button {
     border-radius: 10rem;
     background: var(--Button);
     font-weight: bold;
     color: var(--Colorfont);
     width: 30%;
-    min-width: 150px;
     text-decoration: none;
     text-align: center;
     height: 100%;
+    min-width: 150px;
+    max-width: 300px;
 }
 
-.leftBtn:hover, .rightBtn:hover{background: var(--ButtonActive);}
+.button:hover{background: var(--ButtonActive);}
 
-.leftBtn:focus, .rightBtn:focus, .submit:focus{
+.button:focus, .submit:focus{
     background-color: var(--Color0);
     outline-style: none;
 }
 
 .error{
-    color: var(--ColorError);
+    color: var(--Error);
 }
 
 .PasswdMed{
@@ -143,11 +144,12 @@ html, body {
 }
 
 .PasswdGood{
-    color: green;
+    color: var(--Success);
 }
 
-.leftBtn {float: right; min-width: 150px; max-width: 300px;}
-.rightBtn {float: left; min-width: 100px; max-width: 300px;}
+.leftBtn {float: right;}
+.rightBtn {float: left;}
+.centerBtn {float: right; margin-right: calc(50% - 20px);}
 
 @media (pointer:none), (pointer:coarse){
     .form, .buttomBtn{width: 94%; margin-left: 3%;}

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'Submit'){
 	exit;
 }
 
-$usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, login, email, notif', 'Users', $_SESSION['uid'], $PARAM['int']);
+$usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, login, email, notif', 'Users', $_SESSION['uid'], $PARAM['int'], 0);
 
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
@@ -33,6 +33,9 @@ $new_info = array();
 $param = array();
 $select = '';
 $error = '';
+$sp = '';
+$seccess = '';
+// $target_file = '';
 
 if (!empty($firstName) && $firstName !== $usr_info['firstname']){
 	if(filter_name($firstName) === false){
@@ -46,7 +49,8 @@ if (empty($error) && !empty($lastName) && $lastName !== $usr_info['lastname']){
 	if(filter_name($lastName) === false){
 		$error = '?error='.$ERROR;
 	}
-	$select .= 'lastname=? ';
+	$sp = !empty($select) ? ',' : '';
+	$select .= $sp.'lastname=? ';
 	array_push($param, $PARAM['str']);
 	array_push($new_info, $lastName);
 }
@@ -56,16 +60,17 @@ if (empty($error) && !empty($login) && $login !== $usr_info['login']){
 	}
 	else if (exist_login($login) === true)
 		$error = '?error=login is ready exist';
-	$select .= 'login=? ';
+	$sp = !empty($select) ? ',' : '';
+	$select .= $sp.'login=? ';
 	array_push($param, $PARAM['str']);
 	array_push($new_info, $login);
 }
 if (empty($error) && $notf !== $usr_info['notif'] && ($notf === 'true' || $notf === 'false')){
-	$select .= 'notif=? ';
+	$sp = !empty($select) ? ',' : '';
+	$select .= $sp.'notif=? ';
 	array_push($param, $PARAM['bool']);
 	array_push($new_info, $notf);
 }
-
 
 if (empty($error) && !empty($oldPwd) && !empty($newPwd) && !empty($confPwd)){
 	$hashpwd = hash('whirlpool', 'ali'.$oldPwd.'zaynoune');
@@ -73,7 +78,6 @@ if (empty($error) && !empty($oldPwd) && !empty($newPwd) && !empty($confPwd)){
 		$error = '?error='.$ERROR;
 	else if (exist_pwd($login, $hashpwd) === false)
 		$error = '?error=passowrd invalide';
-
 	if (empty($error)){
 		if (filter_pwd($newPwd) === false)
 			$error = '?error'.$ERROR;
@@ -86,10 +90,48 @@ if (empty($error) && !empty($oldPwd) && !empty($newPwd) && !empty($confPwd)){
 			$error = '?error=old passwd = new passwd';
 	}
 	if (empty($error)){
-		$select .= 'pwd=? ';
+		$hashpwd = hash('whirlpool', 'ali'.$newPwd.'zaynoune');
+		$sp = !empty($select) ? ',' : '';
+		$select .= $sp.'pwd=? ';
 		array_push($param, $PARAM['str']);
 		array_push($new_info, $hashpwd);
 	}
+}
+
+// valid_avatar ///////////////////////////
+
+if (empty($error) && !empty($_FILES['img_user']) && !empty($_FILES["img_user"]["tmp_name"])){
+	$check = getimagesize($_FILES["img_user"]["tmp_name"]);
+	if ($check !== false){
+		$file = basename($_FILES['img_user']["name"]);
+		$exten = (strtolower(pathinfo($file,PATHINFO_EXTENSION)));
+		if ($exten !== 'jpg' && $exten !== 'jpeg' && $exten !== 'png')
+			$error = '?error=extension image not support';
+		else{
+			$Path = '/public/usersData/'.$login.'/';
+			
+			$target_file = $Path.'avatar'.'.'.$exten;
+			if (move_uploaded_file($_FILES["img_user"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'].$target_file)){
+				$seccess = '?success=your avatar has successfly update';
+				// echo 'seccess';
+				$oldavatar = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $_SESSION['uid'], $PARAM['int'], 0);
+				if ($target_file !== $oldavatar){
+				 // (new dbinsert())->update($DB_UPDATE['_id'], 'Users', $select, $new_info, $param);
+					(new dbinsert())->update($DB_UPDATE['_uid'], 'Avatar', 'url=?', array($target_file, $_SESSION['uid']), array($PARAM['str'], $PARAM['int']), 0);
+				}
+			}
+			else
+				$error = '?error=please chose an other avatar we cant change it';
+			// echo $oldavatar['url'].'</br>'.$target_file;
+		}
+	}
+	// print_r($exten);
+	// echo '</br>';
+	// print_r($check);
+	// echo '</br>';
+	// print_r($_FILES['img_user']);
+	// echo '</br>';
+	// print_r($_POST);
 }
 
 if (empty($error)){
@@ -106,13 +148,10 @@ if (empty($error)){
 				array($PARAM['int'], $PARAM['str'], $PARAM['str']),
 				0
 			);
-			// send_mail($PARAM['int'], $login, $email, $token);
-			// chage to update email ///////////////////
+			send_mail($_SESSION['uid'], $login, $email, $token, 'update');
+			$seccess = '?success=we send you link activision to your email please activate it';
 		}
 	}
-	// if (empty($error)){
-
-	// }
 }
 
 if (!empty($error)){
@@ -121,13 +160,33 @@ if (!empty($error)){
 }
 
 
-if (!empty($new_info)){
-	
+if (!empty($select)){
+	array_push($new_info, $_SESSION['uid']);
+	array_push($param, $PARAM['int']);
+	(new dbinsert())->update($DB_UPDATE['_id'], 'Users', $select, $new_info, $param);
+	if (!empty($login) && $login !== $usr_info['login']){
+		if (!file_exists($_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$usr_info['login'])){
+			if ((!mkdir($_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$login, 0777, true))){
+				header("Location: ../view/php/settings.view.php?error=creat directory!");
+				exit();
+			}
+		}
+		else{
+			rename($_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$usr_info['login'],
+					$_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$login);
+		}
+		$name_path = $_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$login;
+	}
+	(new Session())->logout();
+	(new Session())->start($login);
+	header("Location: ../view/php/settings.view.php?success=your information was successfully updated!");
+}
+else if (!empty($seccess))
+header("Location: ../view/php/settings.view.php".$seccess);
+else if (empty($select)){
+	header("Location: ../view/php/settings.view.php?error=none information to update!");
+	// print_r($_FILES['img_user']);
 }
 
-print_r($select);
-echo '</br>';
-print_r($new_info);
-echo '</br>';
-print_r($param);
+
 ?>

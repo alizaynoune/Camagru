@@ -68,7 +68,7 @@ class   dbselect extends db_conn {
     private     $bnd;
     private     $sql;
 
-    public function    select($cmd, $select, $table, $values, $param){
+    public function    select($cmd, $select, $table, $values, $param, $fetch){
         self::connect_use();
         $this->sql = str_replace(':select:', $select, $cmd);
         $this->sql = str_replace(':table:', $table, $this->sql);
@@ -76,7 +76,10 @@ class   dbselect extends db_conn {
             $this->stmt = $this->conn->prepare($this->sql);
             $this->stmt->bindParam(1, $values, $param);
             $this->stmt->execute();
-            $this->rslt = $this->stmt->fetch(PDO::FETCH_ASSOC);
+            if ($fetch === 0)
+                $this->rslt = $this->stmt->fetch(PDO::FETCH_ASSOC);
+            else if ($fetch === 1)
+            $this->rslt = $this->stmt->fetchAll(PDO::FETCH_ASSOC);
             self::Desconnect();
             return ($this->rslt);
         }catch(PDOException $e){
@@ -94,7 +97,7 @@ class   Session extends dbselect {
 
     static function start($newlogin){
         global $DB_SELECT, $PARAM;
-        self::$user = (new dbselect())->select($DB_SELECT['_login'], 'id, login, firstname', 'Users', $newlogin, $PARAM['str']);
+        self::$user = (new dbselect())->select($DB_SELECT['_login'], 'id, login, firstname', 'Users', $newlogin, $PARAM['str'], 0);
         if (!empty(self::$user)){
             session_start();
             $_SESSION['login'] = self::$user['login'];

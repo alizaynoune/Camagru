@@ -31,8 +31,8 @@ if (!isset($_SESSION) || !empty($_SESSION['login'])){
 				</form>
     	    </div>
 			<div class="buttomBtn">
-				<a class="leftBtn" href="signup.view.php"><p>Create New Account</p></a>
-				<a class="rightBtn" href="forgetpwd.view.php"><p>Forgotten password?</p></a>
+				<a class="leftBtn button" href="signup.view.php"><p>Create New Account</p></a>
+				<a class="rightBtn button" href="forgetpwd.view.php"><p>Forgotten password?</p></a>
 			</div>
 		</div>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
