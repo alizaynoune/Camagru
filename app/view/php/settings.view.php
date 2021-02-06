@@ -15,7 +15,7 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 	<link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   	<title>settings</title>
-  	<link class="_css" rel="stylesheet" type="text/css" href="../css/login.css"/>
+  	<link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
   	<link class="_css" rel="stylesheet" type="text/css" href="../css/settings.css"/>
 	</head>
 	<body>

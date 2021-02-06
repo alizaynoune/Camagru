@@ -3,27 +3,7 @@
 @import "Colors.css";
 
 
-html, body {
-    background: var(--ColorX);
-    height: 100%;
-    width: 100%;
-    padding: 0%;
-    /* border: forestgreen dashed 2px; */
-    margin: auto;
-    background-attachment: fixed;
-    overflow: auto;
-    overflow-x: hidden;
-    /* display:table-cell; */
-}
 
-* {
-    font-style: oblique;
-}
-
-.content {
-    height: auto;
-    margin-bottom: 3rem;
-}
 
 .form{
     text-align: center;

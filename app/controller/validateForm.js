@@ -167,6 +167,10 @@ function        ifUpdateInfo(){
     return(false);
 }
 
+function    validationImage(img){
+    console.log(img);
+    return(0); ///////////////////////not fineshed yet
+}
 
 const form = document.querySelector('form');
 const inputs = form.querySelectorAll('input');
@@ -206,6 +210,8 @@ for (var i = 0; i < inputs.length; i++){
         Ret = validationNewPasswd(inputs[i], form.querySelector('input[name="oldPasswd"]'));
     else if (inputs[i].name === 'confnewPasswd' && ifUpdateInfo() === true)
         Ret = validationConfPasswd(inputs[i], form.querySelector('input[name="newPasswd"]'));
+    else if (inputs[i].name === 'img_user')
+        Ret = validationImage(inputs[i]);
     if (Ret > 0)
         return(1);
 }

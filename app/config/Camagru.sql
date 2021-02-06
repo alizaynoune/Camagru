@@ -140,7 +140,6 @@ CREATE TABLE `Avatar` (
 
 LOCK TABLES `Avatar` WRITE;
 /*!40000 ALTER TABLE `Avatar` DISABLE KEYS */;
--- INSERT INTO `Avatar` (uid, url) VALUES(0, '/public/icone/defult.png'),(1, '/public/usersData/profile.jpg');
 /*!40000 ALTER TABLE `Avatar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,10 +170,6 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
--- INSERT INTO `Users` VALUES (1,'ali-zaynoune','ali','ali',2,'ali@ali.com','true','false','b0c0f1cbe3c345594e6e2df6133d812ef2868e5875a6ac7bb9ff0f1e1474ecbe3f876503ef115de937551a3d114afd476b845e10d9b0c56cf65ade294e1e44dc','2021-01-25 17:26:02'),
--- (2,'ali-zaynoune2','ali','zaynoune',1,'simo@simo.com','true','false','ee099310b7f4ee7e32b03ce73493065ff9fcc69a88131b6c876d52e776025bec94c836a75bb840bad579b33313d1edde0c96cfcba3490319d95c348e245a5bcc','2021-01-26 10:45:21'),
--- (3,'alizaynoune','ali','zaynoune',1,'simo@simo.com2','true','false','b0c0f1cbe3c345594e6e2df6133d812ef2868e5875a6ac7bb9ff0f1e1474ecbe3f876503ef115de937551a3d114afd476b845e10d9b0c56cf65ade294e1e44dc','2021-01-26 10:48:44'),
--- (4,'alializaynoun','ali','zaynoune',1,'ali@ali.ma','true','false','b0c0f1cbe3c345594e6e2df6133d812ef2868e5875a6ac7bb9ff0f1e1474ecbe3f876503ef115de937551a3d114afd476b845e10d9b0c56cf65ade294e1e44dc','2021-01-26 10:57:44');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

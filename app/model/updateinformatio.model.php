@@ -13,8 +13,6 @@ if (!isset($_SESSION) || empty($_SESSION['login'])){
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'Submit'){
-	// $ERROR = (!empty($ERROR)) ? "?error=".$ERROR : '';
-	// header('HTTP/1.1 307 Temporary Redirect');
 	header("Location: ../view/php/settings.view.php?error=method not valid");
 	exit;
 }
@@ -113,25 +111,15 @@ if (empty($error) && !empty($_FILES['img_user']) && !empty($_FILES["img_user"]["
 			$target_file = $Path.'avatar'.'.'.$exten;
 			if (move_uploaded_file($_FILES["img_user"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'].$target_file)){
 				$seccess = '?success=your avatar has successfly update';
-				// echo 'seccess';
 				$oldavatar = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $_SESSION['uid'], $PARAM['int'], 0);
 				if ($target_file !== $oldavatar){
-				 // (new dbinsert())->update($DB_UPDATE['_id'], 'Users', $select, $new_info, $param);
 					(new dbinsert())->update($DB_UPDATE['_uid'], 'Avatar', 'url=?', array($target_file, $_SESSION['uid']), array($PARAM['str'], $PARAM['int']), 0);
 				}
 			}
 			else
 				$error = '?error=please chose an other avatar we cant change it';
-			// echo $oldavatar['url'].'</br>'.$target_file;
 		}
 	}
-	// print_r($exten);
-	// echo '</br>';
-	// print_r($check);
-	// echo '</br>';
-	// print_r($_FILES['img_user']);
-	// echo '</br>';
-	// print_r($_POST);
 }
 
 if (empty($error)){
@@ -185,7 +173,6 @@ else if (!empty($seccess))
 header("Location: ../view/php/settings.view.php".$seccess);
 else if (empty($select)){
 	header("Location: ../view/php/settings.view.php?error=none information to update!");
-	// print_r($_FILES['img_user']);
 }
 
 
