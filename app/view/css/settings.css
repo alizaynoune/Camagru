@@ -136,8 +136,11 @@ input:checked + .slider:before {
   }
 
   .modal-show img {
-    margin-top: calc(100% - 200px);
-    margin-left: calc(50% - 200px);
+    margin-top: 19%;
+    margin-left: 19%;
+    /* border: deeppink dashed 1px; */
+    height: 62%;
+    width: 62%;
   }
 
   .btn-1{left: 20px;}

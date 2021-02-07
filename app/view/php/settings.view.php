@@ -3,6 +3,8 @@ session_start();
 if (!isset($_SESSION) || empty($_SESSION['login'])){
 	session_destroy();
 	header("Location: home.view.php");
+ if (!array_key_exists('error', $_GET))
+	$_GET['error'] = '';
 }
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
@@ -41,7 +43,7 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 				<h3 class="msj_new_av"></h3>
 				<div class="form">
 						<h1>your information</h1>
-						<h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
+						<h2 class="error"><?= array_key_exists('error', $_GET) ? $_GET['error'] : ''; ?></h2>
 						<h2 class="success"><?= !empty($_GET) && $_GET['success'] ? $_GET['success'] : ''; ?></h2>
 						<select class="select right" name="notif">
 						  <option value="<?php echo $usr_info['notif'] === 'true'?'true':'false'; ?>"><?php echo $usr_info['notif'] === 'true'? 'active notification' :'Desactive notification' ; ?></option>
