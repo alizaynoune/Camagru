@@ -14,9 +14,11 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
     <meta charset="UTF-8" />
 	<link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  	<title>settings</title>
-  	<link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
-  	<link class="_css" rel="stylesheet" type="text/css" href="../css/settings.css"/>
+	  <title>settings</title>
+	  <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
+	  <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
+	  <link class="_css" rel="stylesheet" type="text/css" href="../css/settings.css"/>
+	  <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
 	</head>
 	<body>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
@@ -27,14 +29,14 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 			</div>
 			<form action="../../model/updateinformatio.model.php" method="POST" enctype="multipart/form-data">
 				<div class="modal">
-					<input class="upload" type="file" id="image" name="img_user" accept="image/*" onchange="load_img(event)" />
-				  	<label for="image" class="btn-1">upload</label>
-					<input class="camera" type="file" id="camera" name="img_db" accept="image/*"/>
+					<input class="upload BtnAnim" type="file" id="image" name="img_user" accept="image/*" onchange="load_img(event)" />
+				  	<label for="image" class="btn-1  Btn">upload</label>
+					<input class="camera BtnAnim" type="file" id="camera" name="img_db" accept="image/*"/>
 					<!-- get avatar from profile not fenish yat -->
-					<label for="camera" class="btn-2">profile</label>
-					<label class="ok" onclick="valid_img()">OK</label>
+					<label for="camera" class="btn-2  Btn">profile</label>
+					<label class="ok  Btn" onclick="valid_img()">OK</label>
 					<img id="src_avatar"/>
-					<label class="cancel" onclick="hedin_modal()">cancel</label>
+					<label class="cancel  Btn" onclick="hedin_modal()">cancel</label>
 				</div>
 				<h3 class="msj_new_av"></h3>
 				<div class="form">

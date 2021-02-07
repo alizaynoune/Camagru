@@ -1,0 +1,112 @@
+
+/* .{position: absolute;} */
+
+.BtnAnim{
+  overflow: hidden;
+  display: none;
+}
+.Btn{
+  border: none;
+  position: absolute;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+  padding: 1rem 50px;
+  transition: all 0.3s;
+  height: 25px;
+  width: 40px;
+  background-color: var(--Button);
+  overflow: hidden;
+}
+.Btn::before{
+  font-family: "FontAwesome";
+  font-size: 100%;
+  height: 100%;
+  right: 130%;
+  line-height: 3.3;
+  position: absolute;
+  top: 0px;
+  transition: all 0.3s;
+}
+.Btn:hover {background-color: var(--ButtonActive);}
+.Btn:hover::before {right: 75%;}
+
+.buttomBtn {
+  width: 70%;
+  height: 52px;
+  margin-left: 15%;
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 90px;
+  justify-content: space-around;
+  /* border: gold dashed 2px; */
+}
+
+.button {
+  border-radius: 10rem;
+  background: var(--Button);
+  font-weight: bold;
+  color: var(--Colorfont);
+  width: 30%;
+  text-decoration: none;
+  text-align: center;
+  height: 100%;
+  min-width: 150px;
+  max-width: 300px;
+}
+
+.button:hover{background: var(--ButtonActive);}
+
+.button:focus, .submit:focus{
+  background-color: var(--Color0);
+  outline-style: none;
+}
+
+.leftBtn {float: right;}
+.rightBtn {float: left;}
+.centerBtn {left: calc(50% - 70px);}
+
+.toggle-control {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+.toggle-control input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.toggle-control input:checked + .control {
+  background-color: dodgerblue;
+}
+.toggle-control input:checked + .control:after {
+  left: 55px;
+}
+.toggle-control .control {
+  position: absolute;
+  height: 40px;
+  width: 90px;
+  border-radius: 25px;
+  background-color: darkgray;
+  transition: background-color 0.15s ease-in;
+}
+.toggle-control .control:after {
+  font-family: "FontAwesome";
+  position: absolute;
+  left: 5px;
+  top: 20%;
+  font-size: 21px;
+  border-radius: 25px;
+  transition: left 0.15s ease-in;
+}
+
+@media only screen and (max-width: 600px){
+  .Btn::before{
+    right: 75%;
+  }
+  .buttomBtn{width: 94%; margin-left: 3%;}
+  .buttomBtn{height: 70px; margin-top: 40px;}
+}

@@ -1,7 +1,7 @@
-
+@import "Colors.css";
+@import "menu.css";
 html, body {
     background: var(--ColorX);
-    height: 100%;
     width: 100%;
     padding: 0%;
     /* border: forestgreen dashed 2px; */
@@ -9,7 +9,6 @@ html, body {
     background-attachment: fixed;
     overflow: auto;
     overflow-x: hidden;
-    /* display:table-cell; */
 }
 
 * {
@@ -29,7 +28,6 @@ html, body {
     background-color: var(--Color2);
     justify-content: space-around;
     color: var(--ColorMainFont);
-    position: relative;
 }
 
 .navBar a{
@@ -45,14 +43,12 @@ html, body {
 .navLeft{
     position: absolute;
     /* border: blueviolet dashed 1px; */
-    height: 100%;
     width: calc(50% - 11px);
     left: 10px;
 }
 
 .navRight{
     position: absolute;
-    height: 100%;
     right: 10px;
     text-align: end;
     /* border: blueviolet dashed 1px; */
