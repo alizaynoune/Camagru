@@ -27,28 +27,52 @@
     width: 49%;
     height: 90%;
     margin-right: 0.5%;
-    background-color: fuchsia;
+    /* background-color: fuchsia; */
 }
 
 .btnup::before{content: "\f093";}
 .btncaptuer::before{content: "\f030";}
+.btncaptuerIn::before{content: "\f030";}
 .btnShr::before{content: "\f14d";}
 .leftBtn{left: 15%;}
 .rightBtn{right: 15%;}
+.out-form{margin-bottom: 20px;}
+
+.btncaptuerIn{
+    position: absolute;
+    /* left: 18%; */
+    /* margin-top: 10px; */
+    opacity: 0.5;
+    display: none;
+}
 
 .control-camera{
     height: 40px;
     width: 100px;
     margin-left: 20px;
 }
-
 .control-camera .control::after{content: "\f030";}
 
+.out-form{
+    width: 40%;
+}
+
+.hiddenBtn{
+    display: none;
+    height: 0;
+    width: 0;
+    opacity: 0;
+}
+
 @media only screen and (max-width: 600px){
-    .leftBtn{left: 3%;}
-    .rightBtn{right: 3%;}
+    .leftBtn{left: 5%;}
+    .rightBtn{right: 5%;}
     .div_video{height: 100%;}
     #video{width: 99%; height: 49%;}
     #canva{width: 99%; height: 49%;}
-
+    .out-form{width: 97%;}
+    .btncaptuer{display: none;}
+    .btncaptuerIn{
+        display: inline-block;
+        margin-top: -60px;}
 }

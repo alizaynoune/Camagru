@@ -22,7 +22,7 @@ function    emailactive(){
                 else{
                     (new dbinsert())->update($DB_UPDATE['_id'], 'Users', 'email=?,active=?', array($value['email'], 'true', $value['uid']), array($PARAM['str'], $PARAM['bool'], $PARAM['int']));
                     (new dbinsert())->drop($DB_DELETE['_active_email'], 'tempemail', 'email', $value['email'], $PARAM['str']);
-                    (new dbinsert())->insert($DB_INSERT['_avatar'], array($_GET['id'], '/public/icone/defult.png'), array($PARAM['int'], $PARAM['str']), 0);
+                    (new dbinsert())->insert($DB_INSERT['_avatar'], array($_GET['id'], '../../icone/defult.png'), array($PARAM['int'], $PARAM['str']), 0);
                 }
                 return(true);
             }

@@ -48,16 +48,21 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 			  	<input class="camera" type="file" id="camera" name="img_db" accept="image/*"/>
 					<label for="camera" class="btn-2">profile</label>
 			</select> -->
-			<div class="div_video">
-				<video id="video" autoplay></video>
-				<canvas id="canva"></canvas>
+			<input class="center out-form" type="text" placeholder="titel" name="titel"/>
+			<div class="div_video ">
+				<video id="video" class="hiddenBtn display" autoplay>
+				</video>
+				<input id="capterIn" class="BtnAnim " name="Capture"/>
+				<label for="capterIn" class="btncaptuerIn Btn centerBtn hiddenBtn display" onclick="capture_img()">Capture</label>
+				<canvas id="canva">
+				</canvas>
 			</div>
+	
 			<div class="buttomBtn">
-				<input id='upload' class="BtnAnim" name="Upload" type="file" accept="image/*"/>
+				<input id='upload' class="BtnAnim" name="Upload" type="file" accept="image/*" onchange="upload_to_canva(event)" />
 				<label for="upload" class="btnup Btn leftBtn">Upload</label>
-				
 				<input id="capter" class="BtnAnim" name="Capture"/>
-				<label for="capter" class="btncaptuer Btn centerBtn">Capture</label>
+				<label for="capter" class="btncaptuer Btn centerBtn hiddenBtn display" onclick="capture_img()">Capture</label>
 
 				
 				

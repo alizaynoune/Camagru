@@ -58,6 +58,8 @@ if (empty($error) && !empty($login) && $login !== $usr_info['login']){
 	}
 	else if (exist_login($login) === true)
 		$error = '?error=login is ready exist';
+	if (file_exists($_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$login))
+		$error = '?error= cannot modify login';
 	$sp = !empty($select) ? ',' : '';
 	$select .= $sp.'login=? ';
 	array_push($param, $PARAM['str']);
@@ -108,8 +110,8 @@ if (empty($error) && !empty($_FILES['img_user']) && !empty($_FILES["img_user"]["
 		else{
 			$Path = '/public/usersData/'.$login.'/';
 			
-			$target_file = $Path.'avatar'.'.'.$exten;
-			if (move_uploaded_file($_FILES["img_user"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'].$target_file)){
+			$target_file = 'avatar'.'.'.$exten;
+			if (move_uploaded_file($_FILES["img_user"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'].$Path.$target_file)){
 				$seccess = '?success=your avatar has successfly update';
 				$oldavatar = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $_SESSION['uid'], $PARAM['int'], 0);
 				if ($target_file !== $oldavatar){

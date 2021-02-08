@@ -8,6 +8,7 @@ if (!isset($_SESSION) || empty($_SESSION['login'])){
 }
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
+
 $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, login, email, notif', 'Users', $_SESSION['uid'], $PARAM['int'], 0);
 ?>
 <!DOCTYPE html>

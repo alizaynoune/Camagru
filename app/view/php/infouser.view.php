@@ -1,13 +1,14 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 // session_start();
 
 function    get_avatar(){
     global $DB_SELECT, $PARAM;    
     // $id_imge = (new dbselect())->select($DB_SELECT['_id'], 'avatar', 'Users', $_SESSION['uid'],    $PARAM['int'], 0);
     $url = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $_SESSION['uid'], $PARAM['int'], 0);
-    echo($url['url']);
+    echo(_PATH_.$_SESSION['login'].'/'.$url['url']);
 }
 
 ?>

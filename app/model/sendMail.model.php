@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 function    send_mail($id, $login, $email, $token, $param){
     $sub = 'Camagru Verification email';
     $msg = 'Hi! '.$login.' Thank you for singning up in Camagru!

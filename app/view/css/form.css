@@ -10,12 +10,12 @@
     /* border: dashed deeppink 1px; */
 }
 
-.form input:focus, .form select:focus{
+.form input:focus, .form select:focus, .out-form:focus{
     outline-style: none;
     /* -moz-outline-style: none; */
 }
 
-.form input, .form select{
+.form input, .form select, .out-form{
     width: calc(100% - 60px);
     height: 60px;
     border-width: 3px;
@@ -46,8 +46,17 @@
     padding-left: 28px;
 }
 
+.center{
+    border-radius: 40px 40px 40px 40px;
+    -webkit-border-radius: 40px 40px 40px 40px;
+    -moz-border-radius: 40px 40px 40px 40px;
+    /* margin-top: -3px;
+    margin-bottom: -3px; */
+    border-style: solid solid solid solid;
+    /* padding-left: 28px; */
+}
 
-.form ::placeholder{
+.form ::placeholder, .out-form::placeholder{
     padding-right: 80px;
     color: var(--Colorfont);
     text-align: center;
