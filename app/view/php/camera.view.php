@@ -52,10 +52,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 			<div class="div_video ">
 				<video id="video" class="hiddenBtn display" autoplay>
 				</video>
+				
 				<input id="capterIn" class="BtnAnim " name="Capture"/>
 				<label for="capterIn" class="btncaptuerIn Btn centerBtn hiddenBtn display" onclick="capture_img()">Capture</label>
-				<canvas id="canva">
-				</canvas>
+				<canvas id="canva"></canvas>
+				<canvas id="out"></canvas>
 			</div>
 	
 			<div class="buttomBtn">

@@ -22,7 +22,7 @@
     /* display: inline; */
 }
 
-#canva{
+#canva , #out{
     /* border: red dashed 2px; */
     width: 49%;
     height: 90%;
@@ -69,7 +69,7 @@
     .rightBtn{right: 5%;}
     .div_video{height: 100%;}
     #video{width: 99%; height: 49%;}
-    #canva{width: 99%; height: 49%;}
+    #canva, #out{width: 99%; height: 49%;}
     .out-form{width: 97%;}
     .btncaptuer{display: none;}
     .btncaptuerIn{

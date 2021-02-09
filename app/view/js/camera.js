@@ -28,23 +28,23 @@ function  camera_on(){
       stream.height = video.style.height;
       stream.width = video.style.width;
       video.srcObject = stream;
-      console.log(video.style);
-      
     })
     .catch(err => {
-      console.log(err);
+      document.querySelector('.error').innerHTML = err;
     });
+    document.querySelector('.error').innerHTML = '';
 }
 
 function  camera_off(){
   hidden_erea();
   const video = document.getElementById('video');
   const mediaStream = video.srcObject;
-  const tracks = mediaStream.getTracks();
-  tracks.forEach(function(track) {
-    track.stop();
-  });
-
+  if (mediaStream !== null){
+    const tracks = mediaStream.getTracks()
+    tracks.forEach(function(track) {
+      track.stop();
+    });
+  }
   video.srcObject = null;
 }
 
@@ -69,12 +69,14 @@ function    upload_to_canva(event){
     // }
     // canva.width = ((img.width / 2) - canva.width) / 2;
     // canva.height =((img.height / 2) - canva.height) / 2;
-    // canva.height -= (img.width - img.height);
-    // canva.width -= (img.height - img.width);
+    var size = img.height - img.width;
+    canva.height = canva.width;
+    canva.height += size;
     ctx.drawImage(img, 0, 0, canva.width, canva.height);
+   console.log(size);
     
-    console.log(img.width);
-    console.log(img.height);
+    // console.log(img.width);
+    // console.log(img.height);
     
   };
   img.src = URL.createObjectURL(event.target.files[0]);
