@@ -8,7 +8,7 @@ class	db_setup extends db_conn{
 	private	function DBquery($cmd){
 		try{
 			$this->conn->query($cmd);
-		} catch(PDOException $e){
+		} catch(Exception $e){
 			die ("Error : ". $e->getMessage());
 			exit();
 		}
