@@ -21,8 +21,10 @@ if (!empty($_SESSION) && !empty($_SESSION['login'])){
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
 	<div class="content">	
 		<div class="form">
-			<form action="login.model.php" method="POST">
+			<form action="../../model/forgetpwd.model.php" method="POST">
     	        <h1>Recovery Password</h1>
+				<h2 class="error"><?= array_key_exists('error', $_GET) ? $_GET['error'] : ''; ?></h2>
+				<h2 class="success"><?= !empty($_GET) && $_GET['success'] ? $_GET['success'] : ''; ?></h2>
     	        <input class="left" type="text" placeholder="Username" name="login" required/></br>
 				<input class="right" type="email" placeholder="E-mail" name="email" required/></br>
 				<input class="submit left" type="submit" name="submit" value="OK"/></br>

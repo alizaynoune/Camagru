@@ -61,6 +61,7 @@ function    filter_config_pwd($pwd, $cnfpwd){
 function    filter_comment($comment){
 	if (strlen($comment) > 255)
 		return(false);
+		////not finesh yet;
 }
 
 function    exist_email($email){

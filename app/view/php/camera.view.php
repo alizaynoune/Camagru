@@ -36,7 +36,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		</div>
 
 		<label class="toggle-control control-camera">
-  			<input type="checkbox" onclick="control_camera(this)">
+  			<input id="checkbox" type="checkbox" onclick="control_camera(this)">
   			<span class="control"></span>
 		</label>
 		<form action="#" method="POST" enctype="multipart/form-data">
@@ -50,13 +50,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 			</select> -->
 			<input class="center out-form" type="text" placeholder="titel" name="titel"/>
 			<div class="div_video ">
-				<video id="video" class="hiddenBtn display" autoplay>
-				</video>
-				
+				<video id="video" class="hiddenBtn display" autoplay></video>
 				<input id="capterIn" class="BtnAnim " name="Capture"/>
 				<label for="capterIn" class="btncaptuerIn Btn centerBtn hiddenBtn display" onclick="capture_img()">Capture</label>
 				<canvas id="canva"></canvas>
-				<canvas id="out"></canvas>
+				<canvas id="hidden_canva"></canvas>
 			</div>
 	
 			<div class="buttomBtn">

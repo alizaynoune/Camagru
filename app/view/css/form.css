@@ -95,6 +95,9 @@
 .error{
     color: var(--Error);
 }
+.success{
+    color: var(--Success);
+  }
 
 .PasswdMed{
     color: yellow;

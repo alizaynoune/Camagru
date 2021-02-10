@@ -8,7 +8,7 @@ function    get_avatar(){
     global $DB_SELECT, $PARAM;    
     // $id_imge = (new dbselect())->select($DB_SELECT['_id'], 'avatar', 'Users', $_SESSION['uid'],    $PARAM['int'], 0);
     $url = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $_SESSION['uid'], $PARAM['int'], 0);
-    echo(_PATH_.$_SESSION['login'].'/'.$url['url']);
+    echo (_PATH_.$_SESSION['login'].'/'.$url['url']);
 }
 
 ?>

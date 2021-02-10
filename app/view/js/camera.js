@@ -1,7 +1,7 @@
 
 function  show_erea(){
   const select = document.querySelectorAll('.display'); //.classList.remove('hidden');
-
+  // document.getElementById('canva').classList.add('hiddenBtn');
   select.forEach(function(elem){
     elem.classList.remove('hiddenBtn');
   });
@@ -9,25 +9,30 @@ function  show_erea(){
 
 function  hidden_erea(){
   const select = document.querySelectorAll('.display'); //.classList.remove('hidden');
-
+  // document.getElementById('canva').classList.remove('hiddenBtn');
   select.forEach(function(elem){
     elem.classList.add('hiddenBtn');
   });
 }
 
 function  camera_on(){
-  show_erea();
+  
   const video = document.getElementById('video');
+  var canva = document.getElementById('hidden_canva');
+  // console.log(canva.height);
+  
   const constraints = {
-    video: true,
-    audio: false,
+    video: {
+      width: canva.width,
+      height: canva.height,
+      audio: false
+    }
   };
   
   navigator.mediaDevices.getUserMedia(constraints)
     .then((stream) => {
-      stream.height = video.style.height;
-      stream.width = video.style.width;
       video.srcObject = stream;
+      show_erea();
     })
     .catch(err => {
       document.querySelector('.error').innerHTML = err;
@@ -36,13 +41,13 @@ function  camera_on(){
 }
 
 function  camera_off(){
-  hidden_erea();
   const video = document.getElementById('video');
   const mediaStream = video.srcObject;
   if (mediaStream !== null){
     const tracks = mediaStream.getTracks()
     tracks.forEach(function(track) {
       track.stop();
+      hidden_erea();
     });
   }
   video.srcObject = null;
@@ -56,34 +61,26 @@ function  control_camera(elem){
 }
 
 function    upload_to_canva(event){
-  // console.log('done');
+  camera_off();
+  document.getElementById('checkbox').checked = false;
   var canva = document.getElementById('canva');
   var ctx = canva.getContext('2d');
   var img = new Image();
   img.onload = function(){
-    // if (img.width > canva.width){
-    //   canva.width = (img.width / 2);
-    //   canva.height = (img.height / 2);
-    // }
-    // else if (canva.width > img.width){
-    // }
-    // canva.width = ((img.width / 2) - canva.width) / 2;
-    // canva.height =((img.height / 2) - canva.height) / 2;
-    var size = img.height - img.width;
     canva.height = canva.width;
-    canva.height += size;
+    var factor = Math.min((canva.width / img.width), (canva.height / img.height));
+    if (factor < 1)
+      factor *= 1.5;
+    // console.log(factor);
+    canva.height = img.height * factor;
+    canva.width = img.width * factor;
     ctx.drawImage(img, 0, 0, canva.width, canva.height);
-   console.log(size);
-    
-    // console.log(img.width);
-    // console.log(img.height);
-    
   };
   img.src = URL.createObjectURL(event.target.files[0]);
 }
 
 function    capture_img(){
-  var canva = document.getElementById('canva');     
+  var canva = document.getElementById('canva');
   var video = document.getElementById('video');
   canva.width = video.videoWidth;
   canva.height = video.videoHeight;
