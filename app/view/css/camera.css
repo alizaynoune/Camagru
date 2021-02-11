@@ -5,6 +5,11 @@
     width: 100%;
 }
 
+.stickers img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
 
 .div_video{
     display: inline-block;
@@ -18,7 +23,7 @@
     width: 49%;
     height: 90%;
     margin-left: 0.5%;
-    background-color: gainsboro;
+    /* background-color: gainsboro; */
     max-width: 800px;
     max-height: 800px;
     /* display: inline; */

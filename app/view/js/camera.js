@@ -1,15 +1,13 @@
 
 function  show_erea(){
-  const select = document.querySelectorAll('.display'); //.classList.remove('hidden');
-  // document.getElementById('canva').classList.add('hiddenBtn');
+  const select = document.querySelectorAll('.display');
   select.forEach(function(elem){
     elem.classList.remove('hiddenBtn');
   });
 }
 
 function  hidden_erea(){
-  const select = document.querySelectorAll('.display'); //.classList.remove('hidden');
-  // document.getElementById('canva').classList.remove('hiddenBtn');
+  const select = document.querySelectorAll('.display');
   select.forEach(function(elem){
     elem.classList.add('hiddenBtn');
   });
@@ -18,9 +16,7 @@ function  hidden_erea(){
 function  camera_on(){
   
   const video = document.getElementById('video');
-  var canva = document.getElementById('hidden_canva');
-  // console.log(canva.height);
-  
+  var canva = document.getElementById('hidden_canva');  
   const constraints = {
     video: {
       width: canva.width,
@@ -36,6 +32,7 @@ function  camera_on(){
     })
     .catch(err => {
       document.querySelector('.error').innerHTML = err;
+      document.getElementById('checkbox').checked = false;
     });
     document.querySelector('.error').innerHTML = '';
 }
@@ -71,7 +68,6 @@ function    upload_to_canva(event){
     var factor = Math.min((canva.width / img.width), (canva.height / img.height));
     if (factor < 1)
       factor *= 1.5;
-    // console.log(factor);
     canva.height = img.height * factor;
     canva.width = img.width * factor;
     ctx.drawImage(img, 0, 0, canva.width, canva.height);
@@ -85,4 +81,49 @@ function    capture_img(){
   canva.width = video.videoWidth;
   canva.height = video.videoHeight;
   canva.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+}
+
+function    drag(ev){
+  console.log(ev);
+  // ev.dataTransfer.setData("text", ev.target.id);
+  // ev.dataTransfer.effectAllowed = "copy";
+  // ev.dataTransfer.setDragImage(ev.target.src, 10, 10);
+  // ev.dataTransfer.setData("image/jpeg", ev.target.src);
+  // console.log(ev.target.src);
+
+  ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.effectAllowed = "copy";
+  
+}
+
+function   drop(ev){
+  // event.preventDefault();
+  // console.log('drop');
+  
+}
+
+
+function      dragover(ev){
+  // var canvas = document.getElementById('canva');
+  // var ctx = canvas.getContext("2d");
+  // console.log(ctx);
+  
+  // ctx.lineWidth = 4;
+  // ctx.moveTo(0, 0);
+  // ctx.lineTo(50, 50);
+  // ctx.moveTo(0, 50);
+  // ctx.lineTo(50, 0);
+  // ctx.stroke();
+
+  // const dt = event.dataTransfer;
+  // dt.setData("text/plain", ev.target.src);
+  // dt.setDragImage(ev.target.src, 2, 2);
+
+  // ctx.drawImage(ev.target.src);
+  // ctx.drawImage(ev.target.src, ev.clientY, ev.clientX);
+}
+
+function    ondraging(event){
+  // console.log('ondrag');
+  
 }

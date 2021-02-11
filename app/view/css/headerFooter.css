@@ -3,12 +3,13 @@
 html, body {
     background: var(--ColorX);
     width: 100%;
-    padding: 0%;
+    /* padding: 0%; */
     /* border: forestgreen dashed 2px; */
     margin: auto;
     background-attachment: fixed;
     overflow: auto;
     overflow-x: hidden;
+    /* padding-left: 2px; */
 }
 
 * {
@@ -18,8 +19,14 @@ html, body {
 .content {
     height: auto;
     margin-bottom: 3rem;
+    padding-left: 5px;
+    padding-right: 5px;
 }
-
+.tst {
+    background-color: olive;
+    height: 200px;
+    width: 200px;
+}
 
 .navBar {
     width: 100%;

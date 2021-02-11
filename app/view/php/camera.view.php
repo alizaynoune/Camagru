@@ -25,14 +25,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
 	<div class="content">
 		<h1>camera</h1>
-
-		<!-- <div class="emoji">
-			<p>&#129409;</p>
-		</div>
-		<video id="video" autoplay></video>
-		<canva id="canva"></canva> -->
 		<div class="stickers">
-			<!-- <h2>tse</h2> -->
+			<img src="../stickers/2.jpg" id="img1"  ondrag="ondraging(event);" ondragstart=" drag(event);" draggable="true" />
 		</div>
 
 		<label class="toggle-control control-camera">
@@ -42,19 +36,14 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		<form action="#" method="POST" enctype="multipart/form-data">
 			<h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
 			<h2 class="success"><?= !empty($_GET) && $_GET['success'] ? $_GET['success'] : ''; ?></h2>
-			<!-- <select class="select right" name="notif">
-			  <option value="emoji1">emoji1</option>
-			  <option value="emoji2">emoji2</option>
-			  	<input class="camera" type="file" id="camera" name="img_db" accept="image/*"/>
-					<label for="camera" class="btn-2">profile</label>
-			</select> -->
 			<input class="center out-form" type="text" placeholder="titel" name="titel"/>
 			<div class="div_video ">
 				<video id="video" class="hiddenBtn display" autoplay></video>
 				<input id="capterIn" class="BtnAnim " name="Capture"/>
-				<label for="capterIn" class="btncaptuerIn Btn centerBtn hiddenBtn display" onclick="capture_img()">Capture</label>
-				<canvas id="canva"></canvas>
+				<label for="capterIn" class="btncaptuerIn Btn centerBtn hiddenBtn display" onclick="capture_img();">Capture</label>
+				<canvas id="canva" ondrop="drop(event);" ondragover="dragover(event);" ></canvas>
 				<canvas id="hidden_canva"></canvas>
+				<!-- <div class="tst" ondrag="drop(event)" ></div> -->
 			</div>
 	
 			<div class="buttomBtn">
