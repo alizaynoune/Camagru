@@ -34,14 +34,14 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
   			<span class="control"></span>
 		</label>
 		<form action="#" method="POST" enctype="multipart/form-data">
-			<h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
-			<h2 class="success"><?= !empty($_GET) && $_GET['success'] ? $_GET['success'] : ''; ?></h2>
+			<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
+			<h2 class="success"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
 			<input class="center out-form" type="text" placeholder="titel" name="titel"/>
 			<div class="div_video ">
 				<video id="video" class="hiddenBtn display" autoplay></video>
 				<input id="capterIn" class="BtnAnim " name="Capture"/>
 				<label for="capterIn" class="btncaptuerIn Btn centerBtn hiddenBtn display" onclick="capture_img();">Capture</label>
-				<canvas id="canva" ondrop="drop(event);" ondragover="dragover(event);" ></canvas>
+				<canvas id="canva" ></canvas>
 				<canvas id="hidden_canva"></canvas>
 				<!-- <div class="tst" ondrag="drop(event)" ></div> -->
 			</div>

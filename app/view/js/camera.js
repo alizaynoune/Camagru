@@ -1,6 +1,19 @@
 
+// window.addEventListener('load', function () {
+//   add_event();
+// })
+var   captur = 0;
+
+
 function  show_erea(){
   const select = document.querySelectorAll('.display');
+  //   remove_event(document.querySelector('.event'));
+  delete_event(document.getElementById('canva'));
+  // document.querySelector('#canva').classList.remove('event');
+  // document.querySelector('#video').classList.add('event');
+  // add_event(document.querySelector('#video'));
+  // document.querySelector('#hidden_canva').style.display = 'inline-block';
+  // document.querySelector('#canva').style.display = 'none';
   select.forEach(function(elem){
     elem.classList.remove('hiddenBtn');
   });
@@ -8,6 +21,14 @@ function  show_erea(){
 
 function  hidden_erea(){
   const select = document.querySelectorAll('.display');
+  if (captur === 0)
+    new_event(document.getElementById('canva'));
+  // document.querySelector('#canva').classList.add('event');
+  // document.querySelector('#video').classList.remove('event');
+  // add_event(document.querySelector('#canva'));
+  // document.querySelector('#hidden_canva').style.display = 'none';
+  // document.querySelector('#canva').style.display = 'inline-block';
+  
   select.forEach(function(elem){
     elem.classList.add('hiddenBtn');
   });
@@ -16,7 +37,7 @@ function  hidden_erea(){
 function  camera_on(){
   
   const video = document.getElementById('video');
-  var canva = document.getElementById('hidden_canva');  
+  var canva = document.getElementById('hidden_canva'); 
   const constraints = {
     video: {
       width: canva.width,
@@ -56,11 +77,12 @@ function  control_camera(elem){
   else
     camera_off();
 }
-
 function    upload_to_canva(event){
   camera_off();
+  
   document.getElementById('checkbox').checked = false;
   var canva = document.getElementById('canva');
+  
   var ctx = canva.getContext('2d');
   var img = new Image();
   img.onload = function(){
@@ -72,10 +94,16 @@ function    upload_to_canva(event){
     canva.width = img.width * factor;
     ctx.drawImage(img, 0, 0, canva.width, canva.height);
   };
-  img.src = URL.createObjectURL(event.target.files[0]);
+  if (event.target.files[0]){
+    img.src = URL.createObjectURL(event.target.files[0]);
+    captur = 0;
+    new_event(canva);
+  }
+  
 }
 
 function    capture_img(){
+  captur = 1;
   var canva = document.getElementById('canva');
   var video = document.getElementById('video');
   canva.width = video.videoWidth;
@@ -84,13 +112,6 @@ function    capture_img(){
 }
 
 function    drag(ev){
-  console.log(ev);
-  // ev.dataTransfer.setData("text", ev.target.id);
-  // ev.dataTransfer.effectAllowed = "copy";
-  // ev.dataTransfer.setDragImage(ev.target.src, 10, 10);
-  // ev.dataTransfer.setData("image/jpeg", ev.target.src);
-  // console.log(ev.target.src);
-
   ev.dataTransfer.setData("text", ev.target.id);
     ev.dataTransfer.effectAllowed = "copy";
   
@@ -104,26 +125,26 @@ function   drop(ev){
 
 
 function      dragover(ev){
-  // var canvas = document.getElementById('canva');
-  // var ctx = canvas.getContext("2d");
-  // console.log(ctx);
-  
-  // ctx.lineWidth = 4;
-  // ctx.moveTo(0, 0);
-  // ctx.lineTo(50, 50);
-  // ctx.moveTo(0, 50);
-  // ctx.lineTo(50, 0);
-  // ctx.stroke();
 
-  // const dt = event.dataTransfer;
-  // dt.setData("text/plain", ev.target.src);
-  // dt.setDragImage(ev.target.src, 2, 2);
-
-  // ctx.drawImage(ev.target.src);
-  // ctx.drawImage(ev.target.src, ev.clientY, ev.clientX);
 }
 
 function    ondraging(event){
   // console.log('ondrag');
+  
+}
+
+function    _event(targ){
+  // console.log(targ);
+  console.log(targ.screenX + ' ' + targ.screenY);
+  
+}
+
+function    new_event(targ){
+  targ.addEventListener('dragover', _event);
+}
+
+function    delete_event(targ){
+  targ.removeEventListener('dragover', _event);
+  // console.log('test');
   
 }
