@@ -9,6 +9,7 @@ function  show_erea(){
   const select = document.querySelectorAll('.display');
   //   remove_event(document.querySelector('.event'));
   delete_event(document.getElementById('canva'));
+  new_event(document.getElementById('video'));
   // document.querySelector('#canva').classList.remove('event');
   // document.querySelector('#video').classList.add('event');
   // add_event(document.querySelector('#video'));
@@ -117,10 +118,13 @@ function    drag(ev){
   
 }
 
-function   drop(ev){
+function   dragstart(ev){
   // event.preventDefault();
   // console.log('drop');
+  ev.dataTransfer.setData('text/plain', ev.target.id)
+  // console.log(ev);
   
+  // ev.dataTransfer.setDragImage(ev.target.id, 10, 10);
 }
 
 
@@ -133,18 +137,29 @@ function    ondraging(event){
   
 }
 
-function    _event(targ){
+function    _onDragover(event){
   // console.log(targ);
-  console.log(targ.screenX + ' ' + targ.screenY);
+  console.log(event.screenX + ' ' + event.screenY);
+  // dropzone.appendChild(draggableElement);
+  event.preventDefault();
   
 }
 
+function    _onDrop(event){
+  const id = event.dataTransfer.getData('text');
+  const draggableElement = document.getElementById(id);
+  event.target.appendChild(draggableElement);
+  event.dataTransfer.clearData();
+}
+
 function    new_event(targ){
-  targ.addEventListener('dragover', _event);
+  targ.addEventListener('dragover', _onDragover);
+  targ.addEventListener('drop', _onDrop)
 }
 
 function    delete_event(targ){
-  targ.removeEventListener('dragover', _event);
+  targ.removeEventListener('dragover', _onDragover);
+  targ.removeEventListener('drop', _onDrop);
   // console.log('test');
   
 }

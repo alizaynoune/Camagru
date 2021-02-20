@@ -19,6 +19,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
 			<div class="content">
 				<h1>profile</h1>
+			
 			</div>
 		<?php @ require $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 	</body>

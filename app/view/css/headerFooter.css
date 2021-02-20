@@ -2,13 +2,14 @@
 @import "menu.css";
 html, body {
     background: var(--ColorX);
-    width: 100%;
-    /* padding: 0%; */
+    /* width: 100%; */
+    padding: 0%;
     /* border: forestgreen dashed 2px; */
     margin: auto;
     background-attachment: fixed;
     overflow: auto;
     overflow-x: hidden;
+    /* height: 100%; */
     /* padding-left: 2px; */
 }
 
@@ -21,6 +22,10 @@ html, body {
     margin-bottom: 3rem;
     padding-left: 5px;
     padding-right: 5px;
+    width: 100%;
+    /* height: 100%; */
+    /* border: dashed deeppink 2px; */
+    overflow-x: hidden;
 }
 .tst {
     background-color: olive;
@@ -35,6 +40,8 @@ html, body {
     background-color: var(--Color2);
     justify-content: space-around;
     color: var(--ColorMainFont);
+    /* padding: 0%; */
+    /* overflow: auto; */
 }
 
 .navBar a{
@@ -52,14 +59,22 @@ html, body {
     /* border: blueviolet dashed 1px; */
     width: calc(50% - 11px);
     left: 10px;
+    /* overflow-x: hidden; */
 }
 
 .navRight{
     position: absolute;
-    right: 10px;
+    right:  calc(0% + 5px);
+    /* left: 90%; */
     text-align: end;
-    /* border: blueviolet dashed 1px; */
-    width: calc(50% - 11px);
+    /* margin-right: 2px; */
+    /* margin-right: -50%; */
+    /* float: right; */
+    /* display: inline-block; */
+    border: blueviolet dashed 1px;
+    overflow: hidden;
+    /* width: calc(50% - 100px); */
+    height: auto;
 }
 
 .footer{
