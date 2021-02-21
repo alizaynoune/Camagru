@@ -111,7 +111,8 @@ class   Session extends dbselect {
     }
 
     static function logout(){
-        session_start();
+        if (empty($_SESSION['login']))
+            session_start();
         unset($_SESSION["login"]);
         unset($_SESSION["uid"]);
         unset($_SESSION['firstname']);

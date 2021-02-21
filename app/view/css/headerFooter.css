@@ -27,11 +27,11 @@ html, body {
     /* border: dashed deeppink 2px; */
     overflow-x: hidden;
 }
-.tst {
-    background-color: olive;
-    height: 200px;
-    width: 200px;
-}
+/* .tst { */
+    /* background-color: olive; */
+    /* height: 200px; */
+    /* width: 200px; */
+/* } */
 
 .navBar {
     width: 100%;
@@ -71,10 +71,10 @@ html, body {
     /* margin-right: -50%; */
     /* float: right; */
     /* display: inline-block; */
-    border: blueviolet dashed 1px;
-    overflow: hidden;
+    /* border: blueviolet dashed 1px; */
+    /* overflow: hidden; */
     /* width: calc(50% - 100px); */
-    height: auto;
+    /* height: auto; */
 }
 
 .footer{

@@ -68,7 +68,7 @@ if (empty($error) && !empty($login) && $login !== $usr_info['login']){
 if (empty($error) && $notf !== $usr_info['notif'] && ($notf === 'true' || $notf === 'false')){
 	$sp = !empty($select) ? ',' : '';
 	$select .= $sp.'notif=? ';
-	array_push($param, $PARAM['bool']);
+	array_push($param, $PARAM['str']);
 	array_push($new_info, $notf);
 }
 
