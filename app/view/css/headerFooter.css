@@ -7,12 +7,20 @@ html, body {
     /* border: forestgreen dashed 2px; */
     margin: auto;
     background-attachment: fixed;
-    /* overflow: auto; */
+    overflow: auto;
     overflow-x: hidden;
+    height: auto;
+    min-height: 600px;
+    /* overflow-y: scroll; */
     /* height: 100%; */
     /* padding-left: 2px; */
+    position: relative;
+
 }
 
+/* body.modal-open{position: fixed;} */
+
+/* body{overflow: hidden; width: 100%;} */
 
 
 * {
@@ -24,9 +32,12 @@ html, body {
     margin-bottom: 3rem;
     padding-left: 5px;
     padding-right: 5px;
+    /* position: absolute; */
     /* width: 100%; */
     /* height: 100%; */
     /* border: dashed deeppink 2px; */
+    /* position: relative; */
+    /* display: flex; */
     overflow-x: hidden;
 }
 /* .tst {
@@ -84,8 +95,9 @@ html, body {
     bottom: 0%; */
     /* vertical-align:bottom; */
     position: fixed;
+    /* position: static; */
     height: 2.2rem;
-    bottom:  0;
+    bottom:  0.1%;
     width: 100%;
     background-color: var(--Color2);
     /* border: darkblue dashed 1px; */
@@ -94,6 +106,7 @@ html, body {
 .footer p{
     font-weight: bold;
     float: right;
+    /* position: unset; */
     /* margin-top: 6px; */
     /* padding-right: 10px; */
 }
@@ -101,8 +114,5 @@ html, body {
 @media (pointer:none), (pointer:coarse) {
     .navBar {
         height: 100px;
-    }
-    html, body{
-        overflow-x: hidden;
     }
   }

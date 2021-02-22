@@ -85,10 +85,12 @@ function    upload_to_canva(event){
   
   document.getElementById('checkbox').checked = false;
   var canva = document.getElementById('canva');
-  
+  var size = document.getElementById('canva_id');
   var ctx = canva.getContext('2d');
   var img = new Image();
   img.onload = function(){
+    canva.width = size.offsetWidth;
+    console.log(size.offsetWidth);
     canva.height = canva.width;
     var factor = Math.min((canva.width / img.width), (canva.height / img.height));
     if (factor < 1)
