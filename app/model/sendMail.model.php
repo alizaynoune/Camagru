@@ -19,8 +19,19 @@ function    msj_email($param){
     return($msg);
 }
 
+function    sub_email($param){
+    if ($param === 'active' || $param === 'update'){
+        $msg = ' Camagru Verification email ';
+    }
+
+    else if ($param === 'pwd'){
+        $msg = 'Camagru Recovery Password';
+    }
+    return($msg);
+}
+
 function    send_mail($id, $login, $email, $token, $param){
-    $sub = 'Camagru Verification email';
+    $sub = sub_email($param);
     $msg = 'Hi! '.$login.msj_email($param).
     ' <a href=http://'.$_SERVER["HTTP_HOST"].'/app/view/php/receiveemail.view.php?id='.$id.'&token='.$token.'&param='.$param.'>click her</a>';
     $headers  = 'MIME-Version: 1.0' . "\r\n";

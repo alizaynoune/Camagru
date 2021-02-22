@@ -7,11 +7,13 @@ html, body {
     /* border: forestgreen dashed 2px; */
     margin: auto;
     background-attachment: fixed;
-    overflow: auto;
+    /* overflow: auto; */
     overflow-x: hidden;
     /* height: 100%; */
     /* padding-left: 2px; */
 }
+
+
 
 * {
     font-style: oblique;
@@ -22,16 +24,16 @@ html, body {
     margin-bottom: 3rem;
     padding-left: 5px;
     padding-right: 5px;
-    width: 100%;
+    /* width: 100%; */
     /* height: 100%; */
     /* border: dashed deeppink 2px; */
     overflow-x: hidden;
 }
-/* .tst { */
-    /* background-color: olive; */
-    /* height: 200px; */
-    /* width: 200px; */
-/* } */
+/* .tst {
+    background-color: olive;
+    height: 200px;
+    width: 200px;
+} */
 
 .navBar {
     width: 100%;
@@ -99,5 +101,8 @@ html, body {
 @media (pointer:none), (pointer:coarse) {
     .navBar {
         height: 100px;
+    }
+    html, body{
+        overflow-x: hidden;
     }
   }

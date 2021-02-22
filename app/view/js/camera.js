@@ -36,25 +36,27 @@ function  hidden_erea(){
 }
 
 function  camera_on(){
-  
+  show_erea();
   const video = document.getElementById('video');
-  var canva = document.getElementById('hidden_canva'); 
+  var size = document.getElementById('video_id'); 
   const constraints = {
     video: {
-      width: canva.width,
-      height: canva.height,
+      width: size.offsetWidth,
+      height: size.offsetHeight,
       audio: false
     }
   };
+  // console.log(size.offsetHeight);
   
   navigator.mediaDevices.getUserMedia(constraints)
     .then((stream) => {
       video.srcObject = stream;
-      show_erea();
+      // show_erea();
     })
     .catch(err => {
       document.querySelector('.error').innerHTML = err;
       document.getElementById('checkbox').checked = false;
+      hidden_erea();
     });
     document.querySelector('.error').innerHTML = '';
 }
@@ -91,9 +93,12 @@ function    upload_to_canva(event){
     var factor = Math.min((canva.width / img.width), (canva.height / img.height));
     if (factor < 1)
       factor *= 1.5;
+    // console.log(canva.height);
+    
     canva.height = img.height * factor;
     canva.width = img.width * factor;
     ctx.drawImage(img, 0, 0, canva.width, canva.height);
+    // console.log(canva.height);
   };
   if (event.target.files[0]){
     img.src = URL.createObjectURL(event.target.files[0]);
@@ -139,7 +144,7 @@ function    ondraging(event){
 
 function    _onDragover(event){
   // console.log(targ);
-  console.log(event.screenX + ' ' + event.screenY);
+  // console.log(event.screenX + ' ' + event.screenY);
   // dropzone.appendChild(draggableElement);
   event.preventDefault();
   
@@ -148,7 +153,11 @@ function    _onDragover(event){
 function    _onDrop(event){
   const id = event.dataTransfer.getData('text');
   const draggableElement = document.getElementById(id);
-  event.target.appendChild(draggableElement);
+  // var cln = draggableElemen.cloneNode(true);
+  // event.target.appendChild(cln);
+  console.log(event);
+  
+  
   event.dataTransfer.clearData();
 }
 

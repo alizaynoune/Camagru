@@ -25,6 +25,7 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 	</head>
 	<body>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
+		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 		<div class="content">
 			<h1>settings</h1>
 			<div class="conten_img">
@@ -47,7 +48,7 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 						<h2 class="error"><?= array_key_exists('error', $_GET) ? $_GET['error'] : ''; ?></h2>
 						<h2 class="success"><?= !empty($_GET) && $_GET['success'] ? $_GET['success'] : ''; ?></h2>
 						<select class="select right" name="notif">
-						  <option value="<?php echo $usr_info['notif'] === 'true'?'true':'false'; ?>"><?php echo $usr_info['notif'] === 'true'? 'active notification' :'Desactive notification' ; ?></option>
+						  <option value="<?php echo $usr_info['notif'] ?>"><?php echo $usr_info['notif'] === 'true'? 'active notification' :'Desactive notification' ; ?></option>
 						  <option value="<?php echo $usr_info['notif'] === 'true'?'false':'true'; ?>"><?php echo $usr_info['notif'] === 'true'? 'Desactive notification' : 'active notification' ; ?></option>
 						</select>
 						<input class="left" type="text" placeholder="First Name" name="firstName" value="<?php echo $usr_info['firstname'];?>"/>

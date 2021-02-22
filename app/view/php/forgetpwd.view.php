@@ -18,7 +18,7 @@ if (!empty($_SESSION) && !empty($_SESSION['login'])){
   <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
 	</head>
 	<body>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
+	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
 	<div class="content">	
 		<div class="form">
 			<form action="../../model/forgetpwd.model.php" method="POST">

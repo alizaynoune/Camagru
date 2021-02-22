@@ -12,32 +12,45 @@
 }
 
 .div_video{
-    display: inline-block;
+    display: inline-flex;
     /* border: forestgreen dashed 2px; */
     width: 100%;
     height: 100%;
 }
 
-#video{
+#video_id{
     /* border: darkviolet dashed 2px; */
     width: 49%;
     height: 90%;
-    margin-left: 0.5%;
+    margin-right: 0.5%;
     /* background-color: gainsboro; */
     max-width: 800px;
     max-height: 800px;
+    padding: 0%;
+    /* margin: 0%; */
+    /* display: inline; */
     /* display: inline; */
 }
+/* #video {width: 90%; height: 90%; padding: 0%; margin: 0%;} */
 
-#canva , #hidden_canva{
+#canva_id{
     /* border: red dashed 2px; */
     width: 49%;
     height: 90%;
-    margin-right: 0.5%;
+    margin-left: 0.5%;
     max-width: 800px;
     max-height: 800px;
+    padding: 0%;
+    /* right: 0%; */
+    margin: 0%;
+    /* float: right; */
+    /* display: inline; */
     /* background-color: fuchsia; */
 }
+#canva, #video {width: 100%; height: 100%; padding: 0%; margin: 0%;}
+/* #video {width: 0; height: 0;} */
+
+/* .hedden {display: none;} */
 
 .btnup::before{content: "\f093";}
 .btncaptuer::before{content: "\f030";}
@@ -74,14 +87,12 @@
     opacity: 0;
 }
 
-#hidden_canva{display: none;}
-
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 800px){
     .leftBtn{left: 5%;}
     .rightBtn{right: 5%;}
-    .div_video{height: 100%;}
-    #video{width: 99%; height: 49%;}
-    #canva, #hidden_canva{width: 99%; height: 49%; margin-left: 0.5%;}
+    .div_video{height: 100%; display: inline-block;}
+    #video_id{width: 99%; height: 49%;}
+    #canva_id{width: 99%; height: 49%; margin-left: 0.5%;}
     /* #hidden_canva{display: none;} */
     .out-form{width: 97%;}
     .btncaptuer{display: none;}
