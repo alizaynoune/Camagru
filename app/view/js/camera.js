@@ -9,7 +9,7 @@ function  show_erea(){
   const select = document.querySelectorAll('.display');
   //   remove_event(document.querySelector('.event'));
   delete_event(document.getElementById('canva'));
-  new_event(document.getElementById('video'));
+  new_event(document.getElementById('video_id'));
   // document.querySelector('#canva').classList.remove('event');
   // document.querySelector('#video').classList.add('event');
   // add_event(document.querySelector('#video'));
@@ -23,7 +23,8 @@ function  show_erea(){
 function  hidden_erea(){
   const select = document.querySelectorAll('.display');
   if (captur === 0)
-    new_event(document.getElementById('canva'));
+    new_event(document.getElementById('canva_id'));
+  // document.getElementById('vi')
   // document.querySelector('#canva').classList.add('event');
   // document.querySelector('#video').classList.remove('event');
   // add_event(document.querySelector('#canva'));
@@ -90,7 +91,7 @@ function    upload_to_canva(event){
   var img = new Image();
   img.onload = function(){
     canva.width = size.offsetWidth;
-    console.log(size.offsetWidth);
+    // console.log(size.offsetWidth);
     canva.height = canva.width;
     var factor = Math.min((canva.width / img.width), (canva.height / img.height));
     if (factor < 1)
@@ -105,7 +106,7 @@ function    upload_to_canva(event){
   if (event.target.files[0]){
     img.src = URL.createObjectURL(event.target.files[0]);
     captur = 0;
-    new_event(canva);
+    new_event(document.getElementById('canva_id'));
   }
   
 }
@@ -154,13 +155,28 @@ function    _onDragover(event){
 
 function    _onDrop(event){
   const id = event.dataTransfer.getData('text');
-  const draggableElement = document.getElementById(id);
-  // var cln = draggableElemen.cloneNode(true);
-  // event.target.appendChild(cln);
-  console.log(event);
+  const elem = document.getElementById(id);
+  // console.log(elem);
+  if (elem !== null){
+    var cln = elem.cloneNode(true);
+    let x = (event.offsetX) - (elem.offsetWidth / 2);
+    let y = (event.offsetY) - (elem.offsetHeight / 2) ;
+    x = x < 0 ? (elem.offsetWidth / 4) : x;
+    y = y < 0 ? (elem.offsetHeight / 4) : y;
+    cln.removeAttribute('id');
+    cln.style.transform = `translate(${x}px, ${y}px)`;
+    event.path[1].appendChild(cln);
+    console.log(x);
+    console.log(event);
+    
+    // console.log(ui);
+    
+    // event.dataTransfer.clearData();
+  }
+  // console.log(elem.src);
   
   
-  event.dataTransfer.clearData();
+  
 }
 
 function    new_event(targ){
@@ -174,3 +190,11 @@ function    delete_event(targ){
   // console.log('test');
   
 }
+
+document.querySelector('.stickers').childNodes.forEach((e)=>{
+  // console.log(e);
+  e.addEventListener('drag', ondraging);
+  e.addEventListener('dragstart', dragstart);
+  e.addEventListener('draggable', ev => {}, true);
+  
+});

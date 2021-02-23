@@ -27,7 +27,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	<div class="content">
 		<h1>camera</h1>
 		<div class="stickers">
-			<img src="../stickers/2.jpg" id="img1"  ondrag="ondraging(event);" ondragstart=" dragstart(event);" draggable="true" />
+			<img src="../stickers/2.jpg" id="img1" />
 		</div>
 
 		<label class="toggle-control control-camera">

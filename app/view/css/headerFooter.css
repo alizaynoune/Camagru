@@ -9,8 +9,8 @@ html, body {
     background-attachment: fixed;
     overflow: auto;
     overflow-x: hidden;
-    height: auto;
-    min-height: 600px;
+    /* height: 90%; */
+    min-height: 650px;
     /* overflow-y: scroll; */
     /* height: 100%; */
     /* padding-left: 2px; */
