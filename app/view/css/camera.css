@@ -36,8 +36,8 @@
 
 #video_id{
     /* border: darkviolet dashed 2px; */
-    width: 49%;
-    height: 90%;
+    width: 600px;
+    height: 300px;
     margin-right: 0.5%;
     /* background-color: gainsboro; */
     max-width: 800px;
@@ -54,20 +54,30 @@
 
 #canva_id{
     /* border: red dashed 2px; */
-    width: 49%;
-    height: 90%;
+    width: 600px;
+    height: 300px;
     margin-left: 0.5%;
     max-width: 800px;
     max-height: 800px;
     padding: 0%;
     /* right: 0%; */
     margin: 0%;
+    /* position: absolute; */
+    /* display: block; */
     /* display: inline-flex; */
     /* float: right; */
     /* display: inline; */
     /* background-color: fuchsia; */
 }
-#canva, #video {width: 100%; height: 100%; padding: 0%; margin: 0%;}
+#canva, #video {
+    /* width: 100%;
+    height: 100%; */
+    padding: 0%;
+    margin: 0%;
+    /* position: absolute; */
+    /* margin-bottom: -4px; */
+    border: 1px dashed darkturquoise;
+}
 /* #video {width: 0; height: 0;} */
 
 /* .hedden {display: none;} */
@@ -78,7 +88,10 @@
 .btnShr::before{content: "\f14d";}
 .leftBtn{left: 15%;}
 .rightBtn{right: 15%;}
-.out-form{margin-bottom: 20px;}
+.out-form{
+    margin-bottom: 20px;
+    max-width: 600px;
+}
 
 .btncaptuerIn{
     position: absolute;
@@ -95,11 +108,6 @@
 }
 .control-camera .control::after{content: "\f030";}
 
-.out-form{
-    width: 40%;
-    max-width: 800px;
-}
-
 .hiddenBtn{
     display: none;
     height: 0;
@@ -107,16 +115,30 @@
     opacity: 0;
 }
 
-@media only screen and (max-width: 800px){
+/* @media only screen and (max-width: 1200){
+    .div_video{
+        display: inline-block;
+        height: 100%;
+    }
+} */
+
+@media only screen and (max-width: 1200px){
     .leftBtn{left: 5%;}
     .rightBtn{right: 5%;}
     .div_video{height: 100%; display: inline-block;}
-    #video_id{width: 99%; height: 49%;}
-    #canva_id{width: 99%; height: 49%; margin-left: 0.5%;}
+    /* #video_id{width: 99%; height: 49%;}
+    #canva_id{width: 99%; height: 49%; margin-left: 0.5%;} */
     /* #hidden_canva{display: none;} */
     .out-form{width: 97%;}
     .btncaptuer{display: none;}
     .btncaptuerIn{
         display: inline-block;
-        margin-top: -60px;}
+        margin-top: -60px;
+        left: 250px;
+        /* right: 75%; */
+        /* margin-left: 300px; */
+    }
+    /* .btncaptuerIn::before{
+        right: 75%;
+      } */
 }
