@@ -73,7 +73,7 @@
   cursor: pointer;
 }
 .toggle-control input {
-  position: absolute;
+  /* position: absolute; */
   opacity: 0;
   cursor: pointer;
   height: 0;
@@ -87,6 +87,7 @@
 }
 .toggle-control .control {
   position: absolute;
+  /* position: relative; */
   height: 40px;
   width: 90px;
   border-radius: 25px;

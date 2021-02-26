@@ -25,13 +25,21 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 	<div class="content">
-		<h1>camera</h1>
+		<!-- <h1>camera</h1> -->
+
+		<label class="toggle-control control-stickers">
+  				<input id='checkbox-stickers' type="checkbox" checked='true'>
+  				<span class="control"></span>
+		</label>
+		
 		<div class="stickers">
 			<img src="../stickers/2.jpg" id="img1" draggable="true" />
+			<img src="../stickers/2.jpg" id="img2" draggable="true" />
+			<img src="../stickers/2.jpg" id="img3" draggable="true" />
 		</div>
 
 		<label class="toggle-control control-camera">
-  			<input id="checkbox" type="checkbox" onclick="control_camera(this)">
+  			<input id='checkbox-camera' type="checkbox" onclick="control_camera(this)">
   			<span class="control"></span>
 		</label>
 		<form action="#" method="POST" enctype="multipart/form-data">

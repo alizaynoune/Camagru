@@ -1,7 +1,7 @@
 
 .stickers{
     /* border: yellowgreen dashed 2px; */
-    height: 100px;
+    height: 50px;
     width: 100%;
 }
 
@@ -9,6 +9,7 @@
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    cursor: move;
 }
 
 #canva_id img, #video_id img{
@@ -17,9 +18,15 @@
     border-radius: 50%;
     /* display: inline-flex; */
     position: absolute;
+    /* position: sticky; */
+    /* z-index: 1000; */
+    /* display: flex; */
+    /* position: relative; */
     /* float: left; */
-    left: 0%;
+    /* left: 0%; */
+    padding: 0%;
     margin: 0%;
+    cursor: move;
     /* position: fixed; */
 
     /* left: 20px; */
@@ -34,6 +41,10 @@
     height: 100%;
 }
 
+/* .control {
+    display: inline-block;
+} */
+
 #video_id{
     /* border: darkviolet dashed 2px; */
     width: 600px;
@@ -43,6 +54,9 @@
     max-width: 800px;
     max-height: 800px;
     padding: 0%;
+    position: relative;
+    /* display: flex; */
+    /* display: block; */
     
     /* display: block; */
     /* display: flexbox; */
@@ -55,10 +69,13 @@
 #canva_id{
     /* border: red dashed 2px; */
     width: 600px;
-    height: 300px;
+    height: auto;
     margin-left: 0.5%;
-    max-width: 800px;
-    max-height: 800px;
+    display: block;
+    position: relative;
+    /* display: inline-block; */
+    /* max-width: 800px;
+    max-height: 800px; */
     padding: 0%;
     /* right: 0%; */
     margin: 0%;
@@ -101,12 +118,17 @@
     display: none;
 }
 
-.control-camera{
+.control-camera , .control-stickers{
     height: 40px;
     width: 100px;
     margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
+
+
 .control-camera .control::after{content: "\f030";}
+.control-stickers .control::after{content: '\f249';}
 
 .hiddenBtn{
     display: none;
