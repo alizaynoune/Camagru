@@ -28,18 +28,19 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		<!-- <h1>camera</h1> -->
 
 		<label class="toggle-control control-stickers">
-  				<input id='checkbox-stickers' type="checkbox" checked='true'>
+  				<input name='stickers' id='checkbox-stickers' type="checkbox" checked='true'>
   				<span class="control"></span>
 		</label>
 		
 		<div class="stickers">
-			<img src="../stickers/2.jpg" id="img1" draggable="true" />
-			<img src="../stickers/2.jpg" id="img2" draggable="true" />
-			<img src="../stickers/2.jpg" id="img3" draggable="true" />
+			<img src="../stickers/1.png" id="img1" draggable="true" />
+			<img src="../stickers/2.png" id="img2" draggable="true" />
+			<img src="../stickers/3.png" id="img3" draggable="true" />
+			<!-- <img src="../stickers/4.png" id="img4" draggable="true" /> -->
 		</div>
 
 		<label class="toggle-control control-camera">
-  			<input id='checkbox-camera' type="checkbox" onclick="control_camera(this)">
+  			<input name='camera' id='checkbox-camera' type="checkbox">
   			<span class="control"></span>
 		</label>
 		<form action="#" method="POST" enctype="multipart/form-data">
