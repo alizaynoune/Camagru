@@ -14,11 +14,6 @@ function  show_erea(){
   //   remove_event(document.querySelector('.event'));
   delete_event(document.getElementById('canva'));
   new_event(document.getElementById('video'));
-  // document.querySelector('#canva').classList.remove('event');
-  // document.querySelector('#video').classList.add('event');
-  // add_event(document.querySelector('#video'));
-  // document.querySelector('#hidden_canva').style.display = 'inline-block';
-  // document.querySelector('#canva').style.display = 'none';
   select.forEach(function(elem){
     elem.classList.remove('hiddenBtn');
   });
@@ -28,12 +23,6 @@ function  hidden_erea(){
   const select = document.querySelectorAll('.display');
   if (captur === 0)
     new_event(document.getElementById('canva'));
-  // document.getElementById('vi')
-  // document.querySelector('#canva').classList.add('event');
-  // document.querySelector('#video').classList.remove('event');
-  // add_event(document.querySelector('#canva'));
-  // document.querySelector('#hidden_canva').style.display = 'none';
-  // document.querySelector('#canva').style.display = 'inline-block';
   clear_stickers(document.getElementById('video_id'));
   select.forEach(function(elem){
     elem.classList.add('hiddenBtn');
@@ -44,7 +33,6 @@ function  camera_on(){
   show_erea();
   const video = document.getElementById('video');
   var size = document.getElementById('video_id'); 
-  // fix_size(size.offsetWidth, size.offsetHeight, document.getElementById('video'));
   const constraints = {
     video: {
       width: size.offsetWidth,
@@ -56,10 +44,7 @@ function  camera_on(){
   
   navigator.mediaDevices.getUserMedia(constraints)
     .then((stream) => {
-      // fix_size(size.offsetWidth, size.offsetHeight, document.getElementById('video'));
       video.srcObject = stream;
-      // clear_stickers(document.getElementById('canva_id'));
-      // show_erea();
     })
     .catch(err => {
       document.querySelector('.error').innerHTML = err;
@@ -153,18 +138,24 @@ function    capture_img(){
 function    copy_stickers(){
   let elem = document.getElementById('video_id');
   var canva = document.getElementById('canva_id');
-  console.log('copy');
+  // console.log('copy');
   
-  elem.querySelectorAll('img').forEach((e)=>{
+  elem.querySelectorAll('div').forEach((e)=>{
     // console.log(e.id);
-    if (e.id.search('copy') !== -1)
+    if (e.id.search('copy') !== -1){
+      // console.log(e);
+      e.querySelectorAll('div').forEach((div)=>{
+        // console.log(div);
+        div.style.display = 'none';
+      });
       canva.appendChild(e);
+    }
   });
 }
 
 function    clear_stickers(elem){
   
-  elem.querySelectorAll('img').forEach((e)=>{
+  elem.querySelectorAll('div').forEach((e)=>{
     if (e.id.search('copy') !== -1)
       e.remove();
   });
@@ -178,13 +169,6 @@ function   dragstart(ev){
   let id = ev.target.id;
   // if (id !== 'copy')
     ev.dataTransfer.setData('text/plain', id);
-  // else
-  //   ev.dataTransfer.setData('text/plain', ev.target.className)
-  // console.log(ev.target.className);
-  
-  // console.log(ev);
-  
-  // ev.dataTransfer.setDragImage(ev.target.id, 10, 10);
 }
 
 
@@ -210,47 +194,37 @@ function    _onDragover(event){
 function    _onDrop(event){
   const id = event.dataTransfer.getData('text');
   const elem = document.getElementById(id);
-  // console.log(id);
-  
-  // if (elem === null)
-  //   elem = document.querySelector('.'+id);
-  // console.log(event.dataTransfer.setData('text'));
   if (elem !== null){
     // console.log(id);
-    if (id.search('copy') === -1) {
+    if (id.search('img') !== -1) {
       var cln = elem.cloneNode(true);
-      cln.addEventListener('drag', ondraging);
-      cln.addEventListener('dragstart', dragstart);
-      // cln.classList.add(`${new_class++}`);
+      cln.id = `${new_id}`;
+      cln = new_elem(cln);
       cln.id =  `copy${new_id++}`;
     }
-    else
-      var cln = elem;
-    // let x = (event.offsetX) - (elem.offsetWidth / 2);
-    // let y = (event.offsetY) - (elem.offsetHeight / 2) ;
+    else{
+      var cln = elem.parentElement;
+
+    }
     let x =  event.layerX - (elem.offsetWidth / 2);
     let y =  event.layerY - (elem.offsetHeight / 2);
-    // console.log(x + ' ' + y);
-    // console.log(event.target);
-    // if ((x < 0 || y < 0) && id === 'copy'){
-    //   cln.remove();
-    //   console.log('copy');
-      
-    //   return;
-    // }
+    // let x = event.clientX - event.target.getBoundingClientRect().left;
+    // let y = event.clientY - event.target.getBoundingClientRect().top;
+    // console.log(event.cl);
+    
+
     x = x < 0 ? 0 : x;
     y = y < 0 ? 0 : y;
     x = (x + elem.offsetWidth) > event.target.clientWidth ? (event.target.clientWidth - elem.offsetWidth) : x;
-    y = (y + elem.offsetHeight) > event.target.clientHeight ? (event.target.clientHeight - elem.offsetHeight) : y;
-    // x = x > event.target
-    // cln.removeAttribute('id');
-    
+    y = (y + elem.offsetHeight) > event.target.clientHeight ? (event.target.clientHeight - elem.offsetHeight) : y;    
     cln.style.left = x + 'px';
-    cln.style.top = y + 'px';
-    event.path[1].appendChild(cln);
-    if (event.target.id === 'video')
+    cln.style.top = y+ 'px';
+    // console.log(event);
+        
+    event.srcElement.parentNode.appendChild(cln);
+    if (event.srcElement.id === 'video')
       sticker_ivdeo = 1;
-    else if (event.target.id === 'canva')
+    else if (event.srcElement.id === 'canva')
       sticker_canva = 1;
 
       
@@ -259,33 +233,66 @@ function    _onDrop(event){
   
 }
 
-function    mouse_position(event){
-  // console.log(event);
+function    _mousedown(e){
+  // console.log(e);
   
 }
 
 
-
-
-// function    sticker_move(event){
-//   // console.log(event);
-//   // event.path[1].addEventListener('mousemove', mouse_position);
-//   // event.path[1].removeEventListener('mousemove', mouse_position);
-//   // event.target.addEventListener('drag', ondraging);
-//   // event.target.addEventListener('dragstart', dragstart);
-//   // event.target.style.left = (event.screenX - event.path[1].offsetLeft - (event.target.width / 2)) + 'px';
-//   // event.target.style.top = (event.screenY -  event.path[1].offsetTop - event.path[1].offsetHeight - (event.target.height / 2)) + 'px';
-//   // console.log(event.layerX + ' ' + event.layerY);
+function    new_elem(stic){
+  // stic.removeEventListener('drag', ondraging);
+  // stic.removeEventListener('dragstart', dragstart);
+  // stic.removeEventListener('click', sticker_click);
+  var   name_class = ['rotate', 'delet'];
+  var   parent = document.createElement('div');
+  parent.classList.add('filter');
+  parent.appendChild(stic);
+  name_class.forEach((e)=>{
+    let div = document.createElement('div');
+    div.classList.add(e);
+    if (e === 'resize'){
+      div.setAttribute('draggable', true);
+      div.addEventListener('dragstart', function(event){
+        // let old = event.screenX; /////////////////////////not finesh
+        // console.log(event);
+        
+      });
+    }
+    else if (e === 'delet'){
+      div.addEventListener('click', function(event){
+        event.target.parentNode.remove();
+      });
+    }
+    parent.appendChild(div);
+  });
+  stic.addEventListener('mousedown', touchstart); //////////////not finesh
+  stic.addEventListener('touchend', touchend); //////////////////not finesh;;;;;;;;;;;
+  // stic.addEventListener('dragover', _onDragover, false);
+  // stic.addEventListener('drop', _onDrop, false)
+  // console.log(parent.lastChild);
   
-//   // var mouseX = event.
+  // e.addEventListener('click', sticker_click);
+  return(parent);
+}
+
+function    touchstart(e){
+  console.log(e);
   
-// }
+}
+
+function    touchend(e){
+  console.log(e);
+  
+}
+
 
 function    sticker_click(event){
   // console.log(event.target);
   if (listener){
     let cln = event.target.cloneNode(true);
-    cln.id = `copy${new_id++}`;
+    cln.id = `${new_id}`;
+    cln = new_elem(cln);
+    cln.id =  `copy${new_id++}`;
     cln.style.left = '0px';
     cln.style.top = '0px';
     listener.parentNode.appendChild(cln);
@@ -293,10 +300,6 @@ function    sticker_click(event){
       sticker_canva = 1;
     else if (listener.id === 'video')
       sticker_ivdeo = 1;
-
-    cln.addEventListener('drag', ondraging);
-    cln.addEventListener('dragstart', dragstart);
-    // cln.addEventListener('drag', sticker_move);
   }
 }
 
