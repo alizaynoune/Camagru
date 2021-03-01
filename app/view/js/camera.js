@@ -7,6 +7,7 @@ var   sticker_ivdeo = 0;
 var   sticker_canva = 0;
 var   listener;
 var   new_id = 0;
+var   e_listener;
 
 
 function  show_erea(){
@@ -166,9 +167,14 @@ function    clear_stickers(elem){
 function   dragstart(ev){
   // event.preventDefault();
   // console.log('drop');
+  console.log('dragstart');
+    console.log(ev);
   let id = ev.target.id;
   // if (id !== 'copy')
     ev.dataTransfer.setData('text/plain', id);
+    
+    
+    
 }
 
 
@@ -180,15 +186,7 @@ function    ondraging(event){
 }
 
 function    _onDragover(event){
-  // console.log(event);
-  // console.log(event.pageX + ' x=>y ' + event.pageY );
-  
-  // console.log(event.screenX + ' ' + event.screenY);
-  // dropzone.appendChild(draggableElement);
-  // console.log(event);
-  
   event.preventDefault();
-  
 }
 
 function    _onDrop(event){
@@ -206,44 +204,30 @@ function    _onDrop(event){
       var cln = elem.parentElement;
 
     }
-    let x =  event.layerX - (elem.offsetWidth / 2);
-    let y =  event.layerY - (elem.offsetHeight / 2);
-    // let x = event.clientX - event.target.getBoundingClientRect().left;
-    // let y = event.clientY - event.target.getBoundingClientRect().top;
-    // console.log(event.cl);
-    
-
+    let rect = listener.getBoundingClientRect();
+    let x =  event.pageX - rect.x - (elem.offsetWidth / 2);
+    let y =  event.pageY - rect.y - (elem.offsetHeight / 2);
     x = x < 0 ? 0 : x;
     y = y < 0 ? 0 : y;
-    x = (x + elem.offsetWidth) > event.target.clientWidth ? (event.target.clientWidth - elem.offsetWidth) : x;
-    y = (y + elem.offsetHeight) > event.target.clientHeight ? (event.target.clientHeight - elem.offsetHeight) : y;    
+    x = (x + elem.offsetWidth) > rect.width ? rect.width - elem.offsetWidth : x;
+    y = (y + elem.offsetHeight) > rect.height ? rect.height - elem.offsetHeight : y;    
     cln.style.left = x + 'px';
     cln.style.top = y+ 'px';
-    // console.log(event);
-        
-    event.srcElement.parentNode.appendChild(cln);
+    listener.parentNode.appendChild(cln);
     if (event.srcElement.id === 'video')
       sticker_ivdeo = 1;
     else if (event.srcElement.id === 'canva')
       sticker_canva = 1;
-
-      
+    console.log('he');
+    
   }
-  // console.log(elem.src);
   
+  // e_listener = event;
 }
-
-function    _mousedown(e){
-  // console.log(e);
-  
-}
-
 
 function    new_elem(stic){
-  // stic.removeEventListener('drag', ondraging);
-  // stic.removeEventListener('dragstart', dragstart);
-  // stic.removeEventListener('click', sticker_click);
-  var   name_class = ['rotate', 'delet'];
+  stic.removeEventListener('click', sticker_click);
+  var   name_class = ['rotate', 'resize' ,'delet'];
   var   parent = document.createElement('div');
   parent.classList.add('filter');
   parent.appendChild(stic);
@@ -251,12 +235,8 @@ function    new_elem(stic){
     let div = document.createElement('div');
     div.classList.add(e);
     if (e === 'resize'){
-      div.setAttribute('draggable', true);
-      div.addEventListener('dragstart', function(event){
-        // let old = event.screenX; /////////////////////////not finesh
-        // console.log(event);
-        
-      });
+      // div.setAttribute('draggable', true);
+      // div.addEventListener('dragstart', function(event){});
     }
     else if (e === 'delet'){
       div.addEventListener('click', function(event){
@@ -265,25 +245,15 @@ function    new_elem(stic){
     }
     parent.appendChild(div);
   });
-  stic.addEventListener('mousedown', touchstart); //////////////not finesh
-  stic.addEventListener('touchend', touchend); //////////////////not finesh;;;;;;;;;;;
-  // stic.addEventListener('dragover', _onDragover, false);
-  // stic.addEventListener('drop', _onDrop, false)
-  // console.log(parent.lastChild);
-  
-  // e.addEventListener('click', sticker_click);
+  parent.addEventListener('dragover', _onDragover, false);
+  parent.addEventListener('drop', _onDrop, false);
+
+  // stic.addEventListener('drag', ondraging);
+  stic.addEventListener('dragstart', dragstart);
+
   return(parent);
 }
 
-function    touchstart(e){
-  console.log(e);
-  
-}
-
-function    touchend(e){
-  console.log(e);
-  
-}
 
 
 function    sticker_click(event){
@@ -322,9 +292,10 @@ function    delete_event(targ){
 
 document.querySelector('.stickers').childNodes.forEach((e)=>{
   // console.log(e);
-  e.addEventListener('drag', ondraging);
-  e.addEventListener('dragstart', dragstart);
-  e.addEventListener('click', sticker_click);
+  // e.addEventListener('drag', ondraging);
+  e.addEventListener('dragstart', dragstart, false);
+  e.addEventListener('click', sticker_click, false);
+  // e.addEventListener('touchstart', dragstart, false);
   // e.addEventListener('draggable', ev => {}, true);
   
 });

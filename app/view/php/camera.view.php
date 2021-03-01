@@ -33,7 +33,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		</label>
 		
 		<div class="stickers">
-			<img src="../stickers/1.png" id="img1" draggable="true" />
+			<img src="../stickers/1.png" id="img1" draggable="true" drag="true" />
 			<img src="../stickers/2.png" id="img2" draggable="true" />
 			<img src="../stickers/3.png" id="img3" draggable="true" />
 			<!-- <img src="../stickers/4.png" id="img4" draggable="true" /> -->
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 			<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
 			<h2 class="success"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
 			<input class="center out-form" type="text" placeholder="titel" name="titel"/>
-			<div class="div_video ">
+			<div class="contener_video">
 				<div id='video_id' class="hiddenBtn display">
 					<video id="video" class="hiddenBtn display"  autoplay></video>
 				</div>
