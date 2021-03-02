@@ -167,8 +167,8 @@ function    clear_stickers(elem){
 function   dragstart(ev){
   // event.preventDefault();
   // console.log('drop');
-  console.log('dragstart');
-    console.log(ev);
+  // console.log('dragstart');
+    // console.log(ev);
   let id = ev.target.id;
   // if (id !== 'copy')
     ev.dataTransfer.setData('text/plain', id);
@@ -205,8 +205,8 @@ function    _onDrop(event){
 
     }
     let rect = listener.getBoundingClientRect();
-    let x =  event.pageX - rect.x - (elem.offsetWidth / 2);
-    let y =  event.pageY - rect.y - (elem.offsetHeight / 2);
+    let x =  (event.pageX - window.scrollX) - rect.x - (elem.offsetWidth / 2);
+    let y =  (event.pageY - window.scrollY) - rect.y - (elem.offsetHeight / 2);
     x = x < 0 ? 0 : x;
     y = y < 0 ? 0 : y;
     x = (x + elem.offsetWidth) > rect.width ? rect.width - elem.offsetWidth : x;
@@ -218,8 +218,9 @@ function    _onDrop(event){
       sticker_ivdeo = 1;
     else if (event.srcElement.id === 'canva')
       sticker_canva = 1;
-    console.log('he');
-    
+      console.log(window.scrollY);
+    // console.log(event);
+    // console.log(rect);
   }
   
   // e_listener = event;
@@ -315,3 +316,10 @@ document.querySelector('input[name=stickers]').addEventListener('change', (e)=>{
   else
     document.querySelector('.stickers').classList.remove('hidden-stickers');
 });
+
+// window.onscroll = _scrool;
+// 
+// function      _scrool(e){
+  // console.log(window.scrollY);
+// }
+// 

@@ -97,7 +97,7 @@ html, body {
     position: fixed;
     /* position: static; */
     height: 2.2rem;
-    bottom:  0.1%;
+    bottom:  0%;
     width: 100%;
     background-color: var(--Color2);
     /* border: darkblue dashed 1px; */
