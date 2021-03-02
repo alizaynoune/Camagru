@@ -43,7 +43,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
   			<input name='camera' id='checkbox-camera' type="checkbox">
   			<span class="control"></span>
 		</label>
-		<form action="#" method="POST" enctype="multipart/form-data">
+		<form action="../../model/JoinImage.model.php" method="POST" enctype="multipart/form-data">
 			<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
 			<h2 class="success"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
 			<input class="center out-form" type="text" placeholder="titel" name="titel"/>

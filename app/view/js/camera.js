@@ -3,7 +3,7 @@
 //   add_event();
 // })
 var   captur = 0;
-var   sticker_ivdeo = 0;
+var   sticker_video = 0;
 var   sticker_canva = 0;
 var   listener;
 var   new_id = 0;
@@ -116,9 +116,11 @@ function    capture_img(){
   // console.log(box);
   let box = document.querySelector('input[name=stickers]').checked;
   
-  if (sticker_ivdeo === 1 || box === false){
+  if (sticker_video > 0 || box === false){
     captur = 1;
-    sticker_ivdeo = 0;
+    console.log(sticker_video);
+    
+    sticker_video = 0;
     var canva = document.getElementById('canva');
     var video = document.getElementById('video');
     canva.width = video.videoWidth;
@@ -215,10 +217,10 @@ function    _onDrop(event){
     cln.style.top = y+ 'px';
     listener.parentNode.appendChild(cln);
     if (event.srcElement.id === 'video')
-      sticker_ivdeo = 1;
+      sticker_video++;
     else if (event.srcElement.id === 'canva')
-      sticker_canva = 1;
-      console.log(window.scrollY);
+      sticker_canva++;
+      // console.log(window.scrollY);
     // console.log(event);
     // console.log(rect);
   }
@@ -236,20 +238,27 @@ function    new_elem(stic){
     let div = document.createElement('div');
     div.classList.add(e);
     if (e === 'resize'){
-      // div.setAttribute('draggable', true);
-      // div.addEventListener('dragstart', function(event){});
+      div.setAttribute('draggable', true);
+      div.addEventListener('dragstart', initResize, false);
     }
     else if (e === 'delet'){
       div.addEventListener('click', function(event){
+        if (listener.id === 'video')
+          sticker_video--;
+        else if (listener.id === 'canva')
+          sticker_canva--;
         event.target.parentNode.remove();
       });
     }
+    else if (e === 'rotate'){
+      div.setAttribute('draggable', true);
+      div.addEventListener('dragstart', initRotate, false);
+    }
+
     parent.appendChild(div);
   });
   parent.addEventListener('dragover', _onDragover, false);
   parent.addEventListener('drop', _onDrop, false);
-
-  // stic.addEventListener('drag', ondraging);
   stic.addEventListener('dragstart', dragstart);
 
   return(parent);
@@ -268,9 +277,9 @@ function    sticker_click(event){
     cln.style.top = '0px';
     listener.parentNode.appendChild(cln);
     if (listener.id === 'canva')
-      sticker_canva = 1;
+      sticker_canva++;
     else if (listener.id === 'video')
-      sticker_ivdeo = 1;
+      sticker_video++;
   }
 }
 
@@ -317,9 +326,69 @@ document.querySelector('input[name=stickers]').addEventListener('change', (e)=>{
     document.querySelector('.stickers').classList.remove('hidden-stickers');
 });
 
-// window.onscroll = _scrool;
-// 
-// function      _scrool(e){
-  // console.log(window.scrollY);
-// }
-// 
+document.querySelector('.btncaptuerIn').addEventListener('dragover', _onDragover);
+document.querySelector('.btncaptuerIn').addEventListener('drop', _onDrop);
+
+/////////////////////////////resize stickers///////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+function        initResize(event){
+  var target = event.target.parentElement;
+  var targ_info = target.getBoundingClientRect();
+  var listener_info = listener.getBoundingClientRect();
+  event.target.addEventListener('drag', Resize, false);
+  event.target.addEventListener('dragend', stopResize, false);
+  
+
+  function      stopResize(e){
+    event.target.removeEventListener('drag', Resize, false);
+    event.target.removeEventListener('dragend', stopResize, false);
+  }
+  
+  function      Resize(e){
+    if ((e.clientY + 5 >= (listener_info.y + listener_info.height)) || (e.clientX + 5 >= (listener_info.x + listener_info.width)) ){
+      stopResize(e);
+    }
+    let x = targ_info.width + (e.clientX - event.clientX);
+    let y = targ_info.height + (e.clientY - event.clientY);
+
+    x = x < 20 ? 20 : x;
+    y = y < 20 ? 20 : y;
+
+    x = x > 200 ? 200 : x;
+    y = y > 200 ? 200 : y;
+
+    x > y ? x = y : y = x;
+
+    target.style.width = x + 'px';
+    target.style.height = y + 'px';
+    // console.log(y);
+    
+    target.style.width = x + 'px';
+    target.style.height = y + 'px'
+  }
+  
+}
+
+///////////////////////////////////////Rotate//////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+function        initRotate(event){
+
+  // console.log('start');
+  var target = event.target.parentElement.children[0];
+  // console.log(target.children[0]);
+  
+  event.target.addEventListener('drag', Rotate, false);
+  event.target.addEventListener('dragend', stopRotate, false);
+
+  function      Rotate(e){
+    target.style.transform = `rotate(${(e.clientX - event.clientX) + (e.clientY - event.clientY)}deg)`;
+  }
+
+  function      stopRotate(e){
+    // console.log('stop');
+    event.target.removeEventListener('drag', Rotate, false);
+    event.target.removeEventListener('dragend', stopRotate, false);
+    
+  }
+}
