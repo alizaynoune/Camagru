@@ -234,11 +234,21 @@
     .btncaptuer{display: none;}
     .btncaptuerIn{
         display: inline-block;
-        margin-top: -60px;
-        left: 250px;
-        /* right: 75%; */
-        /* margin-left: 300px; */
+        margin-top: -8px;
+        left: 230px;
+        height: 5px;
+        padding: 1px 40px;
     }
+    .btncaptuerIn:hover{
+        margin-top: -60px;
+        /* height: 25px; */
+        padding: 1rem 50px;
+        height: 25px;
+        width: 40px;
+        /* left: 250px; */
+        /* padding: 1rem; */
+    }
+
     /* .btncaptuerIn::before{
         right: 75%;
       } */

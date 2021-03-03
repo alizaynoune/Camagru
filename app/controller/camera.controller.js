@@ -6,7 +6,9 @@ var titel = form.querySelector("input[name='titel']");
 titel.addEventListener('input', (e)=>{
     let REG = /^[\w-_\--\d]+$/;
     if (!REG.test(titel.value))
-        console.log('error');
+        titel.classList.add('error');
+    else
+        titel.classList.remove('error');
         
 })
 form.addEventListener('submit', (e) =>{
@@ -14,13 +16,11 @@ form.addEventListener('submit', (e) =>{
     // if (validationAll(form))
     // console.log(e);
     console.log('valid_done_');
-    // console.log(cavas);
-    // console.log(form);
-    // validInputsCamera(from);
-    //////////valid titel img/////////////////////
-    //////////////////////////////////////////////
-        // e.preventDefault();
     
+
+
+    // e.preventDefault();
+
     const canvas = document.getElementById('canva_id');
     const canva = document.getElementById('canva');
     var img = canva.toDataURL('image/png');
@@ -31,11 +31,12 @@ form.addEventListener('submit', (e) =>{
     var size = [];
     form.querySelector("input[name='canva']").value = img;
     canvas.querySelectorAll('.filter').forEach((e)=>{
-        left.push(e.style.left.match(/\d/g).join(''));
-        top.push(e.style.top.match(/\d/g).join(''));
-        size.push(e.style.width.match(/\d/g).join(''));
+        // console.log(e.style.top.match(/[\d\.]+/g));
+        left.push(e.style.left.match(/[\d\.]+/g).join(''));
+        top.push(e.style.top.match(/[\d\.]+/g).join(''));
+        size.push(e.style.width.match(/[\d\.]+/g).join(''));
         let elem = e.querySelector('img');
-        retate.push(elem.style.transform.match(/\d/g).join(''));
+        retate.push(elem.style.transform.match(/[\d\.]+/g).join(''));
         let name = elem.src.split('/');
         stickers.push(name[name.length - 1]);
     })

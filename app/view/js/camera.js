@@ -342,8 +342,8 @@ document.querySelector('input[name=stickers]').addEventListener('change', (e)=>{
     document.querySelector('.stickers').classList.remove('hidden-stickers');
 });
 
-document.querySelector('.btncaptuerIn').addEventListener('dragover', _onDragover);
-document.querySelector('.btncaptuerIn').addEventListener('drop', _onDrop);
+// document.querySelector('.btncaptuerIn').addEventListener('dragover', _onDragover);
+// document.querySelector('.btncaptuerIn').addEventListener('drop', _onDrop);
 
 /////////////////////////////resize stickers///////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
