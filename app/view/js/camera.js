@@ -118,7 +118,7 @@ function    capture_img(){
   
   if (sticker_video > 0 || box === false){
     captur = 1;
-    console.log(sticker_video);
+    // console.log(sticker_video);
     
     sticker_video = 0;
     var canva = document.getElementById('canva');
@@ -147,6 +147,9 @@ function    copy_stickers(){
     // console.log(e.id);
     if (e.id.search('copy') !== -1){
       // console.log(e);
+      e.removeEventListener('dragover', _onDragover, false);
+      e.removeEventListener('drop', _onDrop, false);
+      e.children[0].removeEventListener('dragstart', dragstart);
       e.querySelectorAll('div').forEach((div)=>{
         // console.log(div);
         div.style.display = 'none';
@@ -233,6 +236,7 @@ function    new_elem(stic){
   var   name_class = ['rotate', 'resize' ,'delet'];
   var   parent = document.createElement('div');
   parent.classList.add('filter');
+  stic.style.transform = 'rotate(0deg)';
   parent.appendChild(stic);
   name_class.forEach((e)=>{
     let div = document.createElement('div');
@@ -259,7 +263,7 @@ function    new_elem(stic){
   });
   parent.addEventListener('dragover', _onDragover, false);
   parent.addEventListener('drop', _onDrop, false);
-  stic.addEventListener('dragstart', dragstart);
+  stic.addEventListener('dragstart', dragstart, false);
 
   return(parent);
 }
@@ -270,11 +274,21 @@ function    sticker_click(event){
   // console.log(event.target);
   if (listener){
     let cln = event.target.cloneNode(true);
+ 
+    let rect = listener.getBoundingClientRect();
+    let left = (new_id % (rect.width / 40)) * 40;
+    left = left + 40 >= rect.width ? 0 : left;
+    // let top = ((topSticker % (rect.height / 40)) * 40);
+    let top = ((Math.trunc((new_id + 1) / (rect.width / 40))) % (rect.height / 40)) * 40 ;
+    console.log((top));
+    top = top + 40 >= rect.height ? 0 : top;
+    // topSticker++;
     cln.id = `${new_id}`;
     cln = new_elem(cln);
     cln.id =  `copy${new_id++}`;
-    cln.style.left = '0px';
-    cln.style.top = '0px';
+    // console.log(left);
+    cln.style.left = left + 'px';
+    cln.style.top = top + 'px';
     listener.parentNode.appendChild(cln);
     if (listener.id === 'canva')
       sticker_canva++;
@@ -376,13 +390,12 @@ function        initRotate(event){
 
   // console.log('start');
   var target = event.target.parentElement.children[0];
-  // console.log(target.children[0]);
-  
   event.target.addEventListener('drag', Rotate, false);
   event.target.addEventListener('dragend', stopRotate, false);
 
   function      Rotate(e){
     target.style.transform = `rotate(${(e.clientX - event.clientX) + (e.clientY - event.clientY)}deg)`;
+    // old_ret = 0;
   }
 
   function      stopRotate(e){

@@ -51,7 +51,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 				<div id='video_id' class="hiddenBtn display">
 					<video id="video" class="hiddenBtn display"  autoplay></video>
 				</div>
-				<input id="capterIn" class="BtnAnim " name="Capture"/>
+				<button id="capterIn" class="BtnAnim " type="button"></button>
 				<label for="capterIn" class="btncaptuerIn Btn centerBtn hiddenBtn display" onclick="capture_img();">Capture</label>
 				<div id='canva_id'>
 					<canvas id="canva" ></canvas>
@@ -63,12 +63,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 			<div class="buttomBtn">
 				<input id='upload' class="BtnAnim" name="Upload" type="file" accept="image/*" onchange="upload_to_canva(event)" />
 				<label for="upload" class="btnup Btn leftBtn">Upload</label>
-				<input id="capter" class="BtnAnim" name="Capture"/>
+				<button id="capter" class="BtnAnim" type='button'></button>
 				<label for="capter" class="btncaptuer Btn centerBtn hiddenBtn display" onclick="capture_img()">Capture</label>
 
 				
 				
-				<input id="share" class="BtnAnim" type="submit" name="submit"/>
+				<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
 				<label for="share" class=" btnShr Btn rightBtn">Share</label>
 			</div>
 		</form>
@@ -80,5 +80,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	</div>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 	<script type="text/javascript" src="../js/camera.js"></script>
+	<script type="text/javascript" src="../../controller/camera.controller.js"></script>
 	</body>
 </html>
