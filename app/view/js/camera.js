@@ -237,6 +237,8 @@ function    new_elem(stic){
   var   parent = document.createElement('div');
   parent.classList.add('filter');
   stic.style.transform = 'rotate(0deg)';
+  parent.style.width ='40px';
+  parent.style.height = '40px';
   parent.appendChild(stic);
   name_class.forEach((e)=>{
     let div = document.createElement('div');
@@ -280,7 +282,7 @@ function    sticker_click(event){
     left = left + 40 >= rect.width ? 0 : left;
     // let top = ((topSticker % (rect.height / 40)) * 40);
     let top = ((Math.trunc((new_id + 1) / (rect.width / 40))) % (rect.height / 40)) * 40 ;
-    console.log((top));
+    // console.log((top));
     top = top + 40 >= rect.height ? 0 : top;
     // topSticker++;
     cln.id = `${new_id}`;

@@ -210,7 +210,7 @@
 .control-stickers .control::after{content: '\f2ab'}
 
 .hiddenBtn{
-    display: none;
+    display: none !important;
     height: 0;
     width: 0;
     opacity: 0;

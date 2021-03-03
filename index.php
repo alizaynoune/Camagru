@@ -1,8 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION['USER_NAME'])){
+if (empty($_SESSION['login'])){
 	session_destroy ();
 	header("Location: app/view/php/login.view.php");
 	exit;
 }
+
+else
+	header("Location: app/view/php/home.view.php");
+print_r($_SESSION);
 ?>

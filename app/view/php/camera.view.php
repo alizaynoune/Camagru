@@ -51,23 +51,23 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 				<div id='video_id' class="hiddenBtn display">
 					<video id="video" class="hiddenBtn display"  autoplay></video>
 				</div>
-				<button id="capterIn" class="BtnAnim " type="button"></button>
-				<label for="capterIn" class="btncaptuerIn Btn centerBtn hiddenBtn display" onclick="capture_img();">Capture</label>
+				<button id="capterIn" class="BtnAnim hiddenBtn " type="button"></button>
+				<label for="capterIn" class="btncaptuerIn Btn centerBtn display hiddenBtn" onclick="capture_img();">Capture</label>
 				<div id='canva_id'>
 					<canvas id="canva" ></canvas>
 				</div>
-				<!-- <canvas id="hidden_canva"></canvas> -->
-				<!-- <div class="tst" ondrag="drop(event)" ></div> -->
+				<input class='hiddenBtn' name='canva'/>
+				<input class='hiddenBtn' name='stickers'/>
+				<input class='hiddenBtn' name='left'/>
+				<input class='hiddenBtn' name='top'/>
+				<input class='hiddenBtn' name='retate'/>
+				<input class='hiddenBtn' name='size'/>
 			</div>
-	
 			<div class="buttomBtn">
 				<input id='upload' class="BtnAnim" name="Upload" type="file" accept="image/*" onchange="upload_to_canva(event)" />
 				<label for="upload" class="btnup Btn leftBtn">Upload</label>
 				<button id="capter" class="BtnAnim" type='button'></button>
-				<label for="capter" class="btncaptuer Btn centerBtn hiddenBtn display" onclick="capture_img()">Capture</label>
-
-				
-				
+				<label for="capter" class="btncaptuer Btn centerBtn hiddenBtn display" onclick="capture_img()">Capture</label>				
 				<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
 				<label for="share" class=" btnShr Btn rightBtn">Share</label>
 			</div>
