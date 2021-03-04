@@ -26,13 +26,18 @@ function        show_modal(){
 }
 
 function        load_img(event){
-    var reader = new FileReader();
-    reader.onload = function(){
-        var output = document.getElementById('src_avatar');
-        output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-    document.querySelector('.camera').value = '';
+    if (event.target.files[0].size < 2000000){
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('src_avatar');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+        document.querySelector('.camera').value = '';
+    }
+    else{
+        document.querySelector('.msj_new_av').innerHTML = 'Image is so large';
+    }
 }
 
 function        valid_img(){

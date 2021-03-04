@@ -37,7 +37,6 @@ form.addEventListener('submit', (e) =>{
         e.preventDefault();
         return false;
     }
-
     var stickers = [];
     var left = [];
     var top = [];
@@ -52,13 +51,20 @@ form.addEventListener('submit', (e) =>{
         retate.push(elem.style.transform.match(/[\d\.]+/g).join(''));
         let name = elem.src.split('/');
         stickers.push(name[name.length - 1]);
-    })
+        
+    });
     form.querySelector("input[name='stickers']").value = stickers;
     form.querySelector("input[name='left']").value = left;
     form.querySelector("input[name='top']").value = top;
     form.querySelector("input[name='retate']").value = retate;
     form.querySelector("input[name='size']").value = size;
+    // form.querySelector("input[name='InfoStickers']").value = matrix;
+    // matrix.forEach((e)=>{
+    //     console.log(e);
+        
+    // });
     
+    document.querySelector('input[name=camera]').checked = false;
     return true;
 });
 

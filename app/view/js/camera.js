@@ -29,26 +29,30 @@ function  hidden_erea(){
 }
 
 function  camera_on(){
-  show_erea();
-  const video = document.getElementById('video');
-  var size = document.getElementById('video_id'); 
-  const constraints = {
-    video: {
-      width: size.offsetWidth,
-      height: size.offsetHeight,
-      audio: false
-    }
-  };
-  navigator.mediaDevices.getUserMedia(constraints)
-    .then((stream) => {
-      video.srcObject = stream;
-    })
-    .catch(err => {
-      document.querySelector('.error').innerHTML = err;
-      document.querySelector('input[name=camera]').checked = false;
-      hidden_erea();
-    });
-    document.querySelector('.error').innerHTML = '';
+  console.log(document.querySelector('input[name="camera"]').checked);
+  
+    if (document.querySelector('input[name="camera"]').checked === true){
+    show_erea();
+    const video = document.getElementById('video');
+    var size = document.getElementById('video_id'); 
+    const constraints = {
+      video: {
+        width: size.offsetWidth,
+        height: size.offsetHeight,
+        audio: false
+      }
+    };
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then((stream) => {
+        video.srcObject = stream;
+      })
+      .catch(err => {
+        document.querySelector('.error').innerHTML = err;
+        document.querySelector('input[name=camera]').checked = false;
+        hidden_erea();
+      });
+      document.querySelector('.error').innerHTML = '';
+  }
 }
 
 function  camera_off(){
@@ -66,25 +70,32 @@ function  camera_off(){
 
 function    upload_to_canva(event){
   camera_off();
-  document.querySelector('input[name=camera]').checked = false;
-  var canva = document.getElementById('canva');
-  var size = document.getElementById('canva_id');
-  var ctx = canva.getContext('2d');
-  ctx.clearRect(0, 0, canva.width, canva.height);
-  var img = new Image();
-  img.onload = function(){
-    canva.width = size.offsetWidth;
-    canva.height = canva.width;
-    clear_stickers(document.getElementById('canva_id'));
-    var factor = Math.min((canva.width / img.width), (canva.height / img.height));
-    canva.height = img.height * factor;
-    canva.width = img.width * factor;
-    ctx.drawImage(img, 0, 0, canva.width, canva.height);
-  };
-  if (event.target.files[0]){
-    img.src = URL.createObjectURL(event.target.files[0]);
-    captur = 0;
-    new_event(document.getElementById('canva'));
+  console.log(event.target.files[0].size);
+    if (event.target.files[0].size < 2000000){
+    
+    document.querySelector('input[name=camera]').checked = false;
+    var canva = document.getElementById('canva');
+    var size = document.getElementById('canva_id');
+    var ctx = canva.getContext('2d');
+    ctx.clearRect(0, 0, canva.width, canva.height);
+    var img = new Image();
+    img.onload = function(){
+      canva.width = size.offsetWidth;
+      canva.height = canva.width;
+      clear_stickers(document.getElementById('canva_id'));
+      var factor = Math.min((canva.width / img.width), (canva.height / img.height));
+      canva.height = img.height * factor;
+      canva.width = img.width * factor;
+      ctx.drawImage(img, 0, 0, canva.width, canva.height);
+    };
+    if (event.target.files[0]){
+      img.src = URL.createObjectURL(event.target.files[0]);
+      captur = 0;
+      new_event(document.getElementById('canva'));
+    }
+  }
+  else{
+    document.querySelector('.error').innerHTML = 'Image is so large';
   }
   
 }
@@ -273,6 +284,8 @@ document.querySelector('input[name=stickers]').addEventListener('change', (e)=>{
   else
     document.querySelector('.stickers').classList.remove('hidden-stickers');
 });
+
+
 
 /////////////////////////////resize stickers///////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////

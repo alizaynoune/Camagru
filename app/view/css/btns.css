@@ -79,15 +79,14 @@
   height: 0;
   width: 0;
 }
-.toggle-control input:checked + .control {
+.toggle-control input[type=checkbox]:checked ~ .control {
   background-color: dodgerblue;
 }
-.toggle-control input:checked + .control:after {
+.toggle-control input[type=checkbox]:checked ~ .control:after {
   left: 55px;
 }
 .toggle-control .control {
   position: absolute;
-  /* position: relative; */
   height: 40px;
   width: 90px;
   border-radius: 25px;
