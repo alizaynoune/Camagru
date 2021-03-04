@@ -1,5 +1,10 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 
+if ((new Session())->SessionStatus() === false){
+    header("Location: ../view/php/login.view.php");
+	exit();
+}
 
 
 print_r($_POST);

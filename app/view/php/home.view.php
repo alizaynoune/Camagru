@@ -1,7 +1,6 @@
 <?php
-session_start();
-// require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
+(new Session())->SessionStatus();
 ?>
 <!DOCTYPE html>
 <html>

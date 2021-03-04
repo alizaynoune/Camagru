@@ -118,4 +118,14 @@ class   Session extends dbselect {
         unset($_SESSION['firstname']);
         session_destroy();
     }
+    public function     SessionStatus(){
+        if (session_status() === PHP_SESSION_NONE)
+            session_start();
+        if (empty($_SESSION['login'])){
+            session_destroy();
+            return(false);
+        }
+        else
+            return(true);
+    }
 }

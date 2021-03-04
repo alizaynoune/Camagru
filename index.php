@@ -1,12 +1,12 @@
 <?php
-session_start();
-if (empty($_SESSION['login'])){
-	session_destroy ();
-	header("Location: app/view/php/login.view.php");
-	exit;
-}
 
-else
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
+if ((new Session())->SessionStatus() === false){
+    header("Location: app/view/php/login.view.php");
+	exit();
+}
+else{
 	header("Location: app/view/php/home.view.php");
-print_r($_SESSION);
+	exit();
+}
 ?>

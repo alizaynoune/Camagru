@@ -1,10 +1,10 @@
 <?php
-session_start();
-if (empty($_SESSION) || empty($_SESSION['login'])){
-	session_destroy();
-	header("Location: home.view.php");
-}
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
+
+if ((new Session())->SessionStatus() === false){
+    header("Location: home.view.php");
+	exit();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +43,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
   			<input name='camera' id='checkbox-camera' type="checkbox">
   			<span class="control"></span>
 		</label>
-		<form action="../../model/JoinImage.model.php" method="POST" enctype="multipart/form-data">
+		<form action="../../model/NewPost.model.php" method="POST" enctype="multipart/form-data">
 			<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
 			<h2 class="success"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
 			<input class="center out-form" type="text" placeholder="titel" name="titel"/>
@@ -55,13 +55,14 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 				<label for="capterIn" class="btncaptuerIn Btn centerBtn display hiddenBtn" onclick="capture_img();">Capture</label>
 				<div id='canva_id'>
 					<canvas id="canva" ></canvas>
+					<canvas id='hiddenCanva'></canvas>
 				</div>
-				<input class='hiddenBtn' name='canva'/>
-				<input class='hiddenBtn' name='stickers'/>
-				<input class='hiddenBtn' name='left'/>
-				<input class='hiddenBtn' name='top'/>
-				<input class='hiddenBtn' name='retate'/>
-				<input class='hiddenBtn' name='size'/>
+				<input type='hidden' name='canva'/>
+				<input type='hidden' name='stickers'/>
+				<input type='hidden' name='left'/>
+				<input type='hidden' name='top'/>
+				<input type='hidden' name='retate'/>
+				<input type='hidden' name='size'/>
 			</div>
 			<div class="buttomBtn">
 				<input id='upload' class="BtnAnim" name="Upload" type="file" accept="image/*" onchange="upload_to_canva(event)" />

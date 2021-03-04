@@ -1,29 +1,43 @@
 
-
+function        valid_titel(elem){
+    let REG = /^[\w-_\--\d]+$/;
+    if (titel.value.length === 0){
+        titel.classList.remove('error');
+        return true;
+    }
+    if (!REG.test(titel.value)){
+        titel.classList.add('error');
+        return false;
+    }
+    else{
+        titel.classList.remove('error');
+        return true;
+    }
+}
 
 const form = document.querySelector('form');
 var titel = form.querySelector("input[name='titel']");
 titel.addEventListener('input', (e)=>{
-    let REG = /^[\w-_\--\d]+$/;
-    if (!REG.test(titel.value))
-        titel.classList.add('error');
-    else
-        titel.classList.remove('error');
+    valid_titel(titel);
         
 })
 form.addEventListener('submit', (e) =>{
-    // const form = document.querySelector('form');
-    // if (validationAll(form))
-    // console.log(e);
     console.log('valid_done_');
     
-
-
-    // e.preventDefault();
-
+    if (valid_titel(titel) === false){
+        e.preventDefault();
+        return false;
+    }
+    
     const canvas = document.getElementById('canva_id');
     const canva = document.getElementById('canva');
     var img = canva.toDataURL('image/png');
+    if (img === document.getElementById('hiddenCanva').toDataURL()){
+        document.querySelector('.error').innerHTML = 'blanck canva';
+        e.preventDefault();
+        return false;
+    }
+
     var stickers = [];
     var left = [];
     var top = [];
@@ -31,7 +45,6 @@ form.addEventListener('submit', (e) =>{
     var size = [];
     form.querySelector("input[name='canva']").value = img;
     canvas.querySelectorAll('.filter').forEach((e)=>{
-        // console.log(e.style.top.match(/[\d\.]+/g));
         left.push(e.style.left.match(/[\d\.]+/g).join(''));
         top.push(e.style.top.match(/[\d\.]+/g).join(''));
         size.push(e.style.width.match(/[\d\.]+/g).join(''));
@@ -46,14 +59,7 @@ form.addEventListener('submit', (e) =>{
     form.querySelector("input[name='retate']").value = retate;
     form.querySelector("input[name='size']").value = size;
     
-    return false;
+    return true;
 });
 
 
-function            validInputsCamera(form){
-    const   inputs = form.querySelectorAll('input');
-
-    inputs.forEach((e)=>{
-        console.log(e);
-    });
-}

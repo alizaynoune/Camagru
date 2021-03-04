@@ -216,6 +216,8 @@
     opacity: 0;
 }
 
+#hiddenCanva{display: none; background-color: green;}
+
 /* @media only screen and (max-width: 1200){
     .contener_video{
         display: inline-block;

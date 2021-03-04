@@ -1,9 +1,10 @@
 <?php
-session_start();
-if (empty($_SESSION) || empty($_SESSION['login'])){
-	session_destroy();
-	header("Location: home.view.php");
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
+if ((new Session())->SessionStatus() === false){
+    header("Location: home.view.php");
+	exit();
 }
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 ?>
 <!DOCTYPE html>

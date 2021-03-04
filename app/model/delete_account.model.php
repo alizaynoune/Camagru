@@ -4,14 +4,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 
-session_start();
+if ((new Session())->SessionStatus() === false){
+    header("Location: app/view/php/login.view.php");
+	exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK'){
 	header("Location: ../view/php/login.view.php");
-	exit;
-}
-if (!isset($_SESSION) || empty($_SESSION['login'])){
-    session_destroy();
-    header("Location: ../view/php/login.view.php");
 	exit;
 }
 

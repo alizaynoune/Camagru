@@ -2,7 +2,6 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
-// session_start();
 
 function    get_avatar(){
     global $DB_SELECT, $PARAM;    

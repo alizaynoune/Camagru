@@ -1,14 +1,13 @@
 <?php
-session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/sendMail.model.php';
 
-if (!isset($_SESSION) || empty($_SESSION['login'])){
-	session_destroy();
-	header("Location: ../view/php/login.view.php");
+
+if ((new Session())->SessionStatus() === false){
+    header("Location: ../view/php/login.view.php");
 	exit();
 }
 

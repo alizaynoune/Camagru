@@ -1,15 +1,21 @@
 <?php
-session_start();
-if (!empty($_SESSION) || !empty($_SESSION['login'])){
-	header("Location: login.view.php");
-}
-else if (empty($_POST['login'])){
-	session_destroy();
-	header("Location: login.view.php");
-}
-else
-	session_destroy();
+/////////////////////valid login and password////////////////////
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
+if ((new Session())->SessionStatus() === true){
+    header("Location: home.view.php");
+	exit();
+}
+
+else if (empty($_POST['login'])){
+	header("Location: login.view.php");
+	exit();
+}
+
+else {
+	header("Location: login.view.php");
+	exit();
+}
 ?>
 
 <!DOCTYPE html>

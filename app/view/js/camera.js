@@ -1,7 +1,6 @@
 
-// window.addEventListener('load', function () {
-//   add_event();
-// })
+/////////////////////////globale varialbes///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 var   captur = 0;
 var   sticker_video = 0;
 var   sticker_canva = 0;
@@ -12,7 +11,6 @@ var   e_listener;
 
 function  show_erea(){
   const select = document.querySelectorAll('.display');
-  //   remove_event(document.querySelector('.event'));
   delete_event(document.getElementById('canva'));
   new_event(document.getElementById('video'));
   select.forEach(function(elem){
@@ -41,15 +39,12 @@ function  camera_on(){
       audio: false
     }
   };
-  // console.log(size.offsetHeight);
-  
   navigator.mediaDevices.getUserMedia(constraints)
     .then((stream) => {
       video.srcObject = stream;
     })
     .catch(err => {
       document.querySelector('.error').innerHTML = err;
-      // document.getElementById('checkbox').checked = false;
       document.querySelector('input[name=camera]').checked = false;
       hidden_erea();
     });
@@ -69,17 +64,8 @@ function  camera_off(){
   video.srcObject = null;
 }
 
-// function  control_camera(elem){
-//   if (elem.target.checked === true)
-//     camera_on();
-//   else
-//     camera_off();
-// }
-
-
 function    upload_to_canva(event){
   camera_off();
-  // document.getElementById('checkbox-camera').checked = false;
   document.querySelector('input[name=camera]').checked = false;
   var canva = document.getElementById('canva');
   var size = document.getElementById('canva_id');
@@ -88,20 +74,12 @@ function    upload_to_canva(event){
   var img = new Image();
   img.onload = function(){
     canva.width = size.offsetWidth;
-    // console.log(size.offsetWidth);
     canva.height = canva.width;
-    // size.style.height = img.height;
     clear_stickers(document.getElementById('canva_id'));
     var factor = Math.min((canva.width / img.width), (canva.height / img.height));
-    // if (factor < 1)
-    //   factor *= 1.5;
-    // console.log(canva.height);
-    
     canva.height = img.height * factor;
     canva.width = img.width * factor;
     ctx.drawImage(img, 0, 0, canva.width, canva.height);
-    // fix_size(canva.width, canva.height, document.getElementById('canva_id'));
-    // console.log(canva.height);
   };
   if (event.target.files[0]){
     img.src = URL.createObjectURL(event.target.files[0]);
@@ -112,23 +90,16 @@ function    upload_to_canva(event){
 }
 
 function    capture_img(){
-  // let box = document.getElementById('checkbox-stickers').checked;
-  // console.log(box);
   let box = document.querySelector('input[name=stickers]').checked;
-  
   if (sticker_video > 0 || box === false){
-    captur = 1;
-    // console.log(sticker_video);
-    
+    captur = 1;    
     sticker_video = 0;
     var canva = document.getElementById('canva');
     var video = document.getElementById('video');
     canva.width = video.videoWidth;
     canva.height = video.videoHeight;
     clear_stickers(document.getElementById('canva_id'));
-    
     canva.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-    // fix_size(canva.width, canva.height, document.getElementById('canva_id'));
     copy_stickers();
     clear_stickers(document.getElementById('video_id'));
     document.querySelector('.error').innerHTML = '';
@@ -141,17 +112,12 @@ function    capture_img(){
 function    copy_stickers(){
   let elem = document.getElementById('video_id');
   var canva = document.getElementById('canva_id');
-  // console.log('copy');
-  
   elem.querySelectorAll('div').forEach((e)=>{
-    // console.log(e.id);
     if (e.id.search('copy') !== -1){
-      // console.log(e);
       e.removeEventListener('dragover', _onDragover, false);
       e.removeEventListener('drop', _onDrop, false);
       e.children[0].removeEventListener('dragstart', dragstart);
       e.querySelectorAll('div').forEach((div)=>{
-        // console.log(div);
         div.style.display = 'none';
       });
       canva.appendChild(e);
@@ -170,24 +136,12 @@ function    clear_stickers(elem){
 
 
 function   dragstart(ev){
-  // event.preventDefault();
-  // console.log('drop');
-  // console.log('dragstart');
-    // console.log(ev);
   let id = ev.target.id;
-  // if (id !== 'copy')
     ev.dataTransfer.setData('text/plain', id);
-    
-    
-    
 }
 
-
+//////////////////////////try to delete it........................
 function    ondraging(event){
-  // console.log('ondrag');
-  // console.log(event.screenX + ' ' + event.screenY);
-  
-  
 }
 
 function    _onDragover(event){
@@ -198,7 +152,6 @@ function    _onDrop(event){
   const id = event.dataTransfer.getData('text');
   const elem = document.getElementById(id);
   if (elem !== null){
-    // console.log(id);
     if (id.search('img') !== -1) {
       var cln = elem.cloneNode(true);
       cln.id = `${new_id}`;
@@ -223,12 +176,7 @@ function    _onDrop(event){
       sticker_video++;
     else if (event.srcElement.id === 'canva')
       sticker_canva++;
-      // console.log(window.scrollY);
-    // console.log(event);
-    // console.log(rect);
   }
-  
-  // e_listener = event;
 }
 
 function    new_elem(stic){
@@ -270,25 +218,17 @@ function    new_elem(stic){
   return(parent);
 }
 
-
-
 function    sticker_click(event){
-  // console.log(event.target);
   if (listener){
     let cln = event.target.cloneNode(true);
- 
     let rect = listener.getBoundingClientRect();
     let left = (new_id % (rect.width / 40)) * 40;
     left = left + 40 >= rect.width ? 0 : left;
-    // let top = ((topSticker % (rect.height / 40)) * 40);
     let top = ((Math.trunc((new_id + 1) / (rect.width / 40))) % (rect.height / 40)) * 40 ;
-    // console.log((top));
     top = top + 40 >= rect.height ? 0 : top;
-    // topSticker++;
     cln.id = `${new_id}`;
     cln = new_elem(cln);
     cln.id =  `copy${new_id++}`;
-    // console.log(left);
     cln.style.left = left + 'px';
     cln.style.top = top + 'px';
     listener.parentNode.appendChild(cln);
@@ -308,7 +248,6 @@ function    new_event(targ){
 function    delete_event(targ){
   targ.removeEventListener('dragover', _onDragover);
   targ.removeEventListener('drop', _onDrop);
-  // console.log('test');
   
 }
 
@@ -317,17 +256,11 @@ function    delete_event(targ){
 ////////////////document ready///////////////////////
 
 document.querySelector('.stickers').childNodes.forEach((e)=>{
-  // console.log(e);
-  // e.addEventListener('drag', ondraging);
   e.addEventListener('dragstart', dragstart, false);
   e.addEventListener('click', sticker_click, false);
-  // e.addEventListener('touchstart', dragstart, false);
-  // e.addEventListener('draggable', ev => {}, true);
-  
 });
 
 document.querySelector('input[name=camera]').addEventListener('change', (e)=>{
-  // control_camera(e);
   if (e.target.checked === true)
   camera_on();
 else
@@ -335,15 +268,11 @@ else
 });
 
 document.querySelector('input[name=stickers]').addEventListener('change', (e)=>{
-  // console.log(e.target.checked);
   if (e.target.checked === false)
     document.querySelector('.stickers').classList.add('hidden-stickers');
   else
     document.querySelector('.stickers').classList.remove('hidden-stickers');
 });
-
-// document.querySelector('.btncaptuerIn').addEventListener('dragover', _onDragover);
-// document.querySelector('.btncaptuerIn').addEventListener('drop', _onDrop);
 
 /////////////////////////////resize stickers///////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -389,19 +318,15 @@ function        initResize(event){
 ///////////////////////////////////////Rotate//////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 function        initRotate(event){
-
-  // console.log('start');
   var target = event.target.parentElement.children[0];
   event.target.addEventListener('drag', Rotate, false);
   event.target.addEventListener('dragend', stopRotate, false);
 
   function      Rotate(e){
     target.style.transform = `rotate(${(e.clientX - event.clientX) + (e.clientY - event.clientY)}deg)`;
-    // old_ret = 0;
   }
 
   function      stopRotate(e){
-    // console.log('stop');
     event.target.removeEventListener('drag', Rotate, false);
     event.target.removeEventListener('dragend', stopRotate, false);
     

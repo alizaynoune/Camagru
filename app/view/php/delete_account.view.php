@@ -1,10 +1,11 @@
 <?php
-session_start();
-if (!isset($_SESSION) || empty($_SESSION['login'])){
-    session_destroy();
-    header("Location: login.view.php");
-}
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
+
+if ((new Session())->SessionStatus() === false){
+    header("Location: login.view.php");
+	exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html>
