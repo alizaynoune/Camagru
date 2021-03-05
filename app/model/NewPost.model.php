@@ -6,6 +6,9 @@ if ((new Session())->SessionStatus() === false){
 	exit();
 }
 
+if (empty($_POST['canva']))
+    exit($_POST['canva']);
+
 $base64 = str_replace('data:image/png;base64,', '', $_POST['canva']);
 $base64 = str_replace(' ', '+', $base64);
 $cava = base64_decode($base64);
@@ -40,13 +43,10 @@ if (!empty($_POST['stickers'])){
         imagesavealpha($new, true);
         imagecopyresampled($new, $originStiker, 0, 0, 0, 0, $srcW, $srcH, $Sw, $Sh);
         imagecopy($dest, $new, $srcX, $srcY, 0, 0, $srcW, $srcH);
-        imagedestroy($new);
+        imagesavealpha($dest, true);
     }
 }
-// file_put_contents($path.'ali.png', $dest);
 imagepng($dest, $path.'ali.png');
-// echo $path;
-// header('Content-Type: image/gif'); 
-// imagepng($dest);
 imagedestroy($dest);
+exit('2');
 ?>

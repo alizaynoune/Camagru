@@ -58,14 +58,39 @@ form.addEventListener('submit', (e) =>{
     form.querySelector("input[name='top']").value = top;
     form.querySelector("input[name='width']").value = width;
     form.querySelector("input[name='height']").value = height;
-    document.querySelector('input[name=camera]').checked = false;
+    // document.querySelector('input[name=camera]').checked = false;
     
     
     
+
+    ///////////////////////////////ajax send data to server///////////////////////
+
+    var url = '../../model/NewPost.model.php';
+    var request = new XMLHttpRequest();
+    request.open('Post', url, true);
+    request.onload = function(){
+        console.log(this.responseText + ' her');
+    };
+
+    request.onerror = function(){
+        console.log('error');
+    };
+    request.send(new FormData(e.target));
+    
+    e.preventDefault();
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////
     
     
     console.log('valid_done_');
-    return false;
+    return true;
 });
 
 
