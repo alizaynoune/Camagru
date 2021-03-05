@@ -6,36 +6,12 @@ if ((new Session())->SessionStatus() === false){
 	exit();
 }
 
+$base64 = str_replace('data:image/png;base64,', '', $_POST['canva']);
+$base64 = str_replace(' ', '+', $base64);
+$data = base64_decode($base64);
+$img = imagecreatefromstring($data);
 
-// print_r($_POST);
-// echo $_POST['InfoStickers'];
-// print_r($_SERVER);
-// print_r($_FILES);
-// echo '</br>';
-// print_r($_FILES);
-// print_r(testCanvas.toDataURL("image/png"));
-
-
-// header("Content-type: image/png");
-// $data = "/9j/4AAQSkZJRgABAQEAYABgAAD........";
-// echo '<img src="'.$_POST['canva'].'"/>';
-$img = imagecreatefrompng($_POST['canva']);
-// print_r($_SESSION);
-// echo '</br>';
 $path = APP_ROOT.'/public/usersData/'.$_SESSION['login'].'/';
-$name = md5(rand(1000, 5000));
-$img = str_replace('data:image/png;base64,', '', $_POST['canva']);
-$img = str_replace(' ', '+', $img);
-// echo ($img);
-
-// imagedestroy($_POST['canva']);
-file_put_contents($path.'ali.png', base64_decode($img));
-
-
-
-// $exten = pathinfo($avatar, PATHINFO_EXTENSION);
-$fileContent = file_get_contents($path.'ali.png');
-$new_img = 'data:image/png;base64,'.base64_encode($fileContent);
 
 if (!empty($_POST['stickers'])){
     // echo $_POST['stickers'];
@@ -46,46 +22,25 @@ if (!empty($_POST['stickers'])){
     $Left = explode(',', $_POST['left']);
     $Size = explode(',', $_POST['size']);
     $Retate = explode(',', $_POST['retate']);
-
-    // print_r($Stickers);
-    // echo '</br>';
-    // print_r($Top);
-    // echo '</br>';
-    // print_r($Left);
-    // echo '</br>';
-    // print_r($Size);
-    // echo '</br>';
-    // print_r($Retate);
-    // $dest = imagecreatefrompng($StickerPath.$Stickers[0]);
-    // echo '<img src="'.$StickerPath.$Stickers[0].'"/>';
-    $dest = imagecreatefrompng($path.'ali.png');
-    $src = imagecreatefrompng($StickerPath.$Stickers[0]);
-    $srcX = $Left[0];
-    $srcY = $Top[0];
-    // $destX = ;
-    // $destY;
-    $srcH = $Size[0];
-    $srcW = $Size[0];
-
-    // $src = imagecreatefrompng('https://media.geeksforgeeks.org/wp-content/uploads/col1.png'); 
-          
-        // Copy and merge 
-        imagecopymerge($dest, $src, $srcX, $srcY, $srcW, $srcH, $srcW, $srcH, 100);
-        header('Content-Type: image/png'); 
-        imagegif($dest);
+    
+    
+    foreach($Stickers as $key => $value){
+        $srcX = $Left[$key];
+        $srcY = $Top[$key];
+        $srcH = $Size[$key];
+        $srcW = $Size[$key];
+        $stik = imagecreatefrompng($StickerPath.$Stickers[$key]);
+        imagealphablending($stik, false);
+        imagesavealpha($stik, true);
+        $ret = imagerotate($stik, ($Retate[$key] * -1), imageColorAllocateAlpha($stik, 0, 0, 0, 127));
+        // imagealphablending($ret, false);
+        // imagesavealpha($ret, true);
+        $src = imagescale($ret, $srcW, $srcH);
+        imagecopy($img, $src, $srcX, $srcY, 0, 0, $srcW, $srcH);
+    }
 }
 
-
-
-
-// echo '<img src="'.$new_img.'"/>';
-// print_r($_SERVER);
-
-
-// else {
-//     echo 'is empty';
-// }
-
-// header("Location: ../view/php/camera.view.php");
+header('Content-Type: image/gif'); 
+imagegif($img);
 
 ?>
