@@ -22,8 +22,8 @@ titel.addEventListener('input', (e)=>{
         
 })
 form.addEventListener('submit', (e) =>{
-    console.log('valid_done_');
     
+    e.preventDefault();
     if (valid_titel(titel) === false){
         e.preventDefault();
         return false;
@@ -40,32 +40,32 @@ form.addEventListener('submit', (e) =>{
     var stickers = [];
     var left = [];
     var top = [];
-    var retate = [];
-    var size = [];
+    // var retate = [];
+    var width = [];
+    var height = [];
     form.querySelector("input[name='canva']").value = img;
     canvas.querySelectorAll('.filter').forEach((e)=>{
         left.push(e.style.left.match(/[\d\.]+/g).join(''));
         top.push(e.style.top.match(/[\d\.]+/g).join(''));
-        size.push(e.style.width.match(/[\d\.]+/g).join(''));
-        let elem = e.querySelector('img');
-        retate.push(elem.style.transform.match(/[\d\.]+/g).join(''));
-        let name = elem.src.split('/');
+        width.push(e.style.width.match(/[\d\.]+/g).join(''));
+        height.push(e.style.height.match(/[\d\.]+/g).join(''));
+        let name = e.querySelector('img').src.split('/');
         stickers.push(name[name.length - 1]);
         
     });
     form.querySelector("input[name='stickers']").value = stickers;
     form.querySelector("input[name='left']").value = left;
     form.querySelector("input[name='top']").value = top;
-    form.querySelector("input[name='retate']").value = retate;
-    form.querySelector("input[name='size']").value = size;
-    // form.querySelector("input[name='InfoStickers']").value = matrix;
-    // matrix.forEach((e)=>{
-    //     console.log(e);
-        
-    // });
-    
+    form.querySelector("input[name='width']").value = width;
+    form.querySelector("input[name='height']").value = height;
     document.querySelector('input[name=camera]').checked = false;
-    return true;
+    
+    
+    
+    
+    
+    console.log('valid_done_');
+    return false;
 });
 
 

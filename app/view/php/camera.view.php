@@ -44,9 +44,9 @@ if ((new Session())->SessionStatus() === false){
   			<span class="control"></span>
 		</label>
 		
+		<!-- action="../../model/NewPost.model.php" -->
 		
-		
-		 <form action="../../model/NewPost.model.php" method="POST" enctype="multipart/form-data">
+		 <form  method="POST" enctype="multipart/form-data">
 			<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
 			<h2 class="success"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
 			<input class="center out-form" type="text" placeholder="titel" name="titel"/>
@@ -64,8 +64,8 @@ if ((new Session())->SessionStatus() === false){
 				<input type='hidden' name='stickers'/>
 				<input type='hidden' name='left'/>
 				<input type='hidden' name='top'/>
-				<input type='hidden' name='retate'/>
-				<input type='hidden' name='size'/>
+				<input type='hidden' name='width'/>
+				<input type='hidden' name='height'/>
 				<!-- <input type="hidden" name='InfoStickers'> -->
 			</div>
 			<div class="buttomBtn">

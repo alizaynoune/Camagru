@@ -8,39 +8,45 @@ if ((new Session())->SessionStatus() === false){
 
 $base64 = str_replace('data:image/png;base64,', '', $_POST['canva']);
 $base64 = str_replace(' ', '+', $base64);
-$data = base64_decode($base64);
-$img = imagecreatefromstring($data);
-
+$cava = base64_decode($base64);
+list($dw, $dh) = getimagesizefromstring($cava);
+$data = imagecreatefromstring($cava);
+$dest = imagecreatetruecolor($dw, $dh);
+imagecolortransparent($dest, imagecolorallocatealpha($dest, 0, 0, 0, 127));
+imagealphablending($dest, false);
+imagesavealpha($dest, true);
+imagecopy($dest, $data, 0, 0, 0, 0, $dw, $dh);
+imagedestroy($data);
 $path = APP_ROOT.'/public/usersData/'.$_SESSION['login'].'/';
 
 if (!empty($_POST['stickers'])){
-    // echo $_POST['stickers'];
-    
     $StickerPath = APP_ROOT.'/app/view/stickers/';
     $Stickers = explode(',', $_POST['stickers']);
     $Top = explode(',', $_POST['top']);
     $Left = explode(',', $_POST['left']);
-    $Size = explode(',', $_POST['size']);
-    $Retate = explode(',', $_POST['retate']);
-    
-    
+    $width = explode(',', $_POST['width']);
+    $height = explode(',', $_POST['height']);
+    // $dest = imagecreatetruecolor($srcW, $srcH);
     foreach($Stickers as $key => $value){
         $srcX = $Left[$key];
         $srcY = $Top[$key];
-        $srcH = $Size[$key];
-        $srcW = $Size[$key];
-        $stik = imagecreatefrompng($StickerPath.$Stickers[$key]);
-        imagealphablending($stik, false);
-        imagesavealpha($stik, true);
-        $ret = imagerotate($stik, ($Retate[$key] * -1), imageColorAllocateAlpha($stik, 0, 0, 0, 127));
-        // imagealphablending($ret, false);
-        // imagesavealpha($ret, true);
-        $src = imagescale($ret, $srcW, $srcH);
-        imagecopy($img, $src, $srcX, $srcY, 0, 0, $srcW, $srcH);
+        $srcH = $height[$key];
+        $srcW = $width[$key];
+        $originStiker = imagecreatefrompng($StickerPath.$Stickers[$key]);
+        list($Sw, $Sh) = getimagesize($StickerPath.$Stickers[$key]);
+        $new = imagecreatetruecolor($srcW, $srcH);
+        imagecolortransparent($new, imagecolorallocatealpha($new, 0, 0, 0, 127));
+        imagealphablending($new, false);
+        imagesavealpha($new, true);
+        imagecopyresampled($new, $originStiker, 0, 0, 0, 0, $srcW, $srcH, $Sw, $Sh);
+        imagecopy($dest, $new, $srcX, $srcY, 0, 0, $srcW, $srcH);
+        imagedestroy($new);
     }
 }
-
-header('Content-Type: image/gif'); 
-imagegif($img);
-
+// file_put_contents($path.'ali.png', $dest);
+imagepng($dest, $path.'ali.png');
+// echo $path;
+// header('Content-Type: image/gif'); 
+// imagepng($dest);
+imagedestroy($dest);
 ?>

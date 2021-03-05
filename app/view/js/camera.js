@@ -70,7 +70,7 @@ function  camera_off(){
 
 function    upload_to_canva(event){
   camera_off();
-  console.log(event.target.files[0].size);
+  // console.log(event.target.files[0].size);
     if (event.target.files[0].size < 2000000){
     
     document.querySelector('input[name=camera]').checked = false;
@@ -192,10 +192,10 @@ function    _onDrop(event){
 
 function    new_elem(stic){
   stic.removeEventListener('click', sticker_click);
-  var   name_class = ['rotate', 'resize' ,'delet'];
+  var   name_class = ['resize' ,'delet'];
   var   parent = document.createElement('div');
   parent.classList.add('filter');
-  stic.style.transform = 'rotate(0deg)';
+  // stic.style.transform = 'rotate(0deg)';
   parent.style.width ='40px';
   parent.style.height = '40px';
   parent.appendChild(stic);
@@ -215,10 +215,10 @@ function    new_elem(stic){
         event.target.parentNode.remove();
       });
     }
-    else if (e === 'rotate'){
-      div.setAttribute('draggable', true);
-      div.addEventListener('dragstart', initRotate, false);
-    }
+    // else if (e === 'rotate'){
+    //   div.setAttribute('draggable', true);
+    //   div.addEventListener('dragstart', initRotate, false);
+    // }
 
     parent.appendChild(div);
   });
@@ -313,13 +313,13 @@ function        initResize(event){
     x = x < 20 ? 20 : x;
     y = y < 20 ? 20 : y;
 
-    x = x > 200 ? 200 : x;
-    y = y > 200 ? 200 : y;
+    // x = x > 200 ? 200 : x;
+    // y = y > 200 ? 200 : y;
 
-    x > y ? x = y : y = x;
+    // x > y ? x = y : y = x;
 
-    target.style.width = x + 'px';
-    target.style.height = y + 'px';
+    // target.style.width = x + 'px';
+    // target.style.height = y + 'px';
     // console.log(y);
     
     target.style.width = x + 'px';
@@ -330,18 +330,18 @@ function        initResize(event){
 
 ///////////////////////////////////////Rotate//////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
-function        initRotate(event){
-  var target = event.target.parentElement.children[0];
-  event.target.addEventListener('drag', Rotate, false);
-  event.target.addEventListener('dragend', stopRotate, false);
+// function        initRotate(event){
+//   var target = event.target.parentElement.children[0];
+//   event.target.addEventListener('drag', Rotate, false);
+//   event.target.addEventListener('dragend', stopRotate, false);
 
-  function      Rotate(e){
-    target.style.transform = `rotate(${(e.clientX - event.clientX) + (e.clientY - event.clientY)}deg)`;
-  }
+//   function      Rotate(e){
+//     target.style.transform = `rotate(${((e.clientX - event.clientX) + (e.clientY - event.clientY)) % 360}deg)`;
+//   }
 
-  function      stopRotate(e){
-    event.target.removeEventListener('drag', Rotate, false);
-    event.target.removeEventListener('dragend', stopRotate, false);
+//   function      stopRotate(e){
+//     event.target.removeEventListener('drag', Rotate, false);
+//     event.target.removeEventListener('dragend', stopRotate, false);
     
-  }
-}
+//   }
+// }

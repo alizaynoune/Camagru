@@ -55,7 +55,7 @@
     /* display: none; */
 }
 
-.filter .rotate{
+/* .filter .rotate{
     width: 4px;
     height: 4px;
     position: absolute;
@@ -63,10 +63,9 @@
     right: 0%;
     margin: 0%;
     padding: 0%;
-    /* cursor: nesw-resize; */
     cursor: pointer;
     background-color: green;
-}
+} */
 
 .filter .delet{
     width: 5px;
