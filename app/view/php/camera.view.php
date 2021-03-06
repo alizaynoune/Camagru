@@ -76,6 +76,7 @@ if ((new Session())->SessionStatus() === false){
 				<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
 				<label for="share" class=" btnShr Btn rightBtn">Share</label>
 			</div>
+			<div class='thumbnails'></div>
 		</form>
 
 

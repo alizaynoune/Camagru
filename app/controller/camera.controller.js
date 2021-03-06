@@ -22,6 +22,10 @@ titel.addEventListener('input', (e)=>{
         
 })
 form.addEventListener('submit', (e) =>{
+    var _Error_ = document.querySelector('.error');
+    var _Success_ = document.querySelector('.success');
+    _Error_.innerHTML = '';
+    _Success_.innerHTML = '';
     
     e.preventDefault();
     if (valid_titel(titel) === false){
@@ -33,7 +37,7 @@ form.addEventListener('submit', (e) =>{
     const canva = document.getElementById('canva');
     var img = canva.toDataURL('image/png');
     if (img === document.getElementById('hiddenCanva').toDataURL()){
-        document.querySelector('.error').innerHTML = 'blanck canva';
+        _Error_.innerHTML = 'blanck canva';
         e.preventDefault();
         return false;
     }
@@ -64,33 +68,47 @@ form.addEventListener('submit', (e) =>{
     
 
     ///////////////////////////////ajax send data to server///////////////////////
-
     var url = '../../model/NewPost.model.php';
     var request = new XMLHttpRequest();
     request.open('Post', url, true);
     request.onload = function(){
-        console.log(this.responseText + ' her');
+        var ret =JSON.parse(this.responseText);
+        // console.log(ret[0]);
+        if (typeof ret[0] !== 'undefined'){
+            console.log(ret[0]);
+            new_post(ret);
+            
+        }
+
+        
+        
+        // for (var i = 0; i < ret.length; i++){
+        //     console.log(ret[i]);
+            
+        // }
+        _Success_.innerHTML = 'Success Share';
     };
 
     request.onerror = function(){
-        console.log('error');
+        _Error_.innerHTML = 'Error Share';
     };
     request.send(new FormData(e.target));
     
     e.preventDefault();
-
-
-
-
-
-
-
-
-    //////////////////////////////////////////////////////////////////////////////
-    
-    
-    console.log('valid_done_');
     return true;
 });
 
+
+///////////////////////////////////append new post/////////////////////////////
+
+function        new_post(elem){
+    var thumb = document.querySelector('.thumbnails');
+    var new_div = document.createElement('div');
+    new_div.classList.add('post');
+    var img = document.createElement('img');
+    img.src = elem[0];
+    new_div.appendChild(img);
+    // thumb.appendChild(new_div);
+    thumb.insertBefore(new_div, thumb.firstChild);
+}
 
