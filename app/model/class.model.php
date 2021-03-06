@@ -17,7 +17,7 @@ class	dbinsert extends db_conn {
             if ($ret_id === 1)
                 $this->stmt_id = $this->conn->prepare('SELECT LAST_INSERT_ID() AS `id`');
             $this->stmt->execute();
-            if ($ret_id){
+            if ($ret_id === 1){
                 $this->stmt_id->execute();
                 return($this->stmt_id->fetch(PDO::FETCH_ASSOC));
             }
