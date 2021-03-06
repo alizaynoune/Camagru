@@ -5,23 +5,21 @@ if ((new Session())->SessionStatus() === false){
     header("Location: ../view/php/login.view.php");
 	exit();
 }
-// print_r($_POST);die();
 
 if (empty($_POST['canva']))
-    exit(-1);
+    exit($_POST['canva']);
 
 $base64 = str_replace('data:image/png;base64,', '', $_POST['canva']);
 $base64 = str_replace(' ', '+', $base64);
 $cava = base64_decode($base64);
 list($dw, $dh) = getimagesizefromstring($cava);
 $data = imagecreatefromstring($cava);
-// $dest = imagecreatetruecolor($dw, $dh);
-// imagecolortransparent($dest, imagecolorallocatealpha($dest, 255, 255, 255, 127));
-// imagealphablending($dest, false);
-// imagesavealpha($dest, true);
-// imagecopy($dest, $data, 0, 0, 0, 0, $dw, $dh);
-// imagedestroy($data);
-$dest = $data;
+$dest = imagecreatetruecolor($dw, $dh);
+imagecolortransparent($dest, imagecolorallocatealpha($dest, 0, 0, 0, 127));
+imagealphablending($dest, false);
+imagesavealpha($dest, true);
+imagecopy($dest, $data, 0, 0, 0, 0, $dw, $dh);
+imagedestroy($data);
 $path = APP_ROOT.'/public/usersData/'.$_SESSION['login'].'/';
 
 if (!empty($_POST['stickers'])){
@@ -37,29 +35,18 @@ if (!empty($_POST['stickers'])){
         $srcY = $Top[$key];
         $srcH = $height[$key];
         $srcW = $width[$key];
-        $originStiker = imagecreatefrompng($StickerPath . $Stickers[$key]);
-        list($Sw, $Sh) = getimagesize($StickerPath . $Stickers[$key]);
-        // var_dump($Sw);
-        // var_dump($Sh); die();
+        $originStiker = imagecreatefrompng($StickerPath.$Stickers[$key]);
+        list($Sw, $Sh) = getimagesize($StickerPath.$Stickers[$key]);
         $new = imagecreatetruecolor($srcW, $srcH);
-        imagecolortransparent($new, imagecolorallocatealpha($new, 255, 255, 255, 127));
+        imagecolortransparent($new, imagecolorallocatealpha($new, 0, 0, 0, 127));
         imagealphablending($new, false);
         imagesavealpha($new, true);
         imagecopyresampled($new, $originStiker, 0, 0, 0, 0, $srcW, $srcH, $Sw, $Sh);
         imagecopy($dest, $new, $srcX, $srcY, 0, 0, $srcW, $srcH);
-        // imagedestroy($new);
+        imagesavealpha($dest, true);
     }
 }
-$name = md5(microtime()).'.png';
-imagepng($dest, $path.$name);
-// imagedestroy($des);
-// $_SESSION['uid']
-$id = (new dbinsert())->insert(
-    $DB_INSERT['_post'], array($_SESSION['uid'], $name),
-    array($PARAM['int'], $PARAM['str']),
-    1
-);
-$content = 'data:image/png;base64,'.base64_encode(file_get_contents($path.$name));
-array_push($id, ($content));
-exit(json_encode($id));
+imagepng($dest, $path.'ali.png');
+imagedestroy($dest);
+exit('2');
 ?>
