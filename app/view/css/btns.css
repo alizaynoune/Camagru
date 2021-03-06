@@ -1,5 +1,6 @@
 
 /* .{position: absolute;} */
+/* @import url("font-awesome/css/fontawesome-all.min.css"); */
 
 .BtnAnim{
   overflow: hidden;
@@ -102,6 +103,8 @@
   border-radius: 25px;
   transition: left 0.15s ease-in;
 }
+
+
 
 @media only screen and (max-width: 600px){
   .Btn::before{

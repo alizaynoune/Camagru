@@ -1,24 +1,24 @@
 
-function        valid_titel(elem){
-    let REG = /^[\w-_\--\d]+$/;
-    if (titel.value.length === 0){
-        titel.classList.remove('error');
+function        valid_title(elem){
+    let REG = /^[\w\d\-_]+$/;
+    if (title.value.length === 0){
+        title.classList.remove('error');
         return true;
     }
-    if (!REG.test(titel.value)){
-        titel.classList.add('error');
+    if (!REG.test(title.value) || title.value.length > 50){
+        title.classList.add('error');
         return false;
     }
     else{
-        titel.classList.remove('error');
+        title.classList.remove('error');
         return true;
     }
 }
 
 const form = document.querySelector('form');
-var titel = form.querySelector("input[name='titel']");
-titel.addEventListener('input', (e)=>{
-    valid_titel(titel);
+var title = form.querySelector("input[name='title']");
+title.addEventListener('input', (e)=>{
+    valid_title(title);
         
 })
 form.addEventListener('submit', (e) =>{
@@ -28,8 +28,9 @@ form.addEventListener('submit', (e) =>{
     _Success_.innerHTML = '';
     
     e.preventDefault();
-    if (valid_titel(titel) === false){
+    if (valid_title(title) === false){
         e.preventDefault();
+        _Error_.innerHTML = 'title invalid';
         return false;
     }
     
@@ -44,7 +45,6 @@ form.addEventListener('submit', (e) =>{
     var stickers = [];
     var left = [];
     var top = [];
-    // var retate = [];
     var width = [];
     var height = [];
     form.querySelector("input[name='canva']").value = img;
@@ -62,7 +62,6 @@ form.addEventListener('submit', (e) =>{
     form.querySelector("input[name='top']").value = top;
     form.querySelector("input[name='width']").value = width;
     form.querySelector("input[name='height']").value = height;
-    // document.querySelector('input[name=camera]').checked = false;
     
     
     
@@ -72,25 +71,22 @@ form.addEventListener('submit', (e) =>{
     var request = new XMLHttpRequest();
     request.open('Post', url, true);
     request.onload = function(){
-        var ret =JSON.parse(this.responseText);
-        // console.log(ret[0]);
-        if (typeof ret[0] !== 'undefined'){
-            console.log(ret[0]);
+        try{
+            var ret =JSON.parse(this.responseText);
             new_post(ret);
-            
+            _Success_.innerHTML = 'Success Share';
+            form.querySelector("input[name='stickers']").value = '';
+            form.querySelector("input[name='left']").value = '';
+            form.querySelector("input[name='top']").value = '';
+            form.querySelector("input[name='width']").value = '';
+            form.querySelector("input[name='height']").value = '';
+            form.querySelector("input[name='title']").value = '';
+        }catch(e){
+            _Error_.innerHTML = e;
         }
-
-        
-        
-        // for (var i = 0; i < ret.length; i++){
-        //     console.log(ret[i]);
-            
-        // }
-        _Success_.innerHTML = 'Success Share';
     };
-
     request.onerror = function(){
-        _Error_.innerHTML = 'Error Share';
+        _Error_.innerHTML = 'Errors Share';
     };
     request.send(new FormData(e.target));
     
@@ -102,12 +98,45 @@ form.addEventListener('submit', (e) =>{
 ///////////////////////////////////append new post/////////////////////////////
 
 function        new_post(elem){
-    var thumb = document.querySelector('.thumbnails');
-    var new_div = document.createElement('div');
+    let thumb = document.querySelector('.thumbnails');
+    
+    let new_div = document.createElement('div');
     new_div.classList.add('post');
-    var img = document.createElement('img');
+    
+    let img = document.createElement('img');
     img.src = elem[0];
+    
+    let title = document.createElement('h3');
+    title.innerHTML = elem[1];
+    
+    new_div.appendChild(title);
     new_div.appendChild(img);
+
+    let div_like_comment = document.createElement('div');
+    div_like_comment.classList.add('like_comment');
+   
+    
+    let comment = document.createElement('p');
+    comment.classList.add('comment');
+    div_like_comment.appendChild(comment);
+    // comment.innerHTML = 'new comment';
+
+    let nbr_like = document.createElement('h4');
+    nbr_like.classList.add('likeNbr');
+    div_like_comment.appendChild(nbr_like);
+
+    let nbr_comment = document.createElement('h4');
+    nbr_comment.classList.add('commentNbr');
+    div_like_comment.appendChild(nbr_comment);
+
+    
+    let like = document.createElement('span');
+    like.classList.add('dislike');
+    div_like_comment.appendChild(like);
+    
+ new_div.appendChild(div_like_comment);
+    // div_like_comment.appendChild(like);
+    // div_like_comment.appendChild(comment);
     // thumb.appendChild(new_div);
     thumb.insertBefore(new_div, thumb.firstChild);
 }

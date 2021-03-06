@@ -59,8 +59,19 @@ function    filter_config_pwd($pwd, $cnfpwd){
 }
 
 function    filter_comment($comment){
-	if (strlen($comment) > 255)
+	// if (strlen($comment) > 255)
+		// return(false);
+	// return(false);
+
+
+	global $ERROR;
+	$ERROR = 'login invalide2';
+	$REG = "/^[\w\d\-_]+$/";
+	if (strlen($comment) === 0 || strlen($comment) > 255 || !preg_match($REG, $comment))
 		return(false);
+	$ERROR = "";
+	return(true);
+
 		////not finesh yet;
 }
 

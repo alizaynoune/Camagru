@@ -12,7 +12,10 @@ if ((new Session())->SessionStatus() === false){
     <meta charset="UTF-8" />
 
 	<link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
+	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
 	  <title>Camagru</title>
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
@@ -49,7 +52,7 @@ if ((new Session())->SessionStatus() === false){
 		 <form  method="POST" enctype="multipart/form-data">
 			<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
 			<h2 class="success"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
-			<input class="center out-form" type="text" placeholder="titel" name="titel"/>
+			<input class="center out-form" type="text" placeholder="title" name="title"/>
 			<div class="contener_video">
 				<div id='video_id' class="hiddenBtn display">
 					<video id="video" class="hiddenBtn display"  autoplay></video>
@@ -76,7 +79,23 @@ if ((new Session())->SessionStatus() === false){
 				<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
 				<label for="share" class=" btnShr Btn rightBtn">Share</label>
 			</div>
-			<div class='thumbnails'></div>
+			<div class='thumbnails'>
+				<div class="post">
+					<span class="delet_post"></span>
+					<h3 class="title">title test</h3>
+					<img src="../../../public/icone/profile.jpg">
+					<div class="like_comment">
+						<span class="like"></span>
+						<h4 class="likeNbr">1c</h4>
+						<h4 class="commentNbr">1 comments</h4>
+						<div class="comment">
+							<span class='delet_commet'>
+								<p>commet test</p>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
 		</form>
 
 

@@ -232,6 +232,7 @@ CREATE TABLE `Posts` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `uid` int unsigned NOT NULL,
   `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nbr_likes` int unsigned NOT NULL DEFAULT '0',
   `nbr_comments` int unsigned NOT NULL DEFAULT '0',
   `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,

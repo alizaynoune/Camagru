@@ -129,53 +129,25 @@
     max-height: 800px;
     padding: 0%;
     position: relative;
-    /* overflow: hidden; */
-    /* display: flex; */
-    /* display: block; */
-    
-    /* display: block; */
-    /* display: flexbox; */
-    /* margin: 0%; */
-    /* display: inline; */
-    /* display: inline; */
 }
 
 #canva_id{
-    /* border: red dashed 2px; */
     width: 600px;
     height: 300px;
     margin-left: 0.5%;
     /* display: block; */
     position: relative;
-    /* overflow: hidden; */
-    /* display: inline-block; */
-    /* max-width: 800px;
-    max-height: 800px; */
     padding: 0%;
     /* right: 0%; */
     margin: 0%;
-    /* position: absolute; */
-    /* display: block; */
-    /* display: inline-flex; */
-    /* float: right; */
-    /* display: inline; */
-    /* background-color: fuchsia; */
 }
 #canva, #video {
-    /* width: 100%;
-    height: 100%; */
     padding: 0%;
     margin: 0%;
-    /* position: absolute; */
-    /* margin-bottom: -4px; */
     border: 1px dashed darkturquoise;
 }
 
 .hidden-stickers img{display: none;}
-
-/* #video {width: 0; height: 0;} */
-
-/* .hedden {display: none;} */
 
 .btnup::before{content: "\f093";}
 .btncaptuer::before{content: "\f030";}
@@ -216,6 +188,99 @@
 }
 
 #hiddenCanva{display: none;}
+
+/* botton in posts */
+
+.like::before{
+    /* font-family: "Font Awesome 5 Free"; */
+    font-family: "FontAwesome";
+    content: "\f004";
+    font-size: 40px;
+    color: red;  
+  }
+  
+  .dislike::before{
+    font-family: "Font Awesome 5 Free";
+    /* font-family: "FontAwesome"; */
+    content: "\f004";
+    font-size: 40px;
+    color: red;    
+  }
+  
+  .delet_commet::after{
+    font-family: "FontAwesome";
+    content: "\f1f8";
+  }
+  
+  .delet_post::after{
+      /* font-family: "Font Awesome 5 Free"; */
+      font-family: "FontAwesome";
+      /* font-style: normal; */
+      content: "\f1f8";
+  }
+
+  .delet_post{
+      position: relative;
+      float: right;
+      right: 10px;
+      top: -10px;
+  }
+
+
+.thumbnails{
+    border: dimgrey dashed 1px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    /* margin-left: calc(calc(100% - 600px) / 2); */
+}
+
+.post{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.post .title{
+    text-align: center;
+}
+
+.post img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.like_comment{
+    border: red dashed 1px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.like_comment *{display: inline;}
+
+.like_comment .like{
+    position: relative;
+    left: 20px;
+}
+
+.like_comment .commentNbr{
+    /* position: relative; */
+    float: right;
+    right: 20px;
+    display: block;
+}
+
+
+.like_comment .comment{
+    /* position: relative; */
+    float: right;
+    right: 20px;
+    display: block;
+}
 
 /* @media only screen and (max-width: 1200){
     .contener_video{
