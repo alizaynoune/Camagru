@@ -1,117 +1,263 @@
-.like::before{
-    /* font-family: "Font Awesome 5 Free"; */
-    font-family: "FontAwesome";
-    content: "\f004";
-    font-size: 40px;
-    color: red;  
-  }
-  
-  .dislike::before{
-    font-family: "Font Awesome 5 Free";
-    /* font-family: "FontAwesome"; */
-    content: "\f004";
-    font-size: 40px;
-    color: red;  
-  }
-  
-  .delet_comment::after{
+
+/* post */
+ 
+.post{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 700px;
+  border: coral solid 1px;
+}
+.delet_post{
+    position: relative;
+    float: right;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.delet_post::after{
     font-family: "FontAwesome";
     content: "\f1f8";
-    /* position: relative;
-    right: 0%;
-    display: inline; */
-  }
-  
-  .delet_post::after{
-      /* font-family: "Font Awesome 5 Free"; */
-      font-family: "FontAwesome";
-      /* font-style: normal; */
-      content: "\f1f8";
-  }
+}
 
-  .delet_post{
-      position: relative;
-      float: right;
-      right: 10px;
-      top: -10px;
-  }
+.post input[name='hash']{
+    display: none;
+}
 
-
-.post{
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    max-width: 1000px;
+.post .info *{
+    display: inline;
+    padding: 0%;
+}
+.post .info {
+    /* border: orange dashed 1px; */
+    padding: 0%;
 }
 
 .post .title{
     text-align: center;
+    /* background-color: cyan; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -22px;
+    width: 50%;
+    padding: 0%;
+
 }
 
-.post img{
+.post .info .owner{
+    padding: 0%;
+}
+
+.post .info #img_owner{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.post #img_post{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.comment_like{
+    border: greenyellow dashed 1px;
+    /* width: 100%; */
+    /* height: 80px; */
+}
+
+.like::before{
+    font-family: "FontAwesome";
+    content: "\f004";
+    font-size: 40px;
+    color: red;
+    padding-right: 5px;
+}
+
+.dislike::before{
+  font-family: "Font Awesome 5 Free";
+  content: "\f004";
+  font-size: 40px;
+  color: red;
+  padding: 5px;
+}
+
+.like, .dislike{font-size: 15px;}
+
+.comment_like .contener_like {
+    display: block;
+    width: 80px;
+    height: 40px;
+    background-color: blue;
+    width: 100%;
+}
+
+/* .comment_like .contener_like .likeNbr{
+    display: inline;
+} */
+
+.comment_like .contener_like span{cursor: pointer;}
+
+.comment_like .contener_like .commentNbr {
+    float: right;
+    position: relative;
+    top: -10px;
+}
+
+
+
+
+
+
+/* contener of all comment */
+
+.contener_comment{
+    position: relative;
+    float: right;
+    background-color: darkgray;
+    display: block;
+    padding: 0%;
+    margin: 0%;
+    margin-top: -20px;
+    width: 100%;
+}
+
+.contener_comment .comment{
+    /* display: inline-block; */
+    max-height: 200px;
+    overflow-y: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.comment_like{
-    border: greenyellow dashed 1px;
-}
-
-.comment_like .contener_like, .comment_like .contener_comment, .comment_like .new_comment{
-    display: inline;
-    border: deeppink dashed 1px;
-}
-
-.comment_like .new_comment{
-    position: relative;
-    left: calc(50% - 160px);
-}
-
-.contener_like *{
-    display: inline;
-}
-.contener_comment{
-    position: relative;
-    float: right;
-}
-
-.contener_comment .comment{
-    max-height: 250px;
-    /* background-color: deeppink; */
-    width: auto;
-    /* height: 200px; */
-    overflow-y: auto;
-}
-
 .contener_comment .comment .old_comment *{
-    display: inline;
-    padding-top: 10px;
-    /* margin-top: 10px; */
-    /* padding: 10px; */
+    display: inline-flex;
+    /* padding-top: 10px; */
 }
 
 .contener_comment .comment .old_comment{
-    /* padding: 5px; */
+    /* display: inline-flex; */
+    width: 96%;
     margin-top: 8px;
     background-color: khaki;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    border-style: solid solid solid solid;
+    margin-left: 2%;
+    padding: 0%;
 }
 
-.contener_comment .commentNbr {
-    text-align: right;
-    /* padding-top: -10px; */
-    padding-right: 4px;
-    margin-top: 5px;
+.contener_comment .comment .old_comment .like,
+.contener_comment .comment .old_comment .dislike{
+    font-size: 14px;
+    background-color: darkolivegreen;
+    width: 50%;
+    display: block;
+    padding: 0%;
+    margin: 0px;
 }
 
-.contener_comment .comment .old_comment .delet_comment{
-    float: inherit;
+.contener_comment .comment .old_comment .like::before,
+.contener_comment .comment .old_comment .dislike::before{
+    font-size: 20px;
+    /* padding-right: 5px; */
+}
+
+/* 
+
+stoooooooooop her not finesh yet
+
+*/
+
+
+.delet_comment::after{
+    font-family: "FontAwesome";
+    content: "\f1f8";
+  }
+  
+  .contener_comment .comment .old_comment .delet_comment{
+      /* display: inline; */
+      position: relative;
+      width: 50%;
+      float: right;
+      top: 5px;
+      cursor: pointer;
+      background-color: darkred;
+  }
+
+
+
+.contener_comment .comment .old_comment p:first-of-type{
+    width: 65%;
+    background-color: darkgreen;
+    text-align: center;
+    padding-left: 5px;
+}
+
+.contener_comment .comment .old_comment p:last-of-type{
+    background-color: darkgrey;
     position: relative;
-    padding-right: 5px;
-    /* padding-left: 50%; */
-    /* float: right; */
-    /* right: 0%; */
-    /* padding-right: -100%; */
-    /* left: 100%; */
+    width: 15%;
+    /* display: inline-flex; */
 }
+
+
+
+
+
+
+
+
+.comment_like .new_comment #submit_comment{display: none;}
+.comment_like .new_comment #submit::before{
+    font-family: "FontAwesome";
+    content: "\f1d8";
+}
+
+
+.comment_like .new_comment {
+    background-color: coral;
+    display: inline-block;
+    height: 40px;
+    position: relative;
+    margin-top: 10px;
+    left: 80px;
+    /* top: -60px; */
+    /* bottom: 60px; */
+    width: 50%;
+    margin-left: 20px;
+}
+
+.comment_like .new_comment div{
+    height: 36px;
+    width: 40px;
+    font-size: 25px;
+    padding-top: 7px;
+    border-width: 3px;
+    border-style: none;
+    border-color: var(--Colorfont);
+    position: relative;
+    float: right;
+
+}
+
+.comment_like .new_comment input[name='comment']{
+    width: calc(100% - 50px);
+    border-style: none;
+    height: 41px;
+    border-width: 3px;
+    background: none;
+    border-color: var(--Colorfont);
+    font-size: 25px;
+    outline-style: none;
+}
+
+
+
