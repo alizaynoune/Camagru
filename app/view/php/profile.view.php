@@ -21,7 +21,36 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 		<div class="content">
 			<h1>profile</h1>
-		
+			<div class="post">
+				<span class="delet_post"></span>
+				<h3 class="title">title test</h3>
+				<img src="../../../public/icone/profile.jpg">
+				<div class="like_comment">
+					<span class="like"></span>
+					<h4 class="likeNbr">1c</h4>
+					<h4 class="commentNbr">1 comments</h4>
+					<div class="comment">
+						<span class='delet_commet'>
+							<p>commet test</p>
+						</span>
+						<span class='delet_commet'>
+							<p>commet test</p>
+						</span>
+						<span class='delet_commet'>
+							<p>commet test</p>
+						</span>
+						<span class='delet_commet'>
+							<p>commet test</p>
+						</span>
+						<span class='delet_commet'>
+							<p>commet test</p>
+						</span>
+						<span class='delet_commet'>
+							<p>commet test</p>
+						</span>
+					</div>
+				</div>
+			</div>
 		</div>
 		<?php @ require $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 	</body>

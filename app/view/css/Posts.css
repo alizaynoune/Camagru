@@ -1,0 +1,117 @@
+.like::before{
+    /* font-family: "Font Awesome 5 Free"; */
+    font-family: "FontAwesome";
+    content: "\f004";
+    font-size: 40px;
+    color: red;  
+  }
+  
+  .dislike::before{
+    font-family: "Font Awesome 5 Free";
+    /* font-family: "FontAwesome"; */
+    content: "\f004";
+    font-size: 40px;
+    color: red;  
+  }
+  
+  .delet_comment::after{
+    font-family: "FontAwesome";
+    content: "\f1f8";
+    /* position: relative;
+    right: 0%;
+    display: inline; */
+  }
+  
+  .delet_post::after{
+      /* font-family: "Font Awesome 5 Free"; */
+      font-family: "FontAwesome";
+      /* font-style: normal; */
+      content: "\f1f8";
+  }
+
+  .delet_post{
+      position: relative;
+      float: right;
+      right: 10px;
+      top: -10px;
+  }
+
+
+.post{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    max-width: 1000px;
+}
+
+.post .title{
+    text-align: center;
+}
+
+.post img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.comment_like{
+    border: greenyellow dashed 1px;
+}
+
+.comment_like .contener_like, .comment_like .contener_comment, .comment_like .new_comment{
+    display: inline;
+    border: deeppink dashed 1px;
+}
+
+.comment_like .new_comment{
+    position: relative;
+    left: calc(50% - 160px);
+}
+
+.contener_like *{
+    display: inline;
+}
+.contener_comment{
+    position: relative;
+    float: right;
+}
+
+.contener_comment .comment{
+    max-height: 250px;
+    /* background-color: deeppink; */
+    width: auto;
+    /* height: 200px; */
+    overflow-y: auto;
+}
+
+.contener_comment .comment .old_comment *{
+    display: inline;
+    padding-top: 10px;
+    /* margin-top: 10px; */
+    /* padding: 10px; */
+}
+
+.contener_comment .comment .old_comment{
+    /* padding: 5px; */
+    margin-top: 8px;
+    background-color: khaki;
+}
+
+.contener_comment .commentNbr {
+    text-align: right;
+    /* padding-top: -10px; */
+    padding-right: 4px;
+    margin-top: 5px;
+}
+
+.contener_comment .comment .old_comment .delet_comment{
+    float: inherit;
+    position: relative;
+    padding-right: 5px;
+    /* padding-left: 50%; */
+    /* float: right; */
+    /* right: 0%; */
+    /* padding-right: -100%; */
+    /* left: 100%; */
+}
