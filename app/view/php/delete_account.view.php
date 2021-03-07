@@ -19,7 +19,6 @@ if ((new Session())->SessionStatus() === false){
 	</head>
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
-	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 	<div class="content">	
 		<div class="form">
 			<form action="../../model/delete_account.model.php" method="POST">
@@ -32,6 +31,7 @@ if ((new Session())->SessionStatus() === false){
 			</form>
 		</div>
 	</div>
+	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
     <script type="text/javascript" src="../js/form.js"></script>
     <!-- <script type="text/javascript" src="../../controller/validateForm.js"></script> -->

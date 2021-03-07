@@ -13,3 +13,5 @@
     --ColorX: repeating-linear-gradient( var(--Color0), var(--Color1), var(--Color2), var(--Color3), var(--Color4));
     /* --ColorX: #eff; */
 }
+
+.hidden{display: none;}

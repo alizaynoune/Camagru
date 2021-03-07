@@ -8,6 +8,9 @@
   display: block;
   max-width: 700px;
   border: coral solid 1px;
+  overflow-y: hidden;
+  /* position: relative; */
+  padding-bottom: 0;
 }
 .delet_post{
     position: relative;
@@ -66,9 +69,12 @@
 }
 
 .comment_like{
-    border: greenyellow dashed 1px;
-    /* width: 100%; */
-    /* height: 80px; */
+    /* border: greenyellow dashed 1px; */
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: -45px;
+    margin-bottom: -45px;
 }
 
 .like::before{
@@ -93,13 +99,9 @@
     display: block;
     width: 80px;
     height: 40px;
-    background-color: blue;
+    /* background-color: blue; */
     width: 100%;
 }
-
-/* .comment_like .contener_like .likeNbr{
-    display: inline;
-} */
 
 .comment_like .contener_like span{cursor: pointer;}
 
@@ -107,6 +109,8 @@
     float: right;
     position: relative;
     top: -10px;
+    /* margin-bottom: -10px; */
+    cursor: pointer;
 }
 
 
@@ -119,11 +123,12 @@
 .contener_comment{
     position: relative;
     float: right;
-    background-color: darkgray;
+    /* background-color: darkgray; */
     display: block;
     padding: 0%;
     margin: 0%;
     margin-top: -20px;
+    margin-bottom: -40px;
     width: 100%;
 }
 
@@ -145,23 +150,26 @@
     /* display: inline-flex; */
     width: 96%;
     margin-top: 8px;
-    background-color: khaki;
+    /* background-color: khaki; */
     border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
     -moz-border-radius: 10px 10px 10px 10px;
     border-style: solid solid solid solid;
-    margin-left: 2%;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0%;
+    /* margin-bottom: -20px; */
 }
 
 .contener_comment .comment .old_comment .like,
 .contener_comment .comment .old_comment .dislike{
     font-size: 14px;
-    background-color: darkolivegreen;
-    width: 50%;
+    /* background-color: darkolivegreen; */
+    width: 33%;
     display: block;
     padding: 0%;
     margin: 0px;
+    cursor: pointer;
 }
 
 .contener_comment .comment .old_comment .like::before,
@@ -176,35 +184,64 @@ stoooooooooop her not finesh yet
 
 */
 
-
-.delet_comment::after{
-    font-family: "FontAwesome";
-    content: "\f1f8";
-  }
-  
-  .contener_comment .comment .old_comment .delet_comment{
-      /* display: inline; */
-      position: relative;
-      width: 50%;
-      float: right;
-      top: 5px;
-      cursor: pointer;
-      background-color: darkred;
-  }
-
-
-
-.contener_comment .comment .old_comment p:first-of-type{
-    width: 65%;
-    background-color: darkgreen;
+/* owner of comment */
+.contener_comment .comment .old_comment h4:first-of-type{
+    /* background-color: deeppink; */
+    position: relative;
+    display: block;
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+    top: -42px;
+    margin-bottom: -42px;
     text-align: center;
-    padding-left: 5px;
+    cursor: pointer;
 }
 
-.contener_comment .comment .old_comment p:last-of-type{
-    background-color: darkgrey;
+/* botton delet comment */
+.delet_comment::after{
+  font-family: "FontAwesome";
+  content: "\f1f8";
+  padding-right: 10px;
+}
+
+.contener_comment .comment .old_comment .delet_comment{
+    display: inline;
     position: relative;
-    width: 15%;
+    width: 33%;
+    float: right;
+    top: -20px;
+    cursor: pointer;
+    /* background-color: darkred; */
+    text-align: right;
+    margin-bottom: -20px;
+    /* margin-right: 6px; */
+    /* padding-left: 5px; */
+}
+
+
+
+/* text of comment */
+
+.contener_comment .comment .old_comment p:first-of-type{
+    width: 78%;
+    /* background-color: darkgreen; */
+    text-align: center;
+    padding-left: 5px;
+    margin: 0%;
+}
+
+/* date creation comment */
+.contener_comment .comment .old_comment p:last-of-type{
+    /* background-color: darkslategrey; */
+    position: relative;
+    width: 20%;
+    display: block;
+    float: right;
+    /* top: -15px; */
+    padding: 0%;
+    margin: 0%;
+    text-align: center;
     /* display: inline-flex; */
 }
 
@@ -218,33 +255,34 @@ stoooooooooop her not finesh yet
 .comment_like .new_comment #submit_comment{display: none;}
 .comment_like .new_comment #submit::before{
     font-family: "FontAwesome";
-    content: "\f1d8";
+    content: "\f1d9";
+}
+
+.comment_like .new_comment #submit{
+    cursor: pointer;
+    /* margin-bottom: 0%; */
+    /* padding-bottom: 5px; */
 }
 
 
 .comment_like .new_comment {
-    background-color: coral;
-    display: inline-block;
     height: 40px;
     position: relative;
     margin-top: 10px;
-    left: 80px;
-    /* top: -60px; */
-    /* bottom: 60px; */
-    width: 50%;
-    margin-left: 20px;
+    width: calc(100% - 20px);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .comment_like .new_comment div{
-    height: 36px;
+    /* background-color: darkviolet; */
+    height: 40px;
     width: 40px;
     font-size: 25px;
-    padding-top: 7px;
-    border-width: 3px;
-    border-style: none;
-    border-color: var(--Colorfont);
     position: relative;
     float: right;
+    /* margin-bottom: -20px; */
+    /* margin: 0%; */
 
 }
 
@@ -257,6 +295,8 @@ stoooooooooop her not finesh yet
     border-color: var(--Colorfont);
     font-size: 25px;
     outline-style: none;
+    /* margin: -20px; */
+    /* margin-bottom: -20px; */
 }
 
 
