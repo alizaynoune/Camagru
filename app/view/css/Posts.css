@@ -1,23 +1,27 @@
 
 /* post */
- 
+
+.hidden{display: none;}
+
 .post{
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   display: block;
   max-width: 700px;
-  border: coral solid 1px;
   overflow-y: hidden;
-  /* position: relative; */
-  padding-bottom: 0;
+  box-shadow: 0px 0px 20px var(--shadow);
+  border-radius: 20px;
+  margin-bottom: 20px;
 }
 .delet_post{
     position: relative;
     float: right;
-    right: 10px;
-    top: 10px;
+    right: 20px;
+    top: 20px;
     cursor: pointer;
+    color: var(--Colorfont);
+    font-style: normal;
 }
 
 .delet_post::after{
@@ -34,20 +38,21 @@
     padding: 0%;
 }
 .post .info {
-    /* border: orange dashed 1px; */
     padding: 0%;
+    box-shadow: 0px 0px 20px var(--shadow);
+    
 }
 
 .post .title{
     text-align: center;
-    /* background-color: cyan; */
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: -22px;
+    margin-top: -25px;
     width: 50%;
     padding: 0%;
-
+    position: relative;
+    top: -10px;
 }
 
 .post .info .owner{
@@ -65,6 +70,8 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px var(--shadow);
     
 }
 
@@ -83,6 +90,7 @@
     font-size: 40px;
     color: red;
     padding-right: 5px;
+    /* font-style: normal; */
 }
 
 .dislike::before{
@@ -93,7 +101,7 @@
   padding: 5px;
 }
 
-.like, .dislike{font-size: 15px;}
+.like, .dislike{font-size: 15px; color: var(--Colorfont); padding-left: 5px;}
 
 .comment_like .contener_like {
     display: block;
@@ -111,6 +119,8 @@
     top: -10px;
     /* margin-bottom: -10px; */
     cursor: pointer;
+    color: var(--Colorfont);
+    padding-right: 5px;
 }
 
 
@@ -127,7 +137,7 @@
     display: block;
     padding: 0%;
     margin: 0%;
-    margin-top: -20px;
+    margin-top: -10px;
     margin-bottom: -40px;
     width: 100%;
 }
@@ -139,6 +149,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    /* background-color: var(--shadow); */
 }
 
 .contener_comment .comment .old_comment *{
@@ -149,12 +160,13 @@
 .contener_comment .comment .old_comment{
     /* display: inline-flex; */
     width: 96%;
-    margin-top: 8px;
+    margin-top: 20px;
     /* background-color: khaki; */
-    border-radius: 10px 10px 10px 10px;
-    -webkit-border-radius: 10px 10px 10px 10px;
-    -moz-border-radius: 10px 10px 10px 10px;
-    border-style: solid solid solid solid;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    /* border-style: none none solid none; */
+    box-shadow: 0px 2px 2px var(--shadow2);
     margin-left: auto;
     margin-right: auto;
     padding: 0%;
@@ -178,11 +190,6 @@
     /* padding-right: 5px; */
 }
 
-/* 
-
-stoooooooooop her not finesh yet
-
-*/
 
 /* owner of comment */
 .contener_comment .comment .old_comment h4:first-of-type{
@@ -203,10 +210,11 @@ stoooooooooop her not finesh yet
   font-family: "FontAwesome";
   content: "\f1f8";
   padding-right: 10px;
+  font-style: normal;
 }
 
 .contener_comment .comment .old_comment .delet_comment{
-    display: inline;
+    display: block;
     position: relative;
     width: 33%;
     float: right;
@@ -215,6 +223,7 @@ stoooooooooop her not finesh yet
     /* background-color: darkred; */
     text-align: right;
     margin-bottom: -20px;
+    color: var(--Colorfont);
     /* margin-right: 6px; */
     /* padding-left: 5px; */
 }
@@ -242,6 +251,7 @@ stoooooooooop her not finesh yet
     padding: 0%;
     margin: 0%;
     text-align: center;
+    color: var(--Colorfont);
     /* display: inline-flex; */
 }
 
@@ -268,10 +278,13 @@ stoooooooooop her not finesh yet
 .comment_like .new_comment {
     height: 40px;
     position: relative;
-    margin-top: 10px;
+    margin-top: 15px;
     width: calc(100% - 20px);
     margin-left: auto;
     margin-right: auto;
+    background-color: var(--font3);
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px var(--shadow);
 }
 
 .comment_like .new_comment div{
@@ -292,7 +305,7 @@ stoooooooooop her not finesh yet
     height: 41px;
     border-width: 3px;
     background: none;
-    border-color: var(--Colorfont);
+    /* border-color: var(--Colorfont); */
     font-size: 25px;
     outline-style: none;
     /* margin: -20px; */

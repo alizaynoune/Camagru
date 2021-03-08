@@ -42,6 +42,7 @@ else{
     <meta charset="UTF-8" />
 	<link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <title>Camagru</title>
   <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
 	</head>

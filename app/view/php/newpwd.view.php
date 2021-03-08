@@ -18,6 +18,7 @@ else if ((empty($_GET['id']) && empty($_POST['id']))|| (empty($_GET['token']) &&
   <title>Camagru</title>
   <link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css" />
     <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css" />
     <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>

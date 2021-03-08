@@ -36,7 +36,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 				<div class="contener_comment">	
 					<div class="comment">
 						<div class="old_comment">
-							<span class='dislike'>20</span>
+							<span class='like'>20</span>
 							<h4> owner_of_comment</h4>
 							<span class='delet_comment'></span>
 							<p>comment comment commet libxml_set_external_entity_loader for test</p>
@@ -51,7 +51,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 							<p>10-25-2021</p>
 						</div>
 						<div class="old_comment">
-							<span class='dislike'>20</span>
+							<span class='like'>20</span>
 							<h4> owner_of_comment</h4>
 							<span class='delet_comment'></span>
 							<p>comment comment commet libxml_set_external_entity_loader for test</p>

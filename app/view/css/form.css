@@ -21,7 +21,7 @@
     height: 60px;
     border-width: 3px;
     background: none;
-    border-color: var(--Colorfont);
+    border-color: var(--brdColor);
     font-size: 25px;
     /* -webkit-appearance:none; */
     

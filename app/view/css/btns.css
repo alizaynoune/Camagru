@@ -19,6 +19,7 @@
   width: 40px;
   background-color: var(--Button);
   overflow: hidden;
+  box-shadow: 0px 0px 20px var(--shadow);
 }
 .Btn::before{
   font-family: "FontAwesome";
@@ -55,18 +56,25 @@
   height: 100%;
   min-width: 150px;
   max-width: 300px;
+  /* box-shadow: 0px 0px 20px var(--shadow); */
 }
 
-.button:hover{background: var(--ButtonActive);}
+.button:hover, input[type='submit']:hover{background: var(--ButtonActive);}
 
 .button:focus, .submit:focus{
-  background-color: var(--Color0);
+  background-color: var(--ButtonActive);
+  /* background: var(--Button); */
   outline-style: none;
 }
 
 .leftBtn {float: right;}
 .rightBtn {float: left;}
-.centerBtn {left: calc(50% - 70px);}
+.centerBtn {
+  left: calc(50% - 70px);
+  /* display: inline;
+  margin-left: auto;
+  margin-right: auto; */
+}
 
 .toggle-control {
   display: block;
@@ -74,7 +82,6 @@
   cursor: pointer;
 }
 .toggle-control input {
-  /* position: absolute; */
   opacity: 0;
   cursor: pointer;
   height: 0;
