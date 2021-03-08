@@ -53,7 +53,7 @@ if ((new Session())->SessionStatus() === false){
 			<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
 			<h2 class="success"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
 			<input class="center out-form" type="text" placeholder="title" name="title"/>
-			<div class="contener_video">
+			<div class="contener_video" id="contener_video">
 				<div id='video_id' class="hiddenBtn display">
 					<video id="video" class="hiddenBtn display"  autoplay></video>
 				</div>

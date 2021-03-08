@@ -1,6 +1,6 @@
 
 function        valid_title(elem){
-    let REG = /^[\w\d\-_]+$/;
+    let REG = /^[\w\d\-_\ ]+$/;
     if (title.value.length === 0){
         title.classList.remove('error');
         return true;

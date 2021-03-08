@@ -71,7 +71,7 @@
 .rightBtn {float: left;}
 .centerBtn {
   left: calc(50% - 70px);
-  /* display: inline;
+  /* display: block;
   margin-left: auto;
   margin-right: auto; */
 }

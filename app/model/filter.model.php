@@ -66,7 +66,7 @@ function    filter_comment($comment){
 
 	global $ERROR;
 	$ERROR = 'login invalide2';
-	$REG = "/^[\w\d\-_]+$/";
+	$REG = "/^[\w\d\-_\ ]+$/";
 	if (strlen($comment) === 0 || strlen($comment) > 255 || !preg_match($REG, $comment))
 		return(false);
 	$ERROR = "";

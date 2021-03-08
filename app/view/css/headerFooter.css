@@ -63,7 +63,7 @@ html, body {
 
 .footer{
     position: fixed;
-    height: 2.2rem;
+    height: 2rem;
     bottom:  0%;
     width: 100%;
     background-color: var(--headerColor);
@@ -73,6 +73,9 @@ html, body {
 .footer p{
     font-weight: bold;
     float: right;
+    position: relative;
+    top: -10px;
+    margin-right: 10px;
 }
 
 

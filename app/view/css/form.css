@@ -48,18 +48,18 @@
 }
 
 .center{
-    border-radius: 40px 40px 40px 40px;
-    -webkit-border-radius: 40px 40px 40px 40px;
-    -moz-border-radius: 40px 40px 40px 40px;
-    /* margin-top: -3px;
-    margin-bottom: -3px; */
-    border-style: solid solid solid solid;
-    /* padding-left: 28px; */
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-style: solid;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .form ::placeholder, .out-form::placeholder{
     padding-right: 80px;
-    color: var(--Colorfont);
+    color: var(--ColorSCfont);
     text-align: center;
     font-weight: bold;
     opacity: 0.3;

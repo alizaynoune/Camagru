@@ -95,7 +95,7 @@
 
 .msj_new_av{
   text-align: center;
-  color: white;
+  color: var(--ColorSCfont);
 }
 
 .delete {
@@ -103,27 +103,17 @@
   margin-bottom: 200px;
   left: 50%;
 }
-
-
-
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+.delete p{
+  color: var(--ColorSCfont);
+  /* background-color: chartreuse; */
+  width: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
+.delete p:hover{
+  color: var(--Error);
 }
 
 

@@ -36,10 +36,6 @@
 
 .delet_post:hover{color: var(--Error);}
 
-/* .post input[name='hash']{
-    display: none;
-} */
-
 .post .info *{
     display: inline;
     padding: 0%;
@@ -114,8 +110,11 @@
   cursor: pointer;
 }
 
-.dislike{font-size: 15px; color: var(--Colorfont); padding-left: 5px;}
-.like{font-size: 15px; color: var(--Colorfont); padding-left: 5px;}
+.dislike, .like{
+    font-size: 15px;
+    color: var(--Colorfont);
+    padding-left: 5px;
+}
 
 .comment_like .contener_like {
     display: block;
@@ -128,8 +127,9 @@
     float: right;
     position: relative;
     cursor: pointer;
-    color: var(--Colorfont);
+    color: var(--ColorSCfont);
     padding-right: 5px;
+    font-weight: bold;
 }
 
 
@@ -222,7 +222,7 @@
     width: 78%;
     text-align: center;
     padding-left: 5px;
-    margin: 0%;
+    margin: 5px;
 }
 
 /* date creation comment */

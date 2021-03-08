@@ -5,14 +5,16 @@
     --Color3:           #CFCECD;
     --Color4:           #767B7B;
     --headerColor:      #f8f9fa;
-    --brdColor:         #505050;
+    /* --brdColor:         #505050; */
+    --brdColor:         #F08080;
     --menuColor:        #ffffff;
     --shadow:           #000000;
     --shadow2:          rgba(0, 0, 0, 0.4);
     --headPost:         #F08080;
 
-    --Colorfont:        var(--Color4);
+    --Colorfont:        #ffffff;
     --ColorMainFont:    #000000;
+    --ColorSCfont:      #767B7B;
     --Button:           #497f42;
     --ButtonActive:     #13ce66;
     --Success:          #33FF3C;

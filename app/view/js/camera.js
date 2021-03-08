@@ -11,11 +11,17 @@ var   e_listener;
 
 function  show_erea(){
   const select = document.querySelectorAll('.display');
-  delete_event(document.getElementById('canva'));
-  new_event(document.getElementById('video'));
+  var video = document.getElementById('video');
+  var canva = document.getElementById('canva');
+  delete_event(canva);
+  new_event(video);
   select.forEach(function(elem){
     elem.classList.remove('hiddenBtn');
   });
+  var contener_video = document.getElementById('contener_video');
+  console.log(contener_video.style.display);
+  // console.log('hhhh');
+
 }
 
 function  hidden_erea(){
@@ -70,9 +76,8 @@ function  camera_off(){
 
 function    upload_to_canva(event){
   camera_off();
-  // console.log(event.target.files[0].size);
     if (event.target.files[0].size < 2000000){
-    
+    var contener_video = document.getElementById('contener_video');
     document.querySelector('input[name=camera]').checked = false;
     var canva = document.getElementById('canva');
     var size = document.getElementById('canva_id');
@@ -80,13 +85,16 @@ function    upload_to_canva(event){
     ctx.clearRect(0, 0, canva.width, canva.height);
     var img = new Image();
     img.onload = function(){
-      canva.width = size.offsetWidth;
+      canva.width = size.offsetWidth / 1.19 ;
       canva.height = canva.width;
       clear_stickers(document.getElementById('canva_id'));
       var factor = Math.min((canva.width / img.width), (canva.height / img.height));
       canva.height = img.height * factor;
       canva.width = img.width * factor;
       ctx.drawImage(img, 0, 0, canva.width, canva.height);
+      if (canva.height > contener_video.offsetHeight)
+        contener_video.style.height = (canva.height) + 'px';
+      // console.log(contener_video.offsetHeight);
     };
     if (event.target.files[0]){
       img.src = URL.createObjectURL(event.target.files[0]);
@@ -103,12 +111,14 @@ function    upload_to_canva(event){
 function    capture_img(){
   let box = document.querySelector('input[name=stickers]').checked;
   if (sticker_video > 0 || box === false){
+    var contener_video = document.getElementById('contener_video');
     captur = 1;    
     sticker_video = 0;
     var canva = document.getElementById('canva');
     var video = document.getElementById('video');
     canva.width = video.videoWidth;
     canva.height = video.videoHeight;
+    // contener_video.style.height = contener_video.offsetHeight + (canva.height * 2) + 'px';
     clear_stickers(document.getElementById('canva_id'));
     canva.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
     copy_stickers();
