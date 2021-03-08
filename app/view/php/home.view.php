@@ -18,9 +18,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
 	<div class="content">
 		<h1>home</h1>
+
 		<div class="post">
 			<span class="delet_post"></span>
-			<input type="text" name='hash'>
+			<input type='hidden' name='post_info'/>
 			<div class="info">
 				<img id="img_owner" src="../../../public/icone/profile.jpg">
 				<h4 class="owner">name of owner</h4>
@@ -29,71 +30,16 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 			<img id='img_post' src="../../../public/icone/profile.jpg">
 			<div class="comment_like">
 				<div class="contener_like">
-					<span class="like">20</span>
-					<!-- <h4 class="likeNbr">1likes</h4> -->
-					<h4 class="commentNbr">10 comments</h4>
+					<label class="like"></label>
+					<span>20</span>
+					<h4 class="commentNbr" onclick="toggle_comments(this.parentNode.parentNode)">10 comments</h4>
 				</div>
 				<div class="contener_comment">	
-					<div class="comment">
-						<div class="old_comment">
-							<span class='like'>20</span>
-							<h4> owner_of_comment</h4>
-							<span class='delet_comment'></span>
-							<p>comment comment commet libxml_set_external_entity_loader for test</p>
-							<p>10-25-2021</p>
-						</div>
-
-						<div class="old_comment">
-							<span class='dislike'>20</span>
-							<h4> owner_of_comment</h4>
-							<span class='delet_comment'></span>
-							<p>comment comment commet libxml_set_external_entity_loader for test</p>
-							<p>10-25-2021</p>
-						</div>
-						<div class="old_comment">
-							<span class='like'>20</span>
-							<h4> owner_of_comment</h4>
-							<span class='delet_comment'></span>
-							<p>comment comment commet libxml_set_external_entity_loader for test</p>
-							<p>10-25-2021</p>
-						</div>
-						<div class="old_comment">
-							<span class='dislike'>20</span>
-							<h4> owner_of_comment</h4>
-							<span class='delet_comment'></span>
-							<p>comment comment commet libxml_set_external_entity_loader for test</p>
-							<p>10-25-2021</p>
-						</div>
-						<div class="old_comment">
-							<span class='dislike'>20</span>
-							<h4> owner_of_comment</h4>
-							<span class='delet_comment'></span>
-							<p>comment comment commet libxml_set_external_entity_loader for test</p>
-							<p>10-25-2021</p>
-						</div>
-						<div class="old_comment">
-							<span class='dislike'>20</span>
-							<h4> owner_of_comment</h4>
-							<span class='delet_comment'></span>
-							<p>comment comment commet libxml_set_external_entity_loader for test</p>
-							<p>10-25-2021</p>
-						</div>
-						<div class="old_comment">
-							<span class='dislike'>20</span>
-							<h4> owner_of_comment</h4>
-							<span class='delet_comment'></span>
-							<p>comment comment commet libxml_set_external_entity_loader for test</p>
-							<p>10-25-2021</p>
-						</div>
-						<div class="old_comment">
-							<span class='dislike'>20</span>
-							<h4> owner_of_comment</h4>
-							<span class='delet_comment'></span>
-							<p>comment comment commet libxml_set_external_entity_loader for test</p>
-							<p>10-25-2021</p>
-						</div>
-						<div class="old_comment">
-							<span class='dislike'>20</span>
+					<div class="comment hidden">
+					<div class="old_comment">
+							<input type='hidden' name='comment_info'/>
+							<label class="like"></label>
+							<span>20</span>
 							<h4> owner_of_comment</h4>
 							<span class='delet_comment'></span>
 							<p>comment comment commet libxml_set_external_entity_loader for test</p>
@@ -110,9 +56,19 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 				</div>
 			</div>
 		</div>
+
+
+
+
+
+
+
 	</div>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
+
+	<script type="text/javascript" src="../js/Posts.js"></script>
+	<!-- <script type="text/javascript" src="../../controller/camera.controller.js"></script> -->
 	</body>
 </html>

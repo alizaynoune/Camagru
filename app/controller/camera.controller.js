@@ -98,46 +98,58 @@ form.addEventListener('submit', (e) =>{
 ///////////////////////////////////append new post/////////////////////////////
 
 function        new_post(elem){
+    // selet thumb 
     let thumb = document.querySelector('.thumbnails');
-    
-    let new_div = document.createElement('div');
-    new_div.classList.add('post');
-    
-    let img = document.createElement('img');
-    img.src = elem[0];
-    
-    let title = document.createElement('h3');
-    title.innerHTML = elem[1];
-    
-    new_div.appendChild(title);
-    new_div.appendChild(img);
 
-    let div_like_comment = document.createElement('div');
-    div_like_comment.classList.add('like_comment');
+    //create post
+    let new_post = document.createElement('div').classList.add('post');
+    // creat button delet post
+    let delet_post = document.createElement('span').classList.add('delet_post');
+    // create input (stor info post)
+    let post_info = document.createElement('input').type = 'hidden';
+    post_info.name = 'post_info';
+    //create div info will has (img_owner, name_owner, title)
+    let info = document.createElement('div').classList.add('info');
+    // create create img (img_owner)
+    
+
+
+    
+//     let new_div = document.createElement('div');
+//     new_div.classList.add('post');
+    
+//     let img = document.createElement('img');
+//     img.src = elem[0];
+    
+//     let title = document.createElement('h3');
+//     title.innerHTML = elem[1];
+    
+//     new_div.appendChild(title);
+//     new_div.appendChild(img);
+
+//     let div_like_comment = document.createElement('div');
+//     div_like_comment.classList.add('like_comment');
    
     
-    let comment = document.createElement('p');
-    comment.classList.add('comment');
-    div_like_comment.appendChild(comment);
-    // comment.innerHTML = 'new comment';
+//     let comment = document.createElement('p');
+//     comment.classList.add('comment');
+//     div_like_comment.appendChild(comment);
+//     // comment.innerHTML = 'new comment';
 
-    let nbr_like = document.createElement('h4');
-    nbr_like.classList.add('likeNbr');
-    div_like_comment.appendChild(nbr_like);
+//     let nbr_like = document.createElement('h4');
+//     nbr_like.classList.add('likeNbr');
+//     div_like_comment.appendChild(nbr_like);
 
-    let nbr_comment = document.createElement('h4');
-    nbr_comment.classList.add('commentNbr');
-    div_like_comment.appendChild(nbr_comment);
+//     let nbr_comment = document.createElement('h4');
+//     nbr_comment.classList.add('commentNbr');
+//     div_like_comment.appendChild(nbr_comment);
 
     
-    let like = document.createElement('span');
-    like.classList.add('dislike');
-    div_like_comment.appendChild(like);
+//     let like = document.createElement('span');
+//     like.classList.add('dislike');
+//     div_like_comment.appendChild(like);
     
- new_div.appendChild(div_like_comment);
-    // div_like_comment.appendChild(like);
-    // div_like_comment.appendChild(comment);
-    // thumb.appendChild(new_div);
-    thumb.insertBefore(new_div, thumb.firstChild);
+//  new_div.appendChild(div_like_comment);
+// thumb.insertBefore(new_div, thumb.firstChild);
 }
 

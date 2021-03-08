@@ -1,8 +1,12 @@
 
-/* post */
+/* ///////////////////////// */
+/*        hidden class       */
+/* ///////////////////////// */
 
-.hidden{display: none;}
-
+.hidden{display: none !important;}
+/* ///////////////////////// */
+/*          post             */
+/* ///////////////////////// */
 .post{
   width: 100%;
   margin-left: auto;
@@ -28,6 +32,8 @@
     font-family: "FontAwesome";
     content: "\f1f8";
 }
+
+.delet_post:hover{color: var(--Error);}
 
 .post input[name='hash']{
     display: none;
@@ -87,21 +93,25 @@
 .like::before{
     font-family: "FontAwesome";
     content: "\f004";
-    font-size: 40px;
+    font-size: 32px;
     color: red;
-    padding-right: 5px;
+    /* padding-right: 5px; */
+    cursor: pointer;
+    /* padding-left: 5px; */
     /* font-style: normal; */
 }
 
 .dislike::before{
   font-family: "Font Awesome 5 Free";
   content: "\f004";
-  font-size: 40px;
+  font-size: 32px;
   color: red;
-  padding: 5px;
+  /* padding: 5px; */
+  cursor: pointer;
 }
 
-.like, .dislike{font-size: 15px; color: var(--Colorfont); padding-left: 5px;}
+.dislike{font-size: 15px; color: var(--Colorfont); padding-left: 5px;}
+.like{font-size: 15px; color: var(--Colorfont); padding-left: 5px;}
 
 .comment_like .contener_like {
     display: block;
@@ -111,13 +121,12 @@
     width: 100%;
 }
 
-.comment_like .contener_like span{cursor: pointer;}
+/* .comment_like .contener_like span{cursor: pointer;} */
 
 .comment_like .contener_like .commentNbr {
     float: right;
     position: relative;
     top: -10px;
-    /* margin-bottom: -10px; */
     cursor: pointer;
     color: var(--Colorfont);
     padding-right: 5px;
@@ -133,67 +142,52 @@
 .contener_comment{
     position: relative;
     float: right;
-    /* background-color: darkgray; */
     display: block;
     padding: 0%;
     margin: 0%;
     margin-top: -10px;
-    margin-bottom: -40px;
+    margin-bottom: -20px;
     width: 100%;
 }
 
 .contener_comment .comment{
-    /* display: inline-block; */
     max-height: 200px;
     overflow-y: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    /* background-color: var(--shadow); */
 }
 
 .contener_comment .comment .old_comment *{
     display: inline-flex;
-    /* padding-top: 10px; */
 }
 
 .contener_comment .comment .old_comment{
-    /* display: inline-flex; */
     width: 96%;
     margin-top: 20px;
-    /* background-color: khaki; */
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
-    /* border-style: none none solid none; */
     box-shadow: 0px 2px 2px var(--shadow2);
     margin-left: auto;
     margin-right: auto;
     padding: 0%;
-    /* margin-bottom: -20px; */
+    margin-bottom: 20px;
+    /* background-color: lightcoral; */
 }
+/* ///////////////////////// */
+/* commment like and dislike */
+/* ///////////////////////// */
 
-.contener_comment .comment .old_comment .like,
-.contener_comment .comment .old_comment .dislike{
-    font-size: 14px;
-    /* background-color: darkolivegreen; */
-    width: 33%;
-    display: block;
-    padding: 0%;
-    margin: 0px;
-    cursor: pointer;
-}
-
-.contener_comment .comment .old_comment .like::before,
-.contener_comment .comment .old_comment .dislike::before{
+.contener_comment .comment .old_comment .dislike::before,
+.contener_comment .comment .old_comment .like::before{
     font-size: 20px;
-    /* padding-right: 5px; */
+    left: 20px;
 }
 
 
 /* owner of comment */
 .contener_comment .comment .old_comment h4:first-of-type{
-    /* background-color: deeppink; */
     position: relative;
     display: block;
     width: 33%;
@@ -206,6 +200,7 @@
 }
 
 /* botton delet comment */
+
 .delet_comment::after{
   font-family: "FontAwesome";
   content: "\f1f8";
@@ -220,13 +215,12 @@
     float: right;
     top: -20px;
     cursor: pointer;
-    /* background-color: darkred; */
     text-align: right;
     margin-bottom: -20px;
     color: var(--Colorfont);
-    /* margin-right: 6px; */
-    /* padding-left: 5px; */
 }
+
+.contener_comment .comment .old_comment .delet_comment:hover{color: var(--Error);}
 
 
 
@@ -234,7 +228,6 @@
 
 .contener_comment .comment .old_comment p:first-of-type{
     width: 78%;
-    /* background-color: darkgreen; */
     text-align: center;
     padding-left: 5px;
     margin: 0%;
@@ -242,17 +235,14 @@
 
 /* date creation comment */
 .contener_comment .comment .old_comment p:last-of-type{
-    /* background-color: darkslategrey; */
     position: relative;
     width: 20%;
     display: block;
     float: right;
-    /* top: -15px; */
     padding: 0%;
     margin: 0%;
     text-align: center;
     color: var(--Colorfont);
-    /* display: inline-flex; */
 }
 
 
@@ -270,9 +260,9 @@
 
 .comment_like .new_comment #submit{
     cursor: pointer;
-    /* margin-bottom: 0%; */
-    /* padding-bottom: 5px; */
 }
+
+.comment_like .new_comment #submit:hover{color: var(--ButtonActive);}
 
 
 .comment_like .new_comment {
@@ -288,28 +278,28 @@
 }
 
 .comment_like .new_comment div{
-    /* background-color: darkviolet; */
     height: 40px;
     width: 40px;
     font-size: 25px;
     position: relative;
     float: right;
-    /* margin-bottom: -20px; */
-    /* margin: 0%; */
+    padding-top: 5px;
 
 }
 
 .comment_like .new_comment input[name='comment']{
-    width: calc(100% - 50px);
+    width: calc(100% - 60px);
     border-style: none;
     height: 41px;
     border-width: 3px;
     background: none;
-    /* border-color: var(--Colorfont); */
     font-size: 25px;
     outline-style: none;
-    /* margin: -20px; */
-    /* margin-bottom: -20px; */
+    padding-left: 10px;
+}
+
+.comment_like .new_comment input[name='comment']::placeholder{
+    padding-left: 10px;
 }
 
 

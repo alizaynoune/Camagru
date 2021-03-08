@@ -48,7 +48,7 @@ html, body {
 
 .navBar {
     width: 100%;
-    height: 80px;
+    height: 65px;
     display: inline-flex;
     background-color: var(--headerColor);
     justify-content: space-around;
@@ -81,6 +81,7 @@ html, body {
     right:  calc(0% + 5px);
     /* left: 90%; */
     text-align: end;
+    /* height: 50px; */
     /* margin-right: 2px; */
     /* margin-right: -50%; */
     /* float: right; */
@@ -115,6 +116,6 @@ html, body {
 
 @media (pointer:none), (pointer:coarse) {
     .navBar {
-        height: 100px;
+        height: 90px;
     }
   }
