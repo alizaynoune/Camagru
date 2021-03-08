@@ -209,45 +209,5 @@ function        new_post(elem){
         lable_submit.setAttribute('id', 'submit');
         lable_submit.setAttribute('for', 'submit_comment');
         contener_submit.appendChild(lable_submit);
-
-        
-
-    
-//     let new_div = document.createElement('div');
-//     new_div.classList.add('post');
-    
-//     let img = document.createElement('img');
-//     img.src = elem[0];
-    
-//     let title = document.createElement('h3');
-//     title.innerHTML = elem[1];
-    
-//     new_div.appendChild(title);
-//     new_div.appendChild(img);
-
-//     let div_like_comment = document.createElement('div');
-//     div_like_comment.classList.add('like_comment');
-   
-    
-//     let comment = document.createElement('p');
-//     comment.classList.add('comment');
-//     div_like_comment.appendChild(comment);
-//     // comment.innerHTML = 'new comment';
-
-//     let nbr_like = document.createElement('h4');
-//     nbr_like.classList.add('likeNbr');
-//     div_like_comment.appendChild(nbr_like);
-
-//     let nbr_comment = document.createElement('h4');
-//     nbr_comment.classList.add('commentNbr');
-//     div_like_comment.appendChild(nbr_comment);
-
-    
-//     let like = document.createElement('span');
-//     like.classList.add('dislike');
-//     div_like_comment.appendChild(like);
-    
-//  new_div.appendChild(div_like_comment);
-// thumb.insertBefore(new_div, thumb.firstChild);
 }
 

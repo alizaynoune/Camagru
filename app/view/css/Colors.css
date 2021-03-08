@@ -1,10 +1,4 @@
 :root{
-    /* --Color0:       #846DF8; */
-    /* --Color1:       #5F6CD9; */
-    /* --headerColor:       #75A2F0; */
-    /* --Color3:       #5FACD9; */
-    /* --Color4:       #6DE9F8; */
-
 
     --Color0:           #5C848C;
     --Color1:           #384549;
@@ -12,11 +6,10 @@
     --Color4:           #767B7B;
     --headerColor:      #f8f9fa;
     --brdColor:         #505050;
-    /* --menuColor:        rgba(110, 235, 249,0.5); */
-    --menuColor:            #ffffff;
-    --shadow:               #000000;
-    --shadow2:                rgba(0, 0, 0, 0.4);
-    --headPost:               #F08080;
+    --menuColor:        #ffffff;
+    --shadow:           #000000;
+    --shadow2:          rgba(0, 0, 0, 0.4);
+    --headPost:         #F08080;
 
     --Colorfont:        var(--Color4);
     --ColorMainFont:    #000000;
@@ -27,6 +20,6 @@
     --font1:              ;
     --font2:              ;
     --font3:            #D5DBDB;
-    --bgColor:            #ffffff;
+    --bgColor:          #ffffff;
 }
 

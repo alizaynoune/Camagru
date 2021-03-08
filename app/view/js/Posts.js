@@ -24,25 +24,41 @@ function        toggle_like(e){
     
 }
 
+function        new_comment(e){
+    // console.log(e);
+    console.log('her');
+    
+}
+
+
+/////////// document ready/////////////////////////////
+
 document.querySelectorAll('.post').forEach((e)=> {
-    e.querySelectorAll('label').forEach((e)=>{
-        if (e.className === 'like' || e.className === 'dislike'){
-            // console.log(e);
-            // console.log(e.after);
-            
-            
-            e.addEventListener('click', toggle_like, false);
+    e.querySelectorAll('label').forEach((el)=>{
+        if (el.className === 'like' || el.className === 'dislike'){
+            el.addEventListener('click', toggle_like, false);
             
         }
 
-        else if (e.className === 'commentNbr'){
-            // onclick="toggle_comments(this.parentNode.parentNode)"
-            console.log('test');
+        else if (el.className === 'commentNbr'){
+            // console.log('test');
             
-            e.addEventListener('click', toggle_comments, false);
+            el.addEventListener('click', toggle_comments, false);
         }
-        console.log(e.className);
+        // console.log(el.className);
         
         
     });
+    e.querySelector('.new_comment').addEventListener('click', new_comment, false);
+    var input = e.querySelector('input[name="comment"]');
+    console.log(input);
+    
+    // e.querySelectorAll('.new_comment').forEach((elem)=>{
+        // console.log(submit);
+    //     elem.querySelector()
+    
+    
+        
+    // });
+    
 });

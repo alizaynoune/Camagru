@@ -16,6 +16,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	</head>
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
+	
 	<div class="content">
 		<h1>home</h1>
 

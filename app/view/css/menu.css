@@ -80,11 +80,13 @@
   
 
 .img {
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
     right: 0%;
     cursor: pointer;
     border-radius: 50%;
+    margin-top: 2.5px;
+    /* top: 2.5px; */
 }
 
 .show , .show li{
@@ -94,8 +96,8 @@
 
   @media (pointer:none), (pointer:coarse) {
     .img {
-      height: 90px;
-      width: 90px;
+      height: 85px;
+      width: 85px;
     }
     .list{
       top:110px;
