@@ -31,21 +31,28 @@
 .delet_post::after{
     font-family: "FontAwesome";
     content: "\f1f8";
+    font-size: 20px;
 }
 
 .delet_post:hover{color: var(--Error);}
 
-.post input[name='hash']{
+/* .post input[name='hash']{
     display: none;
-}
+} */
 
 .post .info *{
     display: inline;
     padding: 0%;
+    /* padding-bottom: 5px; */
 }
 .post .info {
     padding: 0%;
     box-shadow: 0px 0px 20px var(--shadow);
+    /* padding-bottom: 10px; */
+    margin-bottom: 20px;
+    background-color: var(--headPost);
+    height: 65px;
+    /* padding-bottom: -10px; */
     
 }
 
@@ -59,6 +66,8 @@
     padding: 0%;
     position: relative;
     top: -10px;
+    /* padding-bottom: -25px; */
+    margin-bottom: -25px;
 }
 
 .post .info .owner{
@@ -70,6 +79,8 @@
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
+    padding-top: 5px;
+    padding-left: 5px;
 }
 
 .post #img_post{
@@ -78,35 +89,28 @@
     margin-right: auto;
     border-radius: 15px;
     box-shadow: 0px 0px 10px var(--shadow);
-    
 }
 
 .comment_like{
-    /* border: greenyellow dashed 1px; */
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    top: -45px;
-    margin-bottom: -45px;
+    top: 10px;
 }
 
 .like::before{
     font-family: "FontAwesome";
     content: "\f004";
     font-size: 32px;
-    color: red;
-    /* padding-right: 5px; */
+    color: var(--Error);
     cursor: pointer;
-    /* padding-left: 5px; */
-    /* font-style: normal; */
 }
 
 .dislike::before{
   font-family: "Font Awesome 5 Free";
   content: "\f004";
   font-size: 32px;
-  color: red;
-  /* padding: 5px; */
+  color: var(--Error);
   cursor: pointer;
 }
 
@@ -117,27 +121,17 @@
     display: block;
     width: 80px;
     height: 40px;
-    /* background-color: blue; */
     width: 100%;
 }
-
-/* .comment_like .contener_like span{cursor: pointer;} */
 
 .comment_like .contener_like .commentNbr {
     float: right;
     position: relative;
-    top: -10px;
     cursor: pointer;
     color: var(--Colorfont);
     padding-right: 5px;
 }
 
-
-
-
-
-
-/* contener of all comment */
 
 .contener_comment{
     position: relative;
@@ -145,8 +139,7 @@
     display: block;
     padding: 0%;
     margin: 0%;
-    margin-top: -10px;
-    margin-bottom: -20px;
+    margin-bottom: 20px;
     width: 100%;
 }
 
@@ -173,7 +166,6 @@
     margin-right: auto;
     padding: 0%;
     margin-bottom: 20px;
-    /* background-color: lightcoral; */
 }
 /* ///////////////////////// */
 /* commment like and dislike */
@@ -244,12 +236,6 @@
     text-align: center;
     color: var(--Colorfont);
 }
-
-
-
-
-
-
 
 
 .comment_like .new_comment #submit_comment{display: none;}

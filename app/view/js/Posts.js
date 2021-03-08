@@ -1,9 +1,11 @@
 // animation posts
 
 function        toggle_comments(elem){
-    let comment = elem.querySelector('.comment');
+    let comment = elem.target.parentNode.parentNode.querySelector('.comment');
     comment.classList.toggle('hidden');
     console.log(comment);
+    
+    
     
 }
 
@@ -32,6 +34,15 @@ document.querySelectorAll('.post').forEach((e)=> {
             e.addEventListener('click', toggle_like, false);
             
         }
+
+        else if (e.className === 'commentNbr'){
+            // onclick="toggle_comments(this.parentNode.parentNode)"
+            console.log('test');
+            
+            e.addEventListener('click', toggle_comments, false);
+        }
+        console.log(e.className);
+        
         
     });
 });

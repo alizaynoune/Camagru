@@ -25,14 +25,14 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 			<div class="info">
 				<img id="img_owner" src="../../../public/icone/profile.jpg">
 				<h4 class="owner">name of owner</h4>
-				<h2 class="title">title test</h2>
+				<h2 class="title"></h2>
 			</div>
 			<img id='img_post' src="../../../public/icone/profile.jpg">
 			<div class="comment_like">
 				<div class="contener_like">
 					<label class="like"></label>
 					<span>20</span>
-					<h4 class="commentNbr" onclick="toggle_comments(this.parentNode.parentNode)">10 comments</h4>
+					<label class="commentNbr">10 comments</label>
 				</div>
 				<div class="contener_comment">	
 					<div class="comment hidden">

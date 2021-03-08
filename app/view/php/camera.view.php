@@ -21,6 +21,7 @@ if ((new Session())->SessionStatus() === false){
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
 	  <link class="_css" rel="stylesheet" type="text/css"	href="../css/camera.css"/>
+	  <link class="_css" rel="stylesheet" type="text/css"	href="../css/Posts.css"/>
 
 	<!-- <link class="_css" rel="stylesheet" type="text/css"	href="../css/settings.css"/> -->
 	</head>
@@ -78,25 +79,10 @@ if ((new Session())->SessionStatus() === false){
 				<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
 				<label for="share" class=" btnShr Btn rightBtn">Share</label>
 			</div>
-			<div class='thumbnails'>
-				<div class="post">
-					<span class="delet_post"></span>
-					<h3 class="title">title test</h3>
-					<img src="../../../public/icone/profile.jpg">
-					<div class="like_comment">
-						<span class="like"></span>
-						<h4 class="likeNbr">1c</h4>
-						<h4 class="commentNbr">1 comments</h4>
-						<div class="comment">
-							<span class='delet_commet'>
-								<p>commet test</p>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</form>
-
+		<div class='thumbnails'>
+			</div>
 
 
 
@@ -106,5 +92,6 @@ if ((new Session())->SessionStatus() === false){
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 	<script type="text/javascript" src="../js/camera.js"></script>
 	<script type="text/javascript" src="../../controller/camera.controller.js"></script>
+	<script type="text/javascript" src="../js/Posts.js"></script>
 	</body>
 </html>
