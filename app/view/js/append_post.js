@@ -1,22 +1,17 @@
-function        new_post(data, elem){
-    // selet thumb 
-    // let thumb = document.querySelector('.thumbnails');
+function        new_post(data, user){
 
     //create post
     let new_post = document.createElement('div');
         new_post.classList.add('post');
-        elem.insertBefore(new_post, elem.firstChild);
-    // creat button delet post
-    let delet_post = document.createElement('span');
-        delet_post.classList.add('delet_post');
-        new_post.appendChild(delet_post);
+
+
     
     // create input (stor info post)///
     //////////////////////////////////
     let post_info = document.createElement('input');
         post_info.type = 'hidden';
         post_info.name = 'post_info';
-        post_info.value = data[0] + '_leet_' + data[1];
+        post_info.value = data['id'] + '_leet_' + data['uid'];
         new_post.appendChild(post_info);
     //create div info will has (img_owner, name_owner, title)
     let info = document.createElement('div');
@@ -25,23 +20,33 @@ function        new_post(data, elem){
     // create create img (img_owner)
     let img_owner = document.createElement('img');
         img_owner.setAttribute('id', 'img_owner');
-        img_owner.src = document.querySelector('.img').src;
+        img_owner.src = data['u_avatar'];
         info.appendChild(img_owner);
     // create h4 hase name of owner
     let name_owner = document.createElement('h4');
         name_owner.classList.add('owner');
-        name_owner.innerHTML = 'name of owner';
+        name_owner.innerHTML = data['u_name'];
         info.appendChild(name_owner);
     // create h2 will has title of post
     let title = document.createElement('h2');
         title.classList.add('title');
-        title.innerHTML = data[3];
+        title.innerHTML = data['title'];
         info.appendChild(title);
+
+    // creat date of create post
+    let date_post = document.createElement('p');
+        date_post.innerHTML = data['Date'];
+        info.appendChild(date_post);
+
+    // creat button delet post
+    let delet_post = document.createElement('span');
+        delet_post.classList.add('delet_post');
+        info.appendChild(delet_post);
 
     // create img will hase image of post
     let img_post = document.createElement('img');
         img_post.setAttribute('id', 'img_post');
-        img_post.src = data[2];
+        img_post.src = data['url'];
         new_post.appendChild(img_post);
     
     // create contener will has (post like, comment)//
@@ -111,4 +116,6 @@ function        new_post(data, elem){
         lable_submit.setAttribute('id', 'submit');
         lable_submit.setAttribute('for', 'submit_comment');
         contener_submit.appendChild(lable_submit);
+
+    return(new_post);
 }

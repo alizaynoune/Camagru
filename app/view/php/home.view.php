@@ -22,12 +22,14 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		<h1>home</h1>
 
 		<div class="post">
-			<span class="delet_post"></span>
+			
 			<input type='hidden' name='post_info'/>
 			<div class="info">
 				<img id="img_owner" src="<?php echo _SERVER_.'/public/icone/profile.jpg'; ?>">
 				<h4 class="owner">name of owner</h4>
-				<h2 class="title"></h2>
+				<h2 class="title">ddddd</h2>
+				<p>24-03-2021</p>
+				<span class="delet_post"></span>
 			</div>
 			<img id='img_post' src="<?php echo _SERVER_.'/public/icone/profile.jpg'; ?>">
 			<div class="comment_like">

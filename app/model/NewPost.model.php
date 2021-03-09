@@ -59,11 +59,25 @@ else {
     );
 }
 
-$ret = array(encrypt_($id['id']));
-array_push($ret, $_SESSION['uid']);
+// $ret = array(encrypt_($id['id']));
+// array_push($ret, $_SESSION['uid']);
 // $content = ;
-array_push($ret, _SERVER_ . '/public/usersData/' . $_SESSION['login'] . '/' . $name );
-array_push($ret, ($_POST['title']));
+$ret = (new dbselect())->select($DB_SELECT['_id'], '*', 'Posts', $id['id'], $PARAM['int'], 0);
+$uid = $ret['uid'];
+$user_name = (new dbselect())->select($DB_SELECT['_id'], 'login', 'Users', $ret['uid'], $PARAM['int'], 0);
+$avatar = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $ret['uid'], $PARAM['int'], 0);
+foreach($ret as $key => &$value){
+    if ($key === 'id' || $key === 'uid'){
+        $value = encrypt_($value);
+    }
+    else if ($key === 'url'){
+        $value = _SERVER_ . '/public/usersData/' . $user_name['login'] . '/' . $value;
+    }
+}
+$ret += array('u_name' => $user_name['login']);
+$ret += array('u_avatar' => _SERVER_ . '/public/usersData/' . $user_name['login'] . '/' . $avatar['url']);
+// array_push($ret, _SERVER_ . '/public/usersData/' . $_SESSION['login'] . '/' . $name );
+// array_push($ret, ($_POST['title']));
 
 exit(json_encode($ret));
 ?>

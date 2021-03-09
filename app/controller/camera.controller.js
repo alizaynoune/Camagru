@@ -80,10 +80,13 @@ form.addEventListener('submit', (e) =>{
     var url = '../../model/NewPost.model.php';
     var request = new XMLHttpRequest();
     request.open('Post', url, true);
+    var page = document.querySelector('.thumbnails');
     request.onload = function(){
         try{
             var ret =JSON.parse(this.responseText);
-            new_post(ret, document.querySelector('.thumbnails'));
+            let post = new_post(ret, null);
+            // page.appendChild()
+            page.insertBefore(post, page.firstChild);
             _Success_.innerHTML = 'Success Share';
             form.querySelector("input[name='stickers']").value = '';
             form.querySelector("input[name='left']").value = '';

@@ -84,12 +84,14 @@ function    upload_to_canva(event){
     if (event.target.files[0].size < 2000000){
     document.querySelector('input[name=camera]').checked = false;
     var canva = document.getElementById('canva');
-    var size = document.getElementById('canva_id');
+    var canva_id = document.getElementById('canva_id');
+    var size = document.getElementById('hiddenCanva');
+    // console.log(size.width);
     var ctx = canva.getContext('2d');
     ctx.clearRect(0, 0, canva.width, canva.height);
     var img = new Image();
     img.onload = function(){
-      canva.width = size.offsetWidth / 1.19 ;
+      canva.width = size.width * 1.5;
       canva.height = canva.width;
       clear_stickers(document.getElementById('canva_id'));
       var factor = Math.min((canva.width / img.width), (canva.height / img.height));
@@ -97,8 +99,8 @@ function    upload_to_canva(event){
       canva.width = img.width * factor;
 
       ctx.drawImage(img, 0, 0, canva.width, canva.height);
-        size.style.height = (canva.height) + 'px';
-        size.style.width = (canva.width) + 'px';
+        canva_id.style.height = (canva.height) + 'px';
+        canva_id.style.width = (canva.width) + 'px';
     };
     if (event.target.files[0]){
       img.src = URL.createObjectURL(event.target.files[0]);

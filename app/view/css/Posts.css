@@ -18,23 +18,34 @@
   border-radius: 20px;
   margin-bottom: 20px;
 }
-.delet_post{
-    position: relative;
-    float: right;
-    right: 20px;
-    top: 20px;
+.post .info .delet_post{
     cursor: pointer;
     color: var(--Colorfont);
     font-style: normal;
+    grid-column-start: 4;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    justify-self: end;
+    margin: 10px 10px 0px 0px;
 }
 
-.delet_post::after{
+.post .info p{
+    grid-column-start: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    justify-self: end;
+    margin-top: 30%;
+    margin-right: 5px;
+    color: var(--ColorSCfont);
+}
+
+.post .info .delet_post::after{
     font-family: "FontAwesome";
     content: "\f1f8";
     font-size: 20px;
 }
 
-.delet_post:hover{color: var(--Error);}
+.post .info .delet_post:hover{color: var(--Error);}
 
 .post .info *{
     display: inline;
@@ -46,24 +57,20 @@
     margin-bottom: 20px;
     background-color: var(--headPost);
     height: 65px;
-    
+    display: grid;
+    grid-template-columns: 60px 150px auto 150px;
+    grid-template-rows: 65px;
 }
 
 .post .title{
     text-align: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: -25px;
-    width: 50%;
-    padding: 0%;
-    position: relative;
-    top: -10px;
-    margin-bottom: -25px;
+    justify-self: center;
 }
 
 .post .info .owner{
     padding: 0%;
+    justify-self: start;
+    margin-top: 20%;
 }
 
 .post .info #img_owner{
@@ -71,8 +78,10 @@
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
-    padding-top: 5px;
-    padding-left: 5px;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: auto;
 }
 
 .post #img_post{
@@ -205,7 +214,7 @@
     cursor: pointer;
     text-align: right;
     margin-bottom: -20px;
-    color: var(--Colorfont);
+    color: var(--ColorSCfont);
 }
 
 .contener_comment .comment .old_comment .delet_comment:hover{color: var(--Error);}

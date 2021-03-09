@@ -105,6 +105,7 @@
 
 #canva_id, #video_id{
     margin: auto !important;
+    background-color: blueviolet;
 }
 
 #canva, #video {
@@ -114,6 +115,7 @@
     box-shadow: 0px 0px 10px var(--shadow);
     border-radius: 5px;
     padding: 0%;
+    position: relative !important;
 
 }
 
@@ -153,7 +155,12 @@
 
 
 
-#hiddenCanva{display: none;}
+#hiddenCanva{
+    width: 600px;
+    height: 300px;
+    display: none !important;
+    /* background-color: blue; */
+}
 
 
 .thumbnails{
