@@ -37,9 +37,9 @@ if ((new Session())->SessionStatus() === true){
           <input class="submit left" type="submit" name="submit" value="OK"/>
 		    </form>
       </div>
-      <div class="buttomBtn">
-        <a class="rightBtn button" href="forgetpwd.view.php"><p>Forgotten password?</p></a>
-        <a class="leftBtn button" href="login.view.php"><p>SignIn</p></a>
+      <div class="buttomBtn" style="grid-template-columns: auto auto;">
+        <a class="lefttBtn button" href="forgetpwd.view.php"><p>Forgotten password?</p></a>
+        <a class="rightBtn button" href="login.view.php"><p>SignIn</p></a>
       </div>
     </div>
         <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>

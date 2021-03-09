@@ -30,7 +30,7 @@ if ((new Session())->SessionStatus() === true){
 				<input class="submit left" type="submit" name="submit" value="OK"/></br>
 			</form>
 		</div>
-		<div class="buttomBtn">
+		<div class="buttomBtn" style="grid-template-columns: auto auto;">
 			<a class="leftBtn button" href="signup.view.php"><p>Create New Account</p></a>
 			<a class="rightBtn button" href="login.view.php"><p>SignIn</p></a>
 		</div>

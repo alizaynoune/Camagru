@@ -225,10 +225,6 @@ function    new_elem(stic){
         event.target.parentNode.remove();
       });
     }
-    // else if (e === 'rotate'){
-    //   div.setAttribute('draggable', true);
-    //   div.addEventListener('dragstart', initRotate, false);
-    // }
 
     parent.appendChild(div);
   });
@@ -288,12 +284,12 @@ else
   camera_off();
 });
 
-document.querySelector('input[name=stickers]').addEventListener('change', (e)=>{
-  if (e.target.checked === false)
-    document.querySelector('.stickers').classList.add('hidden-stickers');
-  else
-    document.querySelector('.stickers').classList.remove('hidden-stickers');
-});
+// document.querySelector('input[name=stickers]').addEventListener('change', (e)=>{
+//   if (e.target.checked === false)
+//     document.querySelector('.stickers').classList.add('hidden-stickers');
+//   else
+//     document.querySelector('.stickers').classList.remove('hidden-stickers');
+// });
 
 
 
@@ -322,36 +318,17 @@ function        initResize(event){
 
     x = x < 20 ? 20 : x;
     y = y < 20 ? 20 : y;
-
-    // x = x > 200 ? 200 : x;
-    // y = y > 200 ? 200 : y;
-
-    // x > y ? x = y : y = x;
-
-    // target.style.width = x + 'px';
-    // target.style.height = y + 'px';
-    // console.log(y);
-    
     target.style.width = x + 'px';
     target.style.height = y + 'px'
   }
   
 }
 
-///////////////////////////////////////Rotate//////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////
-// function        initRotate(event){
-//   var target = event.target.parentElement.children[0];
-//   event.target.addEventListener('drag', Rotate, false);
-//   event.target.addEventListener('dragend', stopRotate, false);
 
-//   function      Rotate(e){
-//     target.style.transform = `rotate(${((e.clientX - event.clientX) + (e.clientY - event.clientY)) % 360}deg)`;
-//   }
 
-//   function      stopRotate(e){
-//     event.target.removeEventListener('drag', Rotate, false);
-//     event.target.removeEventListener('dragend', stopRotate, false);
-    
-//   }
-// }
+
+
+
+
+
+

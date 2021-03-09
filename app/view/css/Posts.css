@@ -39,16 +39,13 @@
 .post .info *{
     display: inline;
     padding: 0%;
-    /* padding-bottom: 5px; */
 }
 .post .info {
     padding: 0%;
     box-shadow: 0px 0px 20px var(--shadow);
-    /* padding-bottom: 10px; */
     margin-bottom: 20px;
     background-color: var(--headPost);
     height: 65px;
-    /* padding-bottom: -10px; */
     
 }
 
@@ -62,7 +59,6 @@
     padding: 0%;
     position: relative;
     top: -10px;
-    /* padding-bottom: -25px; */
     margin-bottom: -25px;
 }
 

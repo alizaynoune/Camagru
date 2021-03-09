@@ -1,9 +1,21 @@
 
+
+.contener_camera{
+    display: block;
+    max-width: 1300px;
+    background-color: violet;
+}
+
+.Btn {
+    position: relative !important;
+}
+
 .stickers{
     height: 55px;
     width: 100%;
     box-shadow: 0px 0px 10px var(--shadow);
     border-radius: 5px;
+    margin-top: 20px;
 }
 
 .stickers img {
@@ -72,66 +84,67 @@
 }
 
 .contener_video{
+    /* display: inline-table; */
+    /* position: relative; */
     display: inline-flex;
-    /* display: inline-block; */
-    position: relative;
     width: 100%;
     height: 100%;
-    min-width: 600px;
-    /* padding-bottom: 100px; */
-    background-color: cornflowerblue;
+    /* max-width: 1300px; */
+    /* min-width: 200px; */
+    margin: auto !important;
+    /* margin-left: auto;
+    margin-right: auto; */
+    background-color: white;
+    box-shadow: 0px 0px 10px var(--shadow)
 }
 
 #video_id{
     width: 600px;
     height: 300px;
-    margin-right: 0.5%;
-    max-width: 800px;
-    max-height: 800px;
+    /* max-width: 800px; */
+    /* max-height: 800px; */
     padding: 0%;
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+
 }
 
 #canva_id{
     width: 600px;
     height: 300px;
-    margin-left: 0.5%;
     position: relative;
     padding: 0%;
-    display: block;
-    /* margin: 0%; */
-    margin-left: auto;
-    margin-right: auto;
-    /* margin-bottom: 80px; */
-}
-#canva, #video {
-    padding: 0%;
-    margin: 0%;
-    border: 1px dashed darkturquoise;
-    display: block;
-    /* padding-bottom: 100px; */
 }
 
-.hidden-stickers img{display: none;}
+#canva_id, #video_id{
+    /* display: block !important; */
+    margin: auto !important;
+}
+
+#canva, #video {
+    display: block !important;
+    margin: auto !important;
+    /* margin-left: auto !important;
+    margin-right: auto !important; */
+    box-shadow: 0px 0px 10px var(--shadow);
+    /* margin-top: 5px;
+    margin-bottom: 5px; */
+    border-radius: 5px;
+
+}
 
 .btnup::before{content: "\f093";}
 .btncaptuer::before{content: "\f030";}
 .btncaptuerIn::before{content: "\f030";}
 .btnShr::before{content: "\f14d";}
-.leftBtn{left: 15%;}
-.rightBtn{right: 15%;}
 .out-form{
     margin-bottom: 20px;
     max-width: 600px;
 }
 
 .btncaptuerIn{
-    position: absolute;
+    /* position: absolute; */
     opacity: 0.5;
-    display: none;
+    display: none !important;
 }
 
 .control-camera , .control-stickers{
@@ -140,6 +153,7 @@
     margin-left: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
+    display: inline-block;
 }
 
 
@@ -153,10 +167,9 @@
     opacity: 0;
 }
 
-.buttomBtn{
-    background-color: chocolate;
-    margin-top: 40px;
-}
+/* .buttomBtn{
+    grid-template-columns: auto auto auto;
+} */
 
 
 #hiddenCanva{display: none;}
@@ -164,27 +177,26 @@
 
 
 @media only screen and (max-width: 1200px){
-    .leftBtn{left: 5%;}
-    .rightBtn{right: 5%;}
+    /* .leftBtn{left: 5%;} */
+    /* .rightBtn{right: 5%;} */
     .contener_video{
         /* height: auto; */
-        display: inline-block;
-        margin-left: auto;
-        margin-right: auto;
+        display: block;
+        /* margin-left: auto;
+        margin-right: auto; */
         /* margin-bottom: 40px; */
         /* padding-bottom: 100px; */
         /* background-color: chartreuse; */
     }
     /* .contener_canva */
     .out-form{width: 97%;}
-    .btncaptuer{display: none;}
+    .btncaptuer{display: none !important;}
     .btncaptuerIn{
 
-        display: block;
+        display: block !important;
         margin-left: auto;
         margin-right: auto;
         margin-top: -8px;
-        /* position: relative; */
         height: 5px;
         padding: 1px 40px;
     }

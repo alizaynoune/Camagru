@@ -34,7 +34,7 @@ if ((new Session())->SessionStatus() === true){
 					
 				</form>
     	    </div>
-			<div class="buttomBtn">
+			<div class="buttomBtn" style="grid-template-columns: auto auto;">
 				<a class="leftBtn button" href="signup.view.php"><p>Create New Account</p></a>
 				<a class="rightBtn button" href="forgetpwd.view.php"><p>Forgotten password?</p></a>
 			</div>

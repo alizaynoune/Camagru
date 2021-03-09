@@ -1,14 +1,13 @@
 
-/* .{position: absolute;} */
-/* @import url("font-awesome/css/fontawesome-all.min.css"); */
+
+
 
 .BtnAnim{
   overflow: hidden;
-  display: none;
+  display: none !important;
 }
 .Btn{
   border: none;
-  position: absolute;
   border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
@@ -20,15 +19,18 @@
   background-color: var(--Button);
   overflow: hidden;
   box-shadow: 0px 0px 20px var(--shadow);
+  display: block;
+  position: absolute;
+  margin: 0%;
 }
 .Btn::before{
   font-family: "FontAwesome";
   font-size: 100%;
   height: 100%;
-  right: 130%;
+  right: 110%;
   line-height: 3.3;
   position: absolute;
-  top: 0px;
+  top: 0%;
   transition: all 0.3s;
 }
 .Btn:hover {background-color: var(--ButtonActive);}
@@ -37,12 +39,13 @@
 .buttomBtn {
   width: 70%;
   height: 52px;
-  margin-left: 15%;
-  display: inline-block;
   margin-top: 20px;
   margin-bottom: 90px;
-  justify-content: space-around;
-  /* border: gold dashed 2px; */
+  display: grid;
+  /* grid-template-columns: auto auto auto; */
+  margin-left: auto;
+  margin-right: auto;
+  /* background-color: lightblue; */
 }
 
 .button {
@@ -56,7 +59,6 @@
   height: 100%;
   min-width: 150px;
   max-width: 300px;
-  /* box-shadow: 0px 0px 20px var(--shadow); */
 }
 
 .button:hover, input[type='submit']:hover{background: var(--ButtonActive);}
@@ -67,14 +69,22 @@
   outline-style: none;
 }
 
-.leftBtn {float: right;}
-.rightBtn {float: left;}
+.leftBtn {float: left; position: relative; justify-self: start;
+  }
+
 .centerBtn {
-  left: calc(50% - 70px);
-  /* display: block;
-  margin-left: auto;
-  margin-right: auto; */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block;
+  position: relative;
+  justify-self: center !important;
 }
+
+.rightBtn {float: right !important; position: relative !important; justify-self: end;
+  grid-column-end: somegridarea;
+
+}
+
 
 .toggle-control {
   display: block;

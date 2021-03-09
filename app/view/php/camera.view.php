@@ -20,69 +20,66 @@ if ((new Session())->SessionStatus() === false){
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
-	  <link class="_css" rel="stylesheet" type="text/css"	href="../css/camera.css"/>
+	  
 	  <link class="_css" rel="stylesheet" type="text/css"	href="../css/Posts.css"/>
-
+	<link class="_css" rel="stylesheet" type="text/css"	href="../css/camera.css"/>
 	<!-- <link class="_css" rel="stylesheet" type="text/css"	href="../css/settings.css"/> -->
 	</head>
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
 	<div class="content">
-		<!-- <h1>camera</h1> -->
 
-		<label class="toggle-control control-stickers">
-  				<input name='stickers' id='checkbox-stickers' type="checkbox" checked='true'>
+		
+			<div class="stickers">
+				<img src="../stickers/1.png" id="img1" draggable="true" drag="true" />
+				<img src="../stickers/2.png" id="img2" draggable="true" />
+				<img src="../stickers/3.png" id="img3" draggable="true" />
+			</div>
+
+			<label class="toggle-control control-camera">
+  				<input name='camera' id='checkbox-camera' type="checkbox">
   				<span class="control"></span>
-		</label>
-		
-		<div class="stickers">
-			<img src="../stickers/1.png" id="img1" draggable="true" drag="true" />
-			<img src="../stickers/2.png" id="img2" draggable="true" />
-			<img src="../stickers/3.png" id="img3" draggable="true" />
-			<!-- <img src="../stickers/4.png" id="img4" draggable="true" /> -->
-		</div>
+			</label>
 
-		<label class="toggle-control control-camera">
-  			<input name='camera' id='checkbox-camera' type="checkbox">
-  			<span class="control"></span>
-		</label>
-		
-		<!-- action="../../model/NewPost.model.php" -->
-		
-		 <form  method="POST" enctype="multipart/form-data">
-			<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
-			<h2 class="success"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
-			<input class="center out-form" type="text" placeholder="title" name="title"/>
-			<div class="contener_video" id="contener_video">
-				<div id='video_id' class="hiddenBtn display">
-					<video id="video" class="hiddenBtn display"  autoplay></video>
-				</div>
-				<button id="capterIn" class="BtnAnim hiddenBtn " type="button"></button>
-				<label for="capterIn" class="btncaptuerIn Btn centerBtn display hiddenBtn" onclick="capture_img();">Capture</label>
-				<div id='canva_id'>
-					<canvas id="canva" ></canvas>
-					<canvas id='hiddenCanva'></canvas>
-				</div>
-				<input type='hidden' name='canva'/>
-				<input type='hidden' name='stickers'/>
-				<input type='hidden' name='left'/>
-				<input type='hidden' name='top'/>
-				<input type='hidden' name='width'/>
-				<input type='hidden' name='height'/>
-				<!-- <input type="hidden" name='InfoStickers'> -->
+			<label class="toggle-control control-stickers">
+  					<input name='stickers' id='checkbox-stickers' type="checkbox" checked='true'>
+  					<span class="control"></span>
+			</label>
+			<div class="contener_camera">
+				 <form  method="POST" enctype="multipart/form-data">
+					<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
+					<h2 class="success"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
+					<input class="center out-form" type="text" placeholder="title" name="title"/>
+					<div class="contener_video" id="contener_video">
+						<div id='video_id' class="hiddenBtn display">
+							<video id="video" class="hiddenBtn display"  autoplay></video>
+
+						<button id="capterIn" class="BtnAnim hiddenBtn " type="button"></button>
+						<label for="capterIn" class="btncaptuerIn Btn centerBtn display hiddenBtn" onclick="capture_img();">Capture</label>
+						</div>
+						<div id='canva_id'>
+							<canvas id="canva" ></canvas>
+							<canvas id='hiddenCanva'></canvas>
+						</div>
+						<input type='hidden' name='canva'/>
+						<input type='hidden' name='stickers'/>
+						<input type='hidden' name='left'/>
+						<input type='hidden' name='top'/>
+						<input type='hidden' name='width'/>
+						<input type='hidden' name='height'/>
+					</div>
+					<div class="buttomBtn" style="grid-template-columns: auto auto;">
+						<input id='upload' class="BtnAnim" name="Upload" type="file" accept="image/*" onchange="upload_to_canva(event)" />
+						<label for="upload" class="btnup Btn leftBtn">Upload</label>
+						<button id="capter" class="BtnAnim" type='button'></button>
+						<label for="capter" class="btncaptuer centerBtn Btn  hiddenBtn display" onclick="capture_img()">Capture</label>				
+						<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
+						<label for="share" class=" btnShr Btn rightBtn">Share</label>
+					</div>
+				</form>
 			</div>
-			<div class="buttomBtn">
-				<input id='upload' class="BtnAnim" name="Upload" type="file" accept="image/*" onchange="upload_to_canva(event)" />
-				<label for="upload" class="btnup Btn leftBtn">Upload</label>
-				<button id="capter" class="BtnAnim" type='button'></button>
-				<label for="capter" class="btncaptuer Btn centerBtn hiddenBtn display" onclick="capture_img()">Capture</label>				
-				<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
-				<label for="share" class=" btnShr Btn rightBtn">Share</label>
-			</div>
-			
-		</form>
 		<div class='thumbnails'>
-			</div>
+		</div>
 
 
 
