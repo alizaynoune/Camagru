@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
 if ((new Session())->SessionStatus() === false){
     header("Location: ../view/php/login.view.php");
 	exit();
@@ -10,7 +11,7 @@ if ((new Session())->SessionStatus() === false){
 else if (!empty($_POST['title']) && (filter_comment($_POST['title']) === false || strlen($_POST['title']) > 50)){
     exit();
 }
-
+$uid = decrypt_($_SESSION['uid']);
 $base64 = str_replace('data:image/png;base64,', '', $_POST['canva']);
 $base64 = str_replace(' ', '+', $base64);
 $cava = base64_decode($base64);
@@ -45,20 +46,24 @@ $name = md5(microtime()).'.png';
 imagepng($dest, $path.$name);
 if (empty($_POST['title'])){
     $id = (new dbinsert())->insert(
-        $DB_INSERT['_post'], array($_SESSION['uid'], $name),
+        $DB_INSERT['_post'], array($uid, $name),
         array($PARAM['int'], $PARAM['str']),
         1
     );
 }
 else {
     $id = (new dbinsert())->insert(
-        $DB_INSERT['_post_title'], array($_SESSION['uid'], $name, $_POST['title']),
+        $DB_INSERT['_post_title'], array($uid, $name, $_POST['title']),
         array($PARAM['int'], $PARAM['str'], $PARAM['str']),
         1
     );
 }
-$content = 'data:image/png;base64,'.base64_encode(file_get_contents($path.$name));
-array_push($id, ($content));
-array_push($id, ($_POST['title']));
-exit(json_encode($id));
+
+$ret = array(encrypt_($id['id']));
+array_push($ret, $_SESSION['uid']);
+// $content = ;
+array_push($ret, _SERVER_ . '/public/usersData/' . $_SESSION['login'] . '/' . $name );
+array_push($ret, ($_POST['title']));
+
+exit(json_encode($ret));
 ?>

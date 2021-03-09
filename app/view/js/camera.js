@@ -20,8 +20,6 @@ function  show_erea(){
   });
   var contener_video = document.getElementById('contener_video');
   console.log(contener_video.style.display);
-  // console.log('hhhh');
-
 }
 
 function  hidden_erea(){
@@ -48,7 +46,8 @@ function  camera_on(){
         audio: false
       }
     };
-    navigator.mediaDevices.getUserMedia(constraints)
+    try{
+      navigator.mediaDevices.getUserMedia(constraints)
       .then((stream) => {
         video.srcObject = stream;
       })
@@ -56,8 +55,14 @@ function  camera_on(){
         document.querySelector('.error').innerHTML = err;
         document.querySelector('input[name=camera]').checked = false;
         hidden_erea();
-      });
-      document.querySelector('.error').innerHTML = '';
+      });document.querySelector('.error').innerHTML = '';
+    }catch(err2){
+      document.querySelector('.error').innerHTML = "NotAllowedError: Permission denied";
+      document.querySelector('input[name=camera]').checked = false;
+      hidden_erea();
+      
+    }
+      
   }
 }
 
@@ -77,7 +82,6 @@ function  camera_off(){
 function    upload_to_canva(event){
   camera_off();
     if (event.target.files[0].size < 2000000){
-    var contener_video = document.getElementById('contener_video');
     document.querySelector('input[name=camera]').checked = false;
     var canva = document.getElementById('canva');
     var size = document.getElementById('canva_id');
@@ -91,10 +95,10 @@ function    upload_to_canva(event){
       var factor = Math.min((canva.width / img.width), (canva.height / img.height));
       canva.height = img.height * factor;
       canva.width = img.width * factor;
+
       ctx.drawImage(img, 0, 0, canva.width, canva.height);
-      if (canva.height > contener_video.offsetHeight)
-        contener_video.style.height = (canva.height) + 'px';
-      // console.log(contener_video.offsetHeight);
+        size.style.height = (canva.height) + 'px';
+        size.style.width = (canva.width) + 'px';
     };
     if (event.target.files[0]){
       img.src = URL.createObjectURL(event.target.files[0]);
@@ -111,15 +115,16 @@ function    upload_to_canva(event){
 function    capture_img(){
   let box = document.querySelector('input[name=stickers]').checked;
   if (sticker_video > 0 || box === false){
-    var contener_video = document.getElementById('contener_video');
+    var contener_canva = document.getElementById('canva_id');
     captur = 1;    
     sticker_video = 0;
     var canva = document.getElementById('canva');
     var video = document.getElementById('video');
     canva.width = video.videoWidth;
     canva.height = video.videoHeight;
-    // contener_video.style.height = contener_video.offsetHeight + (canva.height * 2) + 'px';
-    clear_stickers(document.getElementById('canva_id'));
+    contener_canva.style.height = (canva.height) + 'px';
+    contener_canva.style.width = (canva.width) + 'px';
+    clear_stickers(contener_canva);
     canva.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
     copy_stickers();
     clear_stickers(document.getElementById('video_id'));

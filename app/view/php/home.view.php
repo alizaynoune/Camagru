@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 (new Session())->SessionStatus();
 ?>
@@ -24,11 +25,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 			<span class="delet_post"></span>
 			<input type='hidden' name='post_info'/>
 			<div class="info">
-				<img id="img_owner" src="../../../public/icone/profile.jpg">
+				<img id="img_owner" src="<?php echo _SERVER_.'/public/icone/profile.jpg'; ?>">
 				<h4 class="owner">name of owner</h4>
 				<h2 class="title"></h2>
 			</div>
-			<img id='img_post' src="../../../public/icone/profile.jpg">
+			<img id='img_post' src="<?php echo _SERVER_.'/public/icone/profile.jpg'; ?>">
 			<div class="comment_like">
 				<div class="contener_like">
 					<label class="like"></label>

@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/sendMail.model.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
 
 
 if ((new Session())->SessionStatus() === false){
@@ -16,7 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'Submit'){
 	exit;
 }
 
-$usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, login, email, notif', 'Users', $_SESSION['uid'], $PARAM['int'], 0);
+$uid = decrypt_($_SESSION['uid']);
+$usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, login, email, notif', 'Users', $uid, $PARAM['int'], 0);
 
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
@@ -112,9 +114,9 @@ if (empty($error) && !empty($_FILES['img_user']) && !empty($_FILES["img_user"]["
 			$target_file = 'avatar'.'.'.$exten;
 			if (move_uploaded_file($_FILES["img_user"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'].$Path.$target_file)){
 				$seccess = '?success=your avatar has successfly update';
-				$oldavatar = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $_SESSION['uid'], $PARAM['int'], 0);
+				$oldavatar = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $uid, $PARAM['int'], 0);
 				if ($target_file !== $oldavatar){
-					(new dbinsert())->update($DB_UPDATE['_uid'], 'Avatar', 'url=?', array($target_file, $_SESSION['uid']), array($PARAM['str'], $PARAM['int']), 0);
+					(new dbinsert())->update($DB_UPDATE['_uid'], 'Avatar', 'url=?', array($target_file, $uid), array($PARAM['str'], $PARAM['int']), 0);
 				}
 			}
 			else
@@ -133,11 +135,11 @@ if (empty($error)){
 			$token = md5(rand(1000, 5000));
 			(new dbinsert())->insert(
 				$DB_INSERT['_email_user'],
-				array($_SESSION['uid'] , $email, $token),
+				array($uid , $email, $token),
 				array($PARAM['int'], $PARAM['str'], $PARAM['str']),
 				0
 			);
-			send_mail($_SESSION['uid'], $login, $email, $token, 'update');
+			send_mail($uid, $login, $email, $token, 'update');
 			$seccess = '?success=we send you link activision to your email please activate it';
 		}
 	}
@@ -150,7 +152,7 @@ if (!empty($error)){
 
 
 if (!empty($select)){
-	array_push($new_info, $_SESSION['uid']);
+	array_push($new_info, $uid);
 	array_push($param, $PARAM['int']);
 	(new dbinsert())->update($DB_UPDATE['_id'], 'Users', $select, $new_info, $param);
 	if (!empty($login) && $login !== $usr_info['login']){

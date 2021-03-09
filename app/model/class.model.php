@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
 
 class	dbinsert extends db_conn {
     private		$stmt;
@@ -8,7 +9,7 @@ class	dbinsert extends db_conn {
     protected   $lasr_id;
 
 	public function	insert($ins, $values, $param, $ret_id){
-        self::connect_use();
+        parent::connect_use();
 		try{
             $this->stmt = $this->conn->prepare($ins);
             foreach ($values as $key => &$value){
@@ -25,10 +26,10 @@ class	dbinsert extends db_conn {
             die ("Error : ". $e->getMessage());
             exit();
         }
-        self::Desconnect();
+        parent::Desconnect();
     }
     public  function    update($cmd, $table, $set, $values, $param){
-        self::connect_use();
+        parent::connect_use();
         $this->sql = str_replace(':table:', $table, $cmd);
         $this->sql = str_replace(':set:', $set, $this->sql);
         try{
@@ -38,13 +39,13 @@ class	dbinsert extends db_conn {
             }
             $this->stmt->execute();
         }catch(PDOException $e){
-            self::Desconnect();
+            parent::Desconnect();
             die ("Error : ". $e->getMessage());
         }
-        self::Desconnect();
+        parent::Desconnect();
     }
     public  function drop($cmd, $table, $where, $value, $param){
-        self::connect_use();
+        parent::connect_use();
         $this->sql = str_replace(':table:', $table, $cmd);
         $this->sql = str_replace(':where:', $where, $this->sql);
         try{
@@ -53,10 +54,10 @@ class	dbinsert extends db_conn {
             $this->stmt->execute();
 
         }catch(PDOException $e){
-            self::Desconnect();
+            parent::Desconnect();
             die ("Error : ". $e->getMessage());
         }
-        self::Desconnect();
+        parent::Desconnect();
     }
     
     
@@ -65,11 +66,11 @@ class	dbinsert extends db_conn {
 class   dbselect extends db_conn {
     private     $stmt;
     private     $rslt;
-    private     $bnd;
+    // private     $bnd;
     private     $sql;
 
     public function    select($cmd, $select, $table, $values, $param, $fetch){
-        self::connect_use();
+        parent::connect_use();
         $this->sql = str_replace(':select:', $select, $cmd);
         $this->sql = str_replace(':table:', $table, $this->sql);
         try{
@@ -79,14 +80,14 @@ class   dbselect extends db_conn {
             if ($fetch === 0)
                 $this->rslt = $this->stmt->fetch(PDO::FETCH_ASSOC);
             else if ($fetch === 1)
-            $this->rslt = $this->stmt->fetchAll(PDO::FETCH_ASSOC);
-            self::Desconnect();
+                $this->rslt = $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+            parent::Desconnect();
             return ($this->rslt);
         }catch(PDOException $e){
-            self::Desconnect();
+            parent::Desconnect();
             die ("Error : ". $e->getMessage());
         }
-        self::Desconnect();
+        parent::Desconnect();
     }
 
 }
@@ -101,7 +102,7 @@ class   Session extends dbselect {
         if (!empty(self::$user)){
             session_start();
             $_SESSION['login'] = self::$user['login'];
-            $_SESSION['uid'] = self::$user['id'];
+            $_SESSION['uid'] = encrypt_(self::$user['id']);
             $_SESSION['name'] = self::$user['firstname'];
             return(true);
         }
