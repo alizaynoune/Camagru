@@ -36,7 +36,7 @@ function        validationNewPasswd(Input, old){
 }
 
 function        validationEmail(Input){
-    let RExp = /^[a-zA-Z0-9]+([\w-\+\!\#\$\%\&\'\*\=\?\^\`\{\|]+[\.]{0,1})+[a-zA-Z0-9]+@([a-z0-9]{1})+(\.{0,1}[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+    let RExp = /^[a-zA-Z]+(([\.]{0,1})[\w_-])+@[\w\.]+\.([a-z]{2,4})$/;
     if (!RExp.test(Input.value) || Input.value.length > 50)
         return(1);
     else
@@ -168,7 +168,7 @@ function        ifUpdateInfo(){
 }
 
 function    validationImage(img){
-    console.log(img);
+    // console.log(img);
     return(0); ///////////////////////not fineshed yet
 }
 

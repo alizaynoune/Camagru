@@ -21,49 +21,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	<div class="content">
 		<h1>home</h1>
 
-		<div class="post">
-			
-			<input type='hidden' name='post_info'/>
-			<div class="info">
-				<img id="img_owner" src="<?php echo _SERVER_.'/public/icone/profile.jpg'; ?>">
-				<h4 class="owner">name of owner</h4>
-				<h2 class="title">ddddd</h2>
-				<p>24-03-2021</p>
-				<span class="delet_post"></span>
-			</div>
-			<img id='img_post' src="<?php echo _SERVER_.'/public/icone/profile.jpg'; ?>">
-			<div class="comment_like">
-				<div class="contener_like">
-					<label class="like"></label>
-					<span>20</span>
-					<label class="commentNbr">10 comments</label>
-				</div>
-				<div class="contener_comment">	
-					<div class="comment hidden">
-					<div class="old_comment">
-							<input type='hidden' name='comment_info'/>
-							<label class="like"></label>
-							<span>20</span>
-							<h4> owner_of_comment</h4>
-							<span class='delet_comment'></span>
-							<p>comment comment commet libxml_set_external_entity_loader for test</p>
-							<p>10-25-2021</p>
-						</div>
-					</div>
-					<div class="new_comment">
-						<input type="text" name="comment" placeholder="add comment" />
-						<div>
-							<input id="submit_comment" type="submit" name="submit" value="comment"/>
-							<label id='submit' for="submit_comment" ></label>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-
 
 
 
@@ -73,6 +30,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 
 	<script type="text/javascript" src="../js/Posts.js"></script>
+	<script type="text/javascript" src="../js/Posts.js"></script>
+		<script type="text/javascript" src="../js/append_post.js"></script>
+		<script type="text/javascript" src="../js/home.js"></script>
+		<script type="text/javascript" src="../../controller/fetch_data.controller.js"></script>
+		<!-- <script type="text/javascript" src="../../controller/fetch_all.controller.js"></script> -->
 	<!-- <script type="text/javascript" src="../../controller/camera.controller.js"></script> -->
 	</body>
 </html>

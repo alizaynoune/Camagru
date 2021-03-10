@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
 
 function    get_avatar(){
     global $DB_SELECT, $PARAM;
-    $url = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', decrypt_($_SESSION['uid']), $PARAM['int'], 0);
+    $url = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $_SESSION['uid'], $PARAM['int'], 0);
     return(_SERVER_ . '/public/usersData/' . $_SESSION['login'] . '/' . $url['url']);
 }
 

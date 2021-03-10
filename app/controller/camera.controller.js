@@ -60,7 +60,7 @@ form.addEventListener('submit', (e) =>{
     });
     if (i === 0 && document.getElementById('checkbox-stickers').checked === true && captur === 0){
         _Error_.innerHTML = 'please choose stickers or deactivate it';
-        console.log(captur);
+        // console.log(captur);
         
         e.preventDefault();
         return false;
@@ -101,6 +101,7 @@ form.addEventListener('submit', (e) =>{
     request.onerror = function(){
         _Error_.innerHTML = 'Errors Share';
     };
+    // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
     request.send(new FormData(e.target));
     
     e.preventDefault();

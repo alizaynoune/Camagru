@@ -1,3 +1,5 @@
+
+
 function        new_post(data, user){
 
     //create post
@@ -21,6 +23,11 @@ function        new_post(data, user){
     let img_owner = document.createElement('img');
         img_owner.setAttribute('id', 'img_owner');
         img_owner.src = data['u_avatar'];
+        img_owner.addEventListener('click', function(){
+            window.location.replace(window.location.origin + `/app/view/php/user.view.php?login=${data['u_name']}`);
+            // console.log(window.location.origin + `/app/view/user.view.php?login=${data['u_name']}`);
+            
+        })
         info.appendChild(img_owner);
     // create h4 hase name of owner
     let name_owner = document.createElement('h4');
@@ -35,8 +42,11 @@ function        new_post(data, user){
 
     // creat date of create post
     let date_post = document.createElement('p');
-        date_post.innerHTML = data['Date'];
+        let new_time = new Date(data['Date']).toLocaleString('en-US', {hour12: false});
+        date_post.innerHTML = new_time;
         info.appendChild(date_post);
+
+        // 2021-03-10 09:57:30
 
     // creat button delet post
     let delet_post = document.createElement('span');
@@ -47,6 +57,7 @@ function        new_post(data, user){
     let img_post = document.createElement('img');
         img_post.setAttribute('id', 'img_post');
         img_post.src = data['url'];
+        img_post.setAttribute('alter', `this.src='${data['u_avatar']}'`);
         new_post.appendChild(img_post);
     
     // create contener will has (post like, comment)//

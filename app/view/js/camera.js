@@ -19,7 +19,7 @@ function  show_erea(){
     elem.classList.remove('hiddenBtn');
   });
   var contener_video = document.getElementById('contener_video');
-  console.log(contener_video.style.display);
+  // console.log(contener_video.style.display);
 }
 
 function  hidden_erea(){
@@ -33,7 +33,7 @@ function  hidden_erea(){
 }
 
 function  camera_on(){
-  console.log(document.querySelector('input[name="camera"]').checked);
+  // console.log(document.querySelector('input[name="camera"]').checked);
   
     if (document.querySelector('input[name="camera"]').checked === true){
     show_erea();

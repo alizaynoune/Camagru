@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'Submit'){
 	exit;
 }
 
-$uid = decrypt_($_SESSION['uid']);
+$uid = $_SESSION['uid'];
 $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, login, email, notif', 'Users', $uid, $PARAM['int'], 0);
 
 $firstName = $_POST['firstName'];

@@ -90,6 +90,63 @@ class   dbselect extends db_conn {
         parent::Desconnect();
     }
 
+    public    function     fetch_user_post($uid, $date){
+        parent::Connect_use();
+
+        
+        try{
+            if ($date === '0'){
+                $this->sql = 'SELECT * FROM Posts WHERE uid=? ORDER BY `Date` DESC LIMIT 5';
+                $this->stmt = $this->conn->prepare($this->sql);
+                $this->stmt->bindParam(1, $uid, PDO::PARAM_INT);
+                $this->stmt->execute();
+            }
+            else {
+                $this->sql = 'SELECT * FROM Posts WHERE `Date`<? AND uid=? ORDER BY `Date` DESC LIMIT 5';
+                $this->stmt = $this->conn->prepare($this->sql);
+                $this->stmt->bindParam(1, $date, PDO::PARAM_STR);
+                $this->stmt->bindParam(2, $uid, PDO::PARAM_INT);
+                $this->stmt->execute();
+            }
+            $this->rslt = $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+
+        }catch(PDOException $e){
+            parent::Desconnect();
+            die ("Error : ". $e->getMessage());
+        }
+
+        parent::Desconnect();
+        return($this->rslt);
+
+    }
+
+    public      function    fetch_all_post($date){        
+        parent::Connect_use();
+        
+        try{
+            if ($date === '0'){
+                $this->sql = 'SELECT * FROM Posts ORDER BY `Date` DESC LIMIT 5;';
+                $this->stmt = $this->conn->prepare($this->sql);
+                $this->stmt->execute();
+                
+            }
+            else{
+                $this->sql = 'SELECT * FROM Posts WHERE `Date`<? ORDER BY `Date` DESC LIMIT 5';
+                $this->stmt = $this->conn->prepare($this->sql);
+                $this->stmt->bindParam(1, $date, PDO::PARAM_STR);
+                $this->stmt->execute();
+            }
+            $this->rslt = $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+        }catch(PDOException $e){
+            parent::Desconnect();
+            die ("Error : ". $e->getMessage());
+        }
+        parent::Desconnect();
+        return($this->rslt);
+    }
+
 }
 
 
@@ -102,7 +159,7 @@ class   Session extends dbselect {
         if (!empty(self::$user)){
             session_start();
             $_SESSION['login'] = self::$user['login'];
-            $_SESSION['uid'] = encrypt_(self::$user['id']);
+            $_SESSION['uid'] = self::$user['id'];
             $_SESSION['name'] = self::$user['firstname'];
             return(true);
         }

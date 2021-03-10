@@ -23,9 +23,12 @@ html, body {
 .content {
     height: auto;
     margin-bottom: 3rem;
+    /* margin: 0%;
+    padding: 0%; */
     padding-left: 5px;
     padding-right: 5px;
     overflow-x: hidden;
+    /* background-color: lawngreen; */
 }
 
 
@@ -37,6 +40,7 @@ html, body {
     justify-content: space-around;
     color: var(--ColorMainFont);
     box-shadow: 0px 0px 20px var(--shadow);
+    position: fixed;
 }
 
 .navBar a{

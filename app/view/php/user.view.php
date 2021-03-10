@@ -1,20 +1,3 @@
-<?php
-
-// require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
-// test get data////////////
-
-
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
-if ((new Session())->SessionStatus() === false){
-    header("Location: home.view.php");
-	exit();
-}
-
-require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -28,7 +11,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	</head>
 	<body>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
-		<input type="hidden" name="login" value="<?php echo $_SESSION['login'] ?>">
+		<input type="hidden" name="login" value="<?php echo $_GET['login']?>">
 		<div class="content">
 			<h1>profile</h1>
 		</div>
@@ -37,7 +20,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		<script type="text/javascript" src="../js/Posts.js"></script>
 		<script type="text/javascript" src="../js/append_post.js"></script>
 		<script type="text/javascript" src="../js/profile.js"></script>
-		<!-- <script type="text/javascript" src="../../controller/fetch_profile.controller.js"></script> -->
 		<script type="text/javascript" src="../../controller/fetch_data.controller.js"></script>
 	</body>
 </html>

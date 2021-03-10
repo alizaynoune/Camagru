@@ -3,7 +3,7 @@
 function        toggle_comments(elem){
     let comment = elem.target.parentNode.parentNode.querySelector('.comment');
     comment.classList.toggle('hidden');
-    console.log(comment);
+    // console.log(comment);
     
     
     
@@ -26,7 +26,7 @@ function        toggle_like(e){
 
 function        new_comment(e){
     // console.log(e);
-    console.log('her');
+    // console.log('her');
     
 }
 
@@ -51,7 +51,7 @@ document.querySelectorAll('.post').forEach((e)=> {
     });
     e.querySelector('.new_comment').addEventListener('click', new_comment, false);
     var input = e.querySelector('input[name="comment"]');
-    console.log(input);
+    // console.log(input);
     
     // e.querySelectorAll('.new_comment').forEach((elem)=>{
         // console.log(submit);
@@ -62,3 +62,5 @@ document.querySelectorAll('.post').forEach((e)=> {
     // });
     
 });
+
+

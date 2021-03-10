@@ -11,7 +11,7 @@ if ((new Session())->SessionStatus() === false){
 else if (!empty($_POST['title']) && (filter_comment($_POST['title']) === false || strlen($_POST['title']) > 50)){
     exit();
 }
-$uid = decrypt_($_SESSION['uid']);
+$uid = $_SESSION['uid'];
 $base64 = str_replace('data:image/png;base64,', '', $_POST['canva']);
 $base64 = str_replace(' ', '+', $base64);
 $cava = base64_decode($base64);

@@ -95,7 +95,7 @@
 .comment_like{
     margin-left: auto;
     margin-right: auto;
-    position: relative;
+    /* position: relative; */
     top: 10px;
 }
 
@@ -258,7 +258,7 @@
 
 .comment_like .new_comment {
     height: 40px;
-    position: relative;
+    /* position: relative; */
     margin-top: 15px;
     width: calc(100% - 20px);
     margin-left: auto;
