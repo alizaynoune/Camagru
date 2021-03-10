@@ -1,4 +1,19 @@
 
+function        valid_comment(elem){
+    let REG = /^[\w\d\-_\ @.]+$/;
+    if (elem.target.value.length === 0){
+        return false;
+    }
+    if (!REG.test(elem.target.value) || elem.target.value.length > 50 ){
+        elem.target.classList.add('error');
+        return false;
+    }
+    else{
+        elem.target.classList.remove('error');
+        return true;
+    }
+}
+
 
 function        new_post(data, user){
 
@@ -24,15 +39,16 @@ function        new_post(data, user){
         img_owner.setAttribute('id', 'img_owner');
         img_owner.src = data['u_avatar'];
         img_owner.addEventListener('click', function(){
-            window.location.replace(window.location.origin + `/app/view/php/user.view.php?login=${data['u_name']}`);
-            // console.log(window.location.origin + `/app/view/user.view.php?login=${data['u_name']}`);
-            
-        })
+            window.location.replace(window.location.origin + `/app/view/php/user.view.php?login=${data['u_name']}`);            
+        }, true);
         info.appendChild(img_owner);
     // create h4 hase name of owner
     let name_owner = document.createElement('h4');
         name_owner.classList.add('owner');
         name_owner.innerHTML = data['u_name'];
+        name_owner.addEventListener('click', function(){
+            window.location.replace(window.location.origin + `/app/view/php/user.view.php?login=${data['u_name']}`);            
+        }, true);
         info.appendChild(name_owner);
     // create h2 will has title of post
     let title = document.createElement('h2');
@@ -51,6 +67,7 @@ function        new_post(data, user){
     // creat button delet post
     let delet_post = document.createElement('span');
         delet_post.classList.add('delet_post');
+        delet_post.addEventListener('click', delet_Post, true);
         info.appendChild(delet_post);
 
     // create img will hase image of post
@@ -108,6 +125,7 @@ function        new_post(data, user){
         input_comment.type = 'text';
         input_comment.name = 'comment';
         input_comment.placeholder = 'add comment';
+        input_comment.addEventListener('input', valid_comment, true);
         new_comment.appendChild(input_comment);
 
     // create contener of submit
@@ -120,6 +138,7 @@ function        new_post(data, user){
         input_submit.type = 'submit';
         input_submit.name = 'submit';
         input_submit.value = 'comment';
+        input_submit.addEventListener('click', submit_new_comment, true);
         contener_submit.appendChild(input_submit);
     
     // create lable of submit 

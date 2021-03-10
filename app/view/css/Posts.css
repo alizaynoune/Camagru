@@ -71,6 +71,7 @@
     padding: 0%;
     justify-self: start;
     margin-top: 20%;
+    cursor: pointer;
 }
 
 .post .info #img_owner{

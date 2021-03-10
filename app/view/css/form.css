@@ -94,9 +94,7 @@
 
 
 
-.error{
-    color: var(--Error);
-}
+
 .success{
     color: var(--Success);
   }

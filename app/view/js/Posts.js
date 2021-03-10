@@ -3,7 +3,7 @@
 function        toggle_comments(elem){
     let comment = elem.target.parentNode.parentNode.querySelector('.comment');
     comment.classList.toggle('hidden');
-    // console.log(comment);
+    console.log('toggle comment');
     
     
     
@@ -19,48 +19,54 @@ function        toggle_like(e){
         e.target.classList.remove('dislike');
         e.target.classList.add('like');
     }
+    console.log('like dislike');
 
     
     
 }
 
-function        new_comment(e){
+function        submit_new_comment(e){
     // console.log(e);
     // console.log('her');
+    console.log('sumbit now comment');
     
+}
+
+function        delet_Post(e){
+    console.log('delet Post');
 }
 
 
 /////////// document ready/////////////////////////////
 
-document.querySelectorAll('.post').forEach((e)=> {
-    e.querySelectorAll('label').forEach((el)=>{
-        if (el.className === 'like' || el.className === 'dislike'){
-            el.addEventListener('click', toggle_like, false);
+// document.querySelectorAll('.post').forEach((e)=> {
+//     e.querySelectorAll('label').forEach((el)=>{
+//         if (el.className === 'like' || el.className === 'dislike'){
+//             el.addEventListener('click', toggle_like, false);
             
-        }
+//         }
 
-        else if (el.className === 'commentNbr'){
-            // console.log('test');
+//         else if (el.className === 'commentNbr'){
+//             // console.log('test');
             
-            el.addEventListener('click', toggle_comments, false);
-        }
-        // console.log(el.className);
+//             el.addEventListener('click', toggle_comments, false);
+//         }
+//         // console.log(el.className);
         
         
-    });
-    e.querySelector('.new_comment').addEventListener('click', new_comment, false);
-    var input = e.querySelector('input[name="comment"]');
-    // console.log(input);
+//     });
+//     e.querySelector('.new_comment').addEventListener('click', new_comment, false);
+//     var input = e.querySelector('input[name="comment"]');
+//     // console.log(input);
     
-    // e.querySelectorAll('.new_comment').forEach((elem)=>{
-        // console.log(submit);
-    //     elem.querySelector()
+//     // e.querySelectorAll('.new_comment').forEach((elem)=>{
+//         // console.log(submit);
+//     //     elem.querySelector()
     
     
         
-    // });
+//     // });
     
-});
+// });
 
 

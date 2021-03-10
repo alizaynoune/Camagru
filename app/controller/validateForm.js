@@ -189,6 +189,7 @@ for (var i = 0; i < inputs.length; i++){
         eventconfnewPasswd(inputs[i], form.querySelector('input[name="newPasswd"]'));
     else if (inputs[i].type === 'email')
         eventEmail(inputs[i]);
+    // console.log('hehehe');
 }
 
 function        validationAll(form){

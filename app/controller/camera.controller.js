@@ -20,7 +20,7 @@ var title = form.querySelector("input[name='title']");
 title.addEventListener('input', (e)=>{
     valid_title(title);
         
-})
+});
 form.addEventListener('submit', (e) =>{
     var _Error_ = document.querySelector('.error');
     var _Success_ = document.querySelector('.success');
