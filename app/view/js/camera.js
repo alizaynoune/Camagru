@@ -328,8 +328,27 @@ function        initResize(event){
     target.style.width = x + 'px';
     target.style.height = y + 'px'
   }
-  
 }
+
+
+
+
+
+var     lastdate = '0';
+var     contener = document.querySelector('.thembnails');
+var     login = document.querySelector('.login');
+
+
+
+
+
+
+window.addEventListener('load', function(){
+  request_profile(login, lastdate, contener);
+  console.log(login);
+  
+
+});
 
 
 

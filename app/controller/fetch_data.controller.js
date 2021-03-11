@@ -64,3 +64,6 @@ function       request_all(date, contener){
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
     request.send();
 }
+
+
+function        request_comment(){}

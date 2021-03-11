@@ -37,8 +37,8 @@ html, body {
 .navBar {
     width: 100%;
     height: 65px;
-    display: block;
-    display: inline-flex;
+    /* display: block; */
+    /* display: inline-flex; */
     background-color: var(--headPost);
     justify-content: space-around;
     color: var(--ColorMainFont);

@@ -4,7 +4,7 @@
         <?php 
                 if (!empty($_SESSION['login'])){
                    echo "<a href=\"/app/view/php/profile.view.php\">";
-                   echo "<h1>".$_SESSION['name']."</h1>";
+                   echo "<h1 class='login'>".$_SESSION['login']."</h1>";
                    echo "</a>";
                 }
                else{

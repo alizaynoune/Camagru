@@ -1,21 +1,14 @@
 
-function        valid_comment(elem){
-    let REG = /^[\w\d\-_\ @.]+$/;
-    if (elem.target.value.length === 0){
-        return false;
-    }
-    if (!REG.test(elem.target.value) || elem.target.value.length > 50 ){
-        elem.target.classList.add('error');
-        return false;
-    }
-    else{
-        elem.target.classList.remove('error');
-        return true;
-    }
-}
 
 
-function        new_post(data, user){
+
+function        new_post(data){
+    // console.log(document.querySelector('.login'));
+    var login = document.querySelector('.login');
+    login = login !== null ? login.innerHTML : login;
+    // console.log(login);
+    
+    
 
     //create post
     let new_post = document.createElement('div');
@@ -62,19 +55,17 @@ function        new_post(data, user){
         date_post.innerHTML = new_time;
         info.appendChild(date_post);
 
-        // 2021-03-10 09:57:30
-
     // creat button delet post
-    let delet_post = document.createElement('span');
-        delet_post.classList.add('delet_post');
-        delet_post.addEventListener('click', delet_Post, true);
-        info.appendChild(delet_post);
-
+    if (login && login === data['u_name']){
+        let delet_post = document.createElement('span');
+            delet_post.classList.add('delet_post');
+            delet_post.addEventListener('click', delet_Post, true);
+            info.appendChild(delet_post);
+    }
     // create img will hase image of post
     let img_post = document.createElement('img');
         img_post.setAttribute('id', 'img_post');
         img_post.src = data['url'];
-        img_post.setAttribute('alter', `this.src='${data['u_avatar']}'`);
         new_post.appendChild(img_post);
     
     // create contener will has (post like, comment)//
@@ -92,18 +83,28 @@ function        new_post(data, user){
     /// create lable has like or dislike icon [defulte dislike]
     let like = document.createElement('label');
         like.classList.add('dislike');
-        like.addEventListener('click', toggle_like, false);
+        login !== null ? like.addEventListener('click', toggle_like, true) :
+                        like.addEventListener('click', function(){
+                            window.location.replace(window.location.origin + `/app/view/php/login.view.php`);
+                        }, true);
         contener_like.appendChild(like);
     ////create span has total number of like [defulte 0]
     let nb_like = document.createElement('span');
-        nb_like.innerHTML = '0';
+        nb_like.innerHTML = data['nbr_likes'];
         contener_like.appendChild(nb_like);
+
+    ///create area of msj error
+    let msj_error = document.createElement('h3');
+        msj_error.classList.add('error');
+        // msj_error.innerHTML = 'msj error';
+        contener_like.appendChild(msj_error);
+
     /// create lable hase total number of comment [defulte 0]
     let nb_comment = document.createElement('lable');
         nb_comment.classList.add('commentNbr');
-        nb_comment.innerHTML = '0 comments';
-        contener_like.appendChild(nb_comment);
+        nb_comment.innerHTML =  `${data['nbr_comments']} comments`;
         nb_comment.addEventListener('click', toggle_comments, true);
+        contener_like.appendChild(nb_comment);
     
         // create contener of comments
     let contener_comment = document.createElement('div');
@@ -114,38 +115,41 @@ function        new_post(data, user){
         comment.classList.add('comment');
         comment.classList.add('hidden');
         contener_comment.appendChild(comment);
-
-    // create contener of new comment
-    let new_comment = document.createElement('div');
-        new_comment.classList.add('new_comment');
-        contener_comment.appendChild(new_comment);
-
-    // create input of new comment
-    let input_comment = document.createElement('input');
-        input_comment.type = 'text';
-        input_comment.name = 'comment';
-        input_comment.placeholder = 'add comment';
-        input_comment.addEventListener('input', valid_comment, true);
-        new_comment.appendChild(input_comment);
-
-    // create contener of submit
-    let contener_submit = document.createElement('div');
-        new_comment.appendChild(contener_submit);
-
-    //create input of submit
-    let input_submit = document.createElement('input');
-        input_submit.setAttribute('id', 'submit_comment');
-        input_submit.type = 'submit';
-        input_submit.name = 'submit';
-        input_submit.value = 'comment';
-        input_submit.addEventListener('click', submit_new_comment, true);
-        contener_submit.appendChild(input_submit);
     
-    // create lable of submit 
-    let lable_submit = document.createElement('label');
-        lable_submit.setAttribute('id', 'submit');
-        lable_submit.setAttribute('for', 'submit_comment');
-        contener_submit.appendChild(lable_submit);
+    if (login != null){
+        // create contener of new comment
+        let new_comment = document.createElement('div');
+            new_comment.classList.add('new_comment');
+            contener_comment.appendChild(new_comment);
+
+        // create input of new comment
+        let input_comment = document.createElement('input');
+            input_comment.type = 'text';
+            input_comment.name = 'comment';
+            input_comment.placeholder = 'add comment';
+            input_comment.addEventListener('input', valid_comment, true);
+            new_comment.appendChild(input_comment);
+
+        // create contener of submit
+        // let contener_submit = document.createElement('div');
+        //     new_comment.appendChild(contener_submit); ////////////
+
+        //create input of submit
+        let r_id = Math.random().toString(36).substr(2, 10);
+        let input_submit = document.createElement('input');
+            input_submit.setAttribute('id', r_id);
+            input_submit.type = 'submit';
+            input_submit.name = 'submit';
+            input_submit.value = 'comment';
+            input_submit.addEventListener('click', submit_new_comment, false);
+            new_comment.appendChild(input_submit);
+        
+        // create lable of submit 
+        let lable_submit = document.createElement('label');
+            lable_submit.setAttribute('id', 'submit');
+            lable_submit.setAttribute('for', r_id);
+            new_comment.appendChild(lable_submit);
+    }
 
     return(new_post);
 }

@@ -57,6 +57,7 @@ CREATE TABLE `CommentLikes` (
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`),
   KEY `cid` (`cid`),
+  UNIQUE (`cid`, `uid`),
   CONSTRAINT `CommentLikes_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `CommentLikes_ibfk_2` FOREIGN KEY (`cid`) REFERENCES `comments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -177,6 +178,7 @@ CREATE TABLE `PostLikes` (
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`),
   KEY `pid` (`pid`),
+  UNIQUE (`pid`, `uid`),
   CONSTRAINT `PostLikes_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `PostLikes_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `Posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

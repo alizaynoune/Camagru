@@ -1,5 +1,22 @@
 // animation posts
 
+function        valid_comment(elem){
+    let REG = /^[\w\d\-_\ @.]+$/;
+    if (elem.target.value.length === 0){
+        return false;
+    }
+    if (!REG.test(elem.target.value) || elem.target.value.length > 50 ){
+        elem.target.classList.add('error');
+        return false;
+    }
+    else{
+        elem.target.classList.remove('error');
+        return true;
+    }
+}
+
+
+
 function        toggle_comments(elem){
     let comment = elem.target.parentNode.parentNode.querySelector('.comment');
     comment.classList.toggle('hidden');
@@ -26,14 +43,30 @@ function        toggle_like(e){
 }
 
 function        submit_new_comment(e){
-    // console.log(e);
-    // console.log('her');
-    console.log('sumbit now comment');
-    
+    let REG = /^[\w\d\-_\ @.]+$/;
+    let contener = e.target.parentNode.parentNode.parentNode;
+    let _error = contener.querySelector('.error');
+    let input = contener.querySelector('input[name="comment"]');
+
+
+    if (input.value.length === 0 || !REG.test(input.value) || input.value.length > 50 ){
+       _error.innerHTML = 'error comment';
+    }
+    else{
+        new_comment(input.value);
+    }
 }
 
 function        delet_Post(e){
     console.log('delet Post');
+}
+
+function    update_comment(){
+
+}
+
+function    update_likes(){
+
 }
 
 

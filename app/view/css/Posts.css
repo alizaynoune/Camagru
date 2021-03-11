@@ -96,7 +96,6 @@
 .comment_like{
     margin-left: auto;
     margin-right: auto;
-    /* position: relative; */
     top: 10px;
 }
 
@@ -123,19 +122,36 @@
 }
 
 .comment_like .contener_like {
-    display: block;
+    display: grid;
+    grid-template-columns: 50px 40px auto 100px;
+    grid-template-rows: 40px;
     width: 80px;
     height: 40px;
     width: 100%;
 }
 
+.comment_like .contener_like .like,
+.comment_like .contener_like .dislike{
+    justify-self: center;
+}
+
+.comment_like .contener_like span:first-of-type{
+    justify-self: start;
+    margin-top: 50%;
+}
+
+.comment_like .contener_like .error{
+    justify-self: center;
+    margin: auto;
+}
+
 .comment_like .contener_like .commentNbr {
-    float: right;
-    position: relative;
     cursor: pointer;
     color: var(--ColorSCfont);
     padding-right: 5px;
     font-weight: bold;
+    justify-self: center;
+    margin: auto;
 }
 
 
@@ -244,7 +260,7 @@
 }
 
 
-.comment_like .new_comment #submit_comment{display: none;}
+.comment_like .new_comment input[type='submit']{display: none;}
 .comment_like .new_comment #submit::before{
     font-family: "FontAwesome";
     content: "\f1d9";
@@ -252,14 +268,15 @@
 
 .comment_like .new_comment #submit{
     cursor: pointer;
+    margin: auto !important;
+    font-size: 25px;
 }
 
 .comment_like .new_comment #submit:hover{color: var(--ButtonActive);}
 
 
 .comment_like .new_comment {
-    height: 40px;
-    /* position: relative; */
+    height: 45px;
     margin-top: 15px;
     width: calc(100% - 20px);
     margin-left: auto;
@@ -269,15 +286,6 @@
     box-shadow: 0px 0px 20px var(--shadow);
 }
 
-.comment_like .new_comment div{
-    height: 40px;
-    width: 40px;
-    font-size: 25px;
-    position: relative;
-    float: right;
-    padding-top: 5px;
-
-}
 
 .comment_like .new_comment input[name='comment']{
     width: calc(100% - 60px);
