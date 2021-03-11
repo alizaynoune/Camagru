@@ -1,4 +1,7 @@
 // animation posts
+var login = document.querySelector('.login');
+login = login !== null ? login.innerHTML : login;
+
 
 function        valid_comment(elem){
     let REG = /^[\w\d\-_\ @.]+$/;
@@ -18,42 +21,51 @@ function        valid_comment(elem){
 
 
 function        toggle_comments(elem){
-    let comment = elem.target.parentNode.parentNode.querySelector('.comment');
+    // let comment = elem.target.parentNode.parentNode.querySelector('.comment');
+    let post = elem.target.closest('.post');
+    let comment = post.querySelector('.comment');
     comment.classList.toggle('hidden');
     console.log('toggle comment');
+    console.log(comment);
+    
     
     
     
 }
 
 function        toggle_like(e){
-    if (e.target.className === 'like'){
-        e.target.classList.remove('like');
-        e.target.classList.add('dislike');
+    if (login !== null){
+        if (e.target.className === 'like'){
+            e.target.classList.remove('like');
+            e.target.classList.add('dislike');
+        }
+        else{
+            e.target.classList.remove('dislike');
+            e.target.classList.add('like');
+        }
+        console.log('like dislike');
     }
-
-    else{
-        e.target.classList.remove('dislike');
-        e.target.classList.add('like');
-    }
-    console.log('like dislike');
-
-    
     
 }
 
 function        submit_new_comment(e){
     let REG = /^[\w\d\-_\ @.]+$/;
-    let contener = e.target.parentNode.parentNode.parentNode;
-    let _error = contener.querySelector('.error');
-    let input = contener.querySelector('input[name="comment"]');
+    let post = e.target.closest('.post');
+    let feedback = post.querySelector('.feedback');
+    let input = post.querySelector('input[name="comment"]');
+    // let login = ;//////////get login
 
 
     if (input.value.length === 0 || !REG.test(input.value) || input.value.length > 50 ){
-       _error.innerHTML = 'error comment';
+       feedback.innerHTML = 'error comment';
+       feedback.classList.add('error');
+       feedback.classList.remove('success');
     }
     else{
-        new_comment(input.value);
+        feedback.classList.remove('error');
+        feedback.classList.add('success');
+        feedback.innerHTML = 'Success comment';
+        new_comment(input.value, post);
     }
 }
 

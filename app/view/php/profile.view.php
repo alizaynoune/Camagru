@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		<script type="text/javascript" src="../js/profile.js"></script>
 		<!-- <script type="text/javascript" src="../../controller/fetch_profile.controller.js"></script> -->
 		<script type="text/javascript" src="../../controller/fetch_data.controller.js"></script>
-		<script type="text/javascript" src="../../controller/comment.controller.js"></script>
+		<script type="text/javascript" src="../../controller/Posts.controller.js"></script>
 
 	</body>
 </html>

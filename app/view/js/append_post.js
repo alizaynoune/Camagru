@@ -95,7 +95,7 @@ function        new_post(data){
 
     ///create area of msj error
     let msj_error = document.createElement('h3');
-        msj_error.classList.add('error');
+        msj_error.classList.add('feedback');
         // msj_error.innerHTML = 'msj error';
         contener_like.appendChild(msj_error);
 

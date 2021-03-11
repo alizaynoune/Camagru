@@ -91,7 +91,7 @@ if ((new Session())->SessionStatus() === false){
 	<script type="text/javascript" src="../../controller/camera.controller.js"></script>
 	<script type="text/javascript" src="../js/Posts.js"></script>
 	<script type="text/javascript" src="../js/append_post.js"></script>
-	<script type="text/javascript" src="../../controller/comment.controller.js"></script>
+	<script type="text/javascript" src="../../controller/Posts.controller.js"></script>
 	<script type="text/javascript" src="../../controller/fetch_data.controller.js"></script>
 
 	</body>

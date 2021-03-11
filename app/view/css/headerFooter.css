@@ -24,6 +24,10 @@ html, body {
     color: var(--Error);
 }
 
+.success{
+    color: var(--Success);
+}
+
 .content {
     height: auto;
     margin-top: auto;

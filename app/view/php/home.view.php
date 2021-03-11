@@ -34,7 +34,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		<script type="text/javascript" src="../js/append_post.js"></script>
 		<script type="text/javascript" src="../js/home.js"></script>
 		<script type="text/javascript" src="../../controller/fetch_data.controller.js"></script>
-		<script type="text/javascript" src="../../controller/comment.controller.js"></script>
+		<script type="text/javascript" src="../../controller/Posts.controller.js"></script>
 
 		<!-- <script type="text/javascript" src="../../controller/fetch_all.controller.js"></script> -->
 	<!-- <script type="text/javascript" src="../../controller/camera.controller.js"></script> -->
