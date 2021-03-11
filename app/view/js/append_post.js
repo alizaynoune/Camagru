@@ -88,7 +88,7 @@ function        new_post(data){
                             window.location.replace(window.location.origin + `/app/view/php/login.view.php`);
                         }, true);
         contener_like.appendChild(like);
-    ////create span has total number of like [defulte 0]
+    ////create span has total number of like
     let nb_like = document.createElement('span');
         nb_like.innerHTML = data['nbr_likes'];
         contener_like.appendChild(nb_like);
@@ -115,8 +115,67 @@ function        new_post(data){
         comment.classList.add('comment');
         comment.classList.add('hidden');
         contener_comment.appendChild(comment);
-    
-    if (login != null){
+
+
+        // <div class="old_comment">
+        //     <input type='hidden' name='comment_info'/>
+        //     <label class="like"></label>
+        //     <span>20</span>
+        //     <h4> owner_of_comment</h4>
+        //     <span class='delet_comment'></span>
+        //     <p>comment comment commet libxml_set_external_entity_loader for test</p>
+        //     <p>10-25-2021</p>
+        // </div>
+
+    // Create contener of old comment
+    let old_comment = document.createElement('div');
+        old_comment.classList.add('old_comment');
+        comment.appendChild(old_comment);
+        //Check if this post has comments
+        
+        if (parseInt(data['nbr_comments'], 10) > 0){
+            
+            //Creat input for comment info
+            let comment_info = document.createElement('input');
+                comment_info.type = 'hidden';
+                comment_info.name = 'comment_info';
+                old_comment.appendChild(comment_info);
+            
+            //Creat like / dislike of comment
+            let like_comment = document.createElement('label');
+                like_comment.classList.add('like'); /// don't forgth to check user login if like this comment///
+                old_comment.appendChild(like_comment);
+            
+            /// create span will hase number likes of this comment
+            let comment_nb_like = document.createElement('span');
+                old_comment.appendChild(comment_nb_like);
+
+            /// Create h4 will has login owner of this comment
+            let owner_comment = document.createElement('h4');
+                old_comment.appendChild(owner_comment);
+
+            /// Create span of delete this comment
+            let delet_comment = document.createElement('span');
+                delet_comment.classList.add('delet_comment');
+                old_comment.appendChild(delet_comment);
+
+            /// Create p to stored comment
+            let comment_p = document.createElement('p');
+                old_comment.appendChild(comment_p);
+
+            //create p will has date create comment
+            let date_comment = document.createElement('p');
+                old_comment.appendChild(delet_comment);
+            
+
+        }
+
+
+
+
+    //////      get old comment //////////////
+    /////////////////////////////////////////
+    if (login !== null){
         // create contener of new comment
         let new_comment = document.createElement('div');
             new_comment.classList.add('new_comment');

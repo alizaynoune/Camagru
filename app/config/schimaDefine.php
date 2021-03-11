@@ -34,7 +34,7 @@ $DB_INSERT = array(
     "_avatar"       => "INSERT INTO Avatar (uid, url) VALUES(?, ?)",
     "_post"         => "INSERT INTO Posts (uid, url) VALUES(?, ?);",
     "_post_title"   => "INSERT INTO Posts (uid, url, title) VALUES(?, ?, ?);",
-    "_comment"      => "Comment (uid, pid, Comment, Date) VALUES(?, ?, ?, NOW());",
+    "_comment"      => "INSERT INTO Comments (uid, pid, Comment) VALUES(?, ?, ?);",
     "_like_post"    => "PostLikes (pid, uid, Date) VALUES(?, ?, NOW());",
     "_like_comment" => "CommentLikes (cid, uid, Date) VALUES(?, ?, NOW());",
 

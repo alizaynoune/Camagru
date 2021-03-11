@@ -62,10 +62,12 @@ function        submit_new_comment(e){
        feedback.classList.remove('success');
     }
     else{
+        
         feedback.classList.remove('error');
         feedback.classList.add('success');
         feedback.innerHTML = 'Success comment';
-        new_comment(input.value, post);
+        new_comment(input.value, post, feedback);
+        input.value = '';
     }
 }
 

@@ -17,6 +17,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	</head>
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
+	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
+
 	
 	<div class="content">
 		<h1>home</h1>
@@ -25,7 +27,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 
 
 	</div>
-	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 
