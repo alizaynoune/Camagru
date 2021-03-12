@@ -25,8 +25,8 @@ function        toggle_comments(elem){
     let post = elem.target.closest('.post');
     let comment = post.querySelector('.comment');
     comment.classList.toggle('hidden');
-    console.log('toggle comment');
-    console.log(comment);
+    // console.log('toggle comment');
+    // console.log(comment);
     
     
     

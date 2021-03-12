@@ -15,31 +15,24 @@ $data = json_decode($_POST['data'], true);
 $info = explode('_leet_', $data['info']);
 
 $pid = decrypt_($info[0]);
-$uid = decrypt_($info[1]);
-$login = $data['login'];
+// $uid = decrypt_($info[1]);
 $comment = $data['comment'];
 // valid comment befor insert//////////////////////////////////////
-if ($uid !== $_SESSION['uid'] || $login !== $_SESSION['login'] || filter_comment($comment) === false){
+if (filter_comment($comment) === false){
     exit(json_encode(false));
 }
 
 else {
-//    $id = (new dbinset())->insert(
-//         $DB_INSERT['_comment'],
-//         array($uid, $pid, $data['comment']),
-//         array($PARAM['int'], $PARAM['int'], $PARAM['str']),
-//         0
-//     );
-
-    $id = (new dbinsert())->insert(
+    (new dbinsert())->insert(
 		$DB_INSERT['_comment'],
-		array($uid , $pid, $comment),
+		array($_SESSION['uid'] , $pid, $comment),
 		array($PARAM['int'], $PARAM['int'], $PARAM['str']),
-		1
+		0
 	);
+	$total_commetns = (new dbselect())->select($DB_SELECT['_id'], 'nbr_comments', 'Posts', $pid , $PARAM['int'], 0);;
 }
 
 
-exit(json_encode($id));
+exit(json_encode($total_commetns));
 
 ?>

@@ -1,7 +1,7 @@
 function       request_profile(login, date, contener){
     
     let request = new XMLHttpRequest();
-    let url = `../../model/fetch_profile.model.php?login=${login}&lastdate=${date}`;
+    let url = `../../model/fetch_data.model.php?type=profile&login=${login}&lastdate=${date}`;
     request.open('GET', url, true);
     request.responseType = 'text';
     request.onload = function(){
@@ -34,7 +34,7 @@ function       request_profile(login, date, contener){
 function       request_all(date, contener){
     
     let request = new XMLHttpRequest();
-    let url = `../../model/fetch_all.model.php?lastdate=${date}`;
+    let url = `../../model/fetch_data.model.php?type=all&lastdate=${date}`;
     request.open('GET', url, true);
     request.responseType = 'text';
     request.onload = function(){
@@ -66,4 +66,22 @@ function       request_all(date, contener){
 }
 
 
-function        request_comment(){}
+function        request_comment(pid, contener){
+    
+    var request = new XMLHttpRequest();
+    let url = window.location.origin + `/app/model/fetch_data.model.php?type=comment&pid=${pid}`;
+    request.responseType = 'text';
+    request.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+            ret = JSON.parse(this.responseText);
+            ret.forEach((e)=>{
+                // console.log(e);
+                all_comments(e, contener);
+                
+            });
+        }
+    };
+    request.open("GET", url, true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
+    request.send();
+}

@@ -147,6 +147,23 @@ class   dbselect extends db_conn {
         return($this->rslt);
     }
 
+    public function     fetch_comment($id){
+        parent::Connect_use();
+        
+        try{
+            $this->sql = 'SELECT * FROM Comments WHERE `pid`=? ORDER BY `Date` ASC';
+            $this->stmt = $this->conn->prepare($this->sql);
+            $this->stmt->bindParam(1, $id, PDO::PARAM_INT);
+            $this->stmt->execute();
+            $this->rslt = $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+            parent::Desconnect();
+            return($this->rslt);
+        }catch(PDOException $e){
+            parent::Desconnect();
+            die("Error : " . $e->getMessage());
+        }
+    }
+
 }
 
 
