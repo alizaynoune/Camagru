@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
 
+(new Session())->SessionStatus();
 
 $lastDate = $_GET['lastdate'];
 
@@ -13,6 +14,13 @@ if ($_GET['type'] === 'all'){
         $uid = $value['uid'];
         $user_name = (new dbselect())->select($DB_SELECT['_id'], 'login', 'Users', $value['uid'], $PARAM['int'], 0);
         $avatar = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $value['uid'], $PARAM['int'], 0);
+        if (!empty($_SESSION['uid'])){
+            $value['is_like'] = (new dbselect())->is_like_post($_SESSION['uid'], $value['id'])['is_like'];
+            // print_r($is_like);$value['is_like'] = '1';
+        }
+        else{
+            $value['is_like'] = '0';
+        }
         foreach($value as $key2 => &$value2){
             if ($key2 === 'id' || $key2 === 'uid'){
                 $value2 = encrypt_($value2);
@@ -59,8 +67,14 @@ else if ($_GET['type'] === 'comment'){
             if ($key2 === 'uid'){
                 $login = (new dbselect())->select($DB_SELECT['_id'], 'login', ' Users', $value['uid'], $PARAM['int'], 0);
                 $value['owner'] = $login['login'];
-            }
 
+            }
+        }
+        if (!empty($_SESSION['uid'])){
+            $value['is_like'] = (new dbselect())->is_like_comment($_SESSION['uid'], $value['id'])['is_like'];
+        }
+        else{
+            $value['is_like'] = '0';
         }
         $value['uid'] = encrypt_($value['uid']);
         $value['id'] = encrypt_($value['id']);

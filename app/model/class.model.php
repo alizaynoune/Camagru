@@ -164,6 +164,40 @@ class   dbselect extends db_conn {
         }
     }
 
+    public function     is_like_comment($uid, $cid){
+        parent::Connect_use();
+        try{
+            $this->sql = 'SELECT COUNT(*) AS `is_like` FROM CommentLikes WHERE `cid`=? AND `uid`=?;';
+            $this->stmt = $this->conn->prepare($this->sql);
+            $this->stmt->bindParam(1, $cid, PDO::PARAM_INT);
+            $this->stmt->bindParam(2, $uid, PDO::PARAM_INT);
+            $this->stmt->execute();
+            $this->rslt = $this->stmt->fetch(PDO::FETCH_ASSOC);
+            parent::Desconnect();
+            return($this->rslt);
+        }catch(PDOException $e){
+            parent::Desconnect();
+            die('Error : ' . $e->getMessage());
+        }
+    }
+
+    public  function    is_like_post($uid, $pid){
+        parent::Connect_use();
+        try{
+            $this->sql = 'SELECT COUNT(*) AS `is_like` FROM PostLikes WHERE `pid`=? AND `uid`=?;';
+            $this->stmt = $this->conn->prepare($this->sql);
+            $this->stmt->bindParam(1, $pid, PDO::PARAM_INT);
+            $this->stmt->bindParam(2, $uid, PDO::PARAM_INT);
+            $this->stmt->execute();
+            $this->rslt = $this->stmt->fetch(PDO::FETCH_ASSOC);
+            parent::Desconnect();
+            return($this->rslt);
+        }catch(PDOException $e){
+            parent::Desconnect();
+            die('Error : ' . $e->getMessage());
+        }
+    }
+
 }
 
 

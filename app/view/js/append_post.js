@@ -27,6 +27,14 @@ function       update_post_info(post){
 
 function        all_comments(comment, contener){
 
+    let login = document.querySelector('.login');
+    let post = contener.closest('.post');
+    let owner_post = post.querySelector('.owner').innerHTML;
+    // console.log(owner_post);
+    
+    // var owner_post = 
+    login = login !== null ? login.innerHTML : login;
+
     // Create contener of old comment
     let old_comment = document.createElement('div');
         old_comment.classList.add('old_comment');
@@ -41,7 +49,16 @@ function        all_comments(comment, contener){
 
     //Creat like / dislike of comment
     let like_comment = document.createElement('label');
-        like_comment.classList.add('like'); /// don't forgth to check user login if like this comment///
+        if (login === null){
+            like_comment.classList.add('dislike');
+            like_comment.addEventListener('click', function(){
+                window.location.replace(window.location.origin + `/app/view/php/login.view.php`);
+            }, true);
+        }
+        else {
+            comment['is_like'] === '1' ? like_comment.classList.add('like') : like_comment.classList.add('dislike');
+        }
+         /// don't forgth to check user login if like this comment///
         // like_comment.innerHTML = 
         old_comment.appendChild(like_comment);
 
@@ -53,13 +70,17 @@ function        all_comments(comment, contener){
     /// Create h4 will has login owner of this comment
     let owner_comment = document.createElement('h4');
         owner_comment.innerHTML = comment['owner'];
+        owner_comment.addEventListener('click', function(){
+            window.location.replace(window.location.origin + `/app/view/php/user.view.php?login=${comment['owner']}`);            
+        }, true);
         old_comment.appendChild(owner_comment);
     
-    /// Create span of delete this comment
-    let delet_comment = document.createElement('span');
-        delet_comment.classList.add('delet_comment');
-        old_comment.appendChild(delet_comment);
-    
+    if (login !== null && (login === comment['owner'] || login === owner_post)){
+        /// Create span of delete this comment
+        let delet_comment = document.createElement('span');
+            delet_comment.classList.add('delet_comment');
+            old_comment.appendChild(delet_comment);
+    }
     /// Create p to stored comment
     let comment_p = document.createElement('p');
         comment_p.innerHTML = comment['Comment'];
@@ -156,11 +177,23 @@ function        new_post(data){
     
     /// create lable has like or dislike icon [defulte dislike]
     let like = document.createElement('label');
-        like.classList.add('dislike');
-        login !== null ? like.addEventListener('click', toggle_like, true) :
-                        like.addEventListener('click', function(){
-                            window.location.replace(window.location.origin + `/app/view/php/login.view.php`);
-                        }, true);
+        if (login === null){
+            like.classList.add('dislike');
+            like.addEventListener('click', function(){
+                window.location.replace(window.location.origin + `/app/view/php/login.view.php`);
+            }, true);
+        }
+        else {
+            data['is_like'] === '1' ? like.classList.add('like') : like.classList.add('dislike');
+            like.addEventListener('click', toggle_like, true)
+            console.log(data);
+            
+        }
+        // like.classList.add('dislike');
+        // login !== null ? like.addEventListener('click', toggle_like, true) :
+        //                 like.addEventListener('click', function(){
+        //                     window.location.replace(window.location.origin + `/app/view/php/login.view.php`);
+        //                 }, true);
         contener_like.appendChild(like);
     ////create span has total number of like
     let nb_like = document.createElement('span');
