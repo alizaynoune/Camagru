@@ -10,13 +10,17 @@ $lastDate = $_GET['lastdate'];
 
 if ($_GET['type'] === 'all'){
     $info = (new dbselect())->fetch_all_post($lastDate);
+    // print_r($info);
     foreach($info as $key => &$value){
         $uid = $value['uid'];
+        // echo $uid;
         $user_name = (new dbselect())->select($DB_SELECT['_id'], 'login', 'Users', $value['uid'], $PARAM['int'], 0);
         $avatar = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $value['uid'], $PARAM['int'], 0);
+        // print_r($_SESSION);
         if (!empty($_SESSION['uid'])){
-            $value['is_like'] = (new dbselect())->is_like_post($_SESSION['uid'], $value['id'])['is_like'];
-            // print_r($is_like);$value['is_like'] = '1';
+            $is_like = (new dbselect())->is_like_post($_SESSION['uid'], $value['id']);
+            $value['is_like'] = !empty($is_like) ? '1' : '0';
+            
         }
         else{
             $value['is_like'] = '0';
@@ -39,11 +43,18 @@ else if ($_GET['type'] === 'profile'){
     $lastDate = $_GET['lastdate'];
     $login = $_GET['login'];
     $id = (new dbselect())->select($DB_SELECT['_login'], 'id', ' Users', $login, $PARAM['str'], 0);
-    
     $info = (new dbselect())->fetch_user_post($id['id'], $lastDate);
     foreach($info as $key => &$value){
         $uid = $value['uid'];
         $avatar = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $value['uid'], $PARAM['int'], 0);
+        if (!empty($_SESSION['uid'])){
+            $is_like = (new dbselect())->is_like_post($_SESSION['uid'], $value['id']);
+            $value['is_like'] = !empty($is_like) ? '1' : '0';
+            
+        }
+        else{
+            $value['is_like'] = '0';
+        }
         foreach($value as $key2 => &$value2){
             if ($key2 === 'id' || $key2 === 'uid'){
                 $value2 = encrypt_($value2);
@@ -71,7 +82,8 @@ else if ($_GET['type'] === 'comment'){
             }
         }
         if (!empty($_SESSION['uid'])){
-            $value['is_like'] = (new dbselect())->is_like_comment($_SESSION['uid'], $value['id'])['is_like'];
+            $is_like = (new dbselect())->is_like_comment($_SESSION['uid'], $value['id']);
+            $value['is_like'] = !empty($is_like) ? '1' : '0';
         }
         else{
             $value['is_like'] = '0';

@@ -35,6 +35,7 @@ html, body {
     padding-right: 5px;
     overflow: hidden;
     padding-top: 4rem;
+    padding-bottom: 4rem;
 }
 
 
@@ -87,6 +88,7 @@ html, body {
     width: 100%;
     background-color: var(--headerColor);
     box-shadow: 0px 0px 20px var(--shadow);
+    /* margin-top: 40px; */
 }
 
 .footer p{

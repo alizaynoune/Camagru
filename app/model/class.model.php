@@ -167,7 +167,7 @@ class   dbselect extends db_conn {
     public function     is_like_comment($uid, $cid){
         parent::Connect_use();
         try{
-            $this->sql = 'SELECT COUNT(*) AS `is_like` FROM CommentLikes WHERE `cid`=? AND `uid`=?;';
+            $this->sql = 'SELECT id FROM CommentLikes WHERE `cid`=? AND `uid`=?;';
             $this->stmt = $this->conn->prepare($this->sql);
             $this->stmt->bindParam(1, $cid, PDO::PARAM_INT);
             $this->stmt->bindParam(2, $uid, PDO::PARAM_INT);
@@ -184,7 +184,7 @@ class   dbselect extends db_conn {
     public  function    is_like_post($uid, $pid){
         parent::Connect_use();
         try{
-            $this->sql = 'SELECT COUNT(*) AS `is_like` FROM PostLikes WHERE `pid`=? AND `uid`=?;';
+            $this->sql = 'SELECT id FROM PostLikes WHERE `pid`=? AND `uid`=?;';
             $this->stmt = $this->conn->prepare($this->sql);
             $this->stmt->bindParam(1, $pid, PDO::PARAM_INT);
             $this->stmt->bindParam(2, $uid, PDO::PARAM_INT);

@@ -34,16 +34,19 @@ function        toggle_comments(elem){
 }
 
 function        toggle_like(e){
+    let post = e.target.closest('.post');
     if (login !== null){
         if (e.target.className === 'like'){
             e.target.classList.remove('like');
             e.target.classList.add('dislike');
+            like_dislike(post, 0, post.querySelector('.feedback'));
         }
         else{
             e.target.classList.remove('dislike');
             e.target.classList.add('like');
+            like_dislike(post, 1, post.querySelector('.feedback'));
         }
-        console.log('like dislike');
+        // console.log();
     }
     
 }

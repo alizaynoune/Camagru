@@ -18,6 +18,7 @@ $DB_SELECT = array (
     "_login"    => "SELECT :select: FROM :table: WHERE login = ?",
     "_email"    => "SELECT :select: FROM :table: WHERE email = ?",
     "_uid"      => "SELECT :select: FROM :table: WHERE uid = ?",
+    "_pid"      => "SELECT :select: FROM :table: WHERE pid = ?",
     
     
     "_userinfo"     => "SELECT `login`, `email`,`frestname`, `lastname`, `potoid`, `notif` FROM Users WHERE id = ?",
@@ -35,7 +36,7 @@ $DB_INSERT = array(
     "_post"         => "INSERT INTO Posts (uid, url) VALUES(?, ?);",
     "_post_title"   => "INSERT INTO Posts (uid, url, title) VALUES(?, ?, ?);",
     "_comment"      => "INSERT INTO Comments (uid, pid, Comment) VALUES(?, ?, ?);",
-    "_like_post"    => "PostLikes (pid, uid, Date) VALUES(?, ?, NOW());",
+    "_like_post"    => "INSERT INTO PostLikes (pid, uid) VALUES(?, ?);",
     "_like_comment" => "CommentLikes (cid, uid, Date) VALUES(?, ?, NOW());",
 
 );
@@ -53,6 +54,7 @@ $DB_UPDATE = array(
 
 $DB_DELETE = array(
     "_active_email"         => "DELETE FROM :table: WHERE :where: = ? ",
+    "_drop"                  => "DELETE FROM :table: WHERE :where: = ? ",
     "_isactive"              => "",
     "_post"         => "",
     "_like_comment" => "",
