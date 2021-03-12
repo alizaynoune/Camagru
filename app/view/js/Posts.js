@@ -87,6 +87,14 @@ function    update_likes(){
 }
 
 
+window.addEventListener('load', function(){
+    real_time_Post();
+});
+
+// real_time_Post();
+
+
+
 /////////// document ready/////////////////////////////
 
 // document.querySelectorAll('.post').forEach((e)=> {

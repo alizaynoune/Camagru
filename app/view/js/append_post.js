@@ -11,9 +11,9 @@ function       update_post_info(post){
     request_comment(id_post, contener_comment);
     // console.log(contener_comment);
     let name_class = contener_comment.className;
-    console.log(name_class);
+    // console.log(name_class);
     if (name_class === 'comment'){
-        console.log('scroll');
+        // console.log('scroll');
         contener_comment.scrollTop = contener_comment.scrollHeight;
         console.log(contener_comment.scrollIntoView(false));
         
@@ -186,7 +186,7 @@ function        new_post(data){
         else {
             data['is_like'] === '1' ? like.classList.add('like') : like.classList.add('dislike');
             like.addEventListener('click', toggle_like, true)
-            console.log(data);
+            // console.log(data);
             
         }
         // like.classList.add('dislike');

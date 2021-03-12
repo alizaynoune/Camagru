@@ -105,3 +105,17 @@ function        dislik_comment(comment){
 function       delete_comment(comment, post){
 
 }
+
+
+function        real_time_Post(){
+    setInterval(function(){
+        document.querySelectorAll('.post').forEach((e)=>{
+            let contener = e.querySelector('.comment_like');
+            let likes = contener.querySelector('.contener_like').getElementsByTagName('span')[0];
+            let comments = contener.querySelector('.comment');
+            let last_date = comments.lastChild.lastChild.innerHTML;
+            let nb_comment = contener.querySelector('.commentNbr');
+            console.log(last_date);
+        });
+    }, 5000);
+}
