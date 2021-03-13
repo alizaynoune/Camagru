@@ -30,11 +30,10 @@ if ($data['type'] === 'comment'){
 			array($PARAM['int'], $PARAM['int'], $PARAM['str']),
 			0
 		);
-		$total_commetns = (new dbselect())->select($DB_SELECT['_id'], 'nbr_comments', 'Posts', $pid , $PARAM['int'], 0);
 	}
 
 
-	exit(json_encode($total_commetns));
+	exit(json_encode(true));
 }
 else if ($data['type'] === 'like'){
 	$is_like = (new dbselect())->is_like_post($_SESSION['uid'], $pid);
@@ -47,12 +46,12 @@ else if ($data['type'] === 'like'){
 			array($PARAM['int'], $PARAM['int']),
 			0
 		);
-		exit(json_encode((new dbselect())->select($DB_SELECT['_id'], 'nbr_likes', 'Posts', $pid , $PARAM['int'], 0)));
+		exit(json_encode(true));
 	}
 	
 	else if ($data['flag'] === 0 && $is_like['is_like'] === '1'){
 		(new dbinsert())->drop($DB_DELETE['_drop'], 'PostLikes', 'id', $is_like['id'], $PARAM['int']);
-		exit(json_encode((new dbselect())->select($DB_SELECT['_id'], 'nbr_likes', 'Posts', $pid , $PARAM['int'], 0)));
+		exit(json_encode(true));
 	}
 	
 	else{

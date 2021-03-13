@@ -214,7 +214,7 @@ function        new_post(data){
     /// create lable hase total number of comment [defulte 0]
     let nb_comment = document.createElement('lable');
         nb_comment.classList.add('commentNbr');
-        nb_comment.innerHTML =  `${data['nbr_comments']} comments`;
+        nb_comment.innerHTML =  data['nbr_comments'];
         nb_comment.addEventListener('click', toggle_comments, true);
         contener_like.appendChild(nb_comment);
     

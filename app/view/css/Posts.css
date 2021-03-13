@@ -99,7 +99,7 @@
     top: 10px;
 }
 
-.like::before{
+.like::after{
     font-family: "FontAwesome";
     content: "\f004";
     font-size: 32px;
@@ -107,7 +107,7 @@
     cursor: pointer;
 }
 
-.dislike::before{
+.dislike::after{
   font-family: "Font Awesome 5 Free";
   content: "\f004";
   font-size: 32px;
@@ -154,6 +154,14 @@
     margin: auto;
 }
 
+.comment_like .contener_like .commentNbr::after{
+    font-family: "FontAwesome";
+    content: "\f086";
+    font-size: 20px;
+    /* margin-right: 3px; */
+    /* padding-right: 3px; */
+}
+
 
 .contener_comment{
     position: relative;
@@ -193,8 +201,8 @@
 /* commment like and dislike */
 /* ///////////////////////// */
 
-.contener_comment .comment .old_comment .dislike::before,
-.contener_comment .comment .old_comment .like::before{
+.contener_comment .comment .old_comment .dislike::after,
+.contener_comment .comment .old_comment .like::after{
     font-size: 20px;
     left: 20px;
 }
