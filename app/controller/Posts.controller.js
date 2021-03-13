@@ -23,16 +23,18 @@ function        new_comment(comment, post, feedback){
     request.responseType = 'text';
     request.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            ret = JSON.parse(this.responseText);
+            let ret = JSON.parse(this.responseText);
+            console.log(ret);
+            
             if (ret === false){
                 feedback.innerHTML = 'invalid information!';
                 feedback.classList.add('error');
                 feedback.classList.remove('success');
             }
-            else {
-                update_post_info(post);
-                post.querySelector('.commentNbr').innerHTML = ret['nbr_comments'] + ' comments';
-            }
+            // else {
+            //     update_post_info(post);
+            //     post.querySelector('.commentNbr').innerHTML = ret['nbr_comments'] + ' comments';
+            // }
             // console.log(ret);
         }
     };
@@ -51,24 +53,17 @@ function        like_dislike(post, flag, feedback){
     let info = post.querySelector('input[name="post_info"]').value;
     let request = new XMLHttpRequest();
     let url = window.location.origin + '/app/model/posts.model.php';
-    // if (flag === 1){
-    //     console.log('like');
-    // }
-    // else{
-    //     console.log('dislike');
-        
-    // }
     request.responseType = 'text';
     request.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            ret = JSON.parse(this.responseText);
+            let ret = JSON.parse(this.responseText);
             if (ret === false){
                 feedback.innerHTML = 'invalid information!';
                 feedback.classList.add('error');
                 feedback.classList.remove('success');
             }
             else {
-                post.querySelector('.contener_like').getElementsByTagName('span')[0].innerHTML = ret['nbr_likes'];
+                // post.querySelector('.contener_like').getElementsByTagName('span')[0].innerHTML = ret['nbr_likes'];
                 feedback.innerHTML = 'success';
                 feedback.classList.remove('error');
                 feedback.classList.add('success');
@@ -90,32 +85,49 @@ function        like_dislike(post, flag, feedback){
 
 
 
-function        like_comment(comment){
-
-}
-
-
+// function        like_comment(comment){}
+// function        dislik_comment(comment){}
+// function       delete_comment(comment, post){}
 
 
-function        dislik_comment(comment){
+function        socket_post(){
+    var i = 10;
 
-}
-
-
-function       delete_comment(comment, post){
-
-}
-
-
-function        real_time_Post(){
-    setInterval(function(){
+    let test = setInterval(function socket(){
         document.querySelectorAll('.post').forEach((e)=>{
-            let contener = e.querySelector('.comment_like');
-            let likes = contener.querySelector('.contener_like').getElementsByTagName('span')[0];
-            let comments = contener.querySelector('.comment');
-            let last_date = comments.lastChild.lastChild.innerHTML;
-            let nb_comment = contener.querySelector('.commentNbr');
-            console.log(last_date);
+            let info_post = e.querySelector('input[name="post_info"]').value;
+
+            var request = new XMLHttpRequest();
+            request.response = 'text';
+            let url = window.location.origin + '/app/model/socket_post.model.php';
+            request.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200){
+                    let ret = JSON.parse(this.responseText);
+                    // console.log(ret);
+                    if (ret !== false)
+                        update_post_info(ret);
+                    
+                    
+                }
+            };
+            var data = {'post':info_post};
+            var jsn = JSON.stringify(data);
+
+            request.open('POST', url, true);
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
+            request.send(`data=${jsn}`);
+
+            // console.log(i);
+            
+
+            // console.log(comments);
         });
-    }, 5000);
+        // i--;
+        // if (i == 1){
+        //     clearInterval(test);
+        //     console.log('stop');
+        // }
+    }, 2000);
+    console.log('her');
+    
 }

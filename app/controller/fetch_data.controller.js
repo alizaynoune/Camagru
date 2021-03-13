@@ -77,7 +77,7 @@ function        request_comment(pid, contener){
             ret = JSON.parse(this.responseText);
             ret.forEach((e)=>{
                 // console.log(e);
-                all_comments(e, contener);
+                append_comment(e, contener);
                 
             });
         }

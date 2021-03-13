@@ -88,7 +88,8 @@ function    update_likes(){
 
 
 window.addEventListener('load', function(){
-    real_time_Post();
+    socket_post();
+    // WebSocket
 });
 
 // real_time_Post();

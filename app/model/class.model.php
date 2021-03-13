@@ -154,6 +154,7 @@ class   dbselect extends db_conn {
             $this->sql = 'SELECT * FROM Comments WHERE `pid`=? ORDER BY `Date` ASC';
             $this->stmt = $this->conn->prepare($this->sql);
             $this->stmt->bindParam(1, $id, PDO::PARAM_INT);
+
             $this->stmt->execute();
             $this->rslt = $this->stmt->fetchAll(PDO::FETCH_ASSOC);
             parent::Desconnect();

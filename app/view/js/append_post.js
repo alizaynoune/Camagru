@@ -1,36 +1,34 @@
-function       update_post_info(post){
-    // console.log(post);
-    var contener_comment = post.querySelector('.comment');
-    var id_post = post.querySelector('input[name="post_info"]').value.split('_leet_');
-    // console.log(id_post[0]);
-    // contener_comment.replaceChildren();
-    while (contener_comment.firstChild){
-        contener_comment.removeChild(contener_comment.firstChild);
+function       update_post_info(data){
+    let target = document.querySelector(`input[value='${data['post_info']}']`);
+    let post = target.closest('.post');
+    let likes_comments = post.querySelector('.contener_like');
+    likes_comments.getElementsByTagName('span')[0].innerHTML = data['likes_comments']['nbr_likes'];
+    likes_comments.getElementsByTagName('lable')[0].innerHTML = data['likes_comments']['nbr_comments'];
+    let i = 0;
+    post.querySelectorAll('.old_comment').forEach(e => {
+        let info = e.querySelector('input[name="comment_info"]').value;
+        let cmp = data['all_comments'][i]['id'] + '_leet_' + data['all_comments'][i]['pid'] + '_leet_' + data['all_comments'][i]['uid'];
+        if (info === cmp){
+            e.getElementsByTagName('span')[0].innerHTML = data['all_comments'][i]['nbr_likes'];
+            i++;
+        }        
+            
+    });
+    if (i < data['all_comments'].length){
+        let contener = post.querySelector('.comment');
+        while(i < data['all_comments'].length){
+            append_comment(data['all_comments'][i++], contener)
+        }
     }
-    
-    request_comment(id_post, contener_comment);
-    // console.log(contener_comment);
-    let name_class = contener_comment.className;
-    // console.log(name_class);
-    if (name_class === 'comment'){
-        // console.log('scroll');
-        contener_comment.scrollTop = contener_comment.scrollHeight;
-        console.log(contener_comment.scrollIntoView(false));
-        
-        
-    }
-    
-    
-    
 }
 
 
-function        all_comments(comment, contener){
-
+function        append_comment(comment, contener){
+    
+    
     let login = document.querySelector('.login');
     let post = contener.closest('.post');
     let owner_post = post.querySelector('.owner').innerHTML;
-    // console.log(owner_post);
     
     // var owner_post = 
     login = login !== null ? login.innerHTML : login;
@@ -45,6 +43,7 @@ function        all_comments(comment, contener){
     let comment_info = document.createElement('input');
         comment_info.type = 'hidden';
         comment_info.name = 'comment_info';
+        comment_info.value = comment['id'] + '_leet_' + comment['pid'] + '_leet_'  + comment['uid'];        
         old_comment.appendChild(comment_info);
 
     //Creat like / dislike of comment
@@ -169,6 +168,12 @@ function        new_post(data){
         comment_like.classList.add('comment_like');
         new_post.appendChild(comment_like);
 
+    // let last_comment = document.createElement('input');
+    //     last_comment.type = 'hidden';
+    //     last_comment.name = 'last_comment';
+    //     last_comment.value = '0';
+    //     comment_like.appendChild(last_comment);
+
     //create contener like//
     ///////////////////////
     let contener_like = document.createElement('div');
@@ -224,7 +229,7 @@ function        new_post(data){
         contener_comment.appendChild(comment);
         
         if (parseInt(data['nbr_comments'], 10) > 0){
-            // all_comments(data['id'], old_comment);
+            // append_comment(data['id'], old_comment);
             request_comment(data['id'], comment);
             
 
