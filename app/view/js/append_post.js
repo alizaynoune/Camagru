@@ -126,7 +126,8 @@ function        new_post(data){
         new_post.appendChild(info);
     // create create img (img_owner)
     let img_owner = document.createElement('img');
-        img_owner.setAttribute('id', 'img_owner');
+        // img_owner.setAttribute('id', 'img_owner');
+        img_owner.classList.add('img_owner');
         img_owner.src = data['u_avatar'];
         img_owner.addEventListener('click', function(){
             window.location.replace(window.location.origin + `/app/view/php/user.view.php?login=${data['u_name']}`);            
@@ -141,7 +142,7 @@ function        new_post(data){
         }, true);
         info.appendChild(name_owner);
     // create h2 will has title of post
-    let title = document.createElement('h2');
+    let title = document.createElement('h4');
         title.classList.add('title');
         title.innerHTML = data['title'];
         info.appendChild(title);
@@ -161,7 +162,8 @@ function        new_post(data){
     }
     // create img will hase image of post
     let img_post = document.createElement('img');
-        img_post.setAttribute('id', 'img_post');
+        // img_post.setAttribute('id', 'img_post');
+        img_post.classList.add('img_post');
         img_post.src = data['url'];
         new_post.appendChild(img_post);
     

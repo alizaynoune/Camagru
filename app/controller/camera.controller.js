@@ -5,7 +5,7 @@ function        valid_title(elem){
         title.classList.remove('error');
         return true;
     }
-    if (!REG.test(title.value) || title.value.length > 50){
+    if (title.value.length > 50){
         title.classList.add('error');
         return false;
     }

@@ -17,7 +17,8 @@ $info = explode('_leet_', $data['info']);
 $pid = decrypt_($info[0]);
 $uid = decrypt_($info[1]);
 if ($data['type'] === 'comment'){
-	$comment = $data['comment'];
+	$comment = htmlspecialchars($data['comment']);
+	// $comment = $data['comment'];
 	// valid comment befor insert//////////////////////////////////////
 	if (filter_comment($comment) === false){
 	    exit(json_encode(false));

@@ -6,7 +6,6 @@ function    filter_email($email){
 	global $ERROR;
 	$ERROR = 'email invalide';
 	$reg = '/^[a-zA-Z]+(([\.]{0,1})[\w_-])+@[\w\.]+\.([a-z]{2,4})$/';
-	// $reg = '/^[a-zA-Z0-9]+([\w-\+\!\#\$\%\&\'\*\=\?\^\`\{\|]+[\.]{0,1})+[a-zA-Z0-9]+@([a-z0-9]{1})+(\.{0,1}[a-z0-9-]+)*(\.[a-z]{2,4})$/';
 	if (strlen($email) > 50 || !preg_match($reg, $email))
 		return(false);
 	$ERROR = "";
@@ -60,7 +59,7 @@ function    filter_config_pwd($pwd, $cnfpwd){
 
 function    filter_comment($comment){
 	$REG = "/^[\w\d\-_\ @.]+$/";
-	if (strlen($comment) === 0 || strlen($comment) > 255 || !preg_match($REG, $comment))
+	if (strlen($comment) === 0 || strlen($comment) > 255)
 		return(false);
 	return(true);
 

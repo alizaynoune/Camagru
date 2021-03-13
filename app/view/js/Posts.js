@@ -5,13 +5,13 @@ login = login !== null ? login.innerHTML : login;
 
 function        valid_comment(elem){
     let REG = /^[\w\d\-_\ @.]+$/;
-    if (elem.target.value.length === 0){
+    if (elem.target.value.length === 0 || elem.target.value.length > 250){
         return false;
     }
-    if (!REG.test(elem.target.value) || elem.target.value.length > 250 ){
-        elem.target.classList.add('error');
-        return false;
-    }
+    // if (!REG.test(elem.target.value) || elem.target.value.length > 250 ){
+    //     elem.target.classList.add('error');
+    //     return false;
+    // }
     else{
         elem.target.classList.remove('error');
         return true;
@@ -59,8 +59,8 @@ function        submit_new_comment(e){
     let input = post.querySelector('input[name="comment"]');
     // let login = ;//////////get login
 
-
-    if (input.value.length === 0 || !REG.test(input.value) || input.value.length > 250 ){
+// !REG.test(input.value) ||
+    if (input.value.length === 0 ||  input.value.length > 250 ){
        feedback.innerHTML = 'error comment';
        feedback.classList.add('error');
        feedback.classList.remove('success');
@@ -78,14 +78,15 @@ function        submit_new_comment(e){
 
 function        delet_Post(e){
     let contener = e.target.closest('.post');
-    // console.log(contener.firstChild);
+    console.log(contener);
     
     
     
     if (contener.querySelector('.pop_window') === null){
         let pop = document.createElement('div');
             pop.classList.add('pop_window');
-            contener.appendChild(pop);
+            // contener.appendChild(pop);
+            contener.insertBefore(pop, contener.querySelector('.img_post'));
         // console.log(contener);
         let btnYse = document.createElement('button');
             btnYse.classList.add('BtnAnim');
@@ -128,7 +129,7 @@ function        delet_Post(e){
             labelNO.setAttribute('for', r_id);
             labelNO.innerHTML = 'NO';
             pop.appendChild(labelNO);
-            contener.appendChild(pop);
+            // contener.appendChild(pop);
 
 
         

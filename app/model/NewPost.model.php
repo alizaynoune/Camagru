@@ -53,7 +53,7 @@ if (empty($_POST['title'])){
 }
 else {
     $id = (new dbinsert())->insert(
-        $DB_INSERT['_post_title'], array($uid, $name, $_POST['title']),
+        $DB_INSERT['_post_title'], array($uid, $name, htmlspecialchars($_POST['title'])),
         array($PARAM['int'], $PARAM['str'], $PARAM['str']),
         1
     );
