@@ -2,14 +2,14 @@ function       update_post_info(data){
     let target = document.querySelector(`input[value='${data['post_info']}']`);
     let post = target.closest('.post');
     let likes_comments = post.querySelector('.contener_like');
-    likes_comments.getElementsByTagName('span')[0].innerHTML = data['likes_comments']['nbr_likes'];
-    likes_comments.getElementsByTagName('lable')[0].innerHTML = data['likes_comments']['nbr_comments'];
+    likes_comments.getElementsByTagName('label')[0].innerHTML = data['likes_comments']['nbr_likes'];
+    likes_comments.getElementsByTagName('label')[1].innerHTML = data['likes_comments']['nbr_comments'];
     let i = 0;
     post.querySelectorAll('.old_comment').forEach(e => {
         let info = e.querySelector('input[name="comment_info"]').value;
         let cmp = data['all_comments'][i]['id'] + '_leet_' + data['all_comments'][i]['pid'] + '_leet_' + data['all_comments'][i]['uid'];
         if (info === cmp){
-            e.getElementsByTagName('span')[0].innerHTML = data['all_comments'][i]['nbr_likes'];
+            e.getElementsByTagName('label')[0].innerHTML = data['all_comments'][i]['nbr_likes'];
             i++;
         }        
             
@@ -48,8 +48,10 @@ function        append_comment(comment, contener){
 
     //Creat like / dislike of comment
     let like_comment = document.createElement('label');
+        like_comment.innerHTML = comment['nbr_likes'];
         if (login === null){
             like_comment.classList.add('dislike');
+            
             like_comment.addEventListener('click', function(){
                 window.location.replace(window.location.origin + `/app/view/php/login.view.php`);
             }, true);
@@ -57,14 +59,12 @@ function        append_comment(comment, contener){
         else {
             comment['is_like'] === '1' ? like_comment.classList.add('like') : like_comment.classList.add('dislike');
         }
-         /// don't forgth to check user login if like this comment///
-        // like_comment.innerHTML = 
         old_comment.appendChild(like_comment);
 
     /// create span will hase number likes of this comment
-    let comment_nb_like = document.createElement('span');
-        comment_nb_like.innerHTML = comment['nbr_likes'];
-        old_comment.appendChild(comment_nb_like);
+    // let comment_nb_like = document.createElement('label');
+    //     comment_nb_like.innerHTML = comment['nbr_likes'];
+        // old_comment.appendChild(comment_nb_like);
     
     /// Create h4 will has login owner of this comment
     let owner_comment = document.createElement('h4');
@@ -73,6 +73,11 @@ function        append_comment(comment, contener){
             window.location.replace(window.location.origin + `/app/view/php/user.view.php?login=${comment['owner']}`);            
         }, true);
         old_comment.appendChild(owner_comment);
+        
+    //create p will has date create comment
+    let date_comment = document.createElement('p');
+        date_comment.innerHTML = comment['Date'];
+        old_comment.appendChild(date_comment);
     
     if (login !== null && (login === comment['owner'] || login === owner_post)){
         /// Create span of delete this comment
@@ -85,17 +90,15 @@ function        append_comment(comment, contener){
         comment_p.innerHTML = comment['Comment'];
         old_comment.appendChild(comment_p);
     
-    //create p will has date create comment
-    let date_comment = document.createElement('p');
-        date_comment.innerHTML = comment['Date'];
-        old_comment.appendChild(date_comment);
+
 
 }
 
 
 
-
-
+///////////////////////////////////////////////////////////////////////
+/////////////////////// create new post ///////////////////////////////
+///////////////////////////////////////////////////////////////////////
 function        new_post(data){
     // console.log(document.querySelector('.login'));
     var login = document.querySelector('.login');
@@ -182,6 +185,7 @@ function        new_post(data){
     
     /// create lable has like or dislike icon [defulte dislike]
     let like = document.createElement('label');
+        like.innerHTML = data['nbr_likes'];
         if (login === null){
             like.classList.add('dislike');
             like.addEventListener('click', function(){
@@ -201,9 +205,9 @@ function        new_post(data){
         //                 }, true);
         contener_like.appendChild(like);
     ////create span has total number of like
-    let nb_like = document.createElement('span');
-        nb_like.innerHTML = data['nbr_likes'];
-        contener_like.appendChild(nb_like);
+    // let nb_like = document.createElement('span');
+    //     // nb_like.innerHTML = data['nbr_likes'];
+    //     contener_like.appendChild(nb_like);
 
     ///create area of msj error
     let msj_error = document.createElement('h3');
@@ -212,7 +216,7 @@ function        new_post(data){
         contener_like.appendChild(msj_error);
 
     /// create lable hase total number of comment [defulte 0]
-    let nb_comment = document.createElement('lable');
+    let nb_comment = document.createElement('label');
         nb_comment.classList.add('commentNbr');
         nb_comment.innerHTML =  data['nbr_comments'];
         nb_comment.addEventListener('click', toggle_comments, true);
@@ -234,17 +238,17 @@ function        new_post(data){
             
 
         }
-
-
-
-
-    //////      get old comment //////////////
-    /////////////////////////////////////////
     if (login !== null){
+        /// create form
+        let form = document.createElement('form');
+            form.setAttribute('method', 'POST');
+            contener_comment.appendChild(form);
+
+
         // create contener of new comment
         let new_comment = document.createElement('div');
             new_comment.classList.add('new_comment');
-            contener_comment.appendChild(new_comment);
+            form.appendChild(new_comment);
 
         // create input of new comment
         let input_comment = document.createElement('input');
@@ -260,6 +264,9 @@ function        new_post(data){
 
         //create input of submit
         let r_id = Math.random().toString(36).substr(2, 10);
+        while(document.getElementById(r_id)){
+            r_id = Math.random().toString(36).substr(2, 10);
+        }
         let input_submit = document.createElement('input');
             input_submit.setAttribute('id', r_id);
             input_submit.type = 'submit';
@@ -270,7 +277,7 @@ function        new_post(data){
         
         // create lable of submit 
         let lable_submit = document.createElement('label');
-            lable_submit.setAttribute('id', 'submit');
+            // lable_submit.setAttribute('id', 'submit');
             lable_submit.setAttribute('for', r_id);
             new_comment.appendChild(lable_submit);
     }

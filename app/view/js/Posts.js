@@ -8,7 +8,7 @@ function        valid_comment(elem){
     if (elem.target.value.length === 0){
         return false;
     }
-    if (!REG.test(elem.target.value) || elem.target.value.length > 50 ){
+    if (!REG.test(elem.target.value) || elem.target.value.length > 250 ){
         elem.target.classList.add('error');
         return false;
     }
@@ -52,6 +52,7 @@ function        toggle_like(e){
 }
 
 function        submit_new_comment(e){
+    e.preventDefault();
     let REG = /^[\w\d\-_\ @.]+$/;
     let post = e.target.closest('.post');
     let feedback = post.querySelector('.feedback');
@@ -59,7 +60,7 @@ function        submit_new_comment(e){
     // let login = ;//////////get login
 
 
-    if (input.value.length === 0 || !REG.test(input.value) || input.value.length > 50 ){
+    if (input.value.length === 0 || !REG.test(input.value) || input.value.length > 250 ){
        feedback.innerHTML = 'error comment';
        feedback.classList.add('error');
        feedback.classList.remove('success');
@@ -72,10 +73,70 @@ function        submit_new_comment(e){
         new_comment(input.value, post, feedback);
         input.value = '';
     }
+    
 }
 
 function        delet_Post(e){
-    console.log('delet Post');
+    let contener = e.target.closest('.post');
+    // console.log(contener.firstChild);
+    
+    
+    
+    if (contener.querySelector('.pop_window') === null){
+        let pop = document.createElement('div');
+            pop.classList.add('pop_window');
+            contener.appendChild(pop);
+        // console.log(contener);
+        let btnYse = document.createElement('button');
+            btnYse.classList.add('BtnAnim');
+            btnYse.addEventListener('click', delet_Post_controller);
+            let r_id = Math.random().toString(36).substr(2, 10);
+            while(document.getElementById(r_id)){
+                r_id = Math.random().toString(36).substr(2, 10);
+            }
+            btnYse.setAttribute('id', r_id);
+            pop.appendChild(btnYse);
+        let labelYes = document.createElement('label');
+            labelYes.classList.add('Btn');
+            labelYes.classList.add('YESBtn');
+            labelYes.setAttribute('for', r_id);
+            labelYes.innerHTML = 'YES';
+            pop.appendChild(labelYes);
+            
+        
+        let msj = document.createElement('h2');
+            msj.classList.add('error');
+            msj.innerHTML = 'are you sure to delete this posted';
+            pop.appendChild(msj);
+        
+
+        let btnNo = document.createElement('button');
+            btnNo.classList.add('BtnAnim');
+            r_id = Math.random().toString(36).substr(2, 10);
+            while(document.getElementById(r_id)){
+                r_id = Math.random().toString(36).substr(2, 10);
+            }
+            btnNo.setAttribute('id', r_id);
+            btnNo.addEventListener('click', function(e){
+                e.target.closest('.pop_window').remove();
+            })
+            pop.appendChild(btnNo);
+        
+        let labelNO = document.createElement('label');
+            labelNO.classList.add('Btn');
+            labelNO.classList.add('NOBtn');
+            labelNO.setAttribute('for', r_id);
+            labelNO.innerHTML = 'NO';
+            pop.appendChild(labelNO);
+            contener.appendChild(pop);
+
+
+        
+
+
+    }
+    // console.log(e.target.closest('.post'));
+    
 }
 
 function    update_comment(){
@@ -89,7 +150,6 @@ function    update_likes(){
 
 window.addEventListener('load', function(){
     socket_post();
-    // WebSocket
 });
 
 // real_time_Post();

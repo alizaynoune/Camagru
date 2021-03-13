@@ -58,4 +58,20 @@ else if ($data['type'] === 'like'){
 		exit(json_encode(false));
 	}
 }
+
+else if ($data['type'] === 'delet_post'){
+	$uid = decrypt_($info[1]);
+	$pid = decrypt_($info[0]);
+	if ($uid === $_SESSION['uid']){
+		$post = (new dbselect())->select($DB_SELECT['_id'], 'id, uid', 'Posts', $pid, $PARAM['int'], 0);
+		if ($pid === $post['id']){
+			(new dbinsert())->drop($DB_DELETE['_drop'], 'Posts', 'id', $pid, $PARAM['int']);
+			exit(json_encode(true));
+		}
+		exit(json_encode(false));
+	}
+	else{
+		exit(json_encode(false));
+	}
+}
 ?>

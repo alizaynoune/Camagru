@@ -79,13 +79,12 @@ form.addEventListener('submit', (e) =>{
     ///////////////////////////////ajax send data to server///////////////////////
     var url = '../../model/NewPost.model.php';
     var request = new XMLHttpRequest();
-    request.open('Post', url, true);
+    request.open('POST', url, true);
     var page = document.querySelector('.thumbnails');
     request.onload = function(){
         try{
             var ret =JSON.parse(this.responseText);
-            let post = new_post(ret, null);
-            // page.appendChild()
+            let post = new_post(ret);
             page.insertBefore(post, page.firstChild);
             _Success_.innerHTML = 'Success Share';
             form.querySelector("input[name='stickers']").value = '';
@@ -101,7 +100,6 @@ form.addEventListener('submit', (e) =>{
     request.onerror = function(){
         _Error_.innerHTML = 'Errors Share';
     };
-    // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
     request.send(new FormData(e.target));
     
     e.preventDefault();

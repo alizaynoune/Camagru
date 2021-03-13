@@ -17,14 +17,10 @@ function       request_profile(login, date, contener){
                 
             });
             contener.appendChild(packge);
-            // console.log(lastdate);
-        }catch(e){
-            // console.log(e);
-            
+        }catch(e){            
         }
     };
     request.onerror = function(){
-        // console.log('error');
         
     };
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
@@ -52,15 +48,11 @@ function       request_all(date, contener){
                 
             });
             contener.appendChild(packge);
-            // console.log(lastdate);
         }catch(e){
-            // console.log(e);
             
         }
     };
-    request.onerror = function(){
-        // console.log('error');
-        
+    request.onerror = function(){        
     };
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
     request.send();
@@ -76,7 +68,6 @@ function        request_comment(pid, contener){
         if (this.readyState == 4 && this.status == 200){
             ret = JSON.parse(this.responseText);
             ret.forEach((e)=>{
-                // console.log(e);
                 append_comment(e, contener);
                 
             });
