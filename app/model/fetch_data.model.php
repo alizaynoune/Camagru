@@ -85,7 +85,7 @@ else if ($_GET['type'] === 'profil_login'){
     }
     else{
         $info = (new dbselect())->fetch_user_post($_SESSION['uid'], $lastDate);
-        $data = null;
+        $data = [];
         foreach($info as $key => $value){
             $data[$key]['id'] = encrypt_($value['id']);
             $data[$key]['url'] = _SERVER_ . '/public/usersData/' . $_SESSION['login'] . '/' . $value['url'];

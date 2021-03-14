@@ -98,6 +98,8 @@ else if ($data['type'] === 'like_comment'){
 	$is_like['is_like'] = !empty($is_like) ? '1' : '0';
 
 	if ($data['flag'] === 1 && $is_like['is_like'] === '0'){
+		// print_r($is_like);
+		// echo $uid . '  => ' .  $cid;
 		(new dbinsert())->insert(
 			$DB_INSERT['_like_comment'], array($cid, $uid),
 			array($PARAM['int'], $PARAM['int']),
@@ -107,6 +109,7 @@ else if ($data['type'] === 'like_comment'){
 	}
 
 	else if ($data['flag'] === 0 && $is_like['is_like'] === '1'){
+		// print_r($is_like);
 		(new dbinsert())->drop($DB_DELETE['_drop'], 'CommentLikes', 'id', $is_like['id'], $PARAM['int']);
 		exit(json_encode(true));
 

@@ -196,5 +196,5 @@ function        socket_post(){
             var data = JSON.stringify({'post':info_post});
             request.send(`data=${data}`);
         });
-    }, 3000);
+    }, 2500);
 }
