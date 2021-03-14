@@ -25,6 +25,7 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/settings.css"/>
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
+	  <link class="_css" rel="stylesheet" type="text/css" href="../css/Posts.css"/>
 	</head>
 	<body>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
@@ -39,9 +40,9 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 				<div class="modal">
 					<input class="upload BtnAnim" type="file" id="image" name="img_user" accept="image/*" onchange="load_img(event)" />
 				  	<label for="image" class="btn-1  Btn">upload</label>
-					<input class="camera BtnAnim" type="file" id="camera" name="img_db" accept="image/*"/>
+					<input class="camera BtnAnim" type="url" id="camera" name="img_db"/>
 					<!-- get avatar from profile not fenish yat -->
-					<label for="camera" class="btn-2  Btn">profile</label>
+					<label for="camera" class="btn-2  Btn" onclick="img_from_profile()">profile</label>
 					<label class="ok  Btn" onclick="valid_img()">OK</label>
 					<img id="src_avatar"/>
 					<label class="cancel  Btn" onclick="hedin_modal()">cancel</label>
@@ -76,5 +77,15 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 		<script type="text/javascript" src="../../controller/validateForm.js"></script>
 		<script type="text/javascript" src="../js/form.js"></script>
 		<script type="text/javascript" src="../js/settings.js"></script>
+		<script type="text/javascript" src="../../controller/fetch_data.controller.js"></script>
+		<script type="text/javascript" src="../js/append_post.js"></script>
+
+
+		<!-- <script type="text/javascript" src="../js/Posts.js"></script> -->
+		<!-- <script type="text/javascript" src="../js/append_post.js"></script> -->
+		<!-- <script type="text/javascript" src="../js/profile.js"></script> -->
+		<!-- <script type="text/javascript" src="../../controller/fetch_profile.controller.js"></script> -->
+		<!-- <script type="text/javascript" src="../../controller/fetch_data.controller.js"></script> -->
+		<!-- <script type="text/javascript" src="../../controller/Posts.controller.js"></script> -->
 	</body>
 </html>

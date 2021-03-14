@@ -5,7 +5,6 @@ var     login = document.querySelector('input[name="login"]').value;
 
 window.addEventListener('load', function(){
     request_profile(login, lastdate, contener);
-
 });
 
 window.addEventListener('scroll', function(e){

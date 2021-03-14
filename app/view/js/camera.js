@@ -1,6 +1,7 @@
 
-/////////////////////////globale varialbes///////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+/////////////////////////globale varialbes/////////////////////
+///////////////////////////////////////////////////////////////
 var   captur = 0;
 var   sticker_video = 0;
 var   sticker_canva = 0;
@@ -9,6 +10,10 @@ var   new_id = 0;
 var   e_listener;
 
 
+
+/////////////////////////////////////////////
+////////// show erea video //////////////////
+/////////////////////////////////////////////
 function  show_erea(){
   const select = document.querySelectorAll('.display');
   var video = document.getElementById('video');
@@ -18,8 +23,7 @@ function  show_erea(){
   select.forEach(function(elem){
     elem.classList.remove('hiddenBtn');
   });
-  var contener_video = document.getElementById('contener_video');
-  // console.log(contener_video.style.display);
+  // var contener_video = document.getElementById('contener_video');
 }
 
 function  hidden_erea(){
@@ -32,9 +36,10 @@ function  hidden_erea(){
   });
 }
 
+//////////////////////////////////////////
+/////// turn on camera //////////////////
+/////////////////////////////////////////
 function  camera_on(){
-  // console.log(document.querySelector('input[name="camera"]').checked);
-  
     if (document.querySelector('input[name="camera"]').checked === true){
     show_erea();
     const video = document.getElementById('video');
@@ -66,6 +71,9 @@ function  camera_on(){
   }
 }
 
+///////////////////////////////////////////////
+/////////// turn off camera ///////////////////
+///////////////////////////////////////////////
 function  camera_off(){
   const video = document.getElementById('video');
   const mediaStream = video.srcObject;
@@ -79,6 +87,9 @@ function  camera_off(){
   video.srcObject = null;
 }
 
+//////////////////////////////////////////////////////////////////
+///////// upload photo from your locale files to canvas //////////
+//////////////////////////////////////////////////////////////////
 function    upload_to_canva(event){
   camera_off();
     if (event.target.files[0].size < 2000000){
@@ -114,6 +125,9 @@ function    upload_to_canva(event){
   
 }
 
+/////////////////////////////////////////////////////////////////////////
+////////// capture photo from stream video and draw it at canvas ////////
+/////////////////////////////////////////////////////////////////////////
 function    capture_img(){
   let box = document.querySelector('input[name=stickers]').checked;
   if (sticker_video > 0 || box === false){
@@ -137,6 +151,10 @@ function    capture_img(){
   }
 }
 
+
+////////////////////////////////////////////////////////////////////
+/////////// copy stickers from stream video to canvas //////////////
+////////////////////////////////////////////////////////////////////
 function    copy_stickers(){
   let elem = document.getElementById('video_id');
   var canva = document.getElementById('canva_id');
@@ -153,6 +171,9 @@ function    copy_stickers(){
   });
 }
 
+/////////////////////////////////////////////////////////////////////
+///////////// clear stickers from video stream or canvas ////////////
+/////////////////////////////////////////////////////////////////////
 function    clear_stickers(elem){
   
   elem.querySelectorAll('div').forEach((e)=>{
@@ -163,23 +184,34 @@ function    clear_stickers(elem){
 }
 
 
+/////////////////////////////////////////////////////////////////
+///////// set Data where start drag sticker /////////////////////
+/////////////////////////////////////////////////////////////////
 function   dragstart(ev){
   let id = ev.target.id;
     ev.dataTransfer.setData('text/plain', id);
 }
 
-//////////////////////////try to delete it........................
+/////////////////////////////////////////////////////////////////
+///////////// set prevent Defaut where on draging sticker ///////
+/////////////////////////////////////////////////////////////////
 function    ondraging(event){
   event.preventDefault();
 }
 
+
+////////////////////////////////////////////////////////////////////////////////////
+///////////// set prevent Default where sticker is over Canvas or video stream /////
+////////////////////////////////////////////////////////////////////////////////////
 function    _onDragover(event){
   event.preventDefault();
 }
 
+////////////////////////////////////////////////////////////////////////////
+////////// event where stiker is drop at canvas or video stream ////////////
+////////////////////////////////////////////////////////////////////////////
 function    _onDrop(event){
   const id = event.dataTransfer.getData('text');
-  // console.log(id);
   const elem = id !== '' ? document.getElementById(id) : null;
   if (elem !== null){
     if (id.search('img') !== -1) {
@@ -210,6 +242,9 @@ function    _onDrop(event){
   event.preventDefault();
 }
 
+///////////////////////////////////////////////////////////////////////////
+////////// copy sticker in div and apend it in Canvas or video ////////////
+///////////////////////////////////////////////////////////////////////////
 function    new_elem(stic){
   stic.removeEventListener('click', sticker_click);
   var   name_class = ['resize' ,'delet'];
@@ -249,6 +284,9 @@ function    new_elem(stic){
   return(parent);
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+//////// event where sticker [in div sticker] to copy it in Canvas or video stream //////
+/////////////////////////////////////////////////////////////////////////////////////////
 function    sticker_click(event){
   if (listener){
     let cln = event.target.cloneNode(true);
@@ -270,12 +308,18 @@ function    sticker_click(event){
   }
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+////////// add event dragover and drop at (Canvas or video Stream) //////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 function    new_event(targ){
   targ.addEventListener('dragover', _onDragover, false);
   targ.addEventListener('drop', _onDrop, false);
   listener = targ;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////
+//////// delet event dragover and drop from (Canvas or video Stream)////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 function    delete_event(targ){
   targ.removeEventListener('dragover', _onDragover);
   targ.removeEventListener('drop', _onDrop);
@@ -284,8 +328,9 @@ function    delete_event(targ){
 
 
 
-////////////////document ready///////////////////////
-
+///////////////////////////////////////////////////////////////////
+////// add event dragstart and click at all stickers //////////////
+///////////////////////////////////////////////////////////////////
 document.querySelector('.stickers').childNodes.forEach((e)=>{
   e.addEventListener('dragstart', dragstart, false);
   e.addEventListener('click', sticker_click, false);
@@ -307,10 +352,9 @@ else
 // });
 
 
-
-/////////////////////////////resize stickers///////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-
+///////////////////////////////////////////////////////////////////////////////
+//////////////////// init resize stickers   ///////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 function        initResize(event){
   var target = event.target.parentElement;
   var targ_info = target.getBoundingClientRect();
@@ -319,7 +363,9 @@ function        initResize(event){
   event.target.addEventListener('drag', Resize, false);
   event.target.addEventListener('dragend', stopResize, false);
   
-
+  /////////////////////////////////////////////////////
+  ///////// stop resize Sticker ///////////////////////
+  /////////////////////////////////////////////////////
   function      stopResize(e){
     // console.log(e);
     event.target.removeEventListener('drag', Resize, false);
@@ -327,6 +373,9 @@ function        initResize(event){
     e.preventDefault();
   }
   
+  /////////////////////////////////////////////////////////////
+  //////// sticker resize event (modef with and height) ///////
+  /////////////////////////////////////////////////////////////
   function      Resize(e){
     if ((e.clientY + 5 >= (listener_info.y + listener_info.height)) || (e.clientX + 5 >= (listener_info.x + listener_info.width)) ){
       stopResize(e);
@@ -341,19 +390,13 @@ function        initResize(event){
   }
 }
 
-
-
-
-
-var     lastdate = '0';
+var     lastdate = '0'; ////////// date of last post get from DB ////////////
 var     contener = document.querySelector('.thumbnails');
 var     login = document.querySelector('.login');
 
-
-
-
-
-
+///////////////////////////////////////////////////////////////////
+///////// where page is loaded get last 5 post of this user ///////
+///////////////////////////////////////////////////////////////////
 window.addEventListener('load', function(){
   request_profile(login, lastdate, contener);
   console.log(contener);

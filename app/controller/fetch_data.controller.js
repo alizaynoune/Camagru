@@ -1,6 +1,8 @@
 
+////////////////////////////////////////////////////////////////
+//////// send request fetch last (5) post of profile X /////////
+////////////////////////////////////////////////////////////////
 function       request_profile(login, date, contener){
-    
     let request = new XMLHttpRequest();
     let url = `../../model/fetch_data.model.php?type=profile&login=${login}&lastdate=${date}`;
     request.open('GET', url, true);
@@ -17,7 +19,9 @@ function       request_profile(login, date, contener){
                 
             });
             contener.appendChild(packge);
-        }catch(e){            
+        }catch(e){
+            console.log(e);
+                   
         }
     };
     request.onerror = function(){
@@ -27,7 +31,9 @@ function       request_profile(login, date, contener){
     request.send();
 }
 
-
+///////////////////////////////////////////////////////////////////////
+/////////// send request fetch last (5) post from all users ///////////
+///////////////////////////////////////////////////////////////////////
 function       request_all(date, contener){
     
     let request = new XMLHttpRequest();
@@ -58,7 +64,9 @@ function       request_all(date, contener){
     request.send();
 }
 
-
+////////////////////////////////////////////////////////
+///////// send request all comments of post ////////////
+////////////////////////////////////////////////////////
 function        request_comment(pid, contener){
     
     var request = new XMLHttpRequest();
@@ -79,3 +87,26 @@ function        request_comment(pid, contener){
 }
 
 
+//////////////////////////////////////////////////////////////
+/////////// sed request get img post by id login /////////////
+//////////////////////////////////////////////////////////////
+
+function        request_profile_id(lastdate, contener){
+    let request = new XMLHttpRequest();
+    let url = window.location.origin + `/app/model/fetch_data.model.php?type=profil_login&lastdate=${lastdate}`;
+    request.responseType = 'text';
+    request.onreadystatechange = function (){
+        if (this.readyState == 4 && this.status == 200){
+            ret = JSON.parse(this.responseText);
+            ret.forEach((e) =>{
+                let new_img = new_chose_avatar(e);
+                contener.appendChild(new_img);
+            });
+            console.log(ret);
+            
+        }
+    };
+    request.open('GET', url, true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    request.send();
+}

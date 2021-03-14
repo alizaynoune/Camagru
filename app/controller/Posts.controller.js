@@ -15,7 +15,7 @@ function        delet_Post_controller(e){
                 let ret = JSON.parse(this.responseText);
                 if (ret === false){
                     let feed = post.querySelector('.feedback');
-                    feed.innerHTML = 'ivalid information';
+                    feed.innerHTML = 'Permission denied';
                     feed.classList.remove('success');
                     feed.classList.add('error');
                 }
@@ -33,7 +33,7 @@ function        delet_Post_controller(e){
 
 
 ////////////////////////////
-//add new comment///////////
+//// add new comment ///////
 ////////////////////////////
 
 function        new_comment(comment, post, feedback){
@@ -158,17 +158,17 @@ function        like_dislike_comment(comment, flag, feedback){
 
 function        socket_post(){
 
-    setInterval(function socket(){
+    var time_soket = setInterval(function socket(){
         document.querySelectorAll('.post').forEach((e)=>{
             let info_post = e.querySelector('input[name="post_info"]').value;
-
             var request = new XMLHttpRequest();
             request.response = 'text';
             let url = window.location.origin + '/app/model/socket_post.model.php';
+            request.open('POST', url, true);
+            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded" );
             request.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200){
                     let ret = JSON.parse(this.responseText);
-                    // console.log(ret);
                     if (ret !== false)
                         update_post_info(ret);
                     else{
@@ -177,10 +177,23 @@ function        socket_post(){
                     
                     
                 }
+                // else if (this.readyState == 4 && this.status != 200){
+                //     clearInterval(time_soket);
+                //     // console.log(this.readyState, this.status);
+                //     // console.log('error');
+                //     let msj = document.querySelector('.navBar').querySelector('.global_msj');
+                //     msj.innerHTML = 'Error Connection plaes check your connection and relaod page';
+                //     msj.classList.add('error');
+                    
+                    
+                // }
+            };
+            request.onerror = function(){
+                let msj = document.querySelector('.navBar').querySelector('.global_msj');
+                msj.innerHTML = 'Error Connection plaes check your connection and relaod page';
+                msj.classList.add('error');
             };
             var data = JSON.stringify({'post':info_post});
-            request.open('POST', url, true);
-            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
             request.send(`data=${data}`);
         });
     }, 3000);

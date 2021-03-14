@@ -1,4 +1,6 @@
-
+//////////////////////////////////////////////////////////////////
+/////// valid value input from title of new post ////////////////
+/////////////////////////////////////////////////////////////////
 function        valid_title(elem){
     let REG = /^[\w\d\-_\ ]+$/;
     if (title.value.length === 0){
@@ -15,12 +17,19 @@ function        valid_title(elem){
     }
 }
 
+//////////////////////////////////////////////////////////////
+/////////// live validation input title value ////////////////
+//////////////////////////////////////////////////////////////
 const form = document.querySelector('form');
 var title = form.querySelector("input[name='title']");
 title.addEventListener('input', (e)=>{
     valid_title(title);
         
 });
+
+//////////////////////////////////////////////////////////////
+/////////// event where submit new post //////////////////////
+//////////////////////////////////////////////////////////////
 form.addEventListener('submit', (e) =>{
     var _Error_ = document.querySelector('.error');
     var _Success_ = document.querySelector('.success');
@@ -48,6 +57,9 @@ form.addEventListener('submit', (e) =>{
     var width = [];
     var height = [];
     var i = 0;
+    /////////////////////////////////////////////////////////////////////////////////////////
+    ////// loop for all sticker at canvas (get all information about sticker selectd) ///////
+    /////////////////////////////////////////////////////////////////////////////////////////
     canvas.querySelectorAll('.filter').forEach((e)=>{
         left.push(e.style.left.match(/[\d\.]+/g).join(''));
         top.push(e.style.top.match(/[\d\.]+/g).join(''));
@@ -58,10 +70,11 @@ form.addEventListener('submit', (e) =>{
         i++;
         
     });
+    ////////////////////////////////////////////////////////////////////////////////////
+    ///////// if no sticker selected check if aready captur or sticker is disable //////
+    ////////////////////////////////////////////////////////////////////////////////////
     if (i === 0 && document.getElementById('checkbox-stickers').checked === true && captur === 0){
         _Error_.innerHTML = 'please choose stickers or deactivate it';
-        // console.log(captur);
-        
         e.preventDefault();
         return false;
         
@@ -74,9 +87,9 @@ form.addEventListener('submit', (e) =>{
     form.querySelector("input[name='height']").value = height;
     
     
-    
-
+    //////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////ajax send data to server///////////////////////
+    //////////////////////////////////////////////////////////////////////////////
     var url = '../../model/NewPost.model.php';
     var request = new XMLHttpRequest();
     request.open('POST', url, true);
@@ -105,9 +118,3 @@ form.addEventListener('submit', (e) =>{
     e.preventDefault();
     return true;
 });
-
-
-///////////////////////////////////append new post/////////////////////////////
-
-
-

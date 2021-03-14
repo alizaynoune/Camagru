@@ -49,3 +49,39 @@ function        valid_img(){
     if (trgt.src !== document.querySelector('.img').src)
         document.querySelector('.msj_new_av').innerHTML = "your new avatar is ready click Submit to update it";
 }
+
+
+var     lastdate = '0';
+// var     contener = document.querySelector('.content');
+// var     login = document.querySelector('input[name="login"]').value;
+function        img_from_profile(){
+    console.log('shose from profile');
+    let contener = document.createElement('div');
+        contener.classList.add('contener_select_profile');
+        document.body.insertBefore(contener, document.body.firstChild);
+    let area_imgs = document.createElement('div');
+        area_imgs.classList.add('area_imgs');
+         
+        contener.appendChild(area_imgs);
+
+
+
+    let cancel = document.createElement('button');
+        cancel.setAttribute('id', 'cancel_select');
+        cancel.classList.add('BtnAnim');
+        contener.appendChild(cancel);
+        cancel.addEventListener('click', function(){
+            contener.remove();
+        },true);
+    let label_cancel = document.createElement('label');
+        label_cancel.setAttribute('for', 'cancel_select');
+        label_cancel.classList.add('Btn');
+        label_cancel.classList.add('cancel');
+        label_cancel.innerHTML = 'cancel';
+        contener.appendChild(label_cancel);
+        request_profile_id(lastdate, area_imgs);
+   
+    console.log(document.querySelector('.content'));
+    
+    
+}

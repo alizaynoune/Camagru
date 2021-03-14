@@ -25,14 +25,9 @@ if ($_GET['type'] === 'all'){
         else{
             $value['is_like'] = '0';
         }
-        foreach($value as $key2 => &$value2){
-            if ($key2 === 'id' || $key2 === 'uid'){
-                $value2 = encrypt_($value2);
-            }
-            else if ($key2 === 'url'){
-                $value2 =  _SERVER_ . '/public/usersData/' . $user_name['login'] . '/' . $value2;
-            }
-        }
+        $value['id'] = encrypt_($value['id']);
+        $value['uid'] = encrypt_($value['uid']);
+        $value['url'] = _SERVER_ . '/public/usersData/' . $user_name['login'] . '/' . $value['url'];
         $value += array('u_name' => $user_name['login']);
         $value += array('u_avatar' => _SERVER_ . '/public/usersData/' . $user_name['login'] . '/' . $avatar['url']);
     }
@@ -55,14 +50,9 @@ else if ($_GET['type'] === 'profile'){
         else{
             $value['is_like'] = '0';
         }
-        foreach($value as $key2 => &$value2){
-            if ($key2 === 'id' || $key2 === 'uid'){
-                $value2 = encrypt_($value2);
-            }
-            else if ($key2 === 'url'){
-                $value2 =  _SERVER_ . '/public/usersData/' . $login . '/' . $value2;
-            }
-        }
+        $value['id'] = encrypt_($value['id']);
+        $value['uid'] = encrypt_($value['uid']);
+        $value['url'] = _SERVER_ . '/public/usersData/' . $login . '/' . $value['url'];
         $value += array('u_name' => $login);
         $value += array('u_avatar' => _SERVER_ . '/public/usersData/' . $login . '/' . $avatar['url']);
     }
@@ -70,17 +60,11 @@ else if ($_GET['type'] === 'profile'){
 }
 
 else if ($_GET['type'] === 'comment'){
-    // print($_GET['pid']);
     $pid = decrypt_($_GET['pid']);
     $info = (new dbselect())->fetch_comment($pid);
     foreach($info as $key => &$value){
-        foreach($value as $key2 => &$value2){
-            if ($key2 === 'uid'){
-                $login = (new dbselect())->select($DB_SELECT['_id'], 'login', ' Users', $value['uid'], $PARAM['int'], 0);
-                $value['owner'] = $login['login'];
-
-            }
-        }
+        $login = (new dbselect())->select($DB_SELECT['_id'], 'login', ' Users', $value['uid'], $PARAM['int'], 0);
+        $value['owner'] = $login['login'];
         if (!empty($_SESSION['uid'])){
             $is_like = (new dbselect())->is_like_comment($_SESSION['uid'], $value['id']);
             $value['is_like'] = !empty($is_like) ? '1' : '0';
@@ -95,7 +79,20 @@ else if ($_GET['type'] === 'comment'){
     exit(json_encode($info));
 }
 
-// else if ()
+else if ($_GET['type'] === 'profil_login'){
+    if (empty($_SESSION['uid'])){
+        exit(json_encode(false));
+    }
+    else{
+        $info = (new dbselect())->fetch_user_post($_SESSION['uid'], $lastDate);
+        $data = null;
+        foreach($info as $key => $value){
+            $data[$key]['id'] = encrypt_($value['id']);
+            $data[$key]['url'] = _SERVER_ . '/public/usersData/' . $_SESSION['login'] . '/' . $value['url'];
+        }
+        exit(json_encode($data));
+    }
+}
 
 
 ?>

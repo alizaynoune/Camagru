@@ -23,13 +23,8 @@ $likes_comments['is_like'] = !empty($is_like) ? '1' : '0';
 $all_commets = (new dbselect())->fetch_comment($pid);
 
 foreach($all_commets as $key => &$value){
-    foreach($value as $key2 => &$value2){
-        if ($key2 === 'uid'){
-            $login = (new dbselect())->select($DB_SELECT['_id'], 'login', ' Users', $value['uid'], $PARAM['int'], 0);
-            $value['owner'] = $login['login'];
-
-        }
-    }
+    $login = (new dbselect())->select($DB_SELECT['_id'], 'login', ' Users', $value['uid'], $PARAM['int'], 0);
+    $value['owner'] = $login['login'];
     if (!empty($_SESSION['uid'])){
         $is_like = (new dbselect())->is_like_comment($_SESSION['uid'], $value['id']);
         $value['is_like'] = !empty($is_like) ? '1' : '0';

@@ -266,3 +266,30 @@ function        new_post(data){
 
     return(new_post);
 }
+
+
+/////////////////////////////////////////////////////////////////////
+//////////// Creat post just img for chose one as avatar ////////////
+/////////////////////////////////////////////////////////////////////
+
+function            new_chose_avatar(data){
+    let contener = document.createElement('div');
+        contener.classList.add('post');
+
+    let id = document.createElement('input');
+        id.type = 'hidden';
+        id.name = 'info';
+        id.value = data['id'];
+        contener.appendChild(id);
+
+    
+    let img = document.createElement('img');
+        img.classList.add('img_post');
+        img.src = data['url'];
+        // img.addEventListener('mousemove', function(){
+        //     contener.style.backgroundColor = 'red';
+        // });
+        contener.appendChild(img);
+
+    return(contener);
+}

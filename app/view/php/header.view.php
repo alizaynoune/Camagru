@@ -14,6 +14,7 @@
                }
         ?>
     </div>
+    <div class="navCenter"><p class="global_msj"></p></div>
     <div class="navRight">
             <?php 
                 if (!empty($_SESSION['login']))

@@ -1,8 +1,13 @@
-// animation posts
+///////////////////////////////////////
+/////// get login user ////////////////
+///////////////////////////////////////
 var login = document.querySelector('.login');
 login = login !== null ? login.innerHTML : login;
 
 
+///////////////////////////////////////////
+//////// valid input value of comments ////
+///////////////////////////////////////////
 function        valid_comment(elem){
     let REG = /^[\w\d\-_\ @.]+$/;
     if (elem.target.value.length === 0 || elem.target.value.length > 250){
@@ -19,7 +24,9 @@ function        valid_comment(elem){
 }
 
 
-
+///////////////////////////////////////////////////////
+////// show or hidden comments of post ///////////////
+//////////////////////////////////////////////////////
 function        toggle_comments(elem){
     // let comment = elem.target.parentNode.parentNode.querySelector('.comment');
     let post = elem.target.closest('.post');
@@ -33,6 +40,9 @@ function        toggle_comments(elem){
     
 }
 
+////////////////////////////////////////////
+////////// like or dislike post ////////////
+////////////////////////////////////////////
 function        toggle_like_post(e){
     let post = e.target.closest('.post');
     if (login !== null){
@@ -51,7 +61,9 @@ function        toggle_like_post(e){
     
 }
 
-
+///////////////////////////////////////////////
+////////// like or dislike commments //////////
+///////////////////////////////////////////////
 function    toggle_like_comment(e){
     let post = e.target.closest('.post');
     let comment = e.target.closest('.old_comment');
@@ -72,7 +84,9 @@ function    toggle_like_comment(e){
 }
 
 
-
+/////////////////////////////////////
+///// upload new commment ///////////
+/////////////////////////////////////
 function        submit_new_comment(e){
     e.preventDefault();
     let REG = /^[\w\d\-_\ @.]+$/;
@@ -88,7 +102,6 @@ function        submit_new_comment(e){
        feedback.classList.remove('success');
     }
     else{
-        
         feedback.classList.remove('error');
         feedback.classList.add('success');
         feedback.innerHTML = 'Success comment';
@@ -98,6 +111,9 @@ function        submit_new_comment(e){
     
 }
 
+////////////////////////////////////////
+/////// init delet post ////////////////
+////////////////////////////////////////
 function        delet_Post(e){
     let contener = e.target.closest('.post');
     // console.log(contener);
@@ -107,9 +123,7 @@ function        delet_Post(e){
     if (pop_exists === null || pop_exists.closest('.old_comment') !== null){
         let pop = document.createElement('div');
             pop.classList.add('pop_window');
-            // contener.appendChild(pop);
             contener.insertBefore(pop, contener.querySelector('.img_post'));
-        // console.log(contener);
         let btnYse = document.createElement('button');
             btnYse.classList.add('BtnAnim');
             btnYse.addEventListener('click', delet_Post_controller);
@@ -159,18 +173,14 @@ function        delet_Post(e){
 }
 
 ////////////////////////////////////////
-//////// delet comment /////////////////
+//////// init delet comment ////////////
 ////////////////////////////////////////
 function    delet_old_comment(e){
-    // console.log(e.target);
 let contener = e.target.closest('.old_comment');
 if (contener.querySelector('.pop_window') === null){
     let pop = document.createElement('div');
         pop.classList.add('pop_window');
         contener.appendChild(pop);
-        // contener.insertBefore(pop, contener.firstChild);
-        // contener.insertBefore(pop, contener.fristChild()[0]);
-    // console.log(contener);
     let btnYse = document.createElement('button');
         btnYse.classList.add('BtnAnim');
         btnYse.addEventListener('click', delet_comment_controller);
@@ -212,62 +222,15 @@ if (contener.querySelector('.pop_window') === null){
         labelNO.setAttribute('for', r_id);
         labelNO.innerHTML = 'NO';
         pop.appendChild(labelNO);
-        // contener.appendChild(pop);
     }
     else{
         contener.querySelector('.pop_window').remove();
     }
-} 
+}
 
-
-
-// function    update_comment(){
-
-// }
-
-// function    update_likes(){
-
-// }
-
-
+/////////////////////////////////////////////////////////////
+//////// where page is loaded send request to get update ////
+/////////////////////////////////////////////////////////////
 window.addEventListener('load', function(){
     socket_post();
 });
-
-// real_time_Post();
-
-
-
-/////////// document ready/////////////////////////////
-
-// document.querySelectorAll('.post').forEach((e)=> {
-//     e.querySelectorAll('label').forEach((el)=>{
-//         if (el.className === 'like' || el.className === 'dislike'){
-//             el.addEventListener('click', toggle_like_post, false);
-            
-//         }
-
-//         else if (el.className === 'commentNbr'){
-//             // console.log('test');
-            
-//             el.addEventListener('click', toggle_comments, false);
-//         }
-//         // console.log(el.className);
-        
-        
-//     });
-//     e.querySelector('.new_comment').addEventListener('click', new_comment, false);
-//     var input = e.querySelector('input[name="comment"]');
-//     // console.log(input);
-    
-//     // e.querySelectorAll('.new_comment').forEach((elem)=>{
-//         // console.log(submit);
-//     //     elem.querySelector()
-    
-    
-        
-//     // });
-    
-// });
-
-

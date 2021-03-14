@@ -1,6 +1,54 @@
 /* @import "Colors.css"; */
 
 
+.contener_select_profile{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.8);
+  z-index: 5;
+  display: grid;
+  grid-template-rows: auto 100px;
+  grid-template-columns: auto auto;
+
+}
+
+.contener_select_profile .area_imgs{
+  background-color: rgba(255,255,255,0.8);
+  grid-row-start: 1;
+  grid-row-end: 1;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.contener_select_profile .Btn{
+  grid-row-start: 2;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 2;
+  position: relative;
+  z-index: 7;
+  display: block !important;
+  top: 3px !important;
+  justify-self: end;
+}
+
+.contener_select_profile .area_imgs .post{
+  max-width: 500px;
+  /* width: auto !important; */
+}
+
+.post.img_post:hover > .post{
+  background-color: lightcoral;
+}
+
+.contener_select_profile .area_imgs .post .img_post{
+  /* height: 20% !important; */
+  cursor: pointer;
+}
+
 
 .conten_img {
     width: 200px;
