@@ -1,3 +1,7 @@
+
+////////////////////////////////////////////////////////
+/// update post (comments & likes) & comments (likes)///
+////////////////////////////////////////////////////////
 function       update_post_info(data){
     let target = document.querySelector(`input[value='${data['post_info']}']`);
     let post = target.closest('.post');
@@ -22,10 +26,10 @@ function       update_post_info(data){
     }
 }
 
-
+////////////////////////////////////////
+////// create new commment /////////////
+////////////////////////////////////////
 function        append_comment(comment, contener){
-    
-    
     let login = document.querySelector('.login');
     let post = contener.closest('.post');
     let owner_post = post.querySelector('.owner').innerHTML;
@@ -37,7 +41,6 @@ function        append_comment(comment, contener){
     let old_comment = document.createElement('div');
         old_comment.classList.add('old_comment');
         contener.appendChild(old_comment);
-    //Check if this post has comments
 
     //Creat input for comment info
     let comment_info = document.createElement('input');
@@ -51,20 +54,15 @@ function        append_comment(comment, contener){
         like_comment.innerHTML = comment['nbr_likes'];
         if (login === null){
             like_comment.classList.add('dislike');
-            
             like_comment.addEventListener('click', function(){
                 window.location.replace(window.location.origin + `/app/view/php/login.view.php`);
             }, true);
         }
         else {
             comment['is_like'] === '1' ? like_comment.classList.add('like') : like_comment.classList.add('dislike');
+            like_comment.addEventListener('click', toggle_like_comment, true);
         }
         old_comment.appendChild(like_comment);
-
-    /// create span will hase number likes of this comment
-    // let comment_nb_like = document.createElement('label');
-    //     comment_nb_like.innerHTML = comment['nbr_likes'];
-        // old_comment.appendChild(comment_nb_like);
     
     /// Create h4 will has login owner of this comment
     let owner_comment = document.createElement('h4');
@@ -83,15 +81,13 @@ function        append_comment(comment, contener){
         /// Create span of delete this comment
         let delet_comment = document.createElement('span');
             delet_comment.classList.add('delet_comment');
+            delet_comment.addEventListener('click', delet_old_comment, true);
             old_comment.appendChild(delet_comment);
     }
     /// Create p to stored comment
     let comment_p = document.createElement('p');
         comment_p.innerHTML = comment['Comment'];
         old_comment.appendChild(comment_p);
-    
-
-
 }
 
 
@@ -173,12 +169,6 @@ function        new_post(data){
         comment_like.classList.add('comment_like');
         new_post.appendChild(comment_like);
 
-    // let last_comment = document.createElement('input');
-    //     last_comment.type = 'hidden';
-    //     last_comment.name = 'last_comment';
-    //     last_comment.value = '0';
-    //     comment_like.appendChild(last_comment);
-
     //create contener like//
     ///////////////////////
     let contener_like = document.createElement('div');
@@ -196,21 +186,11 @@ function        new_post(data){
         }
         else {
             data['is_like'] === '1' ? like.classList.add('like') : like.classList.add('dislike');
-            like.addEventListener('click', toggle_like, true)
+            like.addEventListener('click', toggle_like_post, true)
             // console.log(data);
             
         }
-        // like.classList.add('dislike');
-        // login !== null ? like.addEventListener('click', toggle_like, true) :
-        //                 like.addEventListener('click', function(){
-        //                     window.location.replace(window.location.origin + `/app/view/php/login.view.php`);
-        //                 }, true);
         contener_like.appendChild(like);
-    ////create span has total number of like
-    // let nb_like = document.createElement('span');
-    //     // nb_like.innerHTML = data['nbr_likes'];
-    //     contener_like.appendChild(nb_like);
-
     ///create area of msj error
     let msj_error = document.createElement('h3');
         msj_error.classList.add('feedback');

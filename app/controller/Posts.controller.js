@@ -1,5 +1,7 @@
 
-
+/////////////////////////////////////
+//////// delete post ////////////////
+/////////////////////////////////////
 
 function        delet_Post_controller(e){
     post = e.target.closest('.post');
@@ -27,10 +29,12 @@ function        delet_Post_controller(e){
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
         request.send(`data=${data}`);
     }
-    
-    
 }
 
+
+////////////////////////////
+//add new comment///////////
+////////////////////////////
 
 function        new_comment(comment, post, feedback){
     var request = new XMLHttpRequest();
@@ -54,6 +58,10 @@ function        new_comment(comment, post, feedback){
 
 }
 
+
+///////////////////////////
+//like or dislike posts////
+///////////////////////////
 
 function        like_dislike(post, flag, feedback){
     let info = post.querySelector('input[name="post_info"]').value;
@@ -82,6 +90,72 @@ function        like_dislike(post, flag, feedback){
 }
 
 
+///////////////////////////////
+/////// delect comment ////////
+///////////////////////////////
+function    delet_comment_controller(e){
+    let comment = e.target.closest('.old_comment');
+    let post = e.target.closest('.post');
+    let info = comment.querySelector('input[name="comment_info"]').value;
+    console.log(info);
+    if (info !== null){
+        let request = new XMLHttpRequest();
+        let url = window.location.origin + '/app/model/posts.model.php';
+        request.responseType = 'text';
+        request.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                let ret = JSON.parse(this.responseText);
+                if (ret === false){
+                    let feed = post.querySelector('.feedback');
+                    feed.innerHTML = 'Permission denied';
+                    feed.classList.remove('success');
+                    feed.classList.add('error');
+                }
+                else{
+                    comment.remove();
+                }
+            }
+        };
+        let data = JSON.stringify({'info':info, 'type':'delet_comment'});
+        request.open('POST', url, true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
+        request.send(`data=${data}`);
+    }
+    
+    
+}
+
+
+//////////////////////////////
+// like or dislike comments///
+//////////////////////////////
+
+function        like_dislike_comment(comment, flag, feedback){
+    let info = comment.querySelector('input[name="comment_info"]').value;
+    let    request = new XMLHttpRequest();
+    let url = window.location.origin + '/app/model/posts.model.php';
+    request.responseType = 'text';
+    request.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+            let ret = JSON.parse(this.responseText);
+            if (ret === false){
+                feedback.innerHTML = 'invalid information!';
+                feedback.classList.add('error');
+                feedback.classList.remove('success');
+            }
+        }
+    };
+    let data = JSON.stringify({'info':info, 'flag':flag, 'type':'like_comment'});
+    request.open('POST', url, true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
+    request.send(`data=${data}`);
+}
+
+
+///////////////////////////////
+///socket (posts && commets)///
+///////////////////////////////
+
 function        socket_post(){
 
     setInterval(function socket(){
@@ -109,5 +183,5 @@ function        socket_post(){
             request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
             request.send(`data=${data}`);
         });
-    }, 3000);   
+    }, 3000);
 }

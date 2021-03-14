@@ -33,7 +33,7 @@
   top: 0%;
   transition: all 0.3s;
 }
-.Btn:hover {background-color: var(--ButtonActive);}
+.Btn:hover {background-color: var(--ButtonActive) !important;}
 .Btn:hover::before {right: 75%;}
 
 .buttomBtn {

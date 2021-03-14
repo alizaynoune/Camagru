@@ -18,17 +18,20 @@
   border-radius: 20px;
   margin-bottom: 20px;
 }
-.post .pop_window{
+.pop_window{
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: 65px;
     height: 65px;
-    width: 100%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
 }
 
 .pop_window .Btn {
     position: absolute !important;
+    padding: 10px 40px;
     background-color: var(--ColorSCfont);
 }
 
@@ -306,6 +309,7 @@
     grid-row-end: 1;
     justify-self: end;
     margin: 5px 5px 0px 0px;
+    cursor: pointer;
     /* margin: auto; */
 }
 
@@ -342,6 +346,14 @@
     height: auto;
 }
 
+.contener_comment .comment .old_comment .pop_window{
+    grid-column-start: 1;
+    grid-column-end: 6;
+}
+
+/* .contener_comment .comment .old_comment .pop_window .Btn {
+    
+} */
 
 
 

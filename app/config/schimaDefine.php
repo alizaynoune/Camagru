@@ -37,7 +37,7 @@ $DB_INSERT = array(
     "_post_title"   => "INSERT INTO Posts (uid, url, title) VALUES(?, ?, ?);",
     "_comment"      => "INSERT INTO Comments (uid, pid, Comment) VALUES(?, ?, ?);",
     "_like_post"    => "INSERT INTO PostLikes (pid, uid) VALUES(?, ?);",
-    "_like_comment" => "CommentLikes (cid, uid, Date) VALUES(?, ?, NOW());",
+    "_like_comment" => "INSERT INTO CommentLikes (cid, uid) VALUES (?, ?);",
 
 );
 

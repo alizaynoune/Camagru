@@ -33,7 +33,7 @@ function        toggle_comments(elem){
     
 }
 
-function        toggle_like(e){
+function        toggle_like_post(e){
     let post = e.target.closest('.post');
     if (login !== null){
         if (e.target.className === 'like'){
@@ -50,6 +50,28 @@ function        toggle_like(e){
     }
     
 }
+
+
+function    toggle_like_comment(e){
+    let post = e.target.closest('.post');
+    let comment = e.target.closest('.old_comment');
+    if (login !== null){
+        if (e.target.className === 'like'){
+            e.target.classList.remove('like');
+            e.target.classList.add('dislike');
+            like_dislike_comment(comment, 0, post.querySelector('.feedback'));
+        }
+        else{
+            e.target.classList.remove('dislike');
+            e.target.classList.add('like');
+            like_dislike_comment(comment, 1, post.querySelector('.feedback'));
+        }
+    }
+    // console.log(comment);
+    
+}
+
+
 
 function        submit_new_comment(e){
     e.preventDefault();
@@ -78,11 +100,11 @@ function        submit_new_comment(e){
 
 function        delet_Post(e){
     let contener = e.target.closest('.post');
-    console.log(contener);
+    // console.log(contener);
     
     
-    
-    if (contener.querySelector('.pop_window') === null){
+    pop_exists = contener.querySelector('.pop_window');
+    if (pop_exists === null || pop_exists.closest('.old_comment') !== null){
         let pop = document.createElement('div');
             pop.classList.add('pop_window');
             // contener.appendChild(pop);
@@ -130,23 +152,82 @@ function        delet_Post(e){
             labelNO.innerHTML = 'NO';
             pop.appendChild(labelNO);
             // contener.appendChild(pop);
-
-
-        
-
-
     }
-    // console.log(e.target.closest('.post'));
-    
+    else{
+        pop_exists.remove();
+    }
 }
 
-function    update_comment(){
+////////////////////////////////////////
+//////// delet comment /////////////////
+////////////////////////////////////////
+function    delet_old_comment(e){
+    // console.log(e.target);
+let contener = e.target.closest('.old_comment');
+if (contener.querySelector('.pop_window') === null){
+    let pop = document.createElement('div');
+        pop.classList.add('pop_window');
+        contener.appendChild(pop);
+        // contener.insertBefore(pop, contener.firstChild);
+        // contener.insertBefore(pop, contener.fristChild()[0]);
+    // console.log(contener);
+    let btnYse = document.createElement('button');
+        btnYse.classList.add('BtnAnim');
+        btnYse.addEventListener('click', delet_comment_controller);
+        let r_id = Math.random().toString(36).substr(2, 10);
+        while(document.getElementById(r_id)){
+            r_id = Math.random().toString(36).substr(2, 10);
+        }
+        btnYse.setAttribute('id', r_id);
+        pop.appendChild(btnYse);
+    let labelYes = document.createElement('label');
+        labelYes.classList.add('Btn');
+        labelYes.classList.add('YESBtn');
+        labelYes.setAttribute('for', r_id);
+        labelYes.innerHTML = 'YES';
+        pop.appendChild(labelYes);
 
-}
 
-function    update_likes(){
+    let msj = document.createElement('h2');
+        msj.classList.add('error');
+        msj.innerHTML = 'are you sure to delete this comment';
+        pop.appendChild(msj);
 
-}
+
+    let btnNo = document.createElement('button');
+        btnNo.classList.add('BtnAnim');
+        r_id = Math.random().toString(36).substr(2, 10);
+        while(document.getElementById(r_id)){
+            r_id = Math.random().toString(36).substr(2, 10);
+        }
+        btnNo.setAttribute('id', r_id);
+        btnNo.addEventListener('click', function(e){
+            e.target.closest('.pop_window').remove();
+        })
+        pop.appendChild(btnNo);
+
+    let labelNO = document.createElement('label');
+        labelNO.classList.add('Btn');
+        labelNO.classList.add('NOBtn');
+        labelNO.setAttribute('for', r_id);
+        labelNO.innerHTML = 'NO';
+        pop.appendChild(labelNO);
+        // contener.appendChild(pop);
+    }
+    else{
+        contener.querySelector('.pop_window').remove();
+    }
+} 
+
+
+
+// function    update_comment(){
+
+// }
+
+// function    update_likes(){
+
+// }
 
 
 window.addEventListener('load', function(){
@@ -162,7 +243,7 @@ window.addEventListener('load', function(){
 // document.querySelectorAll('.post').forEach((e)=> {
 //     e.querySelectorAll('label').forEach((el)=>{
 //         if (el.className === 'like' || el.className === 'dislike'){
-//             el.addEventListener('click', toggle_like, false);
+//             el.addEventListener('click', toggle_like_post, false);
             
 //         }
 
