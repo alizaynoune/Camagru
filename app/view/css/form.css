@@ -69,8 +69,10 @@
     cursor: pointer;    
     color: var(--ColorMainFont);
     font-weight: bold;
-    width: calc(100% - 38px);
+    width: 100% !important;
     margin-bottom: 5px;
+    border-radius: 40px;
+    border-style: solid;
 }
   
   .submit:hover{

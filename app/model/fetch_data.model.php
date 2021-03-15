@@ -6,9 +6,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
 
 (new Session())->SessionStatus();
 
-$lastDate = $_GET['lastdate'];
+
 
 if ($_GET['type'] === 'all'){
+    $lastDate = $_GET['lastdate'];
     $info = (new dbselect())->fetch_all_post($lastDate);
     // print_r($info);
     foreach($info as $key => &$value){
@@ -84,6 +85,7 @@ else if ($_GET['type'] === 'profil_login'){
         exit(json_encode(false));
     }
     else{
+        $lastDate = $_GET['lastdate'];
         $info = (new dbselect())->fetch_user_post($_SESSION['uid'], $lastDate);
         $data = [];
         foreach($info as $key => $value){
