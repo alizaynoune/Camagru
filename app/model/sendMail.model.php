@@ -42,4 +42,16 @@ function    send_mail($id, $login, $email, $token, $param){
     mail($email, $sub, $msg, $headers);
 }
 
+function    send_notif($user, $comment, $ucm, $email){
+    $sub = 'Camagru Notification';
+    $msg = 'Hi! ' . $user . ' your post have a new comment [ ' . $comment . ' ] Created by ' . $ucm;
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+     $headers .= 'From: Camagru'."\r\n".
+    'Reply-To: no-reply'."\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+    mail($email, $sub, $msg, $headers);
+
+}
+
 ?>

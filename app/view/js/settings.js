@@ -12,11 +12,11 @@ function        defult_avatar(){
     trgt2.src = def.src;
 }
 
-function        hedin_modal(){
+function        hidden_modal(){
     var elem = document.querySelector('.modal');
     elem.classList.remove('modal-show');
-    document.querySelector('.camera').value = '';
-    document.querySelector('.upload').value = '';
+    document.querySelector('input[name="img_user"]').value = '';
+    document.querySelector('input[name="img_db"]').value = '';
     defult_avatar();   
 }
 
@@ -73,6 +73,7 @@ function        img_from_profile(){
         contener.appendChild(cancel);
         cancel.addEventListener('click', function(){
             contener.remove();
+            lastdate = '0';
         },true);
     let label_cancel = document.createElement('label');
         label_cancel.setAttribute('for', 'cancel_select');
@@ -88,5 +89,9 @@ function        img_from_profile(){
 //////////////////////////////////////////////////////////////////
 function        select_avatar(e){
     console.log(e.target);
-    
+    document.querySelector('#src_avatar').src = e.target.src;
+    document.getElementById('cancel_select').click();
+    let post = e.target.closest('.post');
+    document.querySelector('input[name="img_db"]').value = post.querySelector('input[name="info"]').value;
+    console.log(document.querySelector('input[name="img_db"]').value);
 }

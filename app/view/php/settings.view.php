@@ -40,12 +40,12 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 				<div class="modal">
 					<input class="upload BtnAnim" type="file" id="image" name="img_user" accept="image/*" onchange="load_img(event)" />
 				  	<label for="image" class="btn-1  Btn">upload</label>
-					<input class="camera BtnAnim" type="url" id="camera" name="img_db"/>
+					<input class="camera BtnAnim" type="text" id="camera" name="img_db"/>
 					<!-- get avatar from profile not fenish yat -->
 					<label for="camera" class="btn-2  Btn" onclick="img_from_profile()">profile</label>
 					<label class="ok  Btn" onclick="valid_img()">OK</label>
 					<img id="src_avatar"/>
-					<label class="cancel  Btn" onclick="hedin_modal()">cancel</label>
+					<label class="cancel  Btn" onclick="hidden_modal()">cancel</label>
 				</div>
 				<h3 class="msj_new_av"></h3>
 				<div class="form">

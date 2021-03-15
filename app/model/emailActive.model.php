@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 function    emailactive(){
-    global $DB_DELETE, $DB_SELECT, $DB_UPDATE, $PARAM, $DB_INSERT;
+    global $DB_DELETE, $DB_SELECT, $DB_UPDATE, $PARAM;
     if (!isset($_GET) || empty($_GET['id']) || empty($_GET['token'])){
         return(false);
     }
@@ -15,12 +15,16 @@ function    emailactive(){
                 if ($is_active['active'] === 'true'){
                     return(false);
                 }
-                // else if (file_exists($_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$is_active['login']))
-                //     rmdir()
-                else if (!file_exists($Path) && !mkdir($Path, 0777, true))
+                if (file_exists($Path))
+                    shell_exec('rm -rf ' . $Path);
+                if (!mkdir($Path, 0777, true))
                     return(false);
                 else{
-                    (new dbinsert())->update($DB_UPDATE['_id'], 'Users', 'email=?,active=?', array($value['email'], 'true', $value['uid']), array($PARAM['str'], $PARAM['bool'], $PARAM['int']));
+                    (new dbinsert())->update(
+                        $DB_UPDATE['_id'], 'Users', 'email=?,active=?',
+                        array($value['email'], 'true', $value['uid']),
+                        array($PARAM['str'],
+                        $PARAM['bool'], $PARAM['int']));
                     (new dbinsert())->drop($DB_DELETE['_active_email'], 'tempemail', 'email', $value['email'], $PARAM['str']);
                 }
                 return(true);

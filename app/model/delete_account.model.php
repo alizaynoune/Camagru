@@ -9,45 +9,60 @@ if ((new Session())->SessionStatus() === false){
 	exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK'){
+else if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK'){
+	// print_r($_POST);
 	header("Location: ../view/php/login.view.php");
 	exit;
 }
 
-if (empty($_POST['login']) || empty($_POST['email']) || empty($_POST['passwd'])){
+else if (empty($_POST['login']) || empty($_POST['passwd'])){
     header("Location: ../view/php/settings.view.php");
 	exit;
 }
 
-if ($_POST['login'] !== $_SESSION['login']){
+else if ($_POST['login'] !== $_SESSION['login']){
     header("Location: ../view/php/delete_account.view.php?error=login does not mach");
 	exit;
 }
 
 
-if (filter_login($_POST['login']) === false || filter_email($_POST['email']) === false || filter_pwd($_POST['passwd']) === false){
+else if (filter_login($_POST['login']) === false || filter_pwd($_POST['passwd']) === false){
     header("Location: ../view/php/delete_account.view.php?error=".$ERROR);
 	exit;
 }
 
-if (exist_email($_POST['email']) === false){
-    header("Location: ../view/php/delete_account.view.php?error=email does not mach");
-	exit;
-}
+// else if (exist_email($_POST['email']) === false){
+//     header("Location: ../view/php/delete_account.view.php?error=email does not mach");
+// 	exit;
+// }
 
-$hash_pwd = hash('whirlpool', 'ali'.$_POST['passwd'].'zaynoune');
-if (exist_pwd($_POST['login'], $hash_pwd) === false){
+// $hash_pwd = hash('whirlpool', 'ali'.$_POST['passwd'].'zaynoune');
+else if (exist_pwd($_POST['login'], hash('whirlpool', 'ali'.$_POST['passwd'].'zaynoune')) === false){
     header("Location: ../view/php/delete_account.view.php?error=passwd does not mach");
 	exit; 
 }
 
+else {
+	$path =  $_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$_SESSION['login'];
+	(new dbinsert())->drop($DB_DELETE['_drop'], 'Users', 'id', $_SESSION['uid'], $PARAM['int']);
+	shell_exec('rm -rf ' . $path);
+	// print_r($path);
+	(new Session())->logout();
+	header("Location:" ._SERVER_ . "/app/view/php/home.view.php");
+
+	// print_r(_SERVER_ . "/app/view/php/home.view.php");
+}
+
+
+
+
 ///// delet alll info 
 //// logout
 
-echo "all valid </br>";
-print_r($_SESSION);
-echo "</br>";
-print_r($_POST);
+// echo "all valid </br>";
+// print_r($_SESSION);
+// echo "</br>";
+// print_r($_POST);
 
 
 ?>

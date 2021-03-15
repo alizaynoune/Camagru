@@ -36,7 +36,10 @@ $sp = '';
 $seccess = '';
 // $target_file = '';
 
-if (!empty($firstName) && $firstName !== $usr_info['firstname']){
+if (empty($firstName) || empty($lastName) || empty($login) || empty($email))
+	$error = '?error=ivalid information';
+
+if (empty($error) && $firstName !== $usr_info['firstname']){
 	if(filter_name($firstName) === false){
 		$error = '?error='.$ERROR;
 	}
@@ -44,7 +47,7 @@ if (!empty($firstName) && $firstName !== $usr_info['firstname']){
 	array_push($param, $PARAM['str']);
 	array_push($new_info, $firstName);
 }
-if (empty($error) && !empty($lastName) && $lastName !== $usr_info['lastname']){
+if (empty($error) && $lastName !== $usr_info['lastname']){
 	if(filter_name($lastName) === false){
 		$error = '?error='.$ERROR;
 	}
@@ -53,7 +56,7 @@ if (empty($error) && !empty($lastName) && $lastName !== $usr_info['lastname']){
 	array_push($param, $PARAM['str']);
 	array_push($new_info, $lastName);
 }
-if (empty($error) && !empty($login) && $login !== $usr_info['login']){
+if (empty($error) && $login !== $usr_info['login']){
 	if(filter_login($login) === false){
 		$error = '?error='.$ERROR;
 	}
@@ -125,6 +128,32 @@ if (empty($error) && !empty($_FILES['img_user']) && !empty($_FILES["img_user"]["
 	}
 }
 
+if (empty($error) && !empty($_POST['img_db'])){
+	
+	$id = decrypt_($_POST['img_db']);
+	$post_info = (new dbselect())->select($DB_SELECT['_id'], 'uid, url', 'Posts', $id, $PARAM['int'], 0);
+	if ($post_info['uid'] === $_SESSION['uid']){
+		$new = $_SERVER['DOCUMENT_ROOT'] . '/public/usersData/' . $login . '/' . $post_info['url'];
+		$exten = (strtolower(pathinfo($new,PATHINFO_EXTENSION)));
+		if (copy($new, $_SERVER['DOCUMENT_ROOT'] . '/public/usersData/' . $login . '/' . 'avatar.' .$exten) === true){
+			(new dbinsert())->update(
+				$DB_UPDATE['_uid'], 'Avatar', 'url=?',
+				array($post_info['url'], $_SESSION['uid']),
+				array($PARAM['str'], $PARAM['int']),
+				0);
+				$seccess = '?success=Success update';
+			}
+			else{
+				$error = '?error=Error Update';
+			}
+	}
+	else{
+		$error = '?error=Permission denied';
+	}
+	
+}
+
+
 if (empty($error)){
 	if (!empty($email) && $email !== $usr_info['email']){
 		if (filter_email($email) === false)
@@ -155,7 +184,7 @@ if (!empty($select)){
 	array_push($new_info, $uid);
 	array_push($param, $PARAM['int']);
 	(new dbinsert())->update($DB_UPDATE['_id'], 'Users', $select, $new_info, $param);
-	if (!empty($login) && $login !== $usr_info['login']){
+	if ($login !== $usr_info['login']){
 		if (!file_exists($_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$usr_info['login'])){
 			if ((!mkdir($_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$login, 0777, true))){
 				header("Location: ../view/php/settings.view.php?error=creat directory!");

@@ -6,16 +6,6 @@ if ((new Session())->SessionStatus() === true){
     header("Location: home.view.php");
 	exit();
 }
-
-else if (empty($_POST['login'])){
-	header("Location: login.view.php");
-	exit();
-}
-
-else {
-	header("Location: login.view.php");
-	exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -31,13 +21,9 @@ else {
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
 	<div class='Success content'>
-	<?php
-	echo("<h3>Your account was successfully created! <br><br>Please open your    email and click the activation link to activate your account.
-		<br><br>If you do not see your account information in your inbox within 60 seconds please check your spam</h3>");
-	?>
-		<!-- <h1>Welcome to Camagru</h1>
-		<h3>Your account has ben successfully created in order to activate your account. Confirm your email</h3> -->
-
+	<h3>Your account was successfully created!</h3>
+	<p> open your    email and click the activation link to activate your account.
+	If you do not see your account information in your inbox within 60 seconds please check your spam</p>
 	</div>
 
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>

@@ -1,0 +1,40 @@
+.alt{
+    /* background-color: lightgreen; */
+    /* width: 200px; */
+    /* height: 400px; */
+    display: grid;
+    width: 100%;
+    grid-template-columns: auto auto;
+    /* grid-template-rows: 100px; */
+}
+
+.alt p{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    justify-self: center;
+    margin: auto;
+    position: relative;
+    color: var(--Error);
+}
+
+.alt label:first-of-type{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    justify-self: center;
+    margin: auto;
+    position: relative;
+}
+
+.alt label:last-of-type{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    justify-self: center;
+    margin: auto;
+    position: relative;
+}

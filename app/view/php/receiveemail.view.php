@@ -1,9 +1,9 @@
 <?php
-session_start();
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
+(new Session())->SessionStatus();
 $msg = '';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/emailActive.model.php';
-if ($_GET['param'] == 'active' && empty($_SESSION['login'])){
-  session_destroy();
+if ($_GET['param'] == 'active'){
   if (emailactive() === false){
     header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/home.view.php');
     exit();
@@ -20,7 +20,6 @@ else if ($_GET['param'] === 'update' && !empty($_SESSION['login'])){
 }
 
 else if ($_GET['param'] === 'pwd' && empty($_SESSION)){
-  // header('HTTP/1.1 307 Temporary Redirect');
   $get = '';
   $and = '';
   foreach ($_GET as $key => &$value){

@@ -17,6 +17,7 @@ if ((new Session())->SessionStatus() === false){
   <title>Camagru</title>
   <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
   <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
+  <link class="_css" rel="stylesheet" type="text/css" href="../css/delet_account.css"/>
 	</head>
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
@@ -24,18 +25,20 @@ if ((new Session())->SessionStatus() === false){
 
 	<div class="content">	
 		<div class="form">
-			<form action="../../model/delete_account.model.php" method="POST">
+			<form action="../../model/delete_account.model.php" method="POST" onkeypress="return event.keyCode != 13;">
                 <h1>Delete account</h1>
                 <h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
     	        <input class="right" type="text" placeholder="Username" name="login" required/></br>
                 <input class="left Passwd" type="password" placeholder="Password" name="passwd" required/>
 				<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span></br>
-				<input class="submit right" type="submit" name="submit" value="OK"/></br>
+				<input class="submit right" name='fack_submit' type="button" value="OK"/></br>
+				<input id='yes_delet' class="BtnAnim" type="submit" name="submit" value="OK" /></br>
 			</form>
 		</div>
 	</div>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
-    <script type="text/javascript" src="../js/form.js"></script>
-    <!-- <script type="text/javascript" src="../../controller/validateForm.js"></script> -->
+	<script type="text/javascript" src="../js/form.js"></script>
+	<script type="text/javascript" src="../js/delet_account.js"></script>
+    <script type="text/javascript" src="../../controller/validateForm.js"></script>
 	</body>
 </html>

@@ -5,6 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/sendMail.model.php';
 
 /////////////////////////////////////////
 //// check if user are aready login//////
@@ -27,8 +28,16 @@ if ($data['type'] === 'comment'){
 	if (filter_comment($comment) === false){
 	    exit(json_encode(false));
 	}
-
+	
 	else {
+		// (new dbselect())->select($DB_SELECT['_id'], 'uid', 'Posts', $pid, $PARAM['int'], 0);
+		if ($uid !== $pid){
+			$notif_info = (new dbselect())->select($DB_SELECT['_id'], 'login, email, notif', 'Users', $uid, $PARAM['int'], 0);
+			if ($notif_info['notif'] === 'true'){
+				send_notif($notif_info['login'], $comment, $_SESSION['login'], $notif_info['email']);
+			}
+
+		}
 	    (new dbinsert())->insert(
 			$DB_INSERT['_comment'],
 			array($_SESSION['uid'] , $pid, $comment),
