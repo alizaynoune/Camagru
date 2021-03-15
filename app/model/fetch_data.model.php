@@ -89,6 +89,7 @@ else if ($_GET['type'] === 'profil_login'){
         foreach($info as $key => $value){
             $data[$key]['id'] = encrypt_($value['id']);
             $data[$key]['url'] = _SERVER_ . '/public/usersData/' . $_SESSION['login'] . '/' . $value['url'];
+            $data[$key]['date'] = $value['Date'];
         }
         exit(json_encode($data));
     }

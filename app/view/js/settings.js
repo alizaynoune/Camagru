@@ -54,17 +54,24 @@ function        valid_img(){
 var     lastdate = '0';
 // var     contener = document.querySelector('.content');
 // var     login = document.querySelector('input[name="login"]').value;
+
+
 function        img_from_profile(){
-    console.log('shose from profile');
+    // console.log('shose from profile');
     let contener = document.createElement('div');
         contener.classList.add('contener_select_profile');
         document.body.insertBefore(contener, document.body.firstChild);
+    // console.log('kdjjkdkjd');
+    
     let area_imgs = document.createElement('div');
         area_imgs.classList.add('area_imgs');
-         
+        area_imgs.addEventListener('scroll', function(){
+            if ((Math.ceil(area_imgs.scrollTop)) >= (Math.ceil(area_imgs.scrollHeight - area_imgs.clientHeight))){
+                // console.log(lastdate);
+                request_profile_id(lastdate, area_imgs);
+            }
+        }, true);
         contener.appendChild(area_imgs);
-
-
 
     let cancel = document.createElement('button');
         cancel.setAttribute('id', 'cancel_select');
@@ -80,8 +87,7 @@ function        img_from_profile(){
         label_cancel.innerHTML = 'cancel';
         contener.appendChild(label_cancel);
         request_profile_id(lastdate, area_imgs);
-   
-    console.log(document.querySelector('.content'));
+    // console.log(document.querySelector('.content'));
     
     
 }

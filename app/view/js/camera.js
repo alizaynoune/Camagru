@@ -392,15 +392,21 @@ function        initResize(event){
 
 var     lastdate = '0'; ////////// date of last post get from DB ////////////
 var     contener = document.querySelector('.thumbnails');
-var     login = document.querySelector('.login');
+// var     login = document.querySelector('.login');
 
 ///////////////////////////////////////////////////////////////////
 ///////// where page is loaded get last 5 post of this user ///////
 ///////////////////////////////////////////////////////////////////
 window.addEventListener('load', function(){
   request_profile(login, lastdate, contener);
-  console.log(contener);
-  
+  ////////////////////////////////////////////////////////////////
+  ///// where scroll down at bottum fetch again last 5 post //////
+  ////////////////////////////////////////////////////////////////
+  window.addEventListener('scroll', function(e){
+    if ((Math.ceil(window.innerHeight + window.pageYOffset)) >= document.body.offsetHeight){
+      request_profile(login, lastdate, contener);
+      }
+    });
 
 });
 

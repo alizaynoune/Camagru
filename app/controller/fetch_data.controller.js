@@ -10,15 +10,15 @@ function       request_profile(login, date, contener){
     request.onload = function(){
         try{
             var ret = JSON.parse(this.responseText);
-            var packge = document.createElement('div');
-            packge.classList.add('packge');
+            // var packge = document.createElement('div');
+            // packge.classList.add('packge');
             ret.forEach(element => {
                 let post = new_post(element, null);
-                packge.appendChild(post);
+                contener.appendChild(post);
                 lastdate = element['Date'];
                 
             });
-            contener.appendChild(packge);
+            // contener.appendChild(packge);
         }catch(e){
             console.log(e);
                    
@@ -43,17 +43,17 @@ function       request_all(date, contener){
     request.onload = function(){
         try{
             var ret = JSON.parse(this.responseText);
-            var packge = document.createElement('div');
-            packge.classList.add('packge');
+            // var packge = document.createElement('div');
+            // packge.classList.add('packge');
             ret.forEach(element => {
                 let post = new_post(element, null);
                 if (post != null){
-                    packge.appendChild(post);
+                    contener.appendChild(post);
                     lastdate = element['Date'];
                 }
                 
             });
-            contener.appendChild(packge);
+            // contener.appendChild(packge);
         }catch(e){
             
         }
@@ -91,22 +91,26 @@ function        request_comment(pid, contener){
 /////////// sed request get img post by id login /////////////
 //////////////////////////////////////////////////////////////
 
-function        request_profile_id(lastdate, contener){
+function        request_profile_id(date, contener){
     let request = new XMLHttpRequest();
-    let url = window.location.origin + `/app/model/fetch_data.model.php?type=profil_login&lastdate=${lastdate}`;
+    let url = window.location.origin + `/app/model/fetch_data.model.php?type=profil_login&lastdate=${date}`;
     request.responseType = 'text';
     request.onreadystatechange = function (){
         if (this.readyState == 4 && this.status == 200){
             ret = JSON.parse(this.responseText);
+            // console.log(ret);
+            
+            if (ret.length > 0){
+                lastdate = ret[ret.length - 1]['date'];
+            }
             ret.forEach((e) =>{
                 let new_img = new_chose_avatar(e);
                 contener.appendChild(new_img);
             });
-            console.log(ret);
-            
         }
     };
     request.open('GET', url, true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     request.send();
+    // return(lastdate);
 }
