@@ -37,15 +37,13 @@
 
 .contener_select_profile .area_imgs .post{
   max-width: 500px;
-  /* width: auto !important; */
 }
 
-.post.img_post:hover > .post{
-  background-color: lightcoral;
+.img_post:hover{
+  opacity: 0.5;
 }
 
 .contener_select_profile .area_imgs .post .img_post{
-  /* height: 20% !important; */
   cursor: pointer;
 }
 
@@ -56,7 +54,6 @@
     margin-left: calc(50% - 100px);
     border-radius: 20%;
     cursor: pointer;
-    /* border: dashed 1px green; */
     display: block;
     overflow: hidden;
   }

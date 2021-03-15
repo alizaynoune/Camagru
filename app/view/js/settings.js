@@ -51,28 +51,22 @@ function        valid_img(){
 }
 
 
+//////////////////////////////////////////////////////////////////
+///////// select new avatar from your profile ////////////////////
+//////////////////////////////////////////////////////////////////
 var     lastdate = '0';
-// var     contener = document.querySelector('.content');
-// var     login = document.querySelector('input[name="login"]').value;
-
-
 function        img_from_profile(){
-    // console.log('shose from profile');
     let contener = document.createElement('div');
         contener.classList.add('contener_select_profile');
-        document.body.insertBefore(contener, document.body.firstChild);
-    // console.log('kdjjkdkjd');
-    
+        document.body.insertBefore(contener, document.body.firstChild);    
     let area_imgs = document.createElement('div');
         area_imgs.classList.add('area_imgs');
         area_imgs.addEventListener('scroll', function(){
             if ((Math.ceil(area_imgs.scrollTop)) >= (Math.ceil(area_imgs.scrollHeight - area_imgs.clientHeight))){
-                // console.log(lastdate);
                 request_profile_id(lastdate, area_imgs);
             }
         }, true);
         contener.appendChild(area_imgs);
-
     let cancel = document.createElement('button');
         cancel.setAttribute('id', 'cancel_select');
         cancel.classList.add('BtnAnim');
@@ -87,7 +81,12 @@ function        img_from_profile(){
         label_cancel.innerHTML = 'cancel';
         contener.appendChild(label_cancel);
         request_profile_id(lastdate, area_imgs);
-    // console.log(document.querySelector('.content'));
-    
+}
+
+//////////////////////////////////////////////////////////////////
+////////// copy select avatar to init area avatar ////////////////
+//////////////////////////////////////////////////////////////////
+function        select_avatar(e){
+    console.log(e.target);
     
 }

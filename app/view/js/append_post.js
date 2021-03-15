@@ -286,9 +286,7 @@ function            new_chose_avatar(data){
     let img = document.createElement('img');
         img.classList.add('img_post');
         img.src = data['url'];
-        // img.addEventListener('mousemove', function(){
-        //     contener.style.backgroundColor = 'red';
-        // });
+        img.addEventListener('click', select_avatar, true);
         contener.appendChild(img);
 
     return(contener);
