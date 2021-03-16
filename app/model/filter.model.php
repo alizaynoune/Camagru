@@ -58,12 +58,10 @@ function    filter_config_pwd($pwd, $cnfpwd){
 }
 
 function    filter_comment($comment){
-	$REG = "/^[\w\d\-_\ @.]+$/";
-	if (strlen($comment) === 0 || strlen($comment) > 255)
+	$REG = "/^\S.*\S$/";
+	if (strlen($comment) === 0 || !preg_match($REG, $comment) || strlen($comment) > 255)
 		return(false);
 	return(true);
-
-		////not finesh yet;
 }
 
 function    exist_email($email){

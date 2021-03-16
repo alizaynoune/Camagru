@@ -26,6 +26,11 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/settings.css"/>
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/Posts.css"/>
+	  <style>
+	  	.list li:nth-child(4){
+			  color: #F08080;			  
+		  }
+	  </style>
 	</head>
 	<body>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>

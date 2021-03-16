@@ -9,14 +9,14 @@ login = login !== null ? login.innerHTML : login;
 //////// valid input value of comments ////
 ///////////////////////////////////////////
 function        valid_comment(elem){
-    let REG = /^[\w\d\-_\ @.]+$/;
+    let REG = /^\S.*\S$/;
     if (elem.target.value.length === 0 || elem.target.value.length > 250){
         return false;
     }
-    // if (!REG.test(elem.target.value) || elem.target.value.length > 250 ){
-    //     elem.target.classList.add('error');
-    //     return false;
-    // }
+    if (!REG.test(elem.target.value) || elem.target.value.length > 250 ){
+        elem.target.classList.add('error');
+        return false;
+    }
     else{
         elem.target.classList.remove('error');
         return true;
@@ -89,14 +89,13 @@ function    toggle_like_comment(e){
 /////////////////////////////////////
 function        submit_new_comment(e){
     e.preventDefault();
-    let REG = /^[\w\d\-_\ @.]+$/;
+    let REG = /^\S.*\S$/;
     let post = e.target.closest('.post');
     let feedback = post.querySelector('.feedback');
     let input = post.querySelector('input[name="comment"]');
-    // let login = ;//////////get login
 
-// !REG.test(input.value) ||
-    if (input.value.length === 0 ||  input.value.length > 250 ){
+
+    if (input.value.length === 0 || !REG.test(input.value) ||  input.value.length > 250){
        feedback.innerHTML = 'error comment';
        feedback.classList.add('error');
        feedback.classList.remove('success');

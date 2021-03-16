@@ -24,7 +24,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 		<link class="_css" rel="stylesheet" type="text/css"	href="../css/Posts.css"/>
 		<link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
-		<title>Camagru</title>	
+		<title>Camagru</title>
+		<style>
+	  	.list li:nth-child(2){
+			  color: #F08080;			  
+		  }
+	  </style>
 	</head>
 	<body>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>

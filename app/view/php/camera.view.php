@@ -24,6 +24,11 @@ if ((new Session())->SessionStatus() === false){
 	  <link class="_css" rel="stylesheet" type="text/css"	href="../css/Posts.css"/>
 	<link class="_css" rel="stylesheet" type="text/css"	href="../css/camera.css"/>
 	<!-- <link class="_css" rel="stylesheet" type="text/css"	href="../css/settings.css"/> -->
+	<style>
+	  	.list li:nth-child(1){
+			  color: #F08080;			  
+		  }
+	  </style>
 	</head>
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>

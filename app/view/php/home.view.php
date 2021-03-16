@@ -13,7 +13,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
   	<title>Camagru</title>
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/Posts.css"/>
-	  <!-- <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/> -->
+	  <style>
+	  	.list li:nth-child(3){
+			  color: #F08080;			  
+		  }
+	  </style>
 	</head>
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
@@ -29,15 +33,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	</div>
 
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
-
-	<!-- <script type="text/javascript" src="../js/Posts.js"></script> -->
 	<script type="text/javascript" src="../js/Posts.js"></script>
 		<script type="text/javascript" src="../js/append_post.js"></script>
 		<script type="text/javascript" src="../js/home.js"></script>
 		<script type="text/javascript" src="../../controller/fetch_data.controller.js"></script>
 		<script type="text/javascript" src="../../controller/Posts.controller.js"></script>
-
-		<!-- <script type="text/javascript" src="../../controller/fetch_all.controller.js"></script> -->
-	<!-- <script type="text/javascript" src="../../controller/camera.controller.js"></script> -->
 	</body>
 </html>
