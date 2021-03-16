@@ -30,8 +30,7 @@ if ($data['type'] === 'comment'){
 	}
 	
 	else {
-		// (new dbselect())->select($DB_SELECT['_id'], 'uid', 'Posts', $pid, $PARAM['int'], 0);
-		if ($uid !== $pid){
+		if ($uid !== $_SESSION['uid']){
 			$notif_info = (new dbselect())->select($DB_SELECT['_id'], 'login, email, notif', 'Users', $uid, $PARAM['int'], 0);
 			if ($notif_info['notif'] === 'true'){
 				send_notif($notif_info['login'], $comment, $_SESSION['login'], $notif_info['email']);

@@ -97,7 +97,7 @@ function    delet_comment_controller(e){
     let comment = e.target.closest('.old_comment');
     let post = e.target.closest('.post');
     let info = comment.querySelector('input[name="comment_info"]').value;
-    console.log(info);
+    // console.log(info);
     if (info !== null){
         let request = new XMLHttpRequest();
         let url = window.location.origin + '/app/model/posts.model.php';

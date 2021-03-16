@@ -188,6 +188,8 @@ function    clear_stickers(elem){
 ///////// set Data where start drag sticker /////////////////////
 /////////////////////////////////////////////////////////////////
 function   dragstart(ev){
+  // console.log(ev);
+  
   let id = ev.target.id;
     ev.dataTransfer.setData('text/plain', id);
 }
@@ -204,6 +206,7 @@ function    ondraging(event){
 ///////////// set prevent Default where sticker is over Canvas or video stream /////
 ////////////////////////////////////////////////////////////////////////////////////
 function    _onDragover(event){
+  // console.log(event);
   event.preventDefault();
 }
 
@@ -211,6 +214,8 @@ function    _onDragover(event){
 ////////// event where stiker is drop at canvas or video stream ////////////
 ////////////////////////////////////////////////////////////////////////////
 function    _onDrop(event){
+  
+  
   const id = event.dataTransfer.getData('text');
   const elem = id !== '' ? document.getElementById(id) : null;
   if (elem !== null){
@@ -356,19 +361,38 @@ else
 //////////////////// init resize stickers   ///////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 function        initResize(event){
+  event.dataTransfer.setData('text/plain',null);
   var target = event.target.parentElement;
   var targ_info = target.getBoundingClientRect();
   var listener_info = listener.getBoundingClientRect();
-  // console.log(listener_info);
-  event.target.addEventListener('drag', Resize, false);
+  var oldX = event.clientX;
+  var oldY = event.clientY;
+  // console.log(listener.parentElement.querySelectorAll('.filter'));
+  listener.parentElement.querySelectorAll('.filter').forEach((rect)=>{
+    rect.addEventListener('dragover', Resize, false);
+    // console.log(rect);
+    
+  });
+  listener.addEventListener('dragover', Resize, false);
+  // target.addEventListener('dragover', Resize, false);
+
+  // listener.querySelectorAll('')
+  // event.target.addEventListener('drag', Resize, true);
   event.target.addEventListener('dragend', stopResize, false);
   
+
   /////////////////////////////////////////////////////
   ///////// stop resize Sticker ///////////////////////
   /////////////////////////////////////////////////////
   function      stopResize(e){
     // console.log(e);
-    event.target.removeEventListener('drag', Resize, false);
+    listener.removeEventListener('dragover', Resize, false);
+    // listener.addEventListener('dragover', Resize, false);
+    // target.addEventListener('dragover', Resize, false);
+    listener.parentElement.querySelectorAll('.filter').forEach((rect)=>{
+      rect.removeEventListener('dragover', Resize, false);
+    });
+    // target.removeEventListener('dragover', Resize, false);
     event.target.removeEventListener('dragend', stopResize, false);
     e.preventDefault();
   }
@@ -377,16 +401,23 @@ function        initResize(event){
   //////// sticker resize event (modef with and height) ///////
   /////////////////////////////////////////////////////////////
   function      Resize(e){
-    if ((e.clientY + 5 >= (listener_info.y + listener_info.height)) || (e.clientX + 5 >= (listener_info.x + listener_info.width)) ){
-      stopResize(e);
-    }
-    let x = targ_info.width + (e.clientX - event.clientX);
-    let y = targ_info.height + (e.clientY - event.clientY);
-
+    // listener.addEventListener('dragover', Resize, true);
+    // console.log(e);
+    
+    let x = targ_info.width + (e.clientX - oldX);
+    let y = targ_info.height + (e.clientY - oldY);    
     x = x < 20 ? 20 : x;
     y = y < 20 ? 20 : y;
-    target.style.width = x + 'px';
-    target.style.height = y + 'px'
+    // console.log(e.width);
+    // console.log(target.getBoundingClientRect());
+    // console.log('==============================');
+    
+    
+    if (x < e.target.offsetWidth)
+      target.style.width = x + 'px';
+    if (y < e.target.offsetHeight)
+      target.style.height = y + 'px';
+    // e.preventDefault();
   }
 }
 

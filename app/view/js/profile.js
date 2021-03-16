@@ -8,7 +8,7 @@ window.addEventListener('load', function(){
     window.addEventListener('scroll', function(e){
         if ((Math.ceil(window.innerHeight + window.pageYOffset)) >= document.body.offsetHeight){
             request_profile(login, lastdate, contener);
-            console.log('=================' + lastdate);
+            // console.log('=================' + lastdate);
             
         }
     });

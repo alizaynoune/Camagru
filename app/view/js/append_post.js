@@ -6,17 +6,35 @@ function       update_post_info(data){
     let target = document.querySelector(`input[value='${data['post_info']}']`);
     let post = target.closest('.post');
     let likes_comments = post.querySelector('.contener_like');
-    likes_comments.getElementsByTagName('label')[0].innerHTML = data['likes_comments']['nbr_likes'];
+    let likes = likes_comments.getElementsByTagName('label')[0];
+    likes.innerHTML = data['likes_comments']['nbr_likes'];
+    if (data['likes_comments']['is_like'] === '1'){
+        likes.classList.remove('dislike');
+        likes.classList.add('like');
+    }
+    else{
+        likes.classList.remove('like');
+        likes.classList.add('dislike');
+    }
     likes_comments.getElementsByTagName('label')[1].innerHTML = data['likes_comments']['nbr_comments'];
     let i = 0;
     post.querySelectorAll('.old_comment').forEach(e => {
         let info = e.querySelector('input[name="comment_info"]').value;
         let cmp = data['all_comments'][i]['id'] + '_leet_' + data['all_comments'][i]['pid'] + '_leet_' + data['all_comments'][i]['uid'];
         if (info === cmp){
-            e.getElementsByTagName('label')[0].innerHTML = data['all_comments'][i]['nbr_likes'];
-            i++;
-        }        
+            let like = e.getElementsByTagName('label')[0];
+            like.innerHTML = data['all_comments'][i]['nbr_likes'];
+            if (data['all_comments'][i]['is_like'] === '1'){
+                like.classList.remove('dislike');
+                like.classList.add('like');
+            }
+            else {
+                like.classList.remove('like');
+                like.classList.add('dislike');
+            }
             
+            i++;
+        }
     });
     if (i < data['all_comments'].length){
         let contener = post.querySelector('.comment');
@@ -60,6 +78,9 @@ function        append_comment(comment, contener){
         }
         else {
             comment['is_like'] === '1' ? like_comment.classList.add('like') : like_comment.classList.add('dislike');
+            // if (comment['is_like'] === '1'){
+                
+            // }
             like_comment.addEventListener('click', toggle_like_comment, true);
         }
         old_comment.appendChild(like_comment);

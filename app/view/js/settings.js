@@ -88,10 +88,10 @@ function        img_from_profile(){
 ////////// copy select avatar to init area avatar ////////////////
 //////////////////////////////////////////////////////////////////
 function        select_avatar(e){
-    console.log(e.target);
+    // console.log(e.target);
     document.querySelector('#src_avatar').src = e.target.src;
     document.getElementById('cancel_select').click();
     let post = e.target.closest('.post');
     document.querySelector('input[name="img_db"]').value = post.querySelector('input[name="info"]').value;
-    console.log(document.querySelector('input[name="img_db"]').value);
+    // console.log(document.querySelector('input[name="img_db"]').value);
 }

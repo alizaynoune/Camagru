@@ -1,11 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
-if ((new Session())->SessionStatus() === false){
+if ((new Session())->SessionStatus() === true){
     header("Location: home.view.php");
 	exit();
 }
 
-else if ((empty($_GET['id']) && empty($_POST['id']))|| (empty($_GET['token']) && empty($_POST['token']))){
+if ((empty($_GET['id']) && empty($_POST['id']))|| (empty($_GET['token']) && empty($_POST['token']))){
     header("Location: home.view.php");
 }
 	
