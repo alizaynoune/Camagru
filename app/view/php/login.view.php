@@ -28,10 +28,9 @@ if ((new Session())->SessionStatus() === true){
 					<h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
 					<h2 class="success"><?= !empty($_GET) && $_GET['success'] ? $_GET['success'] : ''; ?></h2>
 					<input class="left User" type="text" placeholder="Username" name="login" value="<?= !empty($_POST) && $_POST["login"] ? $_POST["login"] : "";?>" required/></br>
+					<span class="fa fa-eye-slash icon_right" onclick='togglePasswd(this)'></span>
 					<input class="right Passwd" type="password" placeholder="Password" name="passwd" required/>
-					<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span></br>
-					<input class="submit left" type="submit" name="submit" value="OK"/></br>
-					
+					<input class="submit" type="submit" name="submit" value="OK"/>
 				</form>
     	    </div>
 			<div class="buttomBtn" style="grid-template-columns: auto auto;">

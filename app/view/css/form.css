@@ -1,39 +1,68 @@
 
 .form{
-    text-align: center;
-    margin-top: 50px;
-    width: 70%;
-    height: auto;
-    display: inline-block;
-    margin-left: 15%;
-    margin-top: 20px;
-    /* position: absolute; */
-    /* border: dashed deeppink 1px; */
+    grid-column-start: 2;
+    grid-column-end: 10;
+    width: auto;
+}
+
+.form form{
+    width: auto;
+    display: grid;
+    grid-template-columns: 30px auto 30px;
+    grid-template-rows: auto;
 }
 
 .form input:focus, .form select:focus, .out-form:focus{
-    outline-style: none;
-    /* -moz-outline-style: none; */
+    outline-style: none !important;
 }
 
 .form input, .form select, .out-form{
-    width: calc(100% - 60px);
     height: 60px;
     border-width: 3px;
     background: none;
     border-color: var(--brdColor);
     font-size: 25px;
-    /* -webkit-appearance:none; */
-    
 }
 
-.right {    
+.form h1:first-of-type{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    height: auto;
+    justify-self: center;
+}
+.form h2:first-of-type{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    justify-self: center;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+.form h2:last-of-type{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    /* height: auto; */
+    grid-row-start: 2;
+    grid-row-end: 3;
+    justify-self: center;
+}
+
+
+
+.form input{
+    grid-row-start: auto;
+}
+
+.right {
     border-radius: 0px 40px 40px 0px;
     -webkit-border-radius: 0px 40px 40px 0px;
     -moz-border-radius: 0px 40px 40px 0px;
     border-style: solid solid solid none;
-    float: right;
-    padding-right: 28px;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: auto;
+    width: auto;
+    padding-right: 25px;
+    margin-top: -3px;
 }
 
 .left {
@@ -41,10 +70,11 @@
     -webkit-border-radius: 40px 0px 0px 40px;
     -moz-border-radius: 40px 0px 0px 40px;
     margin-top: -3px;
-    margin-bottom: -3px;
+    padding-left: 25px;
     border-style: solid none solid solid;
-    float: left;
-    padding-left: 28px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: auto;
 }
 
 .center{
@@ -58,7 +88,7 @@
 }
 
 .form ::placeholder, .out-form::placeholder{
-    padding-right: 80px;
+    /* padding-right: 80px; */
     color: var(--ColorSCfont);
     text-align: center;
     font-weight: bold;
@@ -69,57 +99,61 @@
     cursor: pointer;    
     color: var(--ColorMainFont);
     font-weight: bold;
-    width: 100% !important;
+    margin-top: -3px;
     margin-bottom: 5px;
     border-radius: 40px;
     border-style: solid;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: auto;
+    width: auto;
 }
   
-  .submit:hover{
+  .submit:hover, .submit:focus{
     font-size: 35px;
+    outline-style: none !important;
+    background-image: linear-gradient(to right, var(--Colorfont), var(--ColorSCfont), var(--Colorfont));
+    background-repeat: no-repeat;
+    background-size: 70%;
+    animation: move_background 2s infinite;
 }
 
-.submit:active{
-    color: var(--ColorMainFont);
+@keyframes move_background{
+    0%{
+        background-position: -250%;
+    }
+    100%{
+        background-position: 350%;
+    }
 }
 
 .fa{
-    display: table-footer-group;
-    position: initial;
-    float: left;
     color: var(--ColorMainFont);
     font-size: 25px;
     width: 25px;
     text-align: center;
     cursor: pointer;
+    justify-self: center;
+    margin: auto;
+}
+
+.icon_left{
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: auto;
+}
+
+.icon_right{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: auto;
 }
 
 
 
 
-.success{
-    color: var(--Success);
-  }
+.success{color: var(--Success);}
 
-.PasswdMed{
-    color: yellow;
-}
+.PasswdMed{color: yellow;}
 
-.PasswdGood{
-    color: var(--Success);
-}
-
-
-
-@media (pointer:none), (pointer:coarse){
-    .form {width: 94%; margin-left: 3%;}
-    .form input {
-        height: 100px;
-        font-size: 60px;
-        width: calc(100% - 90px);
-        border-width: 3px;
-    }
-    .form .left .select{margin-top: -3px;}
-    .fa{font-size: 50px;}
-    
-}
+.PasswdGood{color: var(--Success);}

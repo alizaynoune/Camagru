@@ -37,42 +37,46 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
 		<div class="content">
-			<h1>settings</h1>
+			
+			<!-- <h1>settings</h1> -->
+			<div class="form">
 			<div class="conten_img">
 				<img class="change_avatar" onclick="show_modal()" />
 			</div>
-			<form action="../../model/updateinformatio.model.php" method="POST" enctype="multipart/form-data">
-				<div class="modal">
-					<input class="upload BtnAnim" type="file" id="image" name="img_user" accept="image/*" onchange="load_img(event)" />
-				  	<label for="image" class="btn-1  Btn">upload</label>
-					<input class="camera BtnAnim" type="text" id="camera" name="img_db"/>
-					<!-- get avatar from profile not fenish yat -->
-					<label for="camera" class="btn-2  Btn" onclick="img_from_profile()">profile</label>
-					<label class="ok  Btn" onclick="valid_img()">OK</label>
-					<img id="src_avatar"/>
-					<label class="cancel  Btn" onclick="hidden_modal()">cancel</label>
-				</div>
-				<h3 class="msj_new_av"></h3>
-				<div class="form">
-						<h1>your information</h1>
-						<h2 class="error"><?= array_key_exists('error', $_GET) ? $_GET['error'] : ''; ?></h2>
-						<h2 class="success"><?= !empty($_GET) && $_GET['success'] ? $_GET['success'] : ''; ?></h2>
-						<select class="select right" name="notif">
-						  <option value="<?php echo $usr_info['notif'] ?>"><?php echo $usr_info['notif'] === 'true'? 'active notification' :'Desactive notification' ; ?></option>
-						  <option value="<?php echo $usr_info['notif'] === 'true'?'false':'true'; ?>"><?php echo $usr_info['notif'] === 'true'? 'Desactive notification' : 'active notification' ; ?></option>
-						</select>
-						<input class="left" type="text" placeholder="First Name" name="firstName" value="<?php echo $usr_info['firstname'];?>"/>
-    	        		<input class="right" type="text" placeholder="Last Name" name="lastName" value="<?php echo $usr_info['lastname'];?>"/>
-						<input class="left" type="text" placeholder="Username" name="login" value="<?php echo $usr_info['login']?>"/>
-						<input class="right" type="email" placeholder="E-mail Address" name="email" value="<?php echo $usr_info['email']?>"/>
-						<input class="left" type="password" placeholder="Old Password" name="oldPasswd" />
-    	        		<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
-    	        		<input class="right" type="password" placeholder="New Password" name="newPasswd" />
-    	        		<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
-						<input class="left" type="password" placeholder="Confirm Password" name="confnewPasswd" />
-    	        		<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
-						<input class="submit right" type="submit" name="submit" value="Submit"/></br>
-					</form>
+				<form action="../../model/updateinformatio.model.php" method="POST" enctype="multipart/form-data">
+					<div class="modal">
+						<input class="upload BtnAnim" type="file" id="image" name="img_user" accept="image/*" onchange="load_img(event)" />
+					  	<label for="image" class="btn-1  Btn">upload</label>
+						<input class="camera BtnAnim" type="text" id="camera" name="img_db"/>
+						<!-- get avatar from profile not fenish yat -->
+						<label for="camera" class="btn-2  Btn" onclick="img_from_profile()">profile</label>
+						<label class="ok  Btn" onclick="valid_img()">OK</label>
+						<img id="src_avatar"/>
+						<label class="cancel  Btn" onclick="hidden_modal()">cancel</label>
+					</div>
+					<h3 class="msj_new_av"></h3>
+		  
+					<h1>your information</h1>
+					<h2 class="error"><?= array_key_exists('error', $_GET) ? $_GET['error'] : ''; ?></h2>
+					<h2 class="success"><?= !empty($_GET) && $_GET['success'] ? $_GET['success'] : ''; ?></h2>
+					<select class="select right" name="notif">
+					  <option value="<?php echo $usr_info['notif'] ?>"><?php echo $usr_info['notif'] === 'true'? 'active notification' :'Desactive notification' ; ?></option>
+					  <option value="<?php echo $usr_info['notif'] === 'true'?'false':'true'; ?>"><?php echo $usr_info['notif'] === 'true'? 'Desactive notification' : 'active notification' ; ?></option>
+					</select>
+					<input class="left" type="text" placeholder="First Name" name="firstName" value="<?php echo $usr_info['firstname'];?>"/>
+    	    	    <input class="right" type="text" placeholder="Last Name" name="lastName" value="<?php echo $usr_info['lastname'];?>"/>
+					<input class="left" type="text" placeholder="Username" name="login" value="<?php echo $usr_info['login']?>"/>
+					<input class="right" type="email" placeholder="E-mail Address" name="email" value="<?php echo $usr_info['email']?>"/>
+					<input class="left" type="password" placeholder="Old Password" name="oldPasswd" />
+    	    	    <span class="fa fa-eye-slash icon_left" onclick='togglePasswd(this)'></span>
+					<span class="fa fa-eye-slash icon_right" onclick='togglePasswd(this)'></span>
+					<input class="right" type="password" placeholder="New Password" name="newPasswd" />
+    	    	    
+					<input class="left" type="password" placeholder="Confirm Password" name="confnewPasswd" />
+    	    	    <span class="fa fa-eye-slash icon_left" onclick='togglePasswd(this)'></span>
+					<input class="submit" type="submit" name="submit" value="Submit"/>
+				</form>
+			</div>
 			</div>
 			<div class="delete">
 				<a class="button" href="delete_account.view.php"><p>delet account</p></a>

@@ -61,12 +61,12 @@
   max-width: 300px;
 }
 
-.button:hover, input[type='submit']:hover{background: var(--ButtonActive);}
+.button:hover{background: var(--ButtonActive);}
 
-.button:focus, .submit:focus{
+.button:focus{
   background-color: var(--ButtonActive);
   /* background: var(--Button); */
-  outline-style: none;
+  outline-style: none !important;
 }
 
 .leftBtn {float: left; position: relative; justify-self: start;

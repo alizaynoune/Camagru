@@ -25,9 +25,9 @@ if ((new Session())->SessionStatus() === true){
     	        <h1>Recovery Password</h1>
 				<h2 class="error"><?= array_key_exists('error', $_GET) ? $_GET['error'] : ''; ?></h2>
 				<h2 class="success"><?= !empty($_GET) && $_GET['success'] ? $_GET['success'] : ''; ?></h2>
-    	        <input class="left" type="text" placeholder="Username" name="login" required/></br>
-				<input class="right" type="email" placeholder="E-mail" name="email" required/></br>
-				<input class="submit left" type="submit" name="submit" value="OK"/></br>
+    	        <input class="left" type="text" placeholder="Username" name="login" required/>
+				<input class="right" type="email" placeholder="E-mail" name="email" required/>
+				<input class="submit" type="submit" name="submit" value="OK"/>
 			</form>
 		</div>
 		<div class="buttomBtn" style="grid-template-columns: auto auto;">

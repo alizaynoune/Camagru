@@ -36,7 +36,7 @@ if ((empty($_GET['id']) && empty($_POST['id']))|| (empty($_GET['token']) && empt
           <span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
           <input style='display: none;' name="id"  value="<?php echo !empty($_GET['id']) ? $_GET['id'] : $_POST['id'];?>"/>
           <input style='display: none;' name="token" value="<?php echo !empty($_GET['token']) ? $_GET['token'] : $_POST['token'];?>"/>
-          <input class="submit left" type="submit" name="submit" value="OK"/>
+          <input class="submit" type="submit" name="submit" value="OK"/>
 		    </form>
       </div>
     </div>

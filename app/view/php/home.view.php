@@ -25,7 +25,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 
 	
 	<div class="content">
-		<h1>home</h1>
 
 
 
