@@ -37,15 +37,18 @@
 .Btn:hover::before {right: 75%;}
 
 .buttomBtn {
-  width: 70%;
+  /* width: 70%; */
   height: 52px;
   margin-top: 20px;
   margin-bottom: 90px;
-  display: grid;
-  /* grid-template-columns: auto auto auto; */
-  margin-left: auto;
-  margin-right: auto;
-  /* background-color: lightblue; */
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  grid-column-start: 2;
+  grid-column-end: 10;
+  /* width: auto; */
+  background-color: lightblue;
 }
 
 .button {
@@ -69,19 +72,29 @@
   outline-style: none !important;
 }
 
-.leftBtn {float: left; position: relative; justify-self: start;
+.leftBtn {
+  /* float: left; */
+  /* position: relative; */
+  justify-self: start;
   }
 
 .centerBtn {
-  margin-left: auto !important;
-  margin-right: auto !important;
-  display: block;
+  /* margin-left: auto !important; */
+  /* margin-right: auto !important; */
+  /* display: block; */
   position: relative;
   justify-self: center !important;
+  grid-column-start: 1;
+  grid-column-end: 2;
 }
 
-.rightBtn {float: right !important; position: relative !important; justify-self: end;
-  grid-column-end: somegridarea;
+.rightBtn {
+  /* float: right !important; */
+  position: relative !important;
+  justify-self: end;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  /* grid-column-end: somegridarea; */
 
 }
 

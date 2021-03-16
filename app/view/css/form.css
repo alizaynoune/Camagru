@@ -8,7 +8,7 @@
 .form form{
     width: auto;
     display: grid;
-    grid-template-columns: 30px auto 30px;
+    grid-template-columns: 40px auto 40px;
     grid-template-rows: auto;
 }
 
@@ -57,19 +57,20 @@
     -webkit-border-radius: 0px 40px 40px 0px;
     -moz-border-radius: 0px 40px 40px 0px;
     border-style: solid solid solid none;
+    /* box-sizing: 2px; */
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: auto;
     width: auto;
     padding-right: 25px;
-    margin-top: -3px;
+    margin-top: -2px;
 }
 
 .left {
     border-radius: 40px 0px 0px 40px;
     -webkit-border-radius: 40px 0px 0px 40px;
     -moz-border-radius: 40px 0px 0px 40px;
-    margin-top: -3px;
+    margin-top: -2px;
     padding-left: 25px;
     border-style: solid none solid solid;
     grid-column-start: 1;
@@ -82,9 +83,9 @@
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-style: solid;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    /* display: block; */
 }
 
 .form ::placeholder, .out-form::placeholder{
@@ -135,6 +136,7 @@
     cursor: pointer;
     justify-self: center;
     margin: auto;
+    margin-top: 5px;
 }
 
 .icon_left{

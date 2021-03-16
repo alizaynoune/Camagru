@@ -31,74 +31,66 @@ if ((new Session())->SessionStatus() === false){
 	  </style>
 	</head>
 	<body>
-	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
-	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
+		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
+		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
-	<div class="content">
-
-		
+		<div class="content">
 			<div class="stickers">
 				<img src="../stickers/1.png" id="img1" draggable="true" drag="true" />
 				<img src="../stickers/2.png" id="img2" draggable="true" />
 				<img src="../stickers/3.png" id="img3" draggable="true" />
 			</div>
-
 			<label class="toggle-control control-camera">
   				<input name='camera' id='checkbox-camera' type="checkbox">
   				<span class="control"></span>
 			</label>
-
 			<label class="toggle-control control-stickers">
   					<input name='stickers' id='checkbox-stickers' type="checkbox" checked='true'>
   					<span class="control"></span>
 			</label>
 			<div class="contener_camera">
-				 <form  method="POST" enctype="multipart/form-data">
-					<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
-					<h2 class="success"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
-					<input class="center out-form" type="text" placeholder="title" name="title"/>
-					<div class="contener_video" id="contener_video">
-						<div id='video_id' class="hiddenBtn display">
-							<video id="video" class="hiddenBtn display"  autoplay></video>
-
-						<button id="capterIn" class="BtnAnim hiddenBtn " type="button"></button>
-						<label for="capterIn" class="btncaptuerIn Btn centerBtn display hiddenBtn" onclick="capture_img();">Capture</label>
-						</div>
-						<div id='canva_id'>
-							<canvas id="canva" ></canvas>
-							<canvas id='hiddenCanva'></canvas>
-						</div>
+				<div class="form">
+					 <form  method="POST" enctype="multipart/form-data">
+						<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
+						<h2 class="success"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
+						<input class="center out-form" type="text" placeholder="title" name="title"/>								
 						<input type='hidden' name='canva'/>
 						<input type='hidden' name='stickers'/>
 						<input type='hidden' name='left'/>
 						<input type='hidden' name='top'/>
 						<input type='hidden' name='width'/>
 						<input type='hidden' name='height'/>
+					</form>
+				</div>
+				<div class="contener_video" id="contener_video">
+					<div id='video_id'> <!-- class="hiddenBtn display"> -->
+						<video id="video" ></video> <!-- class="hiddenBtn display"  autoplay></video> -->
+						<button id="capterIn" class="BtnAnim hiddenBtn " type="button"></button>
+						<label for="capterIn" class="btncaptuerIn Btn centerBtn display hiddenBtn" onclick="capture_img();">Capture</label>
 					</div>
-					<div class="buttomBtn" style="grid-template-columns: auto auto;">
-						<input id='upload' class="BtnAnim" name="Upload" type="file" accept="image/*" onchange="upload_to_canva(event)" />
-						<label for="upload" class="btnup Btn leftBtn">Upload</label>
-						<button id="capter" class="BtnAnim" type='button'></button>
-						<label for="capter" class="btncaptuer centerBtn Btn  hiddenBtn display" onclick="capture_img()">Capture</label>				
-						<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
-						<label for="share" class=" btnShr Btn rightBtn">Share</label>
+					<div id='canva_id'>
+						<canvas id="canva" ></canvas>
+						<canvas id='hiddenCanva'></canvas>
 					</div>
-				</form>
+				</div>
+				<div class="buttomBtn">
+					<input id='upload' class="BtnAnim" name="Upload" type="file" accept="image/*" onchange="upload_to_canva(event)" />
+					<label for="upload" class="btnup Btn leftBtn">Upload</label>
+					<button id="capter" class="BtnAnim" type='button'></button>
+					<label for="capter" class="btncaptuer centerBtn Btn  hiddenBtn display" onclick="capture_img()">Capture</label>				
+					<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
+					<label for="share" class=" btnShr Btn rightBtn">Share</label>
+				</div>
 			</div>
-		<div class='thumbnails'>
+			<div class='thumbnails'>
+			</div>
 		</div>
-
-
-
-
-	</div>
-	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
-	<script type="text/javascript" src="../js/camera.js"></script>
-	<script type="text/javascript" src="../../controller/camera.controller.js"></script>
-	<script type="text/javascript" src="../js/Posts.js"></script>
-	<script type="text/javascript" src="../js/append_post.js"></script>
-	<script type="text/javascript" src="../../controller/Posts.controller.js"></script>
-	<script type="text/javascript" src="../../controller/fetch_data.controller.js"></script>
-
+		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
+		<script type="text/javascript" src="../js/camera.js"></script>
+		<script type="text/javascript" src="../../controller/camera.controller.js"></script>
+		<script type="text/javascript" src="../js/Posts.js"></script>
+		<script type="text/javascript" src="../js/append_post.js"></script>
+		<script type="text/javascript" src="../../controller/Posts.controller.js"></script>
+		<script type="text/javascript" src="../../controller/fetch_data.controller.js"></script>  
 	</body>
 </html>
