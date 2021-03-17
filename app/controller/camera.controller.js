@@ -31,6 +31,8 @@ title.addEventListener('input', (e)=>{
 /////////// event where submit new post //////////////////////
 //////////////////////////////////////////////////////////////
 form.addEventListener('submit', (e) =>{
+    console.log('her');
+    
     var _Error_ = document.querySelector('.error');
     var _Success_ = document.querySelector('.success');
     _Error_.innerHTML = '';

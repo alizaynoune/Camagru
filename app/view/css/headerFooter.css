@@ -5,12 +5,12 @@
 
 html, body {
     background: var(--bgColor);
-    padding: 0%;
+    /* padding: 0%; */
     margin: auto;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     overflow: auto;
     overflow-x: hidden;
-    min-height: 650px;
+    /* min-height: 650px; */
 }
 
 body {
@@ -43,7 +43,7 @@ body {
     grid-row-start: 2;
     grid-row-end: auto;
     display: grid;
-    grid-template-columns: auto auto auto  auto auto auto auto auto auto auto;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
     grid-template-rows: auto;
     
 }

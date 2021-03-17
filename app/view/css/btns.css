@@ -42,12 +42,9 @@
   margin-top: 20px;
   margin-bottom: 90px;
   display: inline-grid;
-  grid-template-columns: auto auto auto;
-  /* margin-left: auto; */
-  /* margin-right: auto; */
+  grid-template-columns: 33% 33% 34%;
   grid-column-start: 2;
   grid-column-end: 10;
-  /* width: auto; */
   background-color: lightblue;
 }
 
@@ -73,15 +70,10 @@
 }
 
 .leftBtn {
-  /* float: left; */
-  /* position: relative; */
   justify-self: start;
   }
 
 .centerBtn {
-  /* margin-left: auto !important; */
-  /* margin-right: auto !important; */
-  /* display: block; */
   position: relative;
   justify-self: center !important;
   grid-column-start: 1;
@@ -89,13 +81,10 @@
 }
 
 .rightBtn {
-  /* float: right !important; */
   position: relative !important;
   justify-self: end;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  /* grid-column-end: somegridarea; */
-
+  grid-column-start: auto;
+  grid-column-end: -1;
 }
 
 
@@ -115,7 +104,7 @@
   background-color: dodgerblue;
 }
 .toggle-control input[type=checkbox]:checked ~ .control:after {
-  left: 55px;
+  left: 70%;
 }
 .toggle-control .control {
   position: absolute;

@@ -48,6 +48,11 @@ if ((new Session())->SessionStatus() === false){
   					<input name='stickers' id='checkbox-stickers' type="checkbox" checked='true'>
   					<span class="control"></span>
 			</label>
+			<select class="resolution hiddenBtn display" onchange="change_resolution()"> 
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+			</select>
 			<div class="contener_camera">
 				<div class="form">
 					 <form  method="POST" enctype="multipart/form-data">
@@ -60,25 +65,24 @@ if ((new Session())->SessionStatus() === false){
 						<input type='hidden' name='top'/>
 						<input type='hidden' name='width'/>
 						<input type='hidden' name='height'/>
+						<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
 					</form>
 				</div>
 				<div class="contener_video" id="contener_video">
-					<div id='video_id'> <!-- class="hiddenBtn display"> -->
-						<video id="video" ></video> <!-- class="hiddenBtn display"  autoplay></video> -->
-						<button id="capterIn" class="BtnAnim hiddenBtn " type="button"></button>
-						<label for="capterIn" class="btncaptuerIn Btn centerBtn display hiddenBtn" onclick="capture_img();">Capture</label>
+					<div id='video_id' class="hiddenBtn display">
+						<video id="video" class="hiddenBtn display"  autoplay></video>
+						<button id="capter" class="BtnAnim hiddenBtn " type="button" onclick="capture_img();"></button>
+						<label for="capter" class="btncaptuerIn Btn centerBtn display hiddenBtn" >Capture</label>
 					</div>
 					<div id='canva_id'>
 						<canvas id="canva" ></canvas>
-						<canvas id='hiddenCanva'></canvas>
+						<canvas id='hiddenCanva' style="width: 400px; height: 200px;"></canvas>
 					</div>
 				</div>
 				<div class="buttomBtn">
 					<input id='upload' class="BtnAnim" name="Upload" type="file" accept="image/*" onchange="upload_to_canva(event)" />
 					<label for="upload" class="btnup Btn leftBtn">Upload</label>
-					<button id="capter" class="BtnAnim" type='button'></button>
-					<label for="capter" class="btncaptuer centerBtn Btn  hiddenBtn display" onclick="capture_img()">Capture</label>				
-					<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
+					<label for="capter" class="btncaptuer centerBtn Btn  hiddenBtn display">Capture</label>
 					<label for="share" class=" btnShr Btn rightBtn">Share</label>
 				</div>
 			</div>

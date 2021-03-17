@@ -9,7 +9,15 @@ var   listener;
 var   new_id = 0;
 var   e_listener;
 
+var   resolution = [[320, 480],[480, 640], [240, 320]];
 
+// console.log(resolution[get_res.value]);
+
+function      change_resolution(){
+  camera_off();
+  camera_on();
+
+}
 
 /////////////////////////////////////////////
 ////////// show erea video //////////////////
@@ -37,24 +45,27 @@ function  hidden_erea(){
 }
 
 //////////////////////////////////////////
-/////// turn on camera //////////////////
-/////////////////////////////////////////
+/////// turn on camera and strem vedio ///
+//////////////////////////////////////////
 function  camera_on(){
     if (document.querySelector('input[name="camera"]').checked === true){
     show_erea();
     const video = document.getElementById('video');
-    var size = document.getElementById('video_id'); 
+    let   get_res = document.querySelector('.resolution');
     const constraints = {
       video: {
-        width: size.offsetWidth,
-        height: size.offsetHeight,
+        width: resolution[get_res.value][1],
+        height: resolution[get_res.value][0],
         audio: false
+
       }
-    };
+    };                                                                                                                                                                                        
     try{
+      
       navigator.mediaDevices.getUserMedia(constraints)
       .then((stream) => {
         video.srcObject = stream;
+        // console.log(video.videoHeight);
       })
       .catch(err => {
         document.querySelector('.error').innerHTML = err;
@@ -97,7 +108,7 @@ function    upload_to_canva(event){
     var canva = document.getElementById('canva');
     var canva_id = document.getElementById('canva_id');
     var size = document.getElementById('hiddenCanva');
-    // console.log(size.width);
+    console.log(size.width + ' ' + size.height);
     var ctx = canva.getContext('2d');
     ctx.clearRect(0, 0, canva.width, canva.height);
     var img = new Image();
@@ -289,9 +300,9 @@ function    new_elem(stic){
   return(parent);
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////
-//////// event where sticker [in div sticker] to copy it in Canvas or video stream //////
-/////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+//////// event where click sticker [in div sticker] to copy it in Canvas or video stream //////
+///////////////////////////////////////////////////////////////////////////////////////////////
 function    sticker_click(event){
   if (listener){
     let cln = event.target.cloneNode(true);
