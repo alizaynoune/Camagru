@@ -62,14 +62,14 @@
     grid-row-start: auto;
     width: auto;
     padding-right: 25px;
-    margin-top: -4px;
+    margin-top: -3px;
 }
 
 .left {
     border-radius: 40px 0px 0px 40px;
     -webkit-border-radius: 40px 0px 0px 40px;
     -moz-border-radius: 40px 0px 0px 40px;
-    margin-top: -4px;
+    margin-top: -3px;
     padding-left: 25px;
     border-style: solid none solid solid;
     grid-column-start: 1;
