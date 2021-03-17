@@ -91,10 +91,14 @@
 
 .control-camera {
     grid-column-start: 2;
+    /* grid-column-end: 2; */
+    justify-self: start;
 }
 
 .control-stickers {
-    grid-column-start: 3;
+    grid-column-start: 4;
+    /* grid-column-end: 4; */
+    justify-self: start;
 }
 
 .control-camera , .control-stickers{
@@ -103,6 +107,7 @@
     /* margin-left: 20px; */
     margin-top: 20px;
     margin-bottom: 20px;
+    /* justify-self: center; */
     /* display: inline-block; */
 }
 
@@ -126,29 +131,48 @@
 
 .contener_video{
     /* display: inline-flex; */
-    /* width: 100%; */
-    /* height: 100%; */
+    /* width: 100%;
+    height: 100%; */
+    /* width: auto; */
+
     /* margin: auto !important; */
     grid-column-start: 1;
     grid-column-end: 10;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    /* background-color: magenta; */
 }
 
 #video_id{
-    /* width: 600px; */
-    /* height: 300px; */
-    /* position: relative; */
+    /* width: 600px;
+    height: 300px; */
+    position: relative;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    justify-self: center;
+    /* margin-top: auto; */
+    /* margin-bottom: auto; */
+    /* background-color: magenta; */
+    /* width: auto; */
 
 }
 
 #canva_id{
-    /* width: 600px; */
-    /* height: 300px; */
-    /* position: relative; */
+    /* width: 600px;
+    height: 300px; */
+    position: relative;
+    grid-column-start: 5;
+    grid-column-end: 10;
+    justify-self: center;
+    /* display: none; */
 }
 
 #canva_id, #video_id{
+    /* width: auto;
+    height: auto; */
+    /* width: auto; */
     /* margin: auto !important; */
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 
 #canva, #video {
@@ -189,6 +213,10 @@
     /* background-color: blue; */
 }
 
+.buttomBtn{
+    grid-column-start: 1;
+    grid-column-end: 10;
+}
 
 .thumbnails{
     /* display: block; */
