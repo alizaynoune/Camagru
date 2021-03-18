@@ -9,8 +9,8 @@ var   listener;
 var   new_id = 0;
 var   e_listener;
 
-var   resolution = [[320, 480],[480, 640], [240, 320]];
-
+var   resolution = [[640,360], [176, 144]];
+// [[320, 480],[480, 640], [240, 320]];
 // console.log(resolution[get_res.value]);
 
 function      change_resolution(){
@@ -44,41 +44,48 @@ function  hidden_erea(){
   });
 }
 
-//////////////////////////////////////////
-/////// turn on camera and strem vedio ///
-//////////////////////////////////////////
-function  camera_on(){
-    if (document.querySelector('input[name="camera"]').checked === true){
-    show_erea();
-    const video = document.getElementById('video');
-    let   get_res = document.querySelector('.resolution');
-    const constraints = {
-      video: {
-        width: resolution[get_res.value][1],
-        height: resolution[get_res.value][0],
-        audio: false
 
-      }
-    };                                                                                                                                                                                        
-    try{
-      
-      navigator.mediaDevices.getUserMedia(constraints)
-      .then((stream) => {
+//////////////////////////////////////
+//////// stream video ////////////////
+//////////////////////////////////////
+function     streamVideo(){  
+  navigator.getUserMedia = navigator.getUserMedia ||
+                            navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia ||
+                            navigator.mediaDevices;
+  if (navigator.getUserMedia){
+    let size = document.getElementById('video_id');
+    // console.log(size);
+    const video = document.getElementById('video');
+    console.log(video);
+    
+    navigator.mediaDevices.getUserMedia(
+      {audio: false, video: { width: size.offsetWidth, height: size.offsetHeight}}
+      ).then(function(stream){
+        // const stream = new MediaStream();
+        video.srcElement = video;
         video.srcObject = stream;
-        // console.log(video.videoHeight);
-      })
-      .catch(err => {
-        document.querySelector('.error').innerHTML = err;
+        document.querySelector('.error').innerHTML = "";
+      }).catch(function(er){
+        document.querySelector('.error').innerHTML = "NotAllowedError: Permission denied";
         document.querySelector('input[name=camera]').checked = false;
         hidden_erea();
-      });document.querySelector('.error').innerHTML = '';
-    }catch(err2){
-      document.querySelector('.error').innerHTML = "NotAllowedError: Permission denied";
+      });
+    }
+    else{
+      document.querySelector('.error').innerHTML = 'Camera Not fond';
       document.querySelector('input[name=camera]').checked = false;
       hidden_erea();
-      
     }
-      
+  }
+
+////////////////////////////////////
+/////// turn on camera  ////////////
+////////////////////////////////////
+function  camera_on(){  
+    if (document.querySelector('input[name="camera"]').checked === true){
+    show_erea();
+    streamVideo();
   }
 }
 

@@ -20,7 +20,8 @@
   overflow: hidden;
   box-shadow: 0px 0px 20px var(--shadow);
   display: block;
-  position: absolute;
+  position: relative;
+  /* position: absolute; */
   margin: 0%;
 }
 .Btn::before{
@@ -41,7 +42,7 @@
   height: 52px;
   margin-top: 20px;
   margin-bottom: 90px;
-  display: inline-grid;
+  display: grid;
   grid-template-columns: 33% 33% 34%;
   grid-column-start: 2;
   grid-column-end: 10;

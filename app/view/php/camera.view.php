@@ -48,11 +48,11 @@ if ((new Session())->SessionStatus() === false){
   					<input name='stickers' id='checkbox-stickers' type="checkbox" checked='true'>
   					<span class="control"></span>
 			</label>
-			<select class="resolution hiddenBtn display" onchange="change_resolution()"> 
+			<!-- <select class="resolution hiddenBtn display" onchange="change_resolution()"> 
 				<option value="0">0</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
-			</select>
+			</select> -->
 			<div class="contener_camera">
 				<div class="form">
 					 <form  method="POST" enctype="multipart/form-data">
