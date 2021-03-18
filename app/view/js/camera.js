@@ -62,10 +62,10 @@ function     streamVideo(){
     navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
-          // width : MediaTrackSettings.width,
-          // height : MediaTrackSettings.height
-          width: { min: 160, ideal: 640, max: 704 },
-          height: { min: 120, ideal: 360, max: 480 },
+          width : 640,
+          height : 480,
+          // width: { min: 160, ideal: 640, max: 704 },
+          // height: { min: 120, ideal: 360, max: 480 },
           // width: {min:size.offsetWidth, ideal:size.offsetWidth, max:size.offsetWidth},
           // height: {min:size.offsetHeight, ideal:size.offsetHeight, max:size.offsetHeight},
         }
@@ -77,6 +77,7 @@ function     streamVideo(){
         video.srcObject = stream;
         video.play();
         console.log(video);
+        // new_event(video);
         
         
         // size.offsetHeight = video.videoHeight;
@@ -275,7 +276,7 @@ function    _onDrop(event){
       // perW = cln.style.width;
       // perH = cln.style.height
     }
-    console.log(cln.style.width.replace('%',''));
+    // console.log(cln.style.width.replace('%',''));
     
     var elemW = (((cln.style.width.replace('%','')) * rect.width)/100);
     var elemH = (((cln.style.height.replace('%','')) * rect.height)/100);
@@ -289,7 +290,7 @@ function    _onDrop(event){
     y = (y + elemH) > rect.height ? rect.height - elemH : y;    
     cln.style.left = ((x / rect.width) * 100) + '%';
     cln.style.top = ((y / rect.height) * 100) + '%';
-    console.log(cln.style.top + ' ' + y + ' ' + rect.height);
+    // console.log(cln.style.top + ' ' + y + ' ' + rect.height);
     // 213  480
     listener.parentNode.appendChild(cln);
     if (event.srcElement.id === 'video')
