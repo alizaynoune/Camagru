@@ -279,18 +279,25 @@
     #video_id{
         grid-column-start: 1;
         grid-column-end: 3;
-        width: 640px;
-        height: 360px;
+        /* width: 100%;
+        height: 360px; */
         background-color: gold;
     }
     #canva_id{
         grid-column-start: 1;
         grid-column-end: 3;
+        width: auto;
+        height: auto;
     }
 
     #video{
-        width: 640px;
+        width: 100%;
         height: 360px;
+    }
+
+    #canva{
+        width: 100%;
+        height: 100%;
     }
 
     .btncaptuerIn{

@@ -48,6 +48,8 @@ form.addEventListener('submit', (e) =>{
     const canvas = document.getElementById('canva_id');
     const canva = document.getElementById('canva');
     var img = canva.toDataURL('image/png');
+    console.log(img.naturalHeight);
+    
     if (img === document.getElementById('hiddenCanva').toDataURL()){
         _Error_.innerHTML = 'blanck canva';
         e.preventDefault();
@@ -59,18 +61,21 @@ form.addEventListener('submit', (e) =>{
     var width = [];
     var height = [];
     var i = 0;
+    var rect = canva.getBoundingClientRect();
+    console.log(rect);
+    // (((cln.style.height.replace('%','')) * rect.height)/100);
     /////////////////////////////////////////////////////////////////////////////////////////
     ////// loop for all sticker at canvas (get all information about sticker selectd) ///////
     /////////////////////////////////////////////////////////////////////////////////////////
     canvas.querySelectorAll('.filter').forEach((e)=>{
-        left.push(e.style.left.match(/[\d\.]+/g).join(''));
-        top.push(e.style.top.match(/[\d\.]+/g).join(''));
-        width.push(e.style.width.match(/[\d\.]+/g).join(''));
-        height.push(e.style.height.match(/[\d\.]+/g).join(''));
+        left.push(((e.style.left.match(/[\d\.]+/g).join('')) * rect.width) / 100);
+        top.push(((e.style.top.match(/[\d\.]+/g).join('')) * rect.height) / 100);
+        width.push(((e.style.width.match(/[\d\.]+/g).join('')) * rect.width) / 100);
+        height.push(((e.style.height.match(/[\d\.]+/g).join('')) * rect.height) / 100);
         let name = e.querySelector('img').src.split('/');
         stickers.push(name[name.length - 1]);
         i++;
-        
+        ////////////////////////////not finesh
     });
     ////////////////////////////////////////////////////////////////////////////////////
     ///////// if no sticker selected check if aready captur or sticker is disable //////

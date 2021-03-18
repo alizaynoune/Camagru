@@ -54,20 +54,37 @@ function     streamVideo(){
                             navigator.mozGetUserMedia ||
                             navigator.mediaDevices;
   if (navigator.getUserMedia){
-    let size = document.getElementById('video_id');
+    let size = document.getElementById('canva_id');
     // console.log(size);
     const video = document.getElementById('video');
-    console.log(video);
+    console.log(size.offsetWidth);
     
-    navigator.mediaDevices.getUserMedia(
-      {audio: false, video: { width: size.offsetWidth, height: size.offsetHeight}}
+    navigator.mediaDevices.getUserMedia({
+        audio: false,
+        video: {
+          // width : MediaTrackSettings.width,
+          // height : MediaTrackSettings.height
+          width: { min: 160, ideal: 640, max: 704 },
+          height: { min: 120, ideal: 360, max: 480 },
+          // width: {min:size.offsetWidth, ideal:size.offsetWidth, max:size.offsetWidth},
+          // height: {min:size.offsetHeight, ideal:size.offsetHeight, max:size.offsetHeight},
+        }
+        
+      }
       ).then(function(stream){
-        // const stream = new MediaStream();
-        video.srcElement = video;
+        // video.srcElement = video;
+        console.log(video.videoWidth + ' ' + video.videoHeight);
         video.srcObject = stream;
+        video.play();
+        console.log(video);
+        
+        
+        // size.offsetHeight = video.videoHeight;
+        // size.offsetWidth = video.videoWidth;
         document.querySelector('.error').innerHTML = "";
       }).catch(function(er){
-        document.querySelector('.error').innerHTML = "NotAllowedError: Permission denied";
+        document.querySelector('.error').innerHTML = er;
+        // "NotAllowedError: Permission denied";
         document.querySelector('input[name=camera]').checked = false;
         hidden_erea();
       });
@@ -154,10 +171,13 @@ function    capture_img(){
     sticker_video = 0;
     var canva = document.getElementById('canva');
     var video = document.getElementById('video');
+    var factor = Math.min((canva.width / video.videoWidth), (canva.height / video.videoHeight));
     canva.width = video.videoWidth;
     canva.height = video.videoHeight;
-    contener_canva.style.height = (canva.height) + 'px';
-    contener_canva.style.width = (canva.width) + 'px';
+    console.log(video.videoWidth);
+    
+    contener_canva.offsetHeight = (canva.offsetHeight);
+    contener_canva.offsetWidth = (canva.offsetWidth);
     clear_stickers(contener_canva);
     canva.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
     copy_stickers();
@@ -233,49 +253,69 @@ function    _onDragover(event){
 ////////////////////////////////////////////////////////////////////////////
 function    _onDrop(event){
   
-  
+  event.preventDefault();
   const id = event.dataTransfer.getData('text');
   const elem = id !== '' ? document.getElementById(id) : null;
+  var perW;
+  var perH;
+  let rect = listener.getBoundingClientRect();
   if (elem !== null){
     if (id.search('img') !== -1) {
       var cln = elem.cloneNode(true);
       cln.id = `${new_id}`;
       cln = new_elem(cln);
+      // perW = ;
+      // perH = ;
+      cln.style.width = ((elem.offsetWidth / rect.width) * 100) + '%';
+      cln.style.height = ((elem.offsetHeight / rect.height) * 100) + '%';
       cln.id =  `copy${new_id++}`;
     }
     else{
       var cln = elem.parentElement;
-
+      // perW = cln.style.width;
+      // perH = cln.style.height
     }
-    let rect = listener.getBoundingClientRect();
-    let x =  (event.pageX - window.scrollX) - rect.x - (elem.offsetWidth / 2);
-    let y =  (event.pageY - window.scrollY) - rect.y - (elem.offsetHeight / 2);
+    console.log(cln.style.width.replace('%',''));
+    
+    var elemW = (((cln.style.width.replace('%','')) * rect.width)/100);
+    var elemH = (((cln.style.height.replace('%','')) * rect.height)/100);
+    
+    let x =  (event.pageX - window.scrollX) - rect.x - (elemW / 2);
+    let y =  (event.pageY - window.scrollY) - rect.y - (elemH / 2);
     x = x < 0 ? 0 : x;
     y = y < 0 ? 0 : y;
-    x = (x + elem.offsetWidth) > rect.width ? rect.width - elem.offsetWidth : x;
-    y = (y + elem.offsetHeight) > rect.height ? rect.height - elem.offsetHeight : y;    
-    cln.style.left = x + 'px';
-    cln.style.top = y+ 'px';
+   
+    x = (x + elemW) > rect.width ? rect.width - elemW : x;
+    y = (y + elemH) > rect.height ? rect.height - elemH : y;    
+    cln.style.left = ((x / rect.width) * 100) + '%';
+    cln.style.top = ((y / rect.height) * 100) + '%';
+    console.log(cln.style.top + ' ' + y + ' ' + rect.height);
+    // 213  480
     listener.parentNode.appendChild(cln);
     if (event.srcElement.id === 'video')
       sticker_video++;
     else if (event.srcElement.id === 'canva')
       sticker_canva++;
   }
-  event.preventDefault();
+  
 }
 
 ///////////////////////////////////////////////////////////////////////////
 ////////// copy sticker in div and apend it in Canvas or video ////////////
 ///////////////////////////////////////////////////////////////////////////
 function    new_elem(stic){
+  var listener_info = listener.getBoundingClientRect();
+  // var stic_info = stic.getBoundingClientRect();
+  console.log(listener_info.width + '=>' + stic.width);
+  console.log(stic);
+  
+  // console.log(stic_info);
+  
+  
   stic.removeEventListener('click', sticker_click);
   var   name_class = ['resize' ,'delet'];
   var   parent = document.createElement('div');
   parent.classList.add('filter');
-  // stic.style.transform = 'rotate(0deg)';
-  parent.style.width ='40px';
-  parent.style.height = '40px';
   parent.appendChild(stic);
   name_class.forEach((e)=>{
     let div = document.createElement('div');
@@ -283,8 +323,6 @@ function    new_elem(stic){
     if (e === 'resize'){
       div.setAttribute('draggable', true);
       div.addEventListener('dragstart', initResize, false);
-      // div.addEventListener('draging', ondraging, false);
-
     }
     else if (e === 'delet'){
       div.addEventListener('click', function(event){
@@ -301,9 +339,6 @@ function    new_elem(stic){
   parent.addEventListener('dragover', _onDragover, false);
   parent.addEventListener('drop', _onDrop, false);
   stic.addEventListener('dragstart', dragstart, false);
-  // stic.addEventListener('draging', ondraging, false);
-
-
   return(parent);
 }
 
@@ -312,17 +347,23 @@ function    new_elem(stic){
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function    sticker_click(event){
   if (listener){
-    let cln = event.target.cloneNode(true);
+    // console.log('========================');
+    
+    // console.log(event.target.getBoundingClientRect());
+    let targ_info = event.target.getBoundingClientRect();
     let rect = listener.getBoundingClientRect();
+    let cln = event.target.cloneNode(true);
     let left = (new_id % (rect.width / 40)) * 40;
     left = left + 40 >= rect.width ? 0 : left;
     let top = ((Math.trunc((new_id + 1) / (rect.width / 40))) % (rect.height / 40)) * 40 ;
     top = top + 40 >= rect.height ? 0 : top;
     cln.id = `${new_id}`;
     cln = new_elem(cln);
+    cln.style.width = ((targ_info.width / rect.width) * 100) + '%';
+    cln.style.height = ((targ_info.height / rect.height) * 100) + '%';
     cln.id =  `copy${new_id++}`;
-    cln.style.left = left + 'px';
-    cln.style.top = top + 'px';
+    cln.style.left = ((left / rect.width) * 100) + '%';
+    cln.style.top = ((top / rect.height) * 100) + '%';
     listener.parentNode.appendChild(cln);
     if (listener.id === 'canva')
       sticker_canva++;
@@ -421,6 +462,7 @@ function        initResize(event){
   function      Resize(e){
     // listener.addEventListener('dragover', Resize, true);
     // console.log(e);
+    // console.log(listener);
     
     let x = targ_info.width + (e.clientX - oldX);
     let y = targ_info.height + (e.clientY - oldY);    
@@ -429,12 +471,12 @@ function        initResize(event){
     // console.log(e.width);
     // console.log(target.getBoundingClientRect());
     // console.log('==============================');
-    
+    // perW = ((elem.offsetWidth / rect.width) * 100);
     
     if (x < e.target.offsetWidth)
-      target.style.width = x + 'px';
+      target.style.width = ((x / listener_info.width) * 100) + '%';
     if (y < e.target.offsetHeight)
-      target.style.height = y + 'px';
+      target.style.height = ((y / listener_info.height) * 100) + '%';
     // e.preventDefault();
   }
 }
