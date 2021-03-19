@@ -40,11 +40,12 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 			
 			<!-- <h1>settings</h1> -->
 			<div class="form">
-			<div class="conten_img">
-				<img class="change_avatar" onclick="show_modal()" />
-			</div>
+				<div class="conten_img">
+					<img class="change_avatar" onclick="show_modal()" />
+				</div>
 				<form action="../../model/updateinformatio.model.php" method="POST" enctype="multipart/form-data">
 					<div class="modal">
+					<!-- <div class="modal modal-show"> -->
 						<input class="upload BtnAnim" type="file" id="image" name="img_user" accept="image/*" onchange="load_img(event)" />
 					  	<label for="image" class="btn-1  Btn">upload</label>
 						<input class="camera BtnAnim" type="text" id="camera" name="img_db"/>
@@ -71,15 +72,14 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
     	    	    <span class="fa fa-eye-slash icon_left" onclick='togglePasswd(this)'></span>
 					<span class="fa fa-eye-slash icon_right" onclick='togglePasswd(this)'></span>
 					<input class="right" type="password" placeholder="New Password" name="newPasswd" />
-    	    	    
+		  
 					<input class="left" type="password" placeholder="Confirm Password" name="confnewPasswd" />
     	    	    <span class="fa fa-eye-slash icon_left" onclick='togglePasswd(this)'></span>
 					<input class="submit" type="submit" name="submit" value="Submit"/>
 				</form>
 			</div>
-			</div>
 			<div class="delete">
-				<a class="button" href="delete_account.view.php"><p>delet account</p></a>
+				<a class="button" href="delete_account.view.php"><p>delet account!</p></a>
 			</div>
 		</div>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>

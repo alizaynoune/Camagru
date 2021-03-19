@@ -53,7 +53,7 @@ if ((new Session())->SessionStatus() === false){
 				<option value="1">1</option>
 				<option value="2">2</option>
 			</select> -->
-			<div class="contener_camera">
+			
 				<div class="form">
 					 <form  method="POST" enctype="multipart/form-data">
 						<h2 class="error"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
@@ -68,6 +68,7 @@ if ((new Session())->SessionStatus() === false){
 						<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
 					</form>
 				</div>
+				<div class="contener_camera">
 				<div class="contener_video" id="contener_video">
 					<div id='video_id' class="hiddenBtn display">
 						<video id="video" class="hiddenBtn display"  autoplay></video>

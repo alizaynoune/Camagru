@@ -37,17 +37,7 @@
 .Btn:hover {background-color: var(--ButtonActive) !important;}
 .Btn:hover::before {right: 75%;}
 
-.buttomBtn {
-  /* width: 70%; */
-  height: 52px;
-  margin-top: 20px;
-  margin-bottom: 90px;
-  display: grid;
-  grid-template-columns: 33% 33% 34%;
-  grid-column-start: 2;
-  grid-column-end: 10;
-  background-color: lightblue;
-}
+
 
 .button {
   border-radius: 10rem;
@@ -131,6 +121,42 @@
   .Btn::before{
     right: 75%;
   }
-  .buttomBtn{width: 94%; margin-left: 3%;}
-  .buttomBtn{height: 70px; margin-top: 40px;}
+  /* .buttomBtn{width: 94%; margin-left: 3%;}
+  .buttomBtn{height: 70px; margin-top: 40px;} */
+}
+
+
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+/* @media only screen and (min-width: 600px) and (max-width: 768px) */
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen  and (max-width: 768px) {
+  
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  body{
+      /* background-color: gold; */
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1200) {
+  body{
+      /* background-color: coral; */
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  body{
+      /* background-color: cornflowerblue; */
+  }
+
 }
