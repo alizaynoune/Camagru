@@ -175,7 +175,7 @@ function        delet_Post(e){
 //////// init delet comment ////////////
 ////////////////////////////////////////
 function    delet_old_comment(e){
-let contener = e.target.closest('.old_comment');
+var contener = e.target.closest('.old_comment');
 if (contener.querySelector('.pop_window') === null){
     var pop = document.createElement('div');
         pop.classList.add('pop_window');

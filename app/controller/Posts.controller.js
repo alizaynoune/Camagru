@@ -158,7 +158,7 @@ function        like_dislike_comment(comment, flag, feedback){
 
 function        socket_post(){
 
-    var time_soket = setInterval(function socket(){
+    // var time_soket = setInterval(function socket(){
         document.querySelectorAll('.post').forEach((e)=>{
             var rect = e.getBoundingClientRect();
             if (rect.y <= window.innerHeight && rect.bottom > 0){
@@ -207,5 +207,5 @@ function        socket_post(){
                 request.send(`data=${data}`);
             }
         });
-    }, 1500);
+    // }, 1500);
 }

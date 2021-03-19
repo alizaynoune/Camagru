@@ -1,6 +1,8 @@
 
-<nav class="navBar">
-    <div class="navLeft">
+<nav class="navBar navbar navbar-expand-lg">
+<div class="navCenter"><p class="global_msj">tessdfljsdjfkljsadkfj sdkfjlakj kjdfskj jfjksifjjft</p></div>
+
+    <div class="navLeft navbar-left">
         <?php 
                 if (!empty($_SESSION['login'])){
                    echo "<a href=\"/app/view/php/profile.view.php\">";
@@ -14,8 +16,7 @@
                }
         ?>
     </div>
-    <div class="navCenter"><p class="global_msj"></p></div>
-    <div class="navRight">
+    <div class="navRight navbar-right">
             <?php 
                 if (!empty($_SESSION['login']))
                     require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/infouser.view.php';
