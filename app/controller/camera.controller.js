@@ -68,10 +68,10 @@ form.addEventListener('submit', (e) =>{
     ////// loop for all sticker at canvas (get all information about sticker selectd) ///////
     /////////////////////////////////////////////////////////////////////////////////////////
     canvas.querySelectorAll('.filter').forEach((e)=>{
-        left.push(((e.style.left.match(/[\d\.]+/g).join('')) * rect.width) / 100);
-        top.push(((e.style.top.match(/[\d\.]+/g).join('')) * rect.height) / 100);
-        width.push(((e.style.width.match(/[\d\.]+/g).join('')) * rect.width) / 100);
-        height.push(((e.style.height.match(/[\d\.]+/g).join('')) * rect.height) / 100);
+        left.push(e.style.left.match(/[\d\.]+/g).join(''));
+        top.push(e.style.top.match(/[\d\.]+/g).join(''));
+        width.push(e.style.width.match(/[\d\.]+/g).join(''));
+        height.push(e.style.height.match(/[\d\.]+/g).join(''));
         let name = e.querySelector('img').src.split('/');
         stickers.push(name[name.length - 1]);
         i++;

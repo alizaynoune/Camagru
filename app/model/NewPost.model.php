@@ -27,10 +27,10 @@ if (!empty($_POST['stickers'])){
     $width = explode(',', $_POST['width']);
     $height = explode(',', $_POST['height']);
     foreach($Stickers as $key => $value){
-        $destX = $Left[$key];
-        $destY = $Top[$key];
-        $srcH = $height[$key];
-        $srcW = $width[$key];
+        $destX = ($Left[$key] * $dw) / 100;
+        $destY = ($Top[$key] * $dh) / 100;
+        $srcH = ($height[$key] * $dh) / 100;
+        $srcW = ($width[$key] * $dw) / 100;
         $originStiker = imagecreatefrompng($StickerPath . $Stickers[$key]);
         list($Sw, $Sh) = getimagesize($StickerPath . $Stickers[$key]);
         $new = imagecreatetruecolor($srcW, $srcH);
