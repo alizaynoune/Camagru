@@ -56,10 +56,10 @@ function        valid_img(){
 //////////////////////////////////////////////////////////////////
 var     lastdate = '0';
 function        img_from_profile(){
-    let contener = document.createElement('div');
+    var contener = document.createElement('div');
         contener.classList.add('contener_select_profile');
         document.body.insertBefore(contener, document.body.firstChild);    
-    let area_imgs = document.createElement('div');
+    var area_imgs = document.createElement('div');
         area_imgs.classList.add('area_imgs');
         area_imgs.addEventListener('scroll', function(){
             if ((Math.ceil(area_imgs.scrollTop)) >= (Math.ceil(area_imgs.scrollHeight - area_imgs.clientHeight))){
@@ -67,7 +67,7 @@ function        img_from_profile(){
             }
         }, true);
         contener.appendChild(area_imgs);
-    let cancel = document.createElement('button');
+    var cancel = document.createElement('button');
         cancel.setAttribute('id', 'cancel_select');
         cancel.classList.add('BtnAnim');
         contener.appendChild(cancel);
@@ -75,7 +75,7 @@ function        img_from_profile(){
             contener.remove();
             lastdate = '0';
         },true);
-    let label_cancel = document.createElement('label');
+    var label_cancel = document.createElement('label');
         label_cancel.setAttribute('for', 'cancel_select');
         label_cancel.classList.add('Btn');
         label_cancel.classList.add('cancel');
@@ -91,7 +91,7 @@ function        select_avatar(e){
     // console.log(e.target);
     document.querySelector('#src_avatar').src = e.target.src;
     document.getElementById('cancel_select').click();
-    let post = e.target.closest('.post');
+    var post = e.target.closest('.post');
     document.querySelector('input[name="img_db"]').value = post.querySelector('input[name="info"]').value;
     // console.log(document.querySelector('input[name="img_db"]').value);
 }

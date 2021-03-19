@@ -2,7 +2,7 @@
 /////// valid value input from title of new post ////////////////
 /////////////////////////////////////////////////////////////////
 function        valid_title(elem){
-    let REG = /^[\w\d\-_\ ]+$/;
+    var REG = /^[\w\d\-_\ ]+$/;
     if (title.value.length === 0){
         title.classList.remove('error');
         return true;
@@ -72,7 +72,7 @@ form.addEventListener('submit', (e) =>{
         top.push(e.style.top.match(/[\d\.]+/g).join(''));
         width.push(e.style.width.match(/[\d\.]+/g).join(''));
         height.push(e.style.height.match(/[\d\.]+/g).join(''));
-        let name = e.querySelector('img').src.split('/');
+        var name = e.querySelector('img').src.split('/');
         stickers.push(name[name.length - 1]);
         i++;
         ////////////////////////////not finesh
@@ -104,7 +104,7 @@ form.addEventListener('submit', (e) =>{
     request.onload = function(){
         try{
             var ret =JSON.parse(this.responseText);
-            let post = new_post(ret);
+            var post = new_post(ret);
             page.insertBefore(post, page.firstChild);
             _Success_.innerHTML = 'Success Share';
             form.querySelector("input[name='stickers']").value = '';

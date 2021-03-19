@@ -54,7 +54,7 @@ function     streamVideo(){
                             navigator.mozGetUserMedia ||
                             navigator.mediaDevices;
   if (navigator.getUserMedia){
-    let size = document.getElementById('canva_id');
+    var size = document.getElementById('canva_id');
     // console.log(size);
     const video = document.getElementById('video');
     console.log(size.offsetWidth);
@@ -165,7 +165,7 @@ function    upload_to_canva(event){
 ////////// capture photo from stream video and draw it at canvas ////////
 /////////////////////////////////////////////////////////////////////////
 function    capture_img(){
-  let box = document.querySelector('input[name=stickers]').checked;
+  var box = document.querySelector('input[name=stickers]').checked;
   if (sticker_video > 0 || box === false){
     var contener_canva = document.getElementById('canva_id');
     captur = 1;    
@@ -195,7 +195,7 @@ function    capture_img(){
 /////////// copy stickers from stream video to canvas //////////////
 ////////////////////////////////////////////////////////////////////
 function    copy_stickers(){
-  let elem = document.getElementById('video_id');
+  var elem = document.getElementById('video_id');
   var canva = document.getElementById('canva_id');
   elem.querySelectorAll('div').forEach((e)=>{
     if (e.id.search('copy') !== -1){
@@ -229,7 +229,7 @@ function    clear_stickers(elem){
 function   dragstart(ev){
   // console.log(ev);
   
-  let id = ev.target.id;
+  var id = ev.target.id;
     ev.dataTransfer.setData('text/plain', id);
 }
 
@@ -259,7 +259,7 @@ function    _onDrop(event){
   const elem = id !== '' ? document.getElementById(id) : null;
   var perW;
   var perH;
-  let rect = listener.getBoundingClientRect();
+  var rect = listener.getBoundingClientRect();
   if (elem !== null){
     if (id.search('img') !== -1) {
       var cln = elem.cloneNode(true);
@@ -281,8 +281,8 @@ function    _onDrop(event){
     var elemW = (((cln.style.width.replace('%','')) * rect.width)/100);
     var elemH = (((cln.style.height.replace('%','')) * rect.height)/100);
     
-    let x =  (event.pageX - window.scrollX) - rect.x - (elemW / 2);
-    let y =  (event.pageY - window.scrollY) - rect.y - (elemH / 2);
+    var x =  (event.pageX - window.scrollX) - rect.x - (elemW / 2);
+    var y =  (event.pageY - window.scrollY) - rect.y - (elemH / 2);
     x = x < 0 ? 0 : x;
     y = y < 0 ? 0 : y;
    
@@ -319,7 +319,7 @@ function    new_elem(stic){
   parent.classList.add('filter');
   parent.appendChild(stic);
   name_class.forEach((e)=>{
-    let div = document.createElement('div');
+    var div = document.createElement('div');
     div.classList.add(e);
     if (e === 'resize'){
       div.setAttribute('draggable', true);
@@ -351,12 +351,12 @@ function    sticker_click(event){
     // console.log('========================');
     
     // console.log(event.target.getBoundingClientRect());
-    let targ_info = event.target.getBoundingClientRect();
-    let rect = listener.getBoundingClientRect();
-    let cln = event.target.cloneNode(true);
-    let left = (new_id % (rect.width / 40)) * 40;
+    var targ_info = event.target.getBoundingClientRect();
+    var rect = listener.getBoundingClientRect();
+    var cln = event.target.cloneNode(true);
+    var left = (new_id % (rect.width / 40)) * 40;
     left = left + 40 >= rect.width ? 0 : left;
-    let top = ((Math.trunc((new_id + 1) / (rect.width / 40))) % (rect.height / 40)) * 40 ;
+    var top = ((Math.trunc((new_id + 1) / (rect.width / 40))) % (rect.height / 40)) * 40 ;
     top = top + 40 >= rect.height ? 0 : top;
     cln.id = `${new_id}`;
     cln = new_elem(cln);
@@ -465,8 +465,8 @@ function        initResize(event){
     // console.log(e);
     // console.log(listener);
     
-    let x = targ_info.width + (e.clientX - oldX);
-    let y = targ_info.height + (e.clientY - oldY);    
+    var x = targ_info.width + (e.clientX - oldX);
+    var y = targ_info.height + (e.clientY - oldY);    
     x = x < 20 ? 20 : x;
     y = y < 20 ? 20 : y;
     // console.log(e.width);

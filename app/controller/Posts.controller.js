@@ -7,14 +7,14 @@ function        delet_Post_controller(e){
     post = e.target.closest('.post');
     post_info = post.querySelector('input[name="post_info"]').value;
     if (post_info !== null){
-        let request = new XMLHttpRequest();
-        let url = window.location.origin + '/app/model/posts.model.php';
+        var request = new XMLHttpRequest();
+        var url = window.location.origin + '/app/model/posts.model.php';
         request.responseType = 'text';
         request.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
-                let ret = JSON.parse(this.responseText);
+                var ret = JSON.parse(this.responseText);
                 if (ret === false){
-                    let feed = post.querySelector('.feedback');
+                    var feed = post.querySelector('.feedback');
                     feed.innerHTML = 'Permission denied';
                     feed.classList.remove('success');
                     feed.classList.add('error');
@@ -24,7 +24,7 @@ function        delet_Post_controller(e){
                 }
             }
         };
-        let data = JSON.stringify({'info':post_info, 'type':'delet_post'});
+        var data = JSON.stringify({'info':post_info, 'type':'delet_post'});
         request.open('POST', url, true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
         request.send(`data=${data}`);
@@ -38,12 +38,12 @@ function        delet_Post_controller(e){
 
 function        new_comment(comment, post, feedback){
     var request = new XMLHttpRequest();
-    let info = post.querySelector('input[name="post_info"]').value;
-    let url = window.location.origin + '/app/model/posts.model.php';
+    var info = post.querySelector('input[name="post_info"]').value;
+    var url = window.location.origin + '/app/model/posts.model.php';
     request.responseType = 'text';
     request.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            let ret = JSON.parse(this.responseText);            
+            var ret = JSON.parse(this.responseText);            
             if (ret === false){
                 feedback.innerHTML = 'invalid information!';
                 feedback.classList.add('error');
@@ -64,13 +64,13 @@ function        new_comment(comment, post, feedback){
 ///////////////////////////
 
 function        like_dislike(post, flag, feedback){
-    let info = post.querySelector('input[name="post_info"]').value;
-    let request = new XMLHttpRequest();
-    let url = window.location.origin + '/app/model/posts.model.php';
+    var info = post.querySelector('input[name="post_info"]').value;
+    var request = new XMLHttpRequest();
+    var url = window.location.origin + '/app/model/posts.model.php';
     request.responseType = 'text';
     request.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            let ret = JSON.parse(this.responseText);
+            var ret = JSON.parse(this.responseText);
             if (ret === false){
                 feedback.innerHTML = 'invalid information!';
                 feedback.classList.add('error');
@@ -94,19 +94,19 @@ function        like_dislike(post, flag, feedback){
 /////// delect comment ////////
 ///////////////////////////////
 function    delet_comment_controller(e){
-    let comment = e.target.closest('.old_comment');
-    let post = e.target.closest('.post');
-    let info = comment.querySelector('input[name="comment_info"]').value;
+    var comment = e.target.closest('.old_comment');
+    var post = e.target.closest('.post');
+    var info = comment.querySelector('input[name="comment_info"]').value;
     // console.log(info);
     if (info !== null){
-        let request = new XMLHttpRequest();
-        let url = window.location.origin + '/app/model/posts.model.php';
+        var request = new XMLHttpRequest();
+        var url = window.location.origin + '/app/model/posts.model.php';
         request.responseType = 'text';
         request.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
-                let ret = JSON.parse(this.responseText);
+                var ret = JSON.parse(this.responseText);
                 if (ret === false){
-                    let feed = post.querySelector('.feedback');
+                    var feed = post.querySelector('.feedback');
                     feed.innerHTML = 'Permission denied';
                     feed.classList.remove('success');
                     feed.classList.add('error');
@@ -116,7 +116,7 @@ function    delet_comment_controller(e){
                 }
             }
         };
-        let data = JSON.stringify({'info':info, 'type':'delet_comment'});
+        var data = JSON.stringify({'info':info, 'type':'delet_comment'});
         request.open('POST', url, true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
         request.send(`data=${data}`);
@@ -131,13 +131,13 @@ function    delet_comment_controller(e){
 //////////////////////////////
 
 function        like_dislike_comment(comment, flag, feedback){
-    let info = comment.querySelector('input[name="comment_info"]').value;
-    let    request = new XMLHttpRequest();
-    let url = window.location.origin + '/app/model/posts.model.php';
+    var info = comment.querySelector('input[name="comment_info"]').value;
+    var    request = new XMLHttpRequest();
+    var url = window.location.origin + '/app/model/posts.model.php';
     request.responseType = 'text';
     request.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            let ret = JSON.parse(this.responseText);
+            var ret = JSON.parse(this.responseText);
             if (ret === false){
                 feedback.innerHTML = 'invalid information!';
                 feedback.classList.add('error');
@@ -145,7 +145,7 @@ function        like_dislike_comment(comment, flag, feedback){
             }
         }
     };
-    let data = JSON.stringify({'info':info, 'flag':flag, 'type':'like_comment'});
+    var data = JSON.stringify({'info':info, 'flag':flag, 'type':'like_comment'});
     request.open('POST', url, true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded' );
     request.send(`data=${data}`);
@@ -160,19 +160,19 @@ function        socket_post(){
 
     var time_soket = setInterval(function socket(){
         document.querySelectorAll('.post').forEach((e)=>{
-            let rect = e.getBoundingClientRect();
+            var rect = e.getBoundingClientRect();
             if (rect.y <= window.innerHeight && rect.bottom > 0){
                 
                 
-                let info_post = e.querySelector('input[name="post_info"]').value;
+                var info_post = e.querySelector('input[name="post_info"]').value;
                 var request = new XMLHttpRequest();
                 request.response = 'text';
-                let url = window.location.origin + '/app/model/socket_post.model.php';
+                var url = window.location.origin + '/app/model/socket_post.model.php';
                 request.open('POST', url, true);
                 request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded" );
                 request.onreadystatechange = function(){
                     if (this.readyState == 4 && this.status == 200){
-                        let ret = JSON.parse(this.responseText);
+                        var ret = JSON.parse(this.responseText);
                         // console.log(ret);
                         
                         if (ret !== false)
@@ -191,7 +191,7 @@ function        socket_post(){
                     //     clearInterval(time_soket);
                     //     // console.log(this.readyState, this.status);
                     //     // console.log('error');
-                    //     let msj = document.querySelector('.navBar').querySelector('.global_msj');
+                    //     var msj = document.querySelector('.navBar').querySelector('.global_msj');
                     //     msj.innerHTML = 'Error Connection plaes check your connection and relaod page';
                     //     msj.classList.add('error');
 
@@ -199,7 +199,7 @@ function        socket_post(){
                     // }
                 };
                 request.onerror = function(){
-                    let msj = document.querySelector('.navBar').querySelector('.global_msj');
+                    var msj = document.querySelector('.navBar').querySelector('.global_msj');
                     msj.innerHTML = 'Error Connection plaes check your connection and relaod page';
                     msj.classList.add('error');
                 };

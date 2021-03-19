@@ -1,11 +1,11 @@
 /* all Valdition Inputs*/
 
 function        validationPasswd(Input){
-    let Ret = 0;
-    let RExp1 = /^.*[a-z].*$/;
-    let RExp2 = /^.*[A-Z].*$/;
-    let RExp3 = /^.*[0-9].*$/;
-    let RExp4 = /^.*[~!@#$%^&*()\_\-\+=\\\.\?<>,\[\]\{\}:'";/].*$/;
+    var Ret = 0;
+    var RExp1 = /^.*[a-z].*$/;
+    var RExp2 = /^.*[A-Z].*$/;
+    var RExp3 = /^.*[0-9].*$/;
+    var RExp4 = /^.*[~!@#$%^&*()\_\-\+=\\\.\?<>,\[\]\{\}:'";/].*$/;
     if (Input.value.length < 8)
         Ret++;
     if (!RExp1.test(Input.value))
@@ -36,7 +36,7 @@ function        validationNewPasswd(Input, old){
 }
 
 function        validationEmail(Input){
-    let RExp = /^[a-zA-Z]+(([\.]{0,1})[\w_-])+@[\w\.]+\.([a-z]{2,4})$/;
+    var RExp = /^[a-zA-Z]+(([\.]{0,1})[\w_-])+@[\w\.]+\.([a-z]{2,4})$/;
     if (!RExp.test(Input.value) || Input.value.length > 50)
         return(1);
     else
@@ -46,7 +46,7 @@ function        validationEmail(Input){
 
 
 function        validationLogin(Input){
-    let RExp = /^[\w-]+$/;
+    var RExp = /^[\w-]+$/;
     if (!RExp.test(Input.value) || Input.value.length > 20 || Input.value.length < 8)
         return(1);
     else
@@ -54,7 +54,7 @@ function        validationLogin(Input){
 }
 
 function        validationName(Input){
-    let RExp = /^[a-zA-Z]+$/;
+    var RExp = /^[a-zA-Z]+$/;
     if (!RExp.test(Input.value) || Input.value.length > 20 || Input.value.length < 3)
         return(1);
     else
@@ -92,7 +92,7 @@ function        eventEmail(Input){
 
 function        eventPasswd(Input){
     Input.addEventListener('input', (e)=>{
-        let Pass = validationPasswd(Input);
+        var Pass = validationPasswd(Input);
 
         if (Pass === 0){
             Input.classList.remove('error');
@@ -114,7 +114,7 @@ function        eventPasswd(Input){
 
 function        eventnewPasswd(Input, oldPass){
     Input.addEventListener('input', (e)=>{
-        let Pass = validationPasswd(Input);
+        var Pass = validationPasswd(Input);
         if (!validationConfPasswd(Input, oldPass))
             Pass = 3;
 

@@ -5,23 +5,23 @@ document.querySelector('input[name="fack_submit"]').addEventListener('click', (e
 
     
 
-    let contener = document.querySelector('form');
+    var contener = document.querySelector('form');
     if (!contener.querySelector('.alt') && !validationAll(contener)){
-        let alt = document.createElement('div');
+        var alt = document.createElement('div');
             alt.classList.add('alt');
             contener.appendChild(alt);
         
-        let msj = document.createElement('p');
+        var msj = document.createElement('p');
             msj.innerHTML = 'are you sure to delete this account'
             alt.appendChild(msj);
         
-        let labelYes = document.createElement('label');
+        var labelYes = document.createElement('label');
             labelYes.setAttribute('for', 'yes_delet');
             labelYes.classList.add('Btn');
             labelYes.innerHTML = 'YES';
             alt.appendChild(labelYes);
         
-        let no = document.createElement('button');
+        var no = document.createElement('button');
             no.classList.add('BtnAnim');
             no.setAttribute('id', 'no_delete');
             no.addEventListener('click', function(){
@@ -31,7 +31,7 @@ document.querySelector('input[name="fack_submit"]').addEventListener('click', (e
             alt.appendChild(no);
         
         
-        let labelNo = document.createElement('label');
+        var labelNo = document.createElement('label');
             labelNo.setAttribute('for', 'no_delete');
             labelNo.classList.add('Btn');
             labelNo.innerHTML = 'NO';

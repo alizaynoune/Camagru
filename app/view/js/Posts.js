@@ -9,7 +9,7 @@ login = login !== null ? login.innerHTML : login;
 //////// valid input value of comments ////
 ///////////////////////////////////////////
 function        valid_comment(elem){
-    let REG = /^\S.*\S$/;
+    var REG = /^\S.*\S$/;
     if (elem.target.value.length === 0 || elem.target.value.length > 250){
         return false;
     }
@@ -28,9 +28,9 @@ function        valid_comment(elem){
 ////// show or hidden comments of post ///////////////
 //////////////////////////////////////////////////////
 function        toggle_comments(elem){
-    // let comment = elem.target.parentNode.parentNode.querySelector('.comment');
-    let post = elem.target.closest('.post');
-    let comment = post.querySelector('.comment');
+    // var comment = elem.target.parentNode.parentNode.querySelector('.comment');
+    var post = elem.target.closest('.post');
+    var comment = post.querySelector('.comment');
     comment.classList.toggle('hidden');
     // console.log('toggle comment');
     // console.log(comment);
@@ -44,7 +44,7 @@ function        toggle_comments(elem){
 ////////// like or dislike post ////////////
 ////////////////////////////////////////////
 function        toggle_like_post(e){
-    let post = e.target.closest('.post');
+    var post = e.target.closest('.post');
     if (login !== null){
         if (e.target.className === 'like'){
             e.target.classList.remove('like');
@@ -65,8 +65,8 @@ function        toggle_like_post(e){
 ////////// like or dislike commments //////////
 ///////////////////////////////////////////////
 function    toggle_like_comment(e){
-    let post = e.target.closest('.post');
-    let comment = e.target.closest('.old_comment');
+    var post = e.target.closest('.post');
+    var comment = e.target.closest('.old_comment');
     if (login !== null){
         if (e.target.className === 'like'){
             e.target.classList.remove('like');
@@ -89,10 +89,10 @@ function    toggle_like_comment(e){
 /////////////////////////////////////
 function        submit_new_comment(e){
     e.preventDefault();
-    let REG = /^\S.*\S$/;
-    let post = e.target.closest('.post');
-    let feedback = post.querySelector('.feedback');
-    let input = post.querySelector('input[name="comment"]');
+    var REG = /^\S.*\S$/;
+    var post = e.target.closest('.post');
+    var feedback = post.querySelector('.feedback');
+    var input = post.querySelector('input[name="comment"]');
 
 
     if (input.value.length === 0 || !REG.test(input.value) ||  input.value.length > 250){
@@ -114,25 +114,25 @@ function        submit_new_comment(e){
 /////// init delet post ////////////////
 ////////////////////////////////////////
 function        delet_Post(e){
-    let contener = e.target.closest('.post');
+    var contener = e.target.closest('.post');
     // console.log(contener);
     
     
     pop_exists = contener.querySelector('.pop_window');
     if (pop_exists === null || pop_exists.closest('.old_comment') !== null){
-        let pop = document.createElement('div');
+        var pop = document.createElement('div');
             pop.classList.add('pop_window');
             contener.insertBefore(pop, contener.querySelector('.img_post'));
-        let btnYse = document.createElement('button');
+        var btnYse = document.createElement('button');
             btnYse.classList.add('BtnAnim');
             btnYse.addEventListener('click', delet_Post_controller);
-            let r_id = Math.random().toString(36).substr(2, 10);
+            var r_id = Math.random().toString(36).substr(2, 10);
             while(document.getElementById(r_id)){
                 r_id = Math.random().toString(36).substr(2, 10);
             }
             btnYse.setAttribute('id', r_id);
             pop.appendChild(btnYse);
-        let labelYes = document.createElement('label');
+        var labelYes = document.createElement('label');
             labelYes.classList.add('Btn');
             labelYes.classList.add('YESBtn');
             labelYes.setAttribute('for', r_id);
@@ -140,13 +140,13 @@ function        delet_Post(e){
             pop.appendChild(labelYes);
             
         
-        let msj = document.createElement('h2');
+        var msj = document.createElement('h2');
             msj.classList.add('error');
             msj.innerHTML = 'are you sure to delete this posted';
             pop.appendChild(msj);
         
 
-        let btnNo = document.createElement('button');
+        var btnNo = document.createElement('button');
             btnNo.classList.add('BtnAnim');
             r_id = Math.random().toString(36).substr(2, 10);
             while(document.getElementById(r_id)){
@@ -158,7 +158,7 @@ function        delet_Post(e){
             })
             pop.appendChild(btnNo);
         
-        let labelNO = document.createElement('label');
+        var labelNO = document.createElement('label');
             labelNO.classList.add('Btn');
             labelNO.classList.add('NOBtn');
             labelNO.setAttribute('for', r_id);
@@ -177,19 +177,19 @@ function        delet_Post(e){
 function    delet_old_comment(e){
 let contener = e.target.closest('.old_comment');
 if (contener.querySelector('.pop_window') === null){
-    let pop = document.createElement('div');
+    var pop = document.createElement('div');
         pop.classList.add('pop_window');
         contener.appendChild(pop);
-    let btnYse = document.createElement('button');
+    var btnYse = document.createElement('button');
         btnYse.classList.add('BtnAnim');
         btnYse.addEventListener('click', delet_comment_controller);
-        let r_id = Math.random().toString(36).substr(2, 10);
+        var r_id = Math.random().toString(36).substr(2, 10);
         while(document.getElementById(r_id)){
             r_id = Math.random().toString(36).substr(2, 10);
         }
         btnYse.setAttribute('id', r_id);
         pop.appendChild(btnYse);
-    let labelYes = document.createElement('label');
+    var labelYes = document.createElement('label');
         labelYes.classList.add('Btn');
         labelYes.classList.add('YESBtn');
         labelYes.setAttribute('for', r_id);
@@ -197,13 +197,13 @@ if (contener.querySelector('.pop_window') === null){
         pop.appendChild(labelYes);
 
 
-    let msj = document.createElement('h2');
+    var msj = document.createElement('h2');
         msj.classList.add('error');
         msj.innerHTML = 'are you sure to delete this comment';
         pop.appendChild(msj);
 
 
-    let btnNo = document.createElement('button');
+    var btnNo = document.createElement('button');
         btnNo.classList.add('BtnAnim');
         r_id = Math.random().toString(36).substr(2, 10);
         while(document.getElementById(r_id)){
@@ -215,7 +215,7 @@ if (contener.querySelector('.pop_window') === null){
         })
         pop.appendChild(btnNo);
 
-    let labelNO = document.createElement('label');
+    var labelNO = document.createElement('label');
         labelNO.classList.add('Btn');
         labelNO.classList.add('NOBtn');
         labelNO.setAttribute('for', r_id);
