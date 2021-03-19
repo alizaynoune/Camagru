@@ -31,8 +31,8 @@ if ((new Session())->SessionStatus() === true){
           <input class="left" type="text" placeholder="Username" name="login" value="<?php echo ($_POST && $_POST['login']) ? $_POST['login'] : "";?>" required/>
           <input class="right" type="email" placeholder="E-mail Address" name="email" value="<?php echo ($_POST && $_POST['email']) ? $_POST['email'] : "";?>" required/>
           <input class="left" type="password" placeholder="Password" name="passwd" required/>
-          <span class="fa fa-eye-slash icon_left" onclick='togglePasswd(this)'></span>
-          <span class="fa fa-eye-slash icon_right" onclick='togglePasswd(this)'></span>
+          <span class="fa fa-eye-slash icon_left" onclick='togglePasswd(this.previousElementSibling, this)'></span>
+          <span class="fa fa-eye-slash icon_right" onclick='togglePasswd(this.nextElementSibling, this)'></span>
           <input class="right" type="password" placeholder="Confirm Password" name="confPasswd" required/>
           
           <input class="submit" type="submit" name="submit" value="OK"/>

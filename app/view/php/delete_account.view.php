@@ -28,9 +28,9 @@ if ((new Session())->SessionStatus() === false){
 			<form action="../../model/delete_account.model.php" method="POST" onkeypress="return event.keyCode != 13;">
                 <h1>Delete account</h1>
                 <h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
-    	        <input class="right" type="text" placeholder="Username" name="login" required/><
+    	        <input class="right" type="text" placeholder="Username" name="login" required/>
                 <input class="left Passwd" type="password" placeholder="Password" name="passwd" required/>
-				<span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
+				<span class="fa fa-eye-slash" onclick='togglePasswd(this.previousElementSibling, this)'></span>
 				<input class="submit" name='fack_submit' type="button" value="OK"/>
 				<input id='yes_delet' class="BtnAnim" type="submit" name="submit" value="OK" />
 			</form>

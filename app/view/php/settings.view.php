@@ -69,12 +69,12 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 					<input class="left" type="text" placeholder="Username" name="login" value="<?php echo $usr_info['login']?>"/>
 					<input class="right" type="email" placeholder="E-mail Address" name="email" value="<?php echo $usr_info['email']?>"/>
 					<input class="left" type="password" placeholder="Old Password" name="oldPasswd" />
-    	    	    <span class="fa fa-eye-slash icon_left" onclick='togglePasswd(this)'></span>
-					<span class="fa fa-eye-slash icon_right" onclick='togglePasswd(this)'></span>
+    	    	    <span class="fa fa-eye-slash icon_left" onclick='togglePasswd(this.previousElementSibling, this)'></span>
+					<span class="fa fa-eye-slash icon_right" onclick='togglePasswd(this.nextElementSibling , this)'></span>
 					<input class="right" type="password" placeholder="New Password" name="newPasswd" />
 		  
 					<input class="left" type="password" placeholder="Confirm Password" name="confnewPasswd" />
-    	    	    <span class="fa fa-eye-slash icon_left" onclick='togglePasswd(this)'></span>
+    	    	    <span class="fa fa-eye-slash icon_left" onclick='togglePasswd(this.previousElementSibling, this)'></span>
 					<input class="submit" type="submit" name="submit" value="Submit"/>
 				</form>
 			</div>

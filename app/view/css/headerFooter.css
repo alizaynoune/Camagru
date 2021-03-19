@@ -16,7 +16,9 @@ html, body {
 body {
     display: grid;
     grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    -ms-grid-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
     grid-template-rows: auto;
+    -ms-grid-rows: auto;
 }
 
 
@@ -39,11 +41,14 @@ body {
     overflow: hidden;
     padding-top: 1rem;
     grid-column-start: 1;
+    -ms-grid-column: 1;
     grid-column-end: 11;
+    /* -ms-g */
     grid-row-start: 2;
     grid-row-end: auto;
     display: grid;
     grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    -ms-grid-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
     grid-template-rows: auto;
     margin-bottom: 40px;
     
@@ -92,7 +97,7 @@ body {
     grid-column-end: 1;
     grid-row-start: 1;
     grid-row-end: 1;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .navCenter{
@@ -112,7 +117,7 @@ body {
     padding: 0%;
     margin-top: auto;
     margin-bottom: auto;
-    margin-right: 5px;
+    margin-right: 10px !important;
 }
 
 .footer{

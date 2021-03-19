@@ -113,7 +113,7 @@
     outline-style: none !important;
     background-image: linear-gradient(to right, var(--Colorfont), var(--ColorSCfont), var(--Colorfont));
     background-repeat: no-repeat;
-    background-size: 70%;
+    background-size: 70% 100%;
     animation: move_background 2s infinite;
 }
 
@@ -176,14 +176,14 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .form{
-        background-color: indigo;
+        /* background-color: indigo; */
     }
 }
 /* @media only screen and (min-width: 600px) and (max-width: 768px) */
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen  and (max-width: 768px) {
     .form , .buttomBtn{
-        background-color: khaki;
+        /* background-color: khaki; */
         grid-column-start: 1;
         grid-column-end: -1;
     }
@@ -192,21 +192,21 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
   .form{
-      background-color: gold;
+      /* background-color: gold; */
   }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) and (max-width: 1200) {
   .form{
-      background-color: coral;
+      /* background-color: coral; */
   }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .form, .buttomBtn{
-      background-color: cornflowerblue;
+      /* background-color: cornflowerblue; */
       grid-column-start: 3;
       grid-column-end: 9;
   }

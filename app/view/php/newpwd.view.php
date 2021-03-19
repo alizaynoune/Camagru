@@ -31,9 +31,9 @@ if ((empty($_GET['id']) && empty($_POST['id']))|| (empty($_GET['token']) && empt
           <h1>Change password</h1>
           <h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
           <input class="left" type="password" placeholder="New Password" name="passwd" required/>
-          <span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
+          <span class="fa fa-eye-slash" onclick='togglePasswd(this.previousElementSibling, this)'></span>
+          <span class="fa fa-eye-slash" onclick='togglePasswd(this.nextElementSibling, this)'></span>
           <input class="right" type="password" placeholder="Confirm Password" name="confPasswd" required/>
-          <span class="fa fa-eye-slash" onclick='togglePasswd(this)'></span>
           <input style='display: none;' name="id"  value="<?php echo !empty($_GET['id']) ? $_GET['id'] : $_POST['id'];?>"/>
           <input style='display: none;' name="token" value="<?php echo !empty($_GET['token']) ? $_GET['token'] : $_POST['token'];?>"/>
           <input class="submit" type="submit" name="submit" value="OK"/>
