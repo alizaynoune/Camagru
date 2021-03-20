@@ -20,7 +20,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
 		<input type="hidden" name="login" value="<?php echo $_GET['login']?>">
-		<div class="content">
+		<div class="container">
 			<h1>profile</h1>
 		</div>
 		<?php require $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>

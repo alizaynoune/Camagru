@@ -19,7 +19,7 @@ if ((new Session())->SessionStatus() === true){
 	</head>
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
-	<div class="content">	
+	<div class="container">	
 		<div class="form form-group container">
 			<form action="../../model/forgetpwd.model.php" method="POST">
     	        <h1>Recovery Password</h1>

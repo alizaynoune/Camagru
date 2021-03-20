@@ -23,7 +23,7 @@ if ((new Session())->SessionStatus() === false){
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
-	<div class="content">	
+	<div class="container">	
 		<div class="form">
 			<form action="../../model/delete_account.model.php" method="POST" onkeypress="return event.keyCode != 13;">
                 <h1>Delete account</h1>

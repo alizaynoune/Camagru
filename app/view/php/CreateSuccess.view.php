@@ -20,7 +20,7 @@ if ((new Session())->SessionStatus() === true){
 	</head>
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
-	<div class='Success content'>
+	<div class='Success container'>
 	<h3>Your account was successfully created!</h3>
 	<p> open your    email and click the activation link to activate your account.
 	If you do not see your account information in your inbox within 60 seconds please check your spam</p>

@@ -1,7 +1,7 @@
-<ul class="list">
-        <li id="li_camera" onclick="location.href='/app/view/php/camera.view.php'"><p>Camera</p></li>
-        <li id="li_profile" onclick="location.href='/app/view/php/profile.view.php'"><p>your profile</p></li>
-        <li id="li_home" onclick="location.href='/app/view/php/home.view.php'"><p>home</p></li>
-        <li id="li_settings" onclick="location.href='/app/view/php/settings.view.php'"><p>settings</p></li>
-        <li id="li_logout" onclick="location.href='/app/view/php/logout.view.php'"><p>logout</p></li>
+<ul class="list list-group">
+        <li class="li_camera list-group-item" onclick="location.href='/app/view/php/camera.view.php'">Camera</li>
+        <li class="li_profile list-group-item" onclick="location.href='/app/view/php/profile.view.php'">your profile</li>
+        <li class="li_home list-group-item" onclick="location.href='/app/view/php/home.view.php'">home</li>
+        <li class="li_settings list-group-item" onclick="location.href='/app/view/php/settings.view.php'">settings</li>
+        <li class="li_logout list-group-item" onclick="location.href='/app/view/php/logout.view.php'">logout</li>
 </ul>

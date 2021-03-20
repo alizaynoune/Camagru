@@ -36,7 +36,7 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
-		<div class="content">
+		<div class="container">
 			
 			<!-- <h1>settings</h1> -->
 			<div class="form">

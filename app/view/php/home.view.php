@@ -29,7 +29,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
 	
-	<div class="content">
+	<div class="container">
 
 
 

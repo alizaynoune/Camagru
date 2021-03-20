@@ -36,7 +36,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 				<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
 		<input type="hidden" name="login" value="<?php echo $_SESSION['login'] ?>">
-		<div class="content">
+		<div class="container">
 		</div>
 		<?php require $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 		<script type="text/javascript" src="../js/Posts.js"></script>

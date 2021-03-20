@@ -25,7 +25,7 @@ if ((empty($_GET['id']) && empty($_POST['id']))|| (empty($_GET['token']) && empt
 	</head>
 	<body>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
-    <div class="content">    
+    <div class="container">    
       <div class="form">
 		    <form action="../../model/changepwd.model.php" method="POST">
           <h1>Change password</h1>
