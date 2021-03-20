@@ -15,11 +15,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	  <link class="_css" rel="stylesheet" type="text/css" href="../css/Posts.css"/>
 
 
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
 
 	  <style>
 	  	.list li:nth-child(3){

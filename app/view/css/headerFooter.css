@@ -1,6 +1,7 @@
 @import "Colors.css";
 @import "menu.css";
 @import "btns.css";
+@import url( 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' );
 
 
 html, body {
@@ -34,14 +35,13 @@ html, body {
 }
 
 
-.navBar {
-    width: 100%;
+.navbar {
+    padding: 0%;
     height: 65px;
     background-color: var(--headPost);
     box-shadow: 0px 0px 20px var(--shadow);
     z-index: 4;
     transition: all 0.5s;
-    display: inline-block;
 }
 
 .navBar h1{
@@ -62,7 +62,6 @@ html, body {
 
 .navBar a:focus{
     outline-style: none;
-    /* -moz-text-decoration-line: none; */
     color: var(--Colorfont);
 }
 
@@ -72,9 +71,7 @@ html, body {
 
 .navCenter{
     margin: auto;
-    position: absolute;
     text-align: center;
-    width: 100%;
 }
 
 .navCenter p{
@@ -84,10 +81,13 @@ html, body {
 
 .navRight{
     padding: 0%;
-    margin-top: auto;
-    margin-bottom: auto;
     margin-right: 10px !important;
-    display: inline;
+}
+
+.navRight img{
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
 }
 
 .footer{
@@ -109,12 +109,20 @@ html, body {
 
 
 
+/* 
 
-@media (pointer:none), (pointer:coarse) {
+@media (min-width: @screen-sm-min) {
+    body{
+        background-color: lightcoral;
+    }
+} */
+
+
+/* @media (pointer:none), (pointer:coarse) {
     .navBar {
         height: 90px;
     }
-  }
+  } */
 
 
 
@@ -123,12 +131,18 @@ html, body {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+    .global_msj{
+        display: none;
+    }
 
+    .navbar h1{
+        font-size: 28px;
+    }
 }
 /* @media only screen and (min-width: 600px) and (max-width: 768px) */
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen  and (max-width: 768px) {
-  
+
 }
 
 /* Medium devices (landscape tablets, 768px and up) */

@@ -22,7 +22,7 @@ if ((new Session())->SessionStatus() === true){
 	<body>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
     <div class="content">    
-      <div class="form">
+      <div class="form form-group container">
 		    <form action="../../model/create.model.php" method="POST">
           <h1>Sign Up</h1>
           <h2 class="error"><?= !empty($_GET) && $_GET['error'] ? $_GET['error'] : ''; ?></h2>
@@ -38,10 +38,17 @@ if ((new Session())->SessionStatus() === true){
           <input class="submit" type="submit" name="submit" value="OK"/>
 		    </form>
       </div>
-      <div class="buttomBtn" style="grid-template-columns: auto auto;">
-        <a class="lefttBtn button" href="forgetpwd.view.php"><p>Forgotten password?</p></a>
-        <a class="rightBtn button" href="login.view.php"><p>SignIn</p></a>
-      </div>
+      <div class="container">
+				<div class="buttomBtn row ">
+					<div class="col row justify-content-start">
+						<a class="leftBtn Btn col-9 col-sm-8 col-md-5 col-xl-3" href="login.view.php">SingnIn</a>
+					</div>
+					<div class="col row justify-content-end">
+						<a class="rightBtn Btn col-12 col-sm-9 col-md-7 col-xl-5" href="forgetpwd.view.php">Forgotten password?</a>
+					</div>
+				</div>
+			</div>
+
     </div>
         <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
         <script type="text/javascript" src="../../controller/validateForm.js"></script>

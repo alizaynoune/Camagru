@@ -3,7 +3,7 @@
 
 
 .BtnAnim{
-  overflow: hidden;
+  /* overflow: hidden; */
   display: none !important;
 }
 .Btn{
@@ -12,20 +12,14 @@
   cursor: pointer;
   font-weight: bold;
   outline: none;
-  padding: 0%;
+  padding: 15px 10px;
   text-align: center;
-  width: 160px;
-  height: 35px;
   transition: all 0.3s;
-  padding-top: 20px;
-  bottom: -20px !important;
   background-color: var(--Button);
+  color: var(--Colorfont);
   overflow: hidden;
   box-shadow: 0px 0px 20px var(--shadow);
-  /* display: block; */
   position: relative;
-  top: 0%;
-  margin: 0%;
 }
 .Btn::before{
   font-family: "FontAwesome";
@@ -37,7 +31,11 @@
   top: 0%;
   transition: all 0.3s;
 }
-.Btn:hover {background-color: var(--ButtonActive) !important;}
+.Btn:hover {
+  background-color: var(--ButtonActive) !important;
+  color: var(--Colorfont);
+  text-decoration: none;
+}
 .Btn:hover::before {right: 75%;}
 
 
@@ -54,31 +52,29 @@
   height: 55px;
 }
 
-.button:hover{background: var(--ButtonActive);}
+.Btn:hover{background: var(--ButtonActive);}
 
-.button:focus{
+.Btn:focus{
   background-color: var(--ButtonActive);
   /* background: var(--Button); */
   outline-style: none !important;
 }
 
 .leftBtn {
-  justify-self: start;
+  /* justify-self: start;
+  justify-content: left; */
+  /* position: absolute;
+  float: left; */
   }
 
 .centerBtn {
-  position: relative;
-  justify-self: center !important;
-  grid-column-start: 1;
-  /* -ms-grid-column: 1; */
-  grid-column-end: 2;
+  /* position: relative; */
+  
 }
 
 .rightBtn {
-  position: relative !important;
-  justify-self: end;
-  grid-column-start: auto;
-  grid-column-end: -1;
+  /* position: relative !important;
+  justify-content: right; */
 }
 
 
