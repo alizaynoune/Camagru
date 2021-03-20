@@ -61,6 +61,7 @@
 }
 
 .leftBtn {
+  margin-left: 10px;
   /* justify-self: start;
   justify-content: left; */
   /* position: absolute;
@@ -73,6 +74,7 @@
 }
 
 .rightBtn {
+  margin-right: 10px;
   /* position: relative !important;
   justify-content: right; */
 }
@@ -99,6 +101,7 @@
 .toggle-control .control {
   position: absolute;
   height: 40px;
+  /* top: 0%; */
   width: 90px;
   border-radius: 25px;
   background-color: darkgray;
@@ -108,7 +111,7 @@
   font-family: "FontAwesome";
   position: absolute;
   left: 5px;
-  top: 20%;
+  top: 10%;
   font-size: 21px;
   border-radius: 25px;
   transition: left 0.15s ease-in;

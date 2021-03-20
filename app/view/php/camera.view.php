@@ -52,8 +52,8 @@ if ((new Session())->SessionStatus() === false){
 			</div>
 			<div class="form form-group container row">
 				 <form  method="POST" enctype="multipart/form-data">
-					<h2 class="error col text-sm-left"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : 'error'; ?></h2>
-					<h2 class="success col text-sm-left"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : 'success'; ?></h2>
+					<h2 class="error col text-sm-left"><?= !empty($_GET) && !empty($_GET['error']) ? $_GET['error'] : ''; ?></h2>
+					<h2 class="success col text-sm-left"><?= !empty($_GET) && !empty($_GET['success']) ? $_GET['success'] : ''; ?></h2>
 					<input class="out-form " type="text" placeholder="title" name="title"/>								
 					<input type='hidden' name='canva'/>
 					<input type='hidden' name='stickers'/>
@@ -66,22 +66,22 @@ if ((new Session())->SessionStatus() === false){
 			</div>
 			<div class="contener_camera row justify-content-center">
 				<div class="contener_video row " id="contener_video">
-					<div id='video_id' class="hiddenBtn display col-12 col-sm-11 col-md-10 col-lg-6 col-xl-3">
+					<div id='video_id' class="hiddenBtn display col-12 col-sm-11 col-md-10 col-lg-6 col-xl-5">
 						<video id="video" class="hiddenBtn display"  autoplay></video>
 						<button id="capter" class="BtnAnim hiddenBtn " type="button" onclick="capture_img();"></button>
-						<label for="capter" class="btncaptuerIn Btn centerBtn display hiddenBtn" >Capture</label>
+						<label for="capter" class="btncaptuerIn Btn  display hiddenBtn col-4 col-sm-4 col-md-3 col-lg-4 col-xl-6" >Capture</label>
 					</div>
-					<div id='canva_id' class="col-12 col-sm-11 col-md-10 col-lg-6 col-xl-3">
+					<div id='canva_id' class="col-12 col-sm-11 col-md-10 col-lg-6 col-xl-5">
 						<canvas id="canva" ></canvas>
 						<canvas id='hiddenCanva' style="width: 400px; height: 200px;"></canvas>
 					</div>
 				</div>
 			</div>
-			<div class="buttomBtn container row">
+			<div class="buttomBtn row justify-content-between">
 				<input id='upload' class="BtnAnim" name="Upload" type="file" accept="image/*" onchange="upload_to_canva(event)" />
-				<label for="upload" class="btnup Btn leftBtn col">Upload</label>
-				<label for="capter" class="btncaptuer centerBtn Btn  hiddenBtn display">Capture</label>
-				<label for="share" class=" btnShr Btn rightBtn col">Share</label>
+				<label for="upload" class="btnup Btn leftBtn col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">Upload</label>
+				<label for="capter" class="btncaptuer Btn  hiddenBtn display col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">Capture</label>
+				<label for="share" class=" btnShr Btn rightBtn col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">Share</label>
 			</div>
 			<div class='thumbnails'>
 			</div>

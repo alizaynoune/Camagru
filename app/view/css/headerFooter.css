@@ -98,7 +98,8 @@ html, body {
     height: 2rem;
     bottom:  0%;
     width: 100%;
-    /* background-color: var(--headerColor); */
+    opacity: 0.7;
+    background-color: var(--headerColor);
     /* box-shadow: 0px 0px 20px var(--shadow); */
 }
 

@@ -30,19 +30,10 @@ if ((new Session())->SessionStatus() === true){
 				<input class="submit" type="submit" name="submit" value="OK"/>
 			</form>
 		</div>
-		<div class="container">
-			<div class="buttomBtn row ">
-				<div class="col row justify-content-start">
-					<a class="leftBtn Btn col-8 col-sm-9 col-md-7 col-xl-5" href="login.view.php">SingnIn</a>
-				</div>
-				<div class="col row justify-content-end">
-					<a class="rightBtn Btn col-10 col-sm-9 col-md-7 col-xl-5" href="signup.view.php">Create New Account</a>
-				</div>
-			</div>
-		</div>
-
-
-
+		<div class="buttomBtn row justify-content-between">
+            <a class="leftBtn Btn col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2" href="login.view.php">SingnIn</a>
+            <a class="rightBtn Btn col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2" href="signup.view.php">Create New Account</a>
+        </div>
 	</div>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 		<script type="text/javascript" src="../../controller/validateForm.js"></script>
