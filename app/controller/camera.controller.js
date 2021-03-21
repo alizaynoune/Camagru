@@ -67,7 +67,9 @@ form.addEventListener('submit', (e) =>{
     /////////////////////////////////////////////////////////////////////////////////////////
     ////// loop for all sticker at canvas (get all information about sticker selectd) ///////
     /////////////////////////////////////////////////////////////////////////////////////////
-    canvas.querySelectorAll('.filter').forEach((e)=>{
+    var all_filter = canvas.querySelectorAll('.filter');
+    for(var j = 0; j < all_filter.length; j++ ){
+        var e = all_filter[j];
         left.push(e.style.left.match(/[\d\.]+/g).join(''));
         top.push(e.style.top.match(/[\d\.]+/g).join(''));
         width.push(e.style.width.match(/[\d\.]+/g).join(''));
@@ -76,7 +78,7 @@ form.addEventListener('submit', (e) =>{
         stickers.push(name[name.length - 1]);
         i++;
         ////////////////////////////not finesh
-    });
+    }
     ////////////////////////////////////////////////////////////////////////////////////
     ///////// if no sticker selected check if aready captur or sticker is disable //////
     ////////////////////////////////////////////////////////////////////////////////////

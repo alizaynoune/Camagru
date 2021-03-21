@@ -18,7 +18,9 @@ function       update_post_info(data){
     }
     likes_comments.getElementsByTagName('label')[1].innerHTML = data['likes_comments']['nbr_comments'];
     var i = 0;
-    post.querySelectorAll('.old_comment').forEach(e => {
+    var all_old_comment = post.querySelectorAll('.old_comment');
+    for(j = 0; i < all_old_comment.length; j++) {
+        var e = all_old_comment[j];
         var info = e.querySelector('input[name="comment_info"]').value;
         var cmp = data['all_comments'][i]['id'] + '_leet_' + data['all_comments'][i]['pid'] + '_leet_' + data['all_comments'][i]['uid'];
         if (info === cmp){
@@ -35,7 +37,7 @@ function       update_post_info(data){
             
             i++;
         }
-    });
+    }
     if (i < data['all_comments'].length){
         var contener = post.querySelector('.comment');
         while(i < data['all_comments'].length){

@@ -159,53 +159,35 @@ function        like_dislike_comment(comment, flag, feedback){
 function        socket_post(){
 
     // var time_soket = setInterval(function socket(){
-        document.querySelectorAll('.post').forEach((e)=>{
-            var rect = e.getBoundingClientRect();
-            if (rect.y <= window.innerHeight && rect.bottom > 0){
-                
-                
-                var info_post = e.querySelector('input[name="post_info"]').value;
-                var request = new XMLHttpRequest();
-                request.response = 'text';
-                var url = window.location.origin + '/app/model/socket_post.model.php';
-                request.open('POST', url, true);
-                request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded" );
-                request.onreadystatechange = function(){
-                    if (this.readyState == 4 && this.status == 200){
-                        var ret = JSON.parse(this.responseText);
-                        // console.log(ret);
-                        
-                        if (ret !== false)
-                            update_post_info(ret);
-                        else{
-                            e.remove();
-                        }
-                        // console.log(e);
-                        // console.log(e.getBoundingClientRect());
-                        // console.log(window.innerHeight);
-
-                        // console.log('==============================');
-
-                    }
-                    // else if (this.readyState == 4 && this.status != 200){
-                    //     clearInterval(time_soket);
-                    //     // console.log(this.readyState, this.status);
-                    //     // console.log('error');
-                    //     var msj = document.querySelector('.navBar').querySelector('.global_msj');
-                    //     msj.innerHTML = 'Error Connection plaes check your connection and relaod page';
-                    //     msj.classList.add('error');
-
-
-                    // }
-                };
-                request.onerror = function(){
-                    var msj = document.querySelector('.navBar').querySelector('.global_msj');
-                    msj.innerHTML = 'Error Connection plaes check your connection and relaod page';
-                    msj.classList.add('error');
-                };
-                var data = JSON.stringify({'post':info_post});
-                request.send(`data=${data}`);
-            }
-        });
+    //     var all_post = document.querySelectorAll('.post');
+    //     for(var i = 0; i < all_post.length; i++ ){
+    //         var e = all_post[i];
+    //         var rect = e.getBoundingClientRect();
+    //         if (rect.y <= window.innerHeight && rect.bottom > 0){
+    //             var info_post = e.querySelector('input[name="post_info"]').value;
+    //             var request = new XMLHttpRequest();
+    //             request.response = 'text';
+    //             var url = window.location.origin + '/app/model/socket_post.model.php';
+    //             request.open('POST', url, true);
+    //             request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded" );
+    //             request.onreadystatechange = function(){
+    //                 if (this.readyState == 4 && this.status == 200){
+    //                     var ret = JSON.parse(this.responseText);
+    //                     if (ret !== false)
+    //                         update_post_info(ret);
+    //                     else{
+    //                         e.remove();
+    //                     }
+    //                 }
+    //             };
+    //             request.onerror = function(){
+    //                 var msj = document.querySelector('.navBar').querySelector('.global_msj');
+    //                 msj.innerHTML = 'Error Connection plaes check your connection and relaod page';
+    //                 msj.classList.add('error');
+    //             };
+    //             var data = JSON.stringify({'post':info_post});
+    //             request.send(`data=${data}`);
+    //         }
+    //     }
     // }, 1500);
 }

@@ -66,12 +66,12 @@ if ((new Session())->SessionStatus() === false){
 			</div>
 			<div class="contener_camera row justify-content-center">
 				<div class="contener_video row " id="contener_video">
-					<div id='video_id' class="hiddenBtn display col-12 col-sm-11 col-md-10 col-lg-6 col-xl-5">
+					<div id='video_id' class="hiddenBtn display col-12 col-sm-11 col-md-9 col-lg-5 col-xl-3">
 						<video id="video" class="hiddenBtn display"  autoplay></video>
 						<button id="capter" class="BtnAnim hiddenBtn " type="button" onclick="capture_img();"></button>
-						<label for="capter" class="btncaptuerIn Btn  display hiddenBtn col-4 col-sm-4 col-md-3 col-lg-4 col-xl-6" >Capture</label>
+						<label for="capter" class="btncaptuerIn Btn  display hiddenBtn col-4 col-sm-4 col-md-3 col-lg-4 col-xl-4" >Capture</label>
 					</div>
-					<div id='canva_id' class="col-12 col-sm-11 col-md-10 col-lg-6 col-xl-5">
+					<div id='canva_id' class="col-12 col-sm-11 col-md-9 col-lg-5 col-xl-3">
 						<canvas id="canva" ></canvas>
 						<canvas id='hiddenCanva' style="width: 400px; height: 200px;"></canvas>
 					</div>

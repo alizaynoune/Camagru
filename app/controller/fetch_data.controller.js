@@ -12,12 +12,13 @@ function       request_profile(login, date, contener){
             var ret = JSON.parse(this.responseText);
             // var packge = document.createElement('div');
             // packge.classList.add('packge');
-            ret.forEach(element => {
+            for(var i = 0; i < ret.length; i++) {
+                element = ret[i];
                 var post = new_post(element, null);
                 contener.appendChild(post);
                 lastdate = element['Date'];
                 
-            });
+            }
             // contener.appendChild(packge);
         }catch(e){
             console.log(e);
@@ -45,14 +46,15 @@ function       request_all(date, contener){
             var ret = JSON.parse(this.responseText);
             // var packge = document.createElement('div');
             // packge.classList.add('packge');
-            ret.forEach(element => {
+            for(var i = 0; i < ret.length; i++){
+                element = ret[i];
                 var post = new_post(element, null);
                 if (post != null){
                     contener.appendChild(post);
                     lastdate = element['Date'];
                 }
                 
-            });
+            }
             // contener.appendChild(packge);
         }catch(e){
             
@@ -75,10 +77,10 @@ function        request_comment(pid, contener){
     request.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
             ret = JSON.parse(this.responseText);
-            ret.forEach((e)=>{
-                append_comment(e, contener);
+            for(var i = 0; i < ret.length; i++){
+                append_comment(ret[i], contener);
                 
-            });
+            }
         }
     };
     request.open("GET", url, true);
@@ -103,10 +105,10 @@ function        request_profile_id(date, contener){
             if (ret.length > 0){
                 lastdate = ret[ret.length - 1]['date'];
             }
-            ret.forEach((e) =>{
-                var new_img = new_chose_avatar(e);
+            for(var i = 0; i < ret.length; i++){
+                var new_img = new_chose_avatar(ret[i]);
                 contener.appendChild(new_img);
-            });
+            }
         }
     };
     request.open('GET', url, true);

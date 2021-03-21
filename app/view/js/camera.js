@@ -28,9 +28,9 @@ function  show_erea(){
   var canva = document.getElementById('canva');
   delete_event(canva);
   new_event(video);
-  select.forEach(function(elem){
-    elem.classList.remove('hiddenBtn');
-  });
+  for(var i = 0; i < select.length; i++){
+    select[i].classList.remove('hiddenBtn');
+  }
   // var contener_video = document.getElementById('contener_video');
 }
 
@@ -39,49 +39,101 @@ function  hidden_erea(){
   if (captur === 0)
     new_event(document.getElementById('canva'));
   clear_stickers(document.getElementById('video_id'));
-  select.forEach(function(elem){
-    elem.classList.add('hiddenBtn');
-  });
+  for(var i = 0; i < select.length; i++){
+    select[i].classList.add('hiddenBtn');
+  }
 }
+
+
+
+
+// // if navigator.mediaDevices not defined we will creat an object call 'navigator.mediaDevices'
+// if (navigator.mediaDevices === undefined) {
+//   navigator.mediaDevices = {};
+// }
+// // iv getUserMedia not defined we will creat a function called 'getUseMedia'
+// if (navigator.mediaDevices.getUserMedia === undefined) {
+//   navigator.mediaDevices.getUserMedia = function(constraints) {
+
+//     // we will shose one of UserMedia first one defined
+//     var getUserMedia =  navigator.getUserMedia ||
+//                         navigator.webkitGetUserMedia ||
+//                         navigator.mozGetUserMedia ||
+//                         navigator.mediaDevices;
+
+//     // if getUserMedia not implemented in browser we will reject and add new Error
+//     if (!getUserMedia) {
+//       return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+//     }
+
+//     // else we will call (navigator, constraints, resolve, reject) from getUserMedia
+//     return new Promise(function(resolve, reject) {
+//       getUserMedia.call(navigator, constraints, resolve, reject);
+//     });
+//   }
+// }
+
+// //// new we cann try to stream video
+// navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+// .then(function(stream) {
+//   // select document where we can stream video
+//   var video = document.getElementById('video');
+//   if ("srcObject" in video) {
+//     video.srcObject = stream;
+//   } else {
+//     // Avoid using this in new browsers, as it is going away.
+//     video.src = window.URL.createObjectURL(stream);
+//   }
+//   video.onloadedmetadata = function(e) {
+//     video.play();
+//   };
+// })
+// .catch(function(err) {
+//         document.querySelector('.error').innerHTML = er;
+//         // "NotAllowedError: Permission denied";
+//         document.querySelector('input[name=camera]').checked = false;
+//         hidden_erea();
+// });
+
+
 
 
 //////////////////////////////////////
 //////// stream video ////////////////
 //////////////////////////////////////
 function     streamVideo(){  
-  navigator.getUserMedia = navigator.getUserMedia ||
+  navigator.mediaDevices = navigator.getUserMedia ||
                             navigator.webkitGetUserMedia ||
                             navigator.mozGetUserMedia ||
                             navigator.mediaDevices;
-  if (navigator.getUserMedia){
+  if (navigator.mediaDevices){
     var size = document.getElementById('canva_id');
-    // console.log(size);
     const video = document.getElementById('video');
     console.log(size.offsetWidth);
     
     navigator.mediaDevices.getUserMedia({
+        // video:true,
         audio: false,
         video: {
           width : 640,
           height : 480,
-          // width: { min: 160, ideal: 640, max: 704 },
-          // height: { min: 120, ideal: 360, max: 480 },
-          // width: {min:size.offsetWidth, ideal:size.offsetWidth, max:size.offsetWidth},
-          // height: {min:size.offsetHeight, ideal:size.offsetHeight, max:size.offsetHeight},
         }
         
       }
       ).then(function(stream){
-        // video.srcElement = video;
-        console.log(video.videoWidth + ' ' + video.videoHeight);
-        video.srcObject = stream;
-        video.play();
-        console.log(video);
-        // new_event(video);
-        
-        
-        // size.offsetHeight = video.videoHeight;
-        // size.offsetWidth = video.videoWidth;
+        // console.log(video.videoWidth + ' ' + video.videoHeight);
+        if ("srcObject" in video) {
+              video.srcObject = stream;
+            } else {
+              // Avoid using this in new browsers, as it is going away.
+              video.src = window.URL.createObjectURL(stream);
+              console.log(window.login);
+              
+            }
+        video.onloadeddata = function(e){
+          video.play();
+        };
+        console.log(stream);
         document.querySelector('.error').innerHTML = "";
       }).catch(function(er){
         document.querySelector('.error').innerHTML = er;
@@ -91,7 +143,7 @@ function     streamVideo(){
       });
     }
     else{
-      document.querySelector('.error').innerHTML = 'Camera Not fond';
+      document.querySelector('.error').innerHTML = 'mediaDevices is not implemented in this browser';
       document.querySelector('input[name=camera]').checked = false;
       hidden_erea();
     }
@@ -113,12 +165,12 @@ function  camera_on(){
 function  camera_off(){
   const video = document.getElementById('video');
   const mediaStream = video.srcObject;
-  if (mediaStream !== null){
+  if (mediaStream !== null && mediaStream !== undefined){
     const tracks = mediaStream.getTracks()
-    tracks.forEach(function(track) {
-      track.stop();
+    for(var i = 0; i < tracks.length; i++){
+      tracks[i].stop();
       hidden_erea();
-    });
+    }
   }
   video.srcObject = null;
 }
@@ -168,6 +220,7 @@ function    capture_img(){
   var box = document.querySelector('input[name=stickers]').checked;
   if (sticker_video > 0 || box === false){
     var contener_canva = document.getElementById('canva_id');
+    var container_video = document.getElementById('video_id');
     captur = 1;    
     sticker_video = 0;
     var canva = document.getElementById('canva');
@@ -175,10 +228,15 @@ function    capture_img(){
     var factor = Math.min((canva.width / video.videoWidth), (canva.height / video.videoHeight));
     canva.width = video.videoWidth;
     canva.height = video.videoHeight;
-    console.log(video.videoWidth);
-    
-    contener_canva.offsetHeight = (canva.offsetHeight);
-    contener_canva.offsetWidth = (canva.offsetWidth);
+    // console.log();
+    // contener_canva.width = video.videoWidth;
+    // contener_canva.height = video.videoHeight;
+
+    contener_canva.style.height = (container_video.style.height);
+    contener_canva.style.width = (container_video.style.width);
+
+    // contener_canva.height = (canva.height);
+    // contener_canva.width = (canva.width);
     clear_stickers(contener_canva);
     canva.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
     copy_stickers();
@@ -197,17 +255,20 @@ function    capture_img(){
 function    copy_stickers(){
   var elem = document.getElementById('video_id');
   var canva = document.getElementById('canva_id');
-  elem.querySelectorAll('div').forEach((e)=>{
+  var all_div = elem.querySelectorAll('div');
+  for(var i = 0; i < all_div.length; i++){
+    e = all_div[i];
     if (e.id.search('copy') !== -1){
       e.removeEventListener('dragover', _onDragover, false);
       e.removeEventListener('drop', _onDrop, false);
       e.children[0].removeEventListener('dragstart', dragstart);
-      e.querySelectorAll('div').forEach((div)=>{
-        div.style.display = 'none';
-      });
+      var all_in_div = e.querySelectorAll('div');
+      for(var j = 0; j < all_in_div.length; j++){
+        all_in_div[j].style.display = 'none';
+      }
       canva.appendChild(e);
     }
-  });
+  }
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -215,10 +276,12 @@ function    copy_stickers(){
 /////////////////////////////////////////////////////////////////////
 function    clear_stickers(elem){
   
-  elem.querySelectorAll('div').forEach((e)=>{
+  var all_div = elem.querySelectorAll('div');
+  for(var i = 0; i < all_div.length; i++){
+    var e = all_div[i];
     if (e.id.search('copy') !== -1)
       e.remove();
-  });
+  }
 
 }
 
@@ -293,9 +356,11 @@ function    _onDrop(event){
     // console.log(cln.style.top + ' ' + y + ' ' + rect.height);
     // 213  480
     listener.parentNode.appendChild(cln);
-    if (event.srcElement.id === 'video')
+    console.log(event.target.id);
+    
+    if (event.target.id === 'video')
       sticker_video++;
-    else if (event.srcElement.id === 'canva')
+    else if (event.target.id === 'canva')
       sticker_canva++;
   }
   
@@ -318,7 +383,8 @@ function    new_elem(stic){
   var   parent = document.createElement('div');
   parent.classList.add('filter');
   parent.appendChild(stic);
-  name_class.forEach((e)=>{
+  for(var i = 0; i < name_class.length; i++){
+    var e = name_class[i];
     var div = document.createElement('div');
     div.classList.add(e);
     if (e === 'resize'){
@@ -336,7 +402,7 @@ function    new_elem(stic){
     }
 
     parent.appendChild(div);
-  });
+  }
   parent.addEventListener('dragover', _onDragover, false);
   parent.addEventListener('drop', _onDrop, false);
   stic.addEventListener('dragstart', dragstart, false);
@@ -396,11 +462,13 @@ function    delete_event(targ){
 ///////////////////////////////////////////////////////////////////
 ////// add event dragstart and click at all stickers //////////////
 ///////////////////////////////////////////////////////////////////
-document.querySelector('.stickers').childNodes.forEach((e)=>{
+var all_child = document.querySelector('.stickers').childNodes;
+for(var i = 0; i < all_child.length; i++){
+  var e = all_child[i];
   e.addEventListener('dragstart', dragstart, false);
   e.addEventListener('click', sticker_click, false);
   // e.addEventListener('draging', ondraging, false);
-});
+}
 
 document.querySelector('input[name=camera]').addEventListener('change', (e)=>{
   if (e.target.checked === true)
@@ -428,11 +496,12 @@ function        initResize(event){
   var oldX = event.clientX;
   var oldY = event.clientY;
   // console.log(listener.parentElement.querySelectorAll('.filter'));
-  listener.parentElement.querySelectorAll('.filter').forEach((rect)=>{
-    rect.addEventListener('dragover', Resize, false);
+  var filter_in_list = listener.parentElement.querySelectorAll('.filter');
+  for(var i = 0; i < filter_in_list.length; i++){
+    filter_in_list[i].addEventListener('dragover', Resize, false);
     // console.log(rect);
     
-  });
+  }
   listener.addEventListener('dragover', Resize, false);
   // target.addEventListener('dragover', Resize, false);
 
@@ -449,9 +518,10 @@ function        initResize(event){
     listener.removeEventListener('dragover', Resize, false);
     // listener.addEventListener('dragover', Resize, false);
     // target.addEventListener('dragover', Resize, false);
-    listener.parentElement.querySelectorAll('.filter').forEach((rect)=>{
-      rect.removeEventListener('dragover', Resize, false);
-    });
+    var all_filter = listener.parentElement.querySelectorAll('.filter');
+    for(var i = 0; i < all_filter.length; i++){
+      all_filter[i].removeEventListener('dragover', Resize, false);
+    }
     // target.removeEventListener('dragover', Resize, false);
     event.target.removeEventListener('dragend', stopResize, false);
     e.preventDefault();

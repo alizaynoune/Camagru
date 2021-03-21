@@ -13,16 +13,18 @@ function        defult_avatar(){
 }
 
 function        hidden_modal(){
-    var elem = document.querySelector('.modal');
-    elem.classList.remove('modal-show');
+    var elem = document.querySelector('.modal-show');
+    elem.classList.add('hidden');
     document.querySelector('input[name="img_user"]').value = '';
     document.querySelector('input[name="img_db"]').value = '';
     defult_avatar();   
 }
 
 function        show_modal(){
-    var elem = document.querySelector('.modal');
-    elem.classList.add('modal-show');
+    var elem = document.querySelector('.modal-show');
+    elem.classList.toggle('hidden')
+    console.log(elem);
+    
 }
 
 function        load_img(event){
@@ -41,8 +43,8 @@ function        load_img(event){
 }
 
 function        valid_img(){
-    var elem = document.querySelector('.modal');
-    elem.classList.remove('modal-show');
+    var elem = document.querySelector('.modal-show');
+    elem.classList.add('hidden');
     var n_avatar = document.querySelector('#src_avatar');
     var trgt = document.querySelector('.change_avatar');
     trgt.src = n_avatar.src;

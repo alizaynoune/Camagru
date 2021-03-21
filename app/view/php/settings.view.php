@@ -44,16 +44,26 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 					<img class="change_avatar" onclick="show_modal()" />
 				</div>
 				<form action="../../model/updateinformatio.model.php" method="POST" enctype="multipart/form-data">
-					<div class="modal">
-					<!-- <div class="modal modal-show"> -->
-						<input class="upload BtnAnim" type="file" id="image" name="img_user" accept="image/*" onchange="load_img(event)" />
-					  	<label for="image" class="btn-1  Btn">upload</label>
-						<input class="camera BtnAnim" type="text" id="camera" name="img_db"/>
-						<!-- get avatar from profile not fenish yat -->
-						<label for="camera" class="btn-2  Btn" onclick="img_from_profile()">profile</label>
-						<label class="ok  Btn" onclick="valid_img()">OK</label>
-						<img id="src_avatar"/>
-						<label class="cancel  Btn" onclick="hidden_modal()">cancel</label>
+					<div class="card modal-show hidden">
+						<div class="card-body">
+							<input class="upload BtnAnim" type="file" id="image" name="img_user" accept="image/*" onchange="load_img(event)" />
+							<input class="camera BtnAnim" type="text" id="camera" name="img_db"/>
+							<img id="src_avatar"/>
+							<div class="row Btn_modal">
+								<div class="col">
+									<label for="camera" class="btn-2 Btn row" onclick="img_from_profile()">profile</label>
+									<label for="image" class="btn-1  Btn row ">upload</label>
+								</div>
+								<div class="col left_col">
+									<div class="row justify-content-end">
+										<label class="cancel  Btn row" onclick="hidden_modal()">cancel</label>
+									</div>
+									<div class="row justify-content-end">
+										<label class="ok Btn row" onclick="valid_img()">OK</label>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<h3 class="msj_new_av"></h3>
 		  
