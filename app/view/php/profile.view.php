@@ -41,17 +41,17 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 
 		<div class="post  col-11 col-sm-11 col-md-10 col-lg-5 col-xl-5">
 			<input type="hidden" name="post_info" value="jv8f_leet_iw==">
-			<div class="info row card-header">
+			<div class="info row card-header justify-content-center">
 				<!-- <div class="col"> -->
-					<img class="img_owner row" src="http://localhost:8000/public/usersData/ali-zaynoune/avatar.jpg">
-					<h4 class="owner col">ali-zaynoune</h4>
+					<img class="img_owner" src="http://localhost:8000/public/usersData/ali-zaynoune/avatar.jpg">
+					<h4 class="owner">ali-zaynoune</h4>
 				<!-- </div> -->
 				
-				<div class="col-2">
-					<span class="delet_post row justify-content-end"></span>
-					<p class="row">3/21/2021, 14:50:11</p>
-				</div>
-				<h4 class="title col-12">fdsadf</h4>
+				<!-- <div class="col-2"> -->
+					<p class="col">3/21/2021, 14:50:11</p>
+					<span class="delet_post justify-self-end"></span>
+				<!-- </div> -->
+				<h4 class="title col-9">fdsadf</h4>
 			</div>
 			<img class="img_post card-img" src="http://localhost:8000/public/usersData/ali-zaynoune/avatar.jpg">
 			<div class="comment_like card-body col">
@@ -62,14 +62,14 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 				</div>
 				<div class="contener_comment row">
 					<div class="comment col-12">
-						<div class="old_comment row">
+						<!-- <div class="old_comment row">
 							<input type="hidden" name="comment_info" value="jf8W_leet_jPg=_leet_iw==">
-							<label class="dislike col-2">0</label>
+							<label class="dislike col-1">0</label>
 							<h4 class="col">ali-zaynoune</h4>
 							<p class="col">2021-03-15 18:22:52</p>
-							<span class="delet_comment col-1"></span>
+							<span class="delet_comment"></span>
 							<p class="col-12">test notif comment to email</p>
-						</div>
+						</div> -->
 					</div>
 					<!-- <div class="col"> -->
 					<form method="POST row">

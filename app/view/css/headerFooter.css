@@ -45,7 +45,7 @@ html, body {
     z-index: 4;
     transition: all 0.5s;
     width: 100%;
-    position: fixed;
+    /* position: fixed; */
 }
 
 .navBar h1{

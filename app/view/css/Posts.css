@@ -1,3 +1,5 @@
+/*   xxl: 1400px   extra extra larg  */
+
 
 /* ///////////////////////// */
 /*        hidden class       */
@@ -12,7 +14,8 @@
   box-shadow: 0px 0px 20px var(--shadow);
   border-radius: 20px !important;
   margin-bottom: 20px;
-
+  /* background-color: darkolivegreen; */
+  /* max-height: 600px; */
 }
 .pop_window{
     position: relative;
@@ -64,6 +67,7 @@
     box-shadow: 0px 0px 20px var(--shadow);
     margin-bottom: 20px;
     background-color: var(--headPost);
+    /* height: 50px; */
 }
 .post .info .img_owner{
     width: 50px;
@@ -71,8 +75,9 @@
     border-radius: 50%;
     cursor: pointer;
     margin-top: -8px;
-    margin-left: 10px;
+    margin-left: 5px;
     box-shadow: 0px 0px 5px 2px var(--shadow2);
+    /* background-color: blue; */
 }
 
 /* ################## */
@@ -82,19 +87,36 @@
     cursor: pointer;
     margin: auto;
     color: var(--shadow2);
+    margin-left: 4px;
+    margin-top: -10px;
+    /* top: 0%; */
+    font-size: 21px;
+    /* background-color: blue; */
+    /* width: auto; */
 }
 
 
 .post .title{
     text-align: center;
     font-size: 20px;
+    margin: 0%;
+    margin-top: -15px;
+    /* right: 0%; */
+    /* float: right; */
+    /* margin-right: 0px; */
+    /* margin-left: 100%; */
+    /* background-color: darkolivegreen; */
 }
 
 .post .info .delet_post{
     cursor: pointer;
     color: var(--Colorfont);
     font-style: normal;
-    margin-right: 4px;
+    /* text-align: end; */
+    margin-top: -5px;
+    /* background-color: cadetblue; */
+    height: 30px;
+    width: 30px;
 }
 
 /* ################## */
@@ -105,7 +127,9 @@
     color: var(--ColorSCfont);
     font-size: 14px;
     text-align: end;
-    margin-right: 4px;
+    margin-top: -9px;
+    /* margin-right: 4px; */
+    /* background-color: burlywood; */
 }
 
 .post .info .delet_post::after{
@@ -118,18 +142,26 @@
 .post .img_post{
     border-radius: 15px;
     box-shadow: 0px 0px 10px var(--shadow);
+    /* width: 80%; */
+    /* height: 80%; */
+    /* width: 400px;
+    height: 400px; */
+    /* height: 65%; */
+    display: block;
+    margin: auto;
 }
 
 .comment_like{
+    /* background-color: darkgrey; */
     /* margin-left: auto;
     margin-right: auto; */
-    top: 10px;
+    top: 5px;
 }
 
 .like::after{
     font-family: "FontAwesome";
     content: "\f004";
-    font-size: 32px;
+    font-size: 25px;
     color: var(--Error);
     cursor: pointer;
 }
@@ -137,7 +169,7 @@
 .dislike::after{
   font-family: "Font Awesome 5 Free";
   content: "\f004";
-  font-size: 32px;
+  font-size: 25px;
   color: var(--Error);
   cursor: pointer;
 }
@@ -149,6 +181,19 @@
 }
 
 .comment_like .contener_like {
+    /* background-color: darkgoldenrod; */
+    /* box-shadow: 0px 1px 2px var(--shadow); */
+    margin-top: -65px;
+    margin-bottom: 15px;
+    /* width: 100%; */
+    /* box-shadow: 0px 2px 2px var(--shadow2); */
+    /* border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px; */
+    /* padding-top: 0%; */
+    /* margin-top: 0px; */
+    height: 40px;
+    /* margin-top: 0%; */
     /* display: grid;
     grid-template-columns: 60px auto 100px;
     grid-template-rows: 40px; */
@@ -159,6 +204,10 @@
 
 .comment_like .contener_like .like,
 .comment_like .contener_like .dislike{
+    /* background-color: darkgreen; */
+    height: 40px;
+    font-size: 18px;
+    margin-left: 5px;
     /* justify-self: center; */
 }
 
@@ -168,6 +217,12 @@
 } */
 
 .comment_like .contener_like .feedback{
+    font-size: 21px;
+    /* margin-right: 10px; */
+    /* background-color: darkcyan; */
+    /* margin: 0px; */
+    /* padding: 0%; */
+    height: 30px;
     /* justify-self: center;
     margin: auto; */
 }
@@ -175,6 +230,9 @@
 .comment_like .contener_like .commentNbr {
     cursor: pointer;
     color: var(--ColorSCfont);
+    margin-right:5px;
+    /* background-color: darkmagenta; */
+    /* width: 35px; */
     /* padding-right: 5px;
     font-weight: bold;
     justify-self: center;
@@ -217,6 +275,8 @@
    -webkit-border-radius: 10px;
    -moz-border-radius: 10px;
    box-shadow: 0px 2px 2px var(--shadow2);
+   /* background-color: darkolivegreen; */
+   margin-bottom: 5px;
    /* margin-left: auto;
    margin-right: auto;
    height: auto;
@@ -233,11 +293,15 @@
 .contener_comment .comment .old_comment .dislike::after,
 .contener_comment .comment .old_comment .like::after{
     font-size: 20px;
+    /* background-color: chartreuse; */
     /* left: 20px; */
 }
 
 .contener_comment .comment .old_comment .dislike,
 .contener_comment .comment .old_comment .like{
+    /* background-color: chartreuse; */
+    text-align: center;
+    padding: 0%;
     /* grid-column-start: 1;
     grid-column-end: 1;
     grid-row-start: 1;
@@ -253,6 +317,11 @@
 .contener_comment .comment .old_comment h4:first-of-type{
     margin: auto;
     cursor: pointer;
+    font-size: 17px;
+    text-align: start;
+    color: var(--ColorSCfont);
+    /* background-color: chocolate; */
+    margin-top: 0%;
 }
 
 /* #################### */
@@ -267,8 +336,11 @@
 
 .contener_comment .comment .old_comment .delet_comment{
     color: var(--ColorSCfont);
-    text-align: end;
+    text-align: center;
     cursor: pointer;
+    width: 30px;
+    height: 30px;
+    /* background-color: cornflowerblue; */
 }
 
 .contener_comment .comment .old_comment .delet_comment:hover{color: var(--Error);}
@@ -277,6 +349,7 @@
 /* date creation comment */
 /* ##################### */
 .contener_comment .comment .old_comment p:first-of-type{
+    /* background-color: cyan; */
     /* grid-column-start: 3;
     grid-column-end: 5;
     grid-row-start: 1;
@@ -284,6 +357,9 @@
     justify-self: end; */
     color: var(--ColorSCfont);
     text-align: end;
+    font-size: 14px;
+    /* padding: 0%; */
+    /* margin: 0%; */
     /* margin-right: 0%; */
     /* margin-bottom: auto;
     margin-top: auto; */
@@ -295,6 +371,10 @@
 /* ################ */
 
 .contener_comment .comment .old_comment p:last-of-type{
+    /* background-color: darkblue; */
+    margin: 5px 0px;
+    margin-top: -2px;
+    /* margin: 0%; */
     /* grid-column-start: 1;
     grid-column-end: 6;
     grid-row-start: auto;
@@ -336,11 +416,11 @@
     height: 45px;
     background-color: var(--font3);
     border-radius: 15px;
-    box-shadow: 0px 0px 20px var(--shadow);
+    box-shadow: 0px 0px 12px var(--shadow);
     margin-top: 10px;
 }
 form{
-    background-color: lawngreen;
+    /* background-color: lawngreen; */
     width: 100%;
 }
 
