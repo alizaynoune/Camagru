@@ -13,18 +13,28 @@
 .contener_select_profile .area_imgs{
   background-color: rgba(255,255,255,0.8);
   overflow-x: hidden;
+  height: 90%;
+  margin: auto;
+  /* margin-bottom: 30px; */
   overflow-y: auto;
+  /* background-color: lightblue; */
 }
 
 .contener_select_profile .Btn{
   position: relative;
   z-index: 1;
-  display: block !important;
-  top: 3px !important;
+  top: -70px;
+  float: inline-end;
+  margin-right: 10px;
+  width: 150px;
+  opacity: 0.7;
 }
 
 .contener_select_profile .area_imgs .post{
   max-width: 500px;
+  max-height: 500px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .img_post:hover{
@@ -33,6 +43,16 @@
 
 .contener_select_profile .area_imgs .post .img_post{
   cursor: pointer;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  /* margin-top: 2%; */
+  /* margin-bottom: 5%; */
+}
+
+.contener_select_profile .load_more{
+  /* top: -100px; */
+  margin-top: -20px;
 }
 
 
@@ -146,17 +166,16 @@
   justify-self: center; */
 }
 
-.delete {
-  /* grid-column-start: 4;
-  grid-column-end: 8;
-  justify-self: center; */
-}
 .delete p{
   color: var(--ColorSCfont);
   width: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.delete a{
+  text-decoration: none;
 }
 
 .delete p:hover{

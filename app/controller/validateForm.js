@@ -168,7 +168,6 @@ function        ifUpdateInfo(){
 }
 
 function    validationImage(img){
-    // console.log(img);
     return(0); ///////////////////////not fineshed yet
 }
 
@@ -189,13 +188,11 @@ for (var i = 0; i < inputs.length; i++){
         eventconfnewPasswd(inputs[i], form.querySelector('input[name="newPasswd"]'));
     else if (inputs[i].type === 'email')
         eventEmail(inputs[i]);
-    // console.log('hehehe');
 }
 
 function        validationAll(form){
 const inputs = form.querySelectorAll('input');
 var Ret = 0;
-// console.log(inputs);
 for (var i = 0; i < inputs.length; i++){
     if (inputs[i].name === 'login')
         Ret = validationLogin(inputs[i]);

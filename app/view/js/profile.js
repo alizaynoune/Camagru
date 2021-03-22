@@ -1,5 +1,5 @@
 var     lastdate = '0';
-var     contener = document.querySelector('.container');
+var     contener = document.querySelector('.page');
 var     login = document.querySelector('input[name="login"]').value;
 
 
@@ -8,9 +8,17 @@ window.addEventListener('load', function(){
     window.addEventListener('scroll', function(e){
         if ((Math.ceil(window.innerHeight + window.pageYOffset)) >= document.body.offsetHeight){
             request_profile(login, lastdate, contener);
-            // console.log('=================' + lastdate);
-            
         }
     });
 });
+
+// document.addEventListener('wheel', (e)=>{
+//     console.log(e);
+    
+// });
+
+document.querySelector('.load_more').addEventListener('click', (e)=>{
+    request_profile(login, lastdate, contener);
+    
+  });
 

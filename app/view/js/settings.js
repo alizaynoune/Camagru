@@ -22,9 +22,7 @@ function        hidden_modal(){
 
 function        show_modal(){
     var elem = document.querySelector('.modal-show');
-    elem.classList.toggle('hidden')
-    console.log(elem);
-    
+    elem.classList.toggle('hidden'); 
 }
 
 function        load_img(event){
@@ -63,6 +61,8 @@ function        img_from_profile(){
         document.body.insertBefore(contener, document.body.firstChild);    
     var area_imgs = document.createElement('div');
         area_imgs.classList.add('area_imgs');
+        area_imgs.classList.add('justify-content-around');
+        area_imgs.classList.add('row')
         area_imgs.addEventListener('scroll', function(){
             if ((Math.ceil(area_imgs.scrollTop)) >= (Math.ceil(area_imgs.scrollHeight - area_imgs.clientHeight))){
                 request_profile_id(lastdate, area_imgs);
@@ -81,19 +81,27 @@ function        img_from_profile(){
         label_cancel.setAttribute('for', 'cancel_select');
         label_cancel.classList.add('Btn');
         label_cancel.classList.add('cancel');
+        // label_cancel.classList.add('justify-self-end');
         label_cancel.innerHTML = 'cancel';
         contener.appendChild(label_cancel);
-        request_profile_id(lastdate, area_imgs);
+    
+        // <div class="load_more">load more</div>
+    var load_more = document.createElement('div');
+        load_more.classList.add('load_more');
+        load_more.innerHTML = 'load more';
+        load_more.addEventListener('click', (e)=>{
+            request_profile_id(lastdate, area_imgs);
+        });
+        contener.appendChild(load_more);
+    request_profile_id(lastdate, area_imgs);
 }
 
 //////////////////////////////////////////////////////////////////
 ////////// copy select avatar to init area avatar ////////////////
 //////////////////////////////////////////////////////////////////
 function        select_avatar(e){
-    // console.log(e.target);
     document.querySelector('#src_avatar').src = e.target.src;
     document.getElementById('cancel_select').click();
     var post = e.target.closest('.post');
     document.querySelector('input[name="img_db"]').value = post.querySelector('input[name="info"]').value;
-    // console.log(document.querySelector('input[name="img_db"]').value);
 }

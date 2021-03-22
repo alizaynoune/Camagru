@@ -64,6 +64,13 @@ function    filter_comment($comment){
 	return(true);
 }
 
+function	filter_title($title){
+	$REG = "/^\S.*\S$/";
+	if (strlen($title) === 0 || !preg_match($REG, $title) || strlen($title) > 50)
+		return(false);
+	return(true);
+}
+
 function    exist_email($email){
 	global $DB_SELECT, $PARAM;	
 	$rslt = (new dbselect())->select($DB_SELECT['_email'], 'email', 'Users', $email, $PARAM['str'], 0);

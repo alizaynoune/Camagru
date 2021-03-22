@@ -31,12 +31,7 @@ function        toggle_comments(elem){
     // var comment = elem.target.parentNode.parentNode.querySelector('.comment');
     var post = elem.target.closest('.post');
     var comment = post.querySelector('.comment');
-    comment.classList.toggle('hidden');
-    // console.log('toggle comment');
-    // console.log(comment);
-    
-    
-    
+    comment.classList.toggle('hidden');  
     
 }
 
@@ -56,7 +51,6 @@ function        toggle_like_post(e){
             e.target.classList.add('like');
             like_dislike(post, 1, post.querySelector('.feedback'));
         }
-        // console.log();
     }
     
 }
@@ -68,7 +62,7 @@ function    toggle_like_comment(e){
     var post = e.target.closest('.post');
     var comment = e.target.closest('.old_comment');
     if (login !== null){
-        if (e.target.className === 'like'){
+        if (e.target.className.search('dislike') === -1){
             e.target.classList.remove('like');
             e.target.classList.add('dislike');
             like_dislike_comment(comment, 0, post.querySelector('.feedback'));
@@ -79,8 +73,6 @@ function    toggle_like_comment(e){
             like_dislike_comment(comment, 1, post.querySelector('.feedback'));
         }
     }
-    // console.log(comment);
-    
 }
 
 
@@ -103,85 +95,30 @@ function        submit_new_comment(e){
     else{
         feedback.classList.remove('error');
         feedback.classList.add('success');
-        feedback.innerHTML = 'Success comment';
+        feedback.innerHTML = '';
         new_comment(input.value, post, feedback);
         input.value = '';
     }
     
 }
 
-////////////////////////////////////////
-/////// init delet post ////////////////
-////////////////////////////////////////
-function        delet_Post(e){
-    var contener = e.target.closest('.post');
-    // console.log(contener);
-    
-    
-    pop_exists = contener.querySelector('.pop_window');
-    if (pop_exists === null || pop_exists.closest('.old_comment') !== null){
-        var pop = document.createElement('div');
-            pop.classList.add('pop_window');
-            contener.insertBefore(pop, contener.querySelector('.img_post'));
-        var btnYse = document.createElement('button');
-            btnYse.classList.add('BtnAnim');
-            btnYse.addEventListener('click', delet_Post_controller);
-            var r_id = Math.random().toString(36).substr(2, 10);
-            while(document.getElementById(r_id)){
-                r_id = Math.random().toString(36).substr(2, 10);
-            }
-            btnYse.setAttribute('id', r_id);
-            pop.appendChild(btnYse);
-        var labelYes = document.createElement('label');
-            labelYes.classList.add('Btn');
-            labelYes.classList.add('YESBtn');
-            labelYes.setAttribute('for', r_id);
-            labelYes.innerHTML = 'YES';
-            pop.appendChild(labelYes);
-            
-        
-        var msj = document.createElement('h2');
-            msj.classList.add('error');
-            msj.innerHTML = 'are you sure to delete this posted';
-            pop.appendChild(msj);
-        
 
-        var btnNo = document.createElement('button');
-            btnNo.classList.add('BtnAnim');
-            r_id = Math.random().toString(36).substr(2, 10);
-            while(document.getElementById(r_id)){
-                r_id = Math.random().toString(36).substr(2, 10);
-            }
-            btnNo.setAttribute('id', r_id);
-            btnNo.addEventListener('click', function(e){
-                e.target.closest('.pop_window').remove();
-            })
-            pop.appendChild(btnNo);
-        
-        var labelNO = document.createElement('label');
-            labelNO.classList.add('Btn');
-            labelNO.classList.add('NOBtn');
-            labelNO.setAttribute('for', r_id);
-            labelNO.innerHTML = 'NO';
-            pop.appendChild(labelNO);
-            // contener.appendChild(pop);
-    }
-    else{
-        pop_exists.remove();
-    }
-}
-
-////////////////////////////////////////
-//////// init delet comment ////////////
-////////////////////////////////////////
-function    delet_old_comment(e){
-var contener = e.target.closest('.old_comment');
-if (contener.querySelector('.pop_window') === null){
+function        create_popWindow(warning, flag){
     var pop = document.createElement('div');
         pop.classList.add('pop_window');
-        contener.appendChild(pop);
+        pop.classList.add('container');
+    
+    var msj = document.createElement('h2');
+        msj.classList.add('error');
+        msj.classList.add('row');
+        msj.innerHTML = warning;
+        pop.appendChild(msj);
+
     var btnYse = document.createElement('button');
         btnYse.classList.add('BtnAnim');
+        if (flag === true)
+            btnYse.addEventListener('click', delet_Post_controller);
+        else if (flag === false)
         btnYse.addEventListener('click', delet_comment_controller);
         var r_id = Math.random().toString(36).substr(2, 10);
         while(document.getElementById(r_id)){
@@ -192,16 +129,10 @@ if (contener.querySelector('.pop_window') === null){
     var labelYes = document.createElement('label');
         labelYes.classList.add('Btn');
         labelYes.classList.add('YESBtn');
+        labelYes.classList.add('col-4');
         labelYes.setAttribute('for', r_id);
         labelYes.innerHTML = 'YES';
         pop.appendChild(labelYes);
-
-
-    var msj = document.createElement('h2');
-        msj.classList.add('error');
-        msj.innerHTML = 'are you sure to delete this comment';
-        pop.appendChild(msj);
-
 
     var btnNo = document.createElement('button');
         btnNo.classList.add('BtnAnim');
@@ -218,9 +149,37 @@ if (contener.querySelector('.pop_window') === null){
     var labelNO = document.createElement('label');
         labelNO.classList.add('Btn');
         labelNO.classList.add('NOBtn');
+        labelNO.classList.add('col-4');
         labelNO.setAttribute('for', r_id);
         labelNO.innerHTML = 'NO';
         pop.appendChild(labelNO);
+    
+    return(pop);
+}
+
+
+////////////////////////////////////////
+/////// init delet post ////////////////
+////////////////////////////////////////
+function        delet_Post(e){
+    var contener = e.target.closest('.post');
+
+    pop_exists = contener.querySelector('.pop_window');
+    if (pop_exists === null || pop_exists.closest('.old_comment') !== null){
+        contener.insertBefore(create_popWindow('are you sure to delete this posted', true), contener.querySelector('.img_post'));
+    }
+    else{
+        pop_exists.remove();
+    }
+}
+
+////////////////////////////////////////
+//////// init delet comment ////////////
+////////////////////////////////////////
+function    delet_old_comment(e){
+    var contener = e.target.closest('.old_comment');
+    if (contener.querySelector('.pop_window') === null){
+        contener.appendChild(create_popWindow('are you sure to delete this comment', false));
     }
     else{
         contener.querySelector('.pop_window').remove();

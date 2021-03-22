@@ -1,10 +1,4 @@
 document.querySelector('input[name="fack_submit"]').addEventListener('click', (e) =>{
-    // console.log(e);
-    // e.preventDefault();
-    // console.log(e);
-
-    
-
     var contener = document.querySelector('form');
     if (!contener.querySelector('.alt') && !validationAll(contener)){
         var alt = document.createElement('div');

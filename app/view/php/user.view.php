@@ -20,9 +20,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
 		<input type="hidden" name="login" value="<?php echo $_GET['login']?>">
-		<div class="container">
-			<h1>profile</h1>
+		<div class="row justify-content-around page">
 		</div>
+		<div class="load_more">load more</div>
 		<?php require $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 		<script type="text/javascript" src="../js/Posts.js"></script>
 		<script type="text/javascript" src="../js/append_post.js"></script>

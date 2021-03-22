@@ -15,7 +15,7 @@
                }
         ?>
     </div>
-    <div class="navCenter nav-item "><p class="global_msj">test global mesage (Errors)</p></div>
+    <div class="navCenter nav-item "><p class="global_msj"></p></div>
 
     <div class="navRight nav-item">
             <?php 

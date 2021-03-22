@@ -10,8 +10,6 @@ function       request_profile(login, date, contener){
     request.onload = function(){
         try{
             var ret = JSON.parse(this.responseText);
-            // var packge = document.createElement('div');
-            // packge.classList.add('packge');
             for(var i = 0; i < ret.length; i++) {
                 element = ret[i];
                 var post = new_post(element, null);
@@ -19,10 +17,8 @@ function       request_profile(login, date, contener){
                 lastdate = element['Date'];
                 
             }
-            // contener.appendChild(packge);
         }catch(e){
-            console.log(e);
-                   
+            document.querySelector('global_msj').innerHTML = e;        
         }
     };
     request.onerror = function(){
@@ -44,8 +40,6 @@ function       request_all(date, contener){
     request.onload = function(){
         try{
             var ret = JSON.parse(this.responseText);
-            // var packge = document.createElement('div');
-            // packge.classList.add('packge');
             for(var i = 0; i < ret.length; i++){
                 element = ret[i];
                 var post = new_post(element, null);
@@ -55,9 +49,8 @@ function       request_all(date, contener){
                 }
                 
             }
-            // contener.appendChild(packge);
         }catch(e){
-            
+            document.querySelector('global_msj').innerHTML = e; 
         }
     };
     request.onerror = function(){        
@@ -100,8 +93,6 @@ function        request_profile_id(date, contener){
     request.onreadystatechange = function (){
         if (this.readyState == 4 && this.status == 200){
             ret = JSON.parse(this.responseText);
-            // console.log(ret);
-            
             if (ret.length > 0){
                 lastdate = ret[ret.length - 1]['date'];
             }
@@ -114,5 +105,4 @@ function        request_profile_id(date, contener){
     request.open('GET', url, true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     request.send();
-    // return(lastdate);
 }

@@ -148,8 +148,18 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .form{
-        /* background-color: indigo; */
+    h1{
+        font-size: 20px;
+    }
+    input::placeholder{
+        font-size: 18px;
+        
+    }
+    input{
+        font-size: 18px !important;
+        height: 40px !important;
+        border-width: 2px !important;
+        margin-top: -2px !important;
     }
 }
 /* @media only screen and (min-width: 600px) and (max-width: 768px) */

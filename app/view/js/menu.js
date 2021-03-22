@@ -29,7 +29,6 @@ window.addEventListener('load', function(){
             menu.classList.remove('show');
             oldScroll = currScroll;
         }
-        // console.log(oldScroll + ' ' + currScroll);
     });
 });
 

@@ -1,5 +1,5 @@
 var     lastdate = '0';
-var     contener = document.querySelector('.container');
+var     contener = document.querySelector('.page');
 
 
 
@@ -7,10 +7,14 @@ var     contener = document.querySelector('.container');
 window.addEventListener('load', function(){
     request_all(lastdate, contener);
     window.addEventListener('scroll', function(e){
-        var tst = Math.ceil(window.innerHeight + window.pageYOffset);
+        // var tst = Math.ceil(window.innerHeight + window.pageYOffset);
         if ((Math.ceil(window.innerHeight + window.pageYOffset)) >= document.body.offsetHeight){
             request_all(lastdate, contener);
         }
     });
 });
 
+document.querySelector('.load_more').addEventListener('click', (e)=>{
+    request_all(lastdate, contener);
+    
+});

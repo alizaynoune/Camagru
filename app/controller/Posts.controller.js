@@ -77,7 +77,7 @@ function        like_dislike(post, flag, feedback){
                 feedback.classList.remove('success');
             }
             else {
-                feedback.innerHTML = 'success';
+                feedback.innerHTML = '';
                 feedback.classList.remove('error');
                 feedback.classList.add('success');
             }
@@ -97,7 +97,6 @@ function    delet_comment_controller(e){
     var comment = e.target.closest('.old_comment');
     var post = e.target.closest('.post');
     var info = comment.querySelector('input[name="comment_info"]').value;
-    // console.log(info);
     if (info !== null){
         var request = new XMLHttpRequest();
         var url = window.location.origin + '/app/model/posts.model.php';
@@ -158,36 +157,38 @@ function        like_dislike_comment(comment, flag, feedback){
 
 function        socket_post(){
 
-    // var time_soket = setInterval(function socket(){
-    //     var all_post = document.querySelectorAll('.post');
-    //     for(var i = 0; i < all_post.length; i++ ){
-    //         var e = all_post[i];
-    //         var rect = e.getBoundingClientRect();
-    //         if (rect.y <= window.innerHeight && rect.bottom > 0){
-    //             var info_post = e.querySelector('input[name="post_info"]').value;
-    //             var request = new XMLHttpRequest();
-    //             request.response = 'text';
-    //             var url = window.location.origin + '/app/model/socket_post.model.php';
-    //             request.open('POST', url, true);
-    //             request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded" );
-    //             request.onreadystatechange = function(){
-    //                 if (this.readyState == 4 && this.status == 200){
-    //                     var ret = JSON.parse(this.responseText);
-    //                     if (ret !== false)
-    //                         update_post_info(ret);
-    //                     else{
-    //                         e.remove();
-    //                     }
-    //                 }
-    //             };
-    //             request.onerror = function(){
-    //                 var msj = document.querySelector('.navBar').querySelector('.global_msj');
-    //                 msj.innerHTML = 'Error Connection plaes check your connection and relaod page';
-    //                 msj.classList.add('error');
-    //             };
-    //             var data = JSON.stringify({'post':info_post});
-    //             request.send(`data=${data}`);
-    //         }
-    //     }
-    // }, 1500);
+    var time_soket = setInterval(function (){
+        var all_post = document.querySelectorAll('.post');
+        for(var i = 0; i < all_post.length; i++ ){
+            var e = all_post[i];
+            var rect = e.getBoundingClientRect();
+            if (rect.y <= window.innerHeight && rect.bottom > 0){
+                var info_post = e.querySelector('input[name="post_info"]').value;
+                var request = new XMLHttpRequest();
+                request.response = 'text';
+                var url = window.location.origin + '/app/model/socket_post.model.php';
+                request.open('POST', url, true);
+                request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded" );
+                request.onreadystatechange = function(){
+                    if (this.readyState == 4 && this.status == 200){
+                        var ret = JSON.parse(this.responseText);
+                        if (ret !== false)
+                            update_post_info(ret);
+                        else{
+                            e.remove();
+                        }
+                    }
+                };
+                request.onerror = function(){
+                    var msj = document.querySelector('.navBar').querySelector('.global_msj');
+                    msj.innerHTML = 'Error Connection plaes check your connection and relaod page';
+                    msj.classList.add('error');
+                    clearInterval(time_soket);
+                    return(false);
+                };
+                var data = JSON.stringify({'post':info_post});
+                request.send(`data=${data}`);
+            }
+        }
+    }, 1500);
 }

@@ -29,12 +29,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
 	
-	<div class="container">
-
-
-
+	<div class="row justify-content-around page">
 
 	</div>
+	<div class="load_more">load more</div>
 
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 	<script type="text/javascript" src="../js/Posts.js"></script>

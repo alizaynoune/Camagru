@@ -34,7 +34,7 @@ if ((new Session())->SessionStatus() === false){
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 
-		<div class="container-fluid">
+		<div class="container page">
 			<div class="stickers container col col-xs-4 col-sm-12 col-md-12">
 				<img src="../stickers/1.png" id="img1" draggable="true" drag="true" />
 				<img src="../stickers/2.png" id="img2" draggable="true" />
@@ -66,14 +66,14 @@ if ((new Session())->SessionStatus() === false){
 			</div>
 			<div class="contener_camera row justify-content-center">
 				<div class="contener_video row " id="contener_video">
-					<div id='video_id' class="hiddenBtn display col-12 col-sm-11 col-md-9 col-lg-5 col-xl-3">
+					<div id='video_id' class="hiddenBtn display col-sm-12 col-md-10 col-lg-6 col-xl-5">
 						<video id="video" class="hiddenBtn display"  autoplay></video>
 						<button id="capter" class="BtnAnim hiddenBtn " type="button" onclick="capture_img();"></button>
 						<label for="capter" class="btncaptuerIn Btn  display hiddenBtn col-4 col-sm-4 col-md-3 col-lg-4 col-xl-4" >Capture</label>
 					</div>
-					<div id='canva_id' class="col-12 col-sm-11 col-md-9 col-lg-5 col-xl-3">
+					<div id='canva_id' class="col-sm-12 col-md-10 col-lg-6 col-xl-5">
 						<canvas id="canva" ></canvas>
-						<canvas id='hiddenCanva' style="width: 400px; height: 200px;"></canvas>
+						<canvas id='hiddenCanva'></canvas>
 					</div>
 				</div>
 			</div>
@@ -83,9 +83,10 @@ if ((new Session())->SessionStatus() === false){
 				<label for="capter" class="btncaptuer Btn  hiddenBtn display col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">Capture</label>
 				<label for="share" class=" btnShr Btn rightBtn col-4 col-sm-3 col-md-3 col-lg-2 col-xl-2">Share</label>
 			</div>
-			<div class='thumbnails'>
+			<div class='row justify-content-around thumbnails'>
 			</div>
 		</div>
+		<div class="load_more">load more</div>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>
 		<script type="text/javascript" src="../js/camera.js"></script>
 		<script type="text/javascript" src="../../controller/camera.controller.js"></script>

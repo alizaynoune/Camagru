@@ -121,6 +121,51 @@
   .Btn::before{
     right: 75%;
   }
+
+  .Btn{
+    padding: 15px 0px;
+    height: 40px;
+    font-size: 10px;
+  }
   /* .buttomBtn{width: 94%; margin-left: 3%;}
   .buttomBtn{height: 70px; margin-top: 40px;} */
+}
+
+
+/* @media only screen and (min-width: 600px) and (max-width: 768px) */
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen  and (max-width: 768px) {
+  .Btn::before{
+    right: 75%;
+    top: 5px;
+  }
+
+  .Btn{
+    padding: 15px 0px;
+    /* height: 35px; */
+    /* width: 200px !important; */
+    font-size: 10px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .Btn{
+    padding: 10px 0px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1200) {
+  body{
+      /* background-color: coral; */
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  body{
+      /* background-color: cornflowerblue; */
+  }
+
 }

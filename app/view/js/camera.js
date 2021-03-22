@@ -10,8 +10,6 @@ var   new_id = 0;
 var   e_listener;
 
 var   resolution = [[640,360], [176, 144]];
-// [[320, 480],[480, 640], [240, 320]];
-// console.log(resolution[get_res.value]);
 
 function      change_resolution(){
   camera_off();
@@ -44,60 +42,6 @@ function  hidden_erea(){
   }
 }
 
-
-
-
-// // if navigator.mediaDevices not defined we will creat an object call 'navigator.mediaDevices'
-// if (navigator.mediaDevices === undefined) {
-//   navigator.mediaDevices = {};
-// }
-// // iv getUserMedia not defined we will creat a function called 'getUseMedia'
-// if (navigator.mediaDevices.getUserMedia === undefined) {
-//   navigator.mediaDevices.getUserMedia = function(constraints) {
-
-//     // we will shose one of UserMedia first one defined
-//     var getUserMedia =  navigator.getUserMedia ||
-//                         navigator.webkitGetUserMedia ||
-//                         navigator.mozGetUserMedia ||
-//                         navigator.mediaDevices;
-
-//     // if getUserMedia not implemented in browser we will reject and add new Error
-//     if (!getUserMedia) {
-//       return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
-//     }
-
-//     // else we will call (navigator, constraints, resolve, reject) from getUserMedia
-//     return new Promise(function(resolve, reject) {
-//       getUserMedia.call(navigator, constraints, resolve, reject);
-//     });
-//   }
-// }
-
-// //// new we cann try to stream video
-// navigator.mediaDevices.getUserMedia({ audio: true, video: true })
-// .then(function(stream) {
-//   // select document where we can stream video
-//   var video = document.getElementById('video');
-//   if ("srcObject" in video) {
-//     video.srcObject = stream;
-//   } else {
-//     // Avoid using this in new browsers, as it is going away.
-//     video.src = window.URL.createObjectURL(stream);
-//   }
-//   video.onloadedmetadata = function(e) {
-//     video.play();
-//   };
-// })
-// .catch(function(err) {
-//         document.querySelector('.error').innerHTML = er;
-//         // "NotAllowedError: Permission denied";
-//         document.querySelector('input[name=camera]').checked = false;
-//         hidden_erea();
-// });
-
-
-
-
 //////////////////////////////////////
 //////// stream video ////////////////
 //////////////////////////////////////
@@ -109,8 +53,6 @@ function     streamVideo(){
   if (navigator.mediaDevices){
     var size = document.getElementById('canva_id');
     const video = document.getElementById('video');
-    console.log(size.offsetWidth);
-    
     navigator.mediaDevices.getUserMedia({
         // video:true,
         audio: false,
@@ -121,23 +63,17 @@ function     streamVideo(){
         
       }
       ).then(function(stream){
-        // console.log(video.videoWidth + ' ' + video.videoHeight);
         if ("srcObject" in video) {
               video.srcObject = stream;
             } else {
-              // Avoid using this in new browsers, as it is going away.
               video.src = window.URL.createObjectURL(stream);
-              console.log(window.login);
-              
             }
         video.onloadeddata = function(e){
           video.play();
         };
-        console.log(stream);
         document.querySelector('.error').innerHTML = "";
       }).catch(function(er){
         document.querySelector('.error').innerHTML = er;
-        // "NotAllowedError: Permission denied";
         document.querySelector('input[name=camera]').checked = false;
         hidden_erea();
       });
@@ -179,23 +115,24 @@ function  camera_off(){
 ///////// upload photo from your locale files to canvas //////////
 //////////////////////////////////////////////////////////////////
 function    upload_to_canva(event){
+  if (event.target.files.length === 0)
+    return(false);
   camera_off();
-    if (event.target.files[0].size < 2000000){
+  if (event.target.files[0].size < 2000000){
     document.querySelector('input[name=camera]').checked = false;
     var canva = document.getElementById('canva');
     var canva_id = document.getElementById('canva_id');
     var size = document.getElementById('hiddenCanva');
-    console.log(size.width + ' ' + size.height);
     var ctx = canva.getContext('2d');
     ctx.clearRect(0, 0, canva.width, canva.height);
     var img = new Image();
     img.onload = function(){
-      canva.width = size.width * 1.5;
+      canva.width = size.width;
       canva.height = canva.width;
       clear_stickers(document.getElementById('canva_id'));
       var factor = Math.min((canva.width / img.width), (canva.height / img.height));
-      canva.height = img.height * factor;
-      canva.width = img.width * factor;
+      canva.height = img.height * factor * window.devicePixelRatio;
+      canva.width = img.width * factor * window.devicePixelRatio;
 
       ctx.drawImage(img, 0, 0, canva.width, canva.height);
         canva_id.style.height = (canva.height) + 'px';
@@ -228,15 +165,10 @@ function    capture_img(){
     var factor = Math.min((canva.width / video.videoWidth), (canva.height / video.videoHeight));
     canva.width = video.videoWidth;
     canva.height = video.videoHeight;
-    // console.log();
-    // contener_canva.width = video.videoWidth;
-    // contener_canva.height = video.videoHeight;
 
     contener_canva.style.height = (container_video.style.height);
     contener_canva.style.width = (container_video.style.width);
 
-    // contener_canva.height = (canva.height);
-    // contener_canva.width = (canva.width);
     clear_stickers(contener_canva);
     canva.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
     copy_stickers();
@@ -290,8 +222,6 @@ function    clear_stickers(elem){
 ///////// set Data where start drag sticker /////////////////////
 /////////////////////////////////////////////////////////////////
 function   dragstart(ev){
-  // console.log(ev);
-  
   var id = ev.target.id;
     ev.dataTransfer.setData('text/plain', id);
 }
@@ -308,7 +238,6 @@ function    ondraging(event){
 ///////////// set prevent Default where sticker is over Canvas or video stream /////
 ////////////////////////////////////////////////////////////////////////////////////
 function    _onDragover(event){
-  // console.log(event);
   event.preventDefault();
 }
 
@@ -320,27 +249,19 @@ function    _onDrop(event){
   event.preventDefault();
   const id = event.dataTransfer.getData('text');
   const elem = id !== '' ? document.getElementById(id) : null;
-  var perW;
-  var perH;
   var rect = listener.getBoundingClientRect();
   if (elem !== null){
     if (id.search('img') !== -1) {
       var cln = elem.cloneNode(true);
       cln.id = `${new_id}`;
       cln = new_elem(cln);
-      // perW = ;
-      // perH = ;
       cln.style.width = ((elem.offsetWidth / rect.width) * 100) + '%';
       cln.style.height = ((elem.offsetHeight / rect.height) * 100) + '%';
       cln.id =  `copy${new_id++}`;
     }
     else{
       var cln = elem.parentElement;
-      // perW = cln.style.width;
-      // perH = cln.style.height
     }
-    // console.log(cln.style.width.replace('%',''));
-    
     var elemW = (((cln.style.width.replace('%','')) * rect.width)/100);
     var elemH = (((cln.style.height.replace('%','')) * rect.height)/100);
     
@@ -353,10 +274,7 @@ function    _onDrop(event){
     y = (y + elemH) > rect.height ? rect.height - elemH : y;    
     cln.style.left = ((x / rect.width) * 100) + '%';
     cln.style.top = ((y / rect.height) * 100) + '%';
-    // console.log(cln.style.top + ' ' + y + ' ' + rect.height);
-    // 213  480
     listener.parentNode.appendChild(cln);
-    console.log(event.target.id);
     
     if (event.target.id === 'video')
       sticker_video++;
@@ -371,12 +289,6 @@ function    _onDrop(event){
 ///////////////////////////////////////////////////////////////////////////
 function    new_elem(stic){
   var listener_info = listener.getBoundingClientRect();
-  // var stic_info = stic.getBoundingClientRect();
-  console.log(listener_info.width + '=>' + stic.width);
-  console.log(stic);
-  
-  // console.log(stic_info);
-  
   
   stic.removeEventListener('click', sticker_click);
   var   name_class = ['resize' ,'delet'];
@@ -414,9 +326,6 @@ function    new_elem(stic){
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function    sticker_click(event){
   if (listener){
-    // console.log('========================');
-    
-    // console.log(event.target.getBoundingClientRect());
     var targ_info = event.target.getBoundingClientRect();
     var rect = listener.getBoundingClientRect();
     var cln = event.target.cloneNode(true);
@@ -495,18 +404,12 @@ function        initResize(event){
   var listener_info = listener.getBoundingClientRect();
   var oldX = event.clientX;
   var oldY = event.clientY;
-  // console.log(listener.parentElement.querySelectorAll('.filter'));
   var filter_in_list = listener.parentElement.querySelectorAll('.filter');
   for(var i = 0; i < filter_in_list.length; i++){
     filter_in_list[i].addEventListener('dragover', Resize, false);
-    // console.log(rect);
     
   }
   listener.addEventListener('dragover', Resize, false);
-  // target.addEventListener('dragover', Resize, false);
-
-  // listener.querySelectorAll('')
-  // event.target.addEventListener('drag', Resize, true);
   event.target.addEventListener('dragend', stopResize, false);
   
 
@@ -514,15 +417,11 @@ function        initResize(event){
   ///////// stop resize Sticker ///////////////////////
   /////////////////////////////////////////////////////
   function      stopResize(e){
-    // console.log(e);
     listener.removeEventListener('dragover', Resize, false);
-    // listener.addEventListener('dragover', Resize, false);
-    // target.addEventListener('dragover', Resize, false);
     var all_filter = listener.parentElement.querySelectorAll('.filter');
     for(var i = 0; i < all_filter.length; i++){
       all_filter[i].removeEventListener('dragover', Resize, false);
     }
-    // target.removeEventListener('dragover', Resize, false);
     event.target.removeEventListener('dragend', stopResize, false);
     e.preventDefault();
   }
@@ -531,30 +430,21 @@ function        initResize(event){
   //////// sticker resize event (modef with and height) ///////
   /////////////////////////////////////////////////////////////
   function      Resize(e){
-    // listener.addEventListener('dragover', Resize, true);
-    // console.log(e);
-    // console.log(listener);
     
     var x = targ_info.width + (e.clientX - oldX);
     var y = targ_info.height + (e.clientY - oldY);    
     x = x < 20 ? 20 : x;
     y = y < 20 ? 20 : y;
-    // console.log(e.width);
-    // console.log(target.getBoundingClientRect());
-    // console.log('==============================');
-    // perW = ((elem.offsetWidth / rect.width) * 100);
     
     if (x < e.target.offsetWidth)
       target.style.width = ((x / listener_info.width) * 100) + '%';
     if (y < e.target.offsetHeight)
       target.style.height = ((y / listener_info.height) * 100) + '%';
-    // e.preventDefault();
   }
 }
 
 var     lastdate = '0'; ////////// date of last post get from DB ////////////
 var     contener = document.querySelector('.thumbnails');
-// var     login = document.querySelector('.login');
 
 ///////////////////////////////////////////////////////////////////
 ///////// where page is loaded get last 5 post of this user ///////
@@ -570,6 +460,11 @@ window.addEventListener('load', function(){
       }
     });
 
+});
+
+document.querySelector('.load_more').addEventListener('click', (e)=>{
+  request_profile(login, lastdate, contener);
+  
 });
 
 

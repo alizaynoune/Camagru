@@ -23,7 +23,7 @@ if ((new Session())->SessionStatus() === true){
 	</head>
 	<body>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
-		<div class="container">
+		<div class="container page">
     	    <div class="form form-group container">
 				<form action="../../model/login.model.php" method="POST">
 					<h1>Sign In</h1>

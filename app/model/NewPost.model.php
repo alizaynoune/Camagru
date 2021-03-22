@@ -3,14 +3,22 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
+
 if ((new Session())->SessionStatus() === false){
     header("Location: ../view/php/login.view.php");
-	exit();
+	exit(json_encode(false));
+}
+// print_r($_POST);
+if (!empty($_POST['title']) && (filter_title($_POST['title']) === false || strlen($_POST['title']) > 50)){
+    exit(json_encode(false));
 }
 
-else if (!empty($_POST['title']) && (filter_comment($_POST['title']) === false || strlen($_POST['title']) > 50)){
-    exit();
+if (empty($_POST['canva'])){
+    exit(json_encode(false));
 }
+
+
+// exit();
 $uid = $_SESSION['uid'];
 $base64 = str_replace('data:image/png;base64,', '', $_POST['canva']);
 $base64 = str_replace(' ', '+', $base64);

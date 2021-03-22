@@ -24,6 +24,9 @@ $uid = decrypt_($info[1]);
 //// insert new comment ///////////
 //////////////////////////////////
 if ($data['type'] === 'comment'){
+	$is_exist = (new dbselect())->select($DB_SELECT['_id'], 'id', 'Posts', $pid, $PARAM['int'], 0);
+	if (empty($is_exist['id']))
+		exit(json_encode(false));
 	$comment = htmlspecialchars($data['comment']);
 	if (filter_comment($comment) === false){
 	    exit(json_encode(false));
@@ -53,10 +56,11 @@ if ($data['type'] === 'comment'){
 ///// like or dislike post ////////
 ///////////////////////////////////
 else if ($data['type'] === 'like'){
+	$is_exist = (new dbselect())->select($DB_SELECT['_id'], 'id', 'Posts', $pid, $PARAM['int'], 0);
+	if (empty($is_exist['id']))
+		exit(json_encode(false));
 	$is_like = (new dbselect())->is_like_post($_SESSION['uid'], $pid);
-	$is_like['is_like'] = !empty($is_like) ? '1' : '0';
-	// print_r($is_like);
-	
+	$is_like['is_like'] = !empty($is_like) ? '1' : '0';	
 	if ($data['flag'] === 1 && $is_like['is_like'] === '0'){
 		(new dbinsert())->insert(
 			$DB_INSERT['_like_post'], array($pid, $_SESSION['uid']),
@@ -80,6 +84,9 @@ else if ($data['type'] === 'like'){
 ////// delete post      //////////////
 //////////////////////////////////////
 else if ($data['type'] === 'delet_post'){
+	$is_exist = (new dbselect())->select($DB_SELECT['_id'], 'id', 'Posts', $pid, $PARAM['int'], 0);
+	if (empty($is_exist['id']))
+		exit(json_encode(false));
 	$uid = decrypt_($info[1]);
 	$pid = decrypt_($info[0]);
 	if ($uid === $_SESSION['uid']){
@@ -102,12 +109,13 @@ else if ($data['type'] === 'delet_post'){
 else if ($data['type'] === 'like_comment'){
 	$cid = decrypt_($info[0]);
 	$uid = $_SESSION['uid'];
+	$is_exist = (new dbselect())->select($DB_SELECT['_id'], 'id', 'Comments', $cid, $PARAM['int'], 0);
+	if (empty($is_exist['id']))
+		exit(json_encode(false));
 	$is_like = (new dbselect())->is_like_comment($uid, $cid);
 	$is_like['is_like'] = !empty($is_like) ? '1' : '0';
 
 	if ($data['flag'] === 1 && $is_like['is_like'] === '0'){
-		// print_r($is_like);
-		// echo $uid . '  => ' .  $cid;
 		(new dbinsert())->insert(
 			$DB_INSERT['_like_comment'], array($cid, $uid),
 			array($PARAM['int'], $PARAM['int']),
@@ -117,7 +125,6 @@ else if ($data['type'] === 'like_comment'){
 	}
 
 	else if ($data['flag'] === 0 && $is_like['is_like'] === '1'){
-		// print_r($is_like);
 		(new dbinsert())->drop($DB_DELETE['_drop'], 'CommentLikes', 'id', $is_like['id'], $PARAM['int']);
 		exit(json_encode(true));
 
@@ -131,20 +138,18 @@ else if ($data['type'] === 'like_comment'){
 //////// delet comment ////////////////
 ///////////////////////////////////////
 else if ($data['type'] === 'delet_comment'){
-	// print_r($data);
-	// comment['id'] + '_leet_' + comment['pid'] + '_leet_'  + comment['uid']; 
 	$cid = decrypt_($info[0]);
 	$pid = decrypt_($info[1]);
 	$uid = decrypt_($info[2]);
+	$is_exist = (new dbselect())->select($DB_SELECT['_id'], 'id', 'Comments', $cid, $PARAM['int'], 0);
+	if (empty($is_exist['id']))
+		exit(json_encode(false));
 	$puid = (new dbselect())->select($DB_SELECT['_id'], 'uid', 'Posts', $pid, $PARAM['int'], 0);
-	// echo 'pid =>' . $pid . ' cid=>' . $cid . ' uid=>' . $uid . ' puid=>' . $puid['uid'];
 	if ($_SESSION['uid'] === $uid || $_SESSION['uid'] === $puid['uid']){
 		(new dbinsert())->drop($DB_DELETE['_drop'], 'Comments', 'id', $cid, $PARAM['int']);
-		// echo 'delet';
 		exit(json_encode(true));
 	}
 	else{
-		// echo 'error';
 		exit(json_encode(false));
 	}
 }

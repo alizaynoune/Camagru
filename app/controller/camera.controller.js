@@ -1,12 +1,18 @@
 //////////////////////////////////////////////////////////////////
 /////// valid value input from title of new post ////////////////
 /////////////////////////////////////////////////////////////////
-function        valid_title(elem){
-    var REG = /^[\w\d\-_\ ]+$/;
+function        valid_title(title){
+    var Reg = /^\S.*\S$/;
+    
     if (title.value.length === 0){
         title.classList.remove('error');
         return true;
     }
+    if (!Reg.test(title.value)){
+        title.classList.add('error');
+        return false;
+    }
+
     if (title.value.length > 50){
         title.classList.add('error');
         return false;
@@ -31,8 +37,6 @@ title.addEventListener('input', (e)=>{
 /////////// event where submit new post //////////////////////
 //////////////////////////////////////////////////////////////
 form.addEventListener('submit', (e) =>{
-    console.log('her');
-    
     var _Error_ = document.querySelector('.error');
     var _Success_ = document.querySelector('.success');
     _Error_.innerHTML = '';
@@ -48,8 +52,6 @@ form.addEventListener('submit', (e) =>{
     const canvas = document.getElementById('canva_id');
     const canva = document.getElementById('canva');
     var img = canva.toDataURL('image/png');
-    console.log(img.naturalHeight);
-    
     if (img === document.getElementById('hiddenCanva').toDataURL()){
         _Error_.innerHTML = 'blanck canva';
         e.preventDefault();
@@ -62,8 +64,7 @@ form.addEventListener('submit', (e) =>{
     var height = [];
     var i = 0;
     var rect = canva.getBoundingClientRect();
-    console.log(rect);
-    // (((cln.style.height.replace('%','')) * rect.height)/100);
+
     /////////////////////////////////////////////////////////////////////////////////////////
     ////// loop for all sticker at canvas (get all information about sticker selectd) ///////
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -77,7 +78,6 @@ form.addEventListener('submit', (e) =>{
         var name = e.querySelector('img').src.split('/');
         stickers.push(name[name.length - 1]);
         i++;
-        ////////////////////////////not finesh
     }
     ////////////////////////////////////////////////////////////////////////////////////
     ///////// if no sticker selected check if aready captur or sticker is disable //////
@@ -106,9 +106,19 @@ form.addEventListener('submit', (e) =>{
     request.onload = function(){
         try{
             var ret =JSON.parse(this.responseText);
-            var post = new_post(ret);
-            page.insertBefore(post, page.firstChild);
-            _Success_.innerHTML = 'Success Share';
+            if (ret !== false){
+                var post = new_post(ret);
+                page.insertBefore(post, page.firstChild);
+                _Success_.innerHTML = 'Success Share';
+                if (lastdate === '0'){
+                    var today = new Date();
+                    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                    var time = today.getHours() + ":" + today.getMinutes() + ":" + (today.getSeconds() - 2);
+                    lastdate = date+' '+time;
+                }
+            }
+            else
+            _Error_.innerHTML = 'Error Share';
             form.querySelector("input[name='stickers']").value = '';
             form.querySelector("input[name='left']").value = '';
             form.querySelector("input[name='top']").value = '';
@@ -122,8 +132,10 @@ form.addEventListener('submit', (e) =>{
     request.onerror = function(){
         _Error_.innerHTML = 'Errors Share';
     };
-    request.send(new FormData(e.target));
-    
-    e.preventDefault();
-    return true;
+    request.send(new FormData(form));
+    if (typeof e.preventDefault === "function") { 
+        e.preventDefault();
+    } else {
+        return false;
+    }
 });
