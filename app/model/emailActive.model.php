@@ -1,6 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
+
+//////////// active Users by email activetion /////////
 function    emailactive(){
     global $DB_DELETE, $DB_SELECT, $DB_UPDATE, $PARAM;
     if (!isset($_GET) || empty($_GET['id']) || empty($_GET['token'])){

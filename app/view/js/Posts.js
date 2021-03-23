@@ -28,7 +28,6 @@ function        valid_comment(elem){
 ////// show or hidden comments of post ///////////////
 //////////////////////////////////////////////////////
 function        toggle_comments(elem){
-    // var comment = elem.target.parentNode.parentNode.querySelector('.comment');
     var post = elem.target.closest('.post');
     var comment = post.querySelector('.comment');
     comment.classList.toggle('hidden');  
@@ -86,7 +85,8 @@ function        submit_new_comment(e){
     var feedback = post.querySelector('.feedback');
     var input = post.querySelector('input[name="comment"]');
 
-
+    if (!input)
+        return ;
     if (input.value.length === 0 || !REG.test(input.value) ||  input.value.length > 250){
        feedback.innerHTML = 'error comment';
        feedback.classList.add('error');

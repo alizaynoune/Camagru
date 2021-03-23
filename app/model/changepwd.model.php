@@ -4,12 +4,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/filter.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK'){ ///value of sumbit
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK'){
     header('HTTP/1.1 307 Temporary Redirect');
 	header("Location: ../view/php/newpwd.view.php?error=method not valid");
 	exit;
 }
-
+///////////// change password where forgetPassword //////////////
 $pwd = $_POST['passwd'];
 $confpwd = $_POST['confPasswd'];
 $token = $_POST['token'];

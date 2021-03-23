@@ -5,21 +5,26 @@ $msg = '';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/emailActive.model.php';
 if ($_GET['param'] == 'active'){
   if (emailactive() === false){
-    header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/home.view.php');
+    header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/signup.view.php?error=invalid token');
     exit();
   }
-  $msg = '<h3>Your account was successfully actevite!</h3>';
+  header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/login.view.php?success=Your account was successfully actevite!');
+  exit();
 }
 
-else if ($_GET['param'] === 'update' && !empty($_SESSION['login'])){
+else if ($_GET['param'] === 'update'){
   if (emailupdate() === false){
-    header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/home.view.php');
-    exit();
+    if (!empty($_SESSION['login'])){
+      header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/settings.view.php?error=invalid token');
+      exit();
+    }
+    else{
+      header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/singup.view.php?error=invalid token');
+      exit();
+    }
   }
-  $msg = '<h3>Your email was successfully update!</h3>';
+  header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/settings.view.php?success=Your email was successfully update!');
 }
-
-
 else if ($_GET['param'] === 'pwd' && empty($_SESSION)){
   $get = '';
   $and = '';

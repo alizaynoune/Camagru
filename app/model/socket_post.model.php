@@ -8,8 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
 (new Session())->SessionStatus();
 
 
-// print_r($_POST);
-
+////////// Socket of Posts //////////////
 $data = json_decode($_POST['data'], true);
 $post = explode('_leet_', $data['post']);
 $pid = decrypt_($post[0]);

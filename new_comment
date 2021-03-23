@@ -1,9 +1,0 @@
-CREATE TRIGGER new_avatar_add AFTER INSERT ON Users for each row insert into Avatar (uid, url) values (new.id, '../../icone/defult.png');
-CREATE TRIGGER posts_comment_add AFTER INSERT ON Comments for each row update Posts set nbr_comments = nbr_comments + 1 where new.pid = id;
-CREATE TRIGGER posts_likes_add AFTER INSERT ON PostLikes for each row update Posts set nbr_likes = nbr_likes + 1 where new.pid = id;
-CREATE TRIGGER comment_likes_add AFTER INSERT ON CommentLikes for each row update Comments set nbr_likes = nbr_likes + 1 where new.cid = id;
-
-
-CREATE TRIGGER posts_comment_delete AFTER DELETE ON Comments for each row update Posts set nbr_comments = nbr_comments - 1 where old.pid = id;
-CREATE TRIGGER posts_likes_delete AFTER DELETE ON PostLikes for each row update Posts set nbr_likes = nbr_likes - 1 where old.pid = id;
-CREATE TRIGGER comment_likes_delete AFTER DELETE ON CommentLikes for each row update Comments set nbr_likes = nbr_likes - 1 where old.cid = id;

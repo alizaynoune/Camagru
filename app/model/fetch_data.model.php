@@ -6,18 +6,16 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
 
 (new Session())->SessionStatus();
 
+//// fetch data from dataBase ////////
 
-
+////// data of all Users /////////////
 if ($_GET['type'] === 'all'){
     $lastDate = $_GET['lastdate'];
     $info = (new dbselect())->fetch_all_post($lastDate);
-    // print_r($info);
     foreach($info as $key => &$value){
         $uid = $value['uid'];
-        // echo $uid;
         $user_name = (new dbselect())->select($DB_SELECT['_id'], 'login', 'Users', $value['uid'], $PARAM['int'], 0);
         $avatar = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $value['uid'], $PARAM['int'], 0);
-        // print_r($_SESSION);
         if (!empty($_SESSION['uid'])){
             $is_like = (new dbselect())->is_like_post($_SESSION['uid'], $value['id']);
             $value['is_like'] = !empty($is_like) ? '1' : '0';
@@ -35,6 +33,7 @@ if ($_GET['type'] === 'all'){
     exit(json_encode($info));
 }
 
+////////// data of one user //////////
 else if ($_GET['type'] === 'profile'){
     $lastDate = $_GET['lastdate'];
     $login = $_GET['login'];
@@ -60,6 +59,7 @@ else if ($_GET['type'] === 'profile'){
     exit(json_encode($info));
 }
 
+////////// data of comment ///////////
 else if ($_GET['type'] === 'comment'){
     $pid = decrypt_($_GET['pid']);
     $info = (new dbselect())->fetch_comment($pid);
@@ -80,6 +80,7 @@ else if ($_GET['type'] === 'comment'){
     exit(json_encode($info));
 }
 
+//////// data of cuurent user ///////////
 else if ($_GET['type'] === 'profil_login'){
     if (empty($_SESSION['uid'])){
         exit(json_encode(false));

@@ -1,6 +1,7 @@
 
-
-
+/* ############################################### */
+/* container where select avatar from your profile */
+/* ############################################### */
 .contener_select_profile{
   position: fixed;
   width: 100%;
@@ -15,16 +16,14 @@
   overflow-x: hidden;
   height: 90%;
   margin: auto;
-  /* margin-bottom: 30px; */
   overflow-y: auto;
-  /* background-color: lightblue; */
 }
 
 .contener_select_profile .Btn{
   position: relative;
   z-index: 1;
   top: -70px;
-  float: inline-end;
+  float: right;
   margin-right: 10px;
   width: 150px;
   opacity: 0.7;
@@ -46,16 +45,15 @@
   width: 100%;
   height: 100%;
   margin: auto;
-  /* margin-top: 2%; */
-  /* margin-bottom: 5%; */
 }
 
 .contener_select_profile .load_more{
-  /* top: -100px; */
   margin-top: -20px;
 }
 
-
+/* ########################### */
+/* area img defaul your avatar */
+/* ########################### */
 .conten_img {
     width: 200px;
     height: 200px;
@@ -63,7 +61,6 @@
     border-radius: 10%;
     cursor: pointer;
     overflow: hidden;
-    /* z-index: 2; */
   }
   
 .change_avatar{
@@ -72,7 +69,6 @@
     border-radius: 10%;
     -webkit-border-radius: 10%;
     -moz-border-radius: 10%;
-    /* z-index: 0; */
 }
 
 .conten_img::after {
@@ -83,24 +79,33 @@
   background: none;
   position: relative;
   transition: all 0.3s;
-  /* z-index: 0; */
 }
 
 .conten_img:hover::after {
   left: 20%;
-  /* z-index: 1; */
 }
 
+/* ####################################### */
+/* modal where click to change your avatar */
+/* ####################################### */
 .modal-show{
   border-radius: 20px;
   position: relative;
   background-color: rgba(255,255,255,0.8);
   transition: all 0.6s;
-  /* display: none; */
 }
 
 .modal-show img {
-  transform: translateY(-100%);
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 570px !important;
+  max-height: 570px !important;
+  outline: none;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0%;
 }
 
 .modal-show{
@@ -114,13 +119,16 @@
 }
 
 .modal-show .Btn{
-  width: 150px;
+  width: 120px;
+  padding: 10px 10px;
   justify-content: center;
 }
 
 .Btn_modal{
-  margin-top: -120px;
+  position: relative;
+  top: -100px;
   width: 100%;
+  margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
   padding: 0%;
@@ -131,24 +139,10 @@
   margin-right: 0%;
 }
 
-.modal-show img{
-  transform: translateY(0%);
-  display: block;
-  width: 100%;
-  height: 100%;
-  outline: none;
-  border-radius: 10px;
-}
-
-
-
 .btn-1::before{content: "\f093";}
 .btn-2::before{content: "\f030";}
 .cancel::before{content: "\f00d";}
 
-/* .Btn{
-  display: none;
-} */
 
 .select{
   text-align-last:center;
@@ -161,9 +155,6 @@
 .msj_new_av{
   text-align: center;
   color: var(--ColorSCfont);
-  /* grid-column-start: 1;
-  grid-column-end: 4;
-  justify-self: center; */
 }
 
 .delete p{

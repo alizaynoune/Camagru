@@ -8,7 +8,6 @@ if ((new Session())->SessionStatus() === false){
     header("Location: ../view/php/login.view.php");
 	exit(json_encode(false));
 }
-// print_r($_POST);
 if (!empty($_POST['title']) && (filter_title($_POST['title']) === false || strlen($_POST['title']) > 50)){
     exit(json_encode(false));
 }
@@ -17,8 +16,8 @@ if (empty($_POST['canva'])){
     exit(json_encode(false));
 }
 
+//////// creat new post ////////////
 
-// exit();
 $uid = $_SESSION['uid'];
 $base64 = str_replace('data:image/png;base64,', '', $_POST['canva']);
 $base64 = str_replace(' ', '+', $base64);
@@ -67,9 +66,6 @@ else {
     );
 }
 
-// $ret = array(encrypt_($id['id']));
-// array_push($ret, $_SESSION['uid']);
-// $content = ;
 $ret = (new dbselect())->select($DB_SELECT['_id'], '*', 'Posts', $id['id'], $PARAM['int'], 0);
 $uid = $ret['uid'];
 $user_name = (new dbselect())->select($DB_SELECT['_id'], 'login', 'Users', $ret['uid'], $PARAM['int'], 0);
@@ -84,8 +80,6 @@ foreach($ret as $key => &$value){
 }
 $ret += array('u_name' => $user_name['login']);
 $ret += array('u_avatar' => _SERVER_ . '/public/usersData/' . $user_name['login'] . '/' . $avatar['url']);
-// array_push($ret, _SERVER_ . '/public/usersData/' . $_SESSION['login'] . '/' . $name );
-// array_push($ret, ($_POST['title']));
 
 exit(json_encode($ret));
 ?>

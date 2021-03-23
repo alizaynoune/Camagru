@@ -16,21 +16,21 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 <!DOCTYPE html>
 <html>
 	<head>
-    <meta charset="UTF-8" />
-	<link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-	  <title>settings</title>
-	  <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
-	  <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
-	  <link class="_css" rel="stylesheet" type="text/css" href="../css/settings.css"/>
-	  <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
-	  <link class="_css" rel="stylesheet" type="text/css" href="../css/Posts.css"/>
-	  <style>
-	  	.list li:nth-child(4){
+    	<meta charset="UTF-8" />
+		<link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+		<title>settings</title>
+		<link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
+		<link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
+		<link class="_css" rel="stylesheet" type="text/css" href="../css/settings.css"/>
+		<link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
+		<link class="_css" rel="stylesheet" type="text/css" href="../css/Posts.css"/>
+		<style>
+			.list li:nth-child(4){
 			  color: #F08080;			  
 		  }
-	  </style>
+		</style>
 	</head>
 	<body>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
@@ -76,7 +76,7 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
     	    	    <input class="right" type="text" placeholder="Last Name" name="lastName" value="<?php echo $usr_info['lastname'];?>"/>
 					<input class="left" type="text" placeholder="Username" name="login" value="<?php echo $usr_info['login']?>"/>
 					<input class="right" type="email" placeholder="E-mail Address" name="email" value="<?php echo $usr_info['email']?>"/>
-					<input class="left" type="password" placeholder="Old Password" name="oldPasswd" />
+					<input class="left" type="password" placeholder="Password" name="passwd"/>
     	    	    <span class="fa fa-eye-slash icon_left" onclick='togglePasswd(this.previousElementSibling, this)'></span>
 					<span class="fa fa-eye-slash icon_right" onclick='togglePasswd(this.nextElementSibling , this)'></span>
 					<input class="right" type="password" placeholder="New Password" name="newPasswd" />
@@ -96,13 +96,5 @@ $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, lo
 		<script type="text/javascript" src="../js/settings.js"></script>
 		<script type="text/javascript" src="../../controller/fetch_data.controller.js"></script>
 		<script type="text/javascript" src="../js/append_post.js"></script>
-
-
-		<!-- <script type="text/javascript" src="../js/Posts.js"></script> -->
-		<!-- <script type="text/javascript" src="../js/append_post.js"></script> -->
-		<!-- <script type="text/javascript" src="../js/profile.js"></script> -->
-		<!-- <script type="text/javascript" src="../../controller/fetch_profile.controller.js"></script> -->
-		<!-- <script type="text/javascript" src="../../controller/fetch_data.controller.js"></script> -->
-		<!-- <script type="text/javascript" src="../../controller/Posts.controller.js"></script> -->
 	</body>
 </html>

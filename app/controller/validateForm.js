@@ -1,4 +1,6 @@
+//#####################//
 /* all Valdition Inputs*/
+//#####################//
 
 function        validationPasswd(Input){
     var Ret = 0;
@@ -6,6 +8,10 @@ function        validationPasswd(Input){
     var RExp2 = /^.*[A-Z].*$/;
     var RExp3 = /^.*[0-9].*$/;
     var RExp4 = /^.*[~!@#$%^&*()\_\-\+=\\\.\?<>,\[\]\{\}:'";/].*$/;
+    if (Input.value.length === 0){
+        document.querySelector('.error').innerHTML = 'please entre your password';
+        return(5)
+    }
     if (Input.value.length < 8)
         Ret++;
     if (!RExp1.test(Input.value))
@@ -21,7 +27,7 @@ function        validationPasswd(Input){
     return (Ret);
 }
 
-function        validationConfPasswd(Input, passwd){
+function        validationConfPasswd(Input, passwd){    
     if (Input.value !== passwd.value)
         return(1);
     else
@@ -159,9 +165,8 @@ function        eventUserName(Input, passwd){
 }
 
 function        ifUpdateInfo(){
-    if(form.querySelector('input[name="oldPasswd"]').value.length > 0
-            || form.querySelector('input[name="newPasswd"]').value.length > 0
-            || form.querySelector('input[name="confnewPasswd"]').value.length > 0)
+    if(form.querySelector('input[name="newPasswd"]').value.length > 0
+        || form.querySelector('input[name="confnewPasswd"]').value.length > 0)
         return(true);
     
     return(false);
@@ -180,10 +185,10 @@ for (var i = 0; i < inputs.length; i++){
         eventName(inputs[i]);
     else if (inputs[i].name === 'confPasswd')
         eventConfPasswd(inputs[i], form.querySelector('input[name="passwd"]'));
-    else if (inputs[i].name === 'passwd' || inputs[i].name === 'oldPasswd')
+    else if (inputs[i].name === 'passwd')
         eventPasswd(inputs[i]);
     else if (inputs[i].name === 'newPasswd')
-        eventnewPasswd(inputs[i], form.querySelector('input[name="oldPasswd"]'));
+        eventnewPasswd(inputs[i], form.querySelector('input[name="passwd"]'));
     else if (inputs[i].name === 'confnewPasswd')
         eventconfnewPasswd(inputs[i], form.querySelector('input[name="newPasswd"]'));
     else if (inputs[i].type === 'email')
@@ -200,12 +205,12 @@ for (var i = 0; i < inputs.length; i++){
         Ret = validationName(inputs[i]);
     else if (inputs[i].name === 'confPasswd')
         Ret = validationConfPasswd(inputs[i], form.querySelector('input[name="passwd"]'));
-    else if (inputs[i].name === 'passwd' || (inputs[i].name === 'oldPasswd' && ifUpdateInfo() === true))
+    else if (inputs[i].name === 'passwd')
         Ret = validationPasswd(inputs[i]);
     else if (inputs[i].type === 'email')
         Ret = validationEmail(inputs[i]);
     else if (inputs[i].name === 'newPasswd' && ifUpdateInfo() === true)
-        Ret = validationNewPasswd(inputs[i], form.querySelector('input[name="oldPasswd"]'));
+        Ret = validationNewPasswd(inputs[i], form.querySelector('input[name="passwd"]'));
     else if (inputs[i].name === 'confnewPasswd' && ifUpdateInfo() === true)
         Ret = validationConfPasswd(inputs[i], form.querySelector('input[name="newPasswd"]'));
     else if (inputs[i].name === 'img_user')
@@ -220,6 +225,7 @@ document.querySelector('form').addEventListener('submit', (e) =>{
     const form = document.querySelector('form');
     if (validationAll(form))
         e.preventDefault();
+    
     return false;
 });
 

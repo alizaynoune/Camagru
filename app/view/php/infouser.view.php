@@ -11,5 +11,5 @@ function    get_avatar(){
 }
 
 ?>
-    <img class="img btn" src="<?php echo get_avatar(); ?>" onclick="clickbtn(this)" />
+<img class="img btn" src="<?php echo get_avatar(); ?>" onclick="clickbtn(this)" />
 <script type="text/javascript" src="../js/menu.js"></script>

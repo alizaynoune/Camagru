@@ -81,7 +81,6 @@ function        img_from_profile(){
         label_cancel.setAttribute('for', 'cancel_select');
         label_cancel.classList.add('Btn');
         label_cancel.classList.add('cancel');
-        // label_cancel.classList.add('justify-self-end');
         label_cancel.innerHTML = 'cancel';
         contener.appendChild(label_cancel);
     

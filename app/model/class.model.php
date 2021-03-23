@@ -3,6 +3,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/schimaDefine.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/config/database.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
 
+
+// class of insert in database///
 class	dbinsert extends db_conn {
     private		$stmt;
     private     $stmt_id;
@@ -63,10 +65,11 @@ class	dbinsert extends db_conn {
     
 }
 
+
+////// class Select from dataBase/////
 class   dbselect extends db_conn {
     private     $stmt;
     private     $rslt;
-    // private     $bnd;
     private     $sql;
 
     public function    select($cmd, $select, $table, $values, $param, $fetch){
@@ -201,7 +204,7 @@ class   dbselect extends db_conn {
 
 }
 
-
+/////// class creat or delete Session ///////
 class   Session extends dbselect {
     static $user;
 

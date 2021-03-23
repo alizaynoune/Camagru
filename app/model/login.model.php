@@ -6,13 +6,17 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 $login = $_POST['login'];
 $pwd = $_POST['passwd'];
 
+///////// start new session ////////
 function    filter_inputs(){
     global $login, $pwd, $ERROR;
+    // if (filter_login($login) === false || filter_pwd($pwd) === false)
+    //     return(false);
     if (empty($login) || empty($pwd)){
         $ERROR = "empty login or password";
         return(false);
     }
     $pwd = hash('whirlpool', 'ali'.$pwd.'zaynoune');
+    // die($pwd);
     if (auth($login, $pwd) === false){
         return(false);
     }

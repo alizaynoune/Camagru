@@ -9,8 +9,9 @@ if ((new Session())->SessionStatus() === false){
 	exit();
 }
 
+/////// delete account ///////////
+
 else if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'OK'){
-	// print_r($_POST);
 	header("Location: ../view/php/login.view.php");
 	exit;
 }
@@ -31,12 +32,6 @@ else if (filter_login($_POST['login']) === false || filter_pwd($_POST['passwd'])
 	exit;
 }
 
-// else if (exist_email($_POST['email']) === false){
-//     header("Location: ../view/php/delete_account.view.php?error=email does not mach");
-// 	exit;
-// }
-
-// $hash_pwd = hash('whirlpool', 'ali'.$_POST['passwd'].'zaynoune');
 else if (exist_pwd($_POST['login'], hash('whirlpool', 'ali'.$_POST['passwd'].'zaynoune')) === false){
     header("Location: ../view/php/delete_account.view.php?error=passwd does not mach");
 	exit; 
@@ -46,23 +41,8 @@ else {
 	$path =  $_SERVER['DOCUMENT_ROOT'].'/public/usersData/'.$_SESSION['login'];
 	(new dbinsert())->drop($DB_DELETE['_drop'], 'Users', 'id', $_SESSION['uid'], $PARAM['int']);
 	shell_exec('rm -rf ' . $path);
-	// print_r($path);
 	(new Session())->logout();
 	header("Location:" ._SERVER_ . "/app/view/php/home.view.php");
-
-	// print_r(_SERVER_ . "/app/view/php/home.view.php");
 }
-
-
-
-
-///// delet alll info 
-//// logout
-
-// echo "all valid </br>";
-// print_r($_SESSION);
-// echo "</br>";
-// print_r($_POST);
-
 
 ?>

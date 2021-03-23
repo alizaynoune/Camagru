@@ -30,6 +30,8 @@ else if (exist_login($login) === false)
     $error = '?error=invalid login';
 else if (exist_email($email) === false)
     $error = '?error=invalid email';
+
+//// where ask forgeting Password we will creat new toke and sed it to your email ////////
 if (empty($error)){
     $rslt = (new dbselect())->select($DB_SELECT['_login'], 'id, email', 'Users', $login, $PARAM['str'], 0);
     if (!isset($rslt) || $rslt['email'] !== $email)
@@ -54,8 +56,4 @@ else{
     exit;
 
 }
-
-// sendMail_change_pwd($email, $rstl[])
-
-
 ?>

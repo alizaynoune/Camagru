@@ -12,13 +12,7 @@ window.addEventListener('load', function(){
     });
 });
 
-// document.addEventListener('wheel', (e)=>{
-//     console.log(e);
-    
-// });
-
 document.querySelector('.load_more').addEventListener('click', (e)=>{
     request_profile(login, lastdate, contener);
-    
-  });
+});
 

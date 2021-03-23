@@ -1,5 +1,4 @@
 function    clickbtn(elem){
-    // elem.classList.toggle('btnActive');
     var list = document.querySelector('.list');
     list.classList.toggle('show');
     var children = list.children;

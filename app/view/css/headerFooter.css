@@ -27,6 +27,10 @@ html, body {
     color: var(--Success);
 }
 
+
+/* ############## */
+/* main container */
+/* ############## */
 .page {
     height: auto;
     margin-top: auto;
@@ -142,6 +146,13 @@ html, body {
     .navbar h1{
         font-size: 18px;
     }
+
+    h1{
+        font-size: 18px;
+    }
+    h2 {
+        font-size: 15px;
+    }
     .container{
         width: 100% !important;
     }
@@ -152,32 +163,5 @@ html, body {
     .form-group{
         width: 100% !important;
     }
-
-}
-/* @media only screen and (min-width: 600px) and (max-width: 768px) */
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen  and (max-width: 768px) {
-
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 992px) {
-  body{
-      /* background-color: gold; */
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1200) {
-  body{
-      /* background-color: coral; */
-  }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  body{
-      /* background-color: cornflowerblue; */
-  }
 
 }

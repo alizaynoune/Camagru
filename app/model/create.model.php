@@ -12,6 +12,7 @@ $email = $_POST['email'];
 $pwd = $_POST['passwd'];
 $cnfpwd = $_POST['confPasswd'];
 
+/////////////////// creat new Users //////////////////////
 function    filter_inputs(){
 	global $firstName, $lastName, $login, $email, $pwd, $cnfpwd, $ERROR;
 	$ERROR = "";
@@ -56,8 +57,11 @@ else{
 		0
 	);
 	send_mail($id['id'], $login, $email, $token, 'active');
+	$ms1 = 'Your account was successfully created';
+	$ms2 = 'open your email and click the activation link to activate your account.';
+	$ms3 = 'If you do not see your account information in your inbox within 60 seconds please check your spam';
 	header('HTTP/1.1 307 Temporary Redirect');
-	header("Location: ../view/php/CreateSuccess.view.php");
+	header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/login.view.php?success=!'. $ms1 .'</br>'. $ms2 . '</br>' . $ms3);
 	exit();
 }
 ?>

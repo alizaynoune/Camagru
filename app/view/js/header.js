@@ -1,6 +1,7 @@
 
 var oldScroll = window.pageYOffset;
 var navBar = document.querySelector('.navBar');
+///// toggel navbar where Scroll ////////////
 window.addEventListener('load', function(){
     window.addEventListener('scroll', function(e){
         currScroll = window.pageYOffset;

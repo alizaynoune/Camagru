@@ -9,43 +9,37 @@ if ((new Session())->SessionStatus() === false){
 <!DOCTYPE html>
 <html>
 	<head>
-    <meta charset="UTF-8" />
-
-	<link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
-	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-
-	  <title>Camagru</title>
-	  <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
-	  <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
-	  <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
-	  
-	  <link class="_css" rel="stylesheet" type="text/css"	href="../css/Posts.css"/>
-	<link class="_css" rel="stylesheet" type="text/css"	href="../css/camera.css"/>
-	<!-- <link class="_css" rel="stylesheet" type="text/css"	href="../css/settings.css"/> -->
-	<style>
-	  	.list li:nth-child(1){
-			  color: #F08080;			  
-		  }
-	  </style>
+    	<meta charset="UTF-8" />
+		<title>Camagru</title>
+		<link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+		<link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
+		<link class="_css" rel="stylesheet" type="text/css" href="../css/form.css"/>
+		<link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
+		<link class="_css" rel="stylesheet" type="text/css"	href="../css/Posts.css"/>
+		<link class="_css" rel="stylesheet" type="text/css"	href="../css/camera.css"/>
+		<style>
+		  	.list li:nth-child(1){
+				  color: #F08080;			  
+			  }
+		</style>
 	</head>
 	<body>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
-
 		<div class="container page">
 			<div class="stickers container col col-xs-4 col-sm-12 col-md-12">
 				<img src="../stickers/1.png" id="img1" draggable="true" drag="true" />
 				<img src="../stickers/2.png" id="img2" draggable="true" />
 				<img src="../stickers/3.png" id="img3" draggable="true" />
 			</div>
-			<div class="container-controls container row">
-				<label class="toggle-control control-camera col">
+			<div class="container-controls container row justify-content-around">
+				<label class="toggle-control control-camera">
   					<input name='camera' id='checkbox-camera' type="checkbox">
   					<span class="control"></span>
 				</label>
-				<label class="toggle-control control-stickers col">
+				<label class="toggle-control control-stickers">
   						<input name='stickers' id='checkbox-stickers' type="checkbox" checked='true'>
   						<span class="control"></span>
 				</label>
@@ -64,7 +58,7 @@ if ((new Session())->SessionStatus() === false){
 					<input id="share" class="BtnAnim" type="submit" name="submit" value="share"/>
 				</form>
 			</div>
-			<div class="contener_camera row justify-content-center">
+			<div class="contener_camera justify-content-center">
 				<div class="contener_video row " id="contener_video">
 					<div id='video_id' class="hiddenBtn display col-sm-12 col-md-10 col-lg-6 col-xl-5">
 						<video id="video" class="hiddenBtn display"  autoplay></video>

@@ -10,14 +10,14 @@ if ((new Session())->SessionStatus() === true){
 <!DOCTYPE html>
 <html>
 	<head>
-    <meta charset="UTF-8" />
-  <title>Camagru</title>
-  <link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css" />
-    <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css" />
-    <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
+        <meta charset="UTF-8" />
+        <title>Camagru</title>
+        <link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css" />
+        <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css" />
+        <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
 	</head>
 	<body>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>
@@ -39,7 +39,7 @@ if ((new Session())->SessionStatus() === true){
         </div>
         <div class="buttomBtn row justify-content-between">
             <a class="leftBtn Btn col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2" href="login.view.php">SingnIn</a>
-            <a class="rightBtn Btn col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2" href="forgetpwd.view.php">Forgotten password?</a>
+            <a class="rightBtn Btn col-4 col-sm-4 col-md-3 col-lg-4 col-xl-3" href="forgetpwd.view.php">Forgotten password?</a>
         </div>
     </div>
         <?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/footer.view.php'; ?>

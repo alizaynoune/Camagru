@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $_POST['submit'] !== 'Submit'){
 	exit;
 }
 
+////////// update informatio of User ///////////////////
 $uid = $_SESSION['uid'];
 $usr_info = (new dbselect())->select($DB_SELECT['_id'], 'firstname, lastname, login, email, notif', 'Users', $uid, $PARAM['int'], 0);
 
@@ -24,7 +25,7 @@ $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $login = $_POST['login'];
 $email = $_POST['email'];
-$oldPwd = $_POST['oldPasswd'];
+$oldPwd = $_POST['passwd'];
 $newPwd = $_POST['newPasswd'];
 $confPwd = $_POST['confnewPasswd'];
 $notf = $_POST['notif'];
@@ -34,9 +35,14 @@ $select = '';
 $error = '';
 $sp = '';
 $seccess = '';
-// $target_file = '';
 
-if (empty($firstName) || empty($lastName) || empty($login) || empty($email))
+$hashpwd = hash('whirlpool', 'ali'.$oldPwd.'zaynoune');
+if (filter_pwd($oldPwd) === false)
+	$error = '?error='.$ERROR;
+else if (exist_pwd($login, $hashpwd) === false)
+	$error = '?error=passowrd invalide';
+
+if (empty($error) && (empty($firstName) || empty($lastName) || empty($login) || empty($email)))
 	$error = '?error=ivalid information';
 
 if (empty($error) && $firstName !== $usr_info['firstname']){
@@ -77,11 +83,11 @@ if (empty($error) && $notf !== $usr_info['notif'] && ($notf === 'true' || $notf 
 }
 
 if (empty($error) && !empty($oldPwd) && !empty($newPwd) && !empty($confPwd)){
-	$hashpwd = hash('whirlpool', 'ali'.$oldPwd.'zaynoune');
-	if (filter_pwd($oldPwd) === false)
-		$error = '?error='.$ERROR;
-	else if (exist_pwd($login, $hashpwd) === false)
-		$error = '?error=passowrd invalide';
+	// $hashpwd = hash('whirlpool', 'ali'.$oldPwd.'zaynoune');
+	// if (filter_pwd($oldPwd) === false)
+	// 	$error = '?error='.$ERROR;
+	// else if (exist_pwd($login, $hashpwd) === false)
+	// 	$error = '?error=passowrd invalide';
 	if (empty($error)){
 		if (filter_pwd($newPwd) === false)
 			$error = '?error'.$ERROR;
@@ -101,8 +107,6 @@ if (empty($error) && !empty($oldPwd) && !empty($newPwd) && !empty($confPwd)){
 		array_push($new_info, $hashpwd);
 	}
 }
-
-// valid_avatar ///////////////////////////
 
 if (empty($error) && !empty($_FILES['img_user']) && !empty($_FILES["img_user"]["tmp_name"])){
 	$check = getimagesize($_FILES["img_user"]["tmp_name"]);

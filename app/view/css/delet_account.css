@@ -1,33 +1,23 @@
+
+/* ####################### */
+/* style of delete account */
+/* ######################## */
+
+/* ################### */
+/* style alert message */
+/* ################### */
 .alt{
-    /* background-color: lightgreen; */
-    /* width: 200px; */
-    /* height: 400px; */
-    /* display: grid; */
     width: 100%;
-    /* background-color: lightcoral; */
     text-align: center;
-    /* justify-content: space-between; */
-    /* grid-template-columns: auto auto; */
-    /* grid-template-rows: 100px; */
 }
 
 .alt p{
-    /* grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 1;
-    justify-self: center; */
     margin: auto;
     position: relative;
     color: var(--Error);
 }
 
 .alt label:first-of-type{
-    /* grid-column-start: 1;
-    grid-column-end: 1;
-    grid-row-start: 2;
-    grid-row-end: 2;
-    justify-self: center; */
     margin: auto;
     position: relative;
     float: left;
@@ -36,49 +26,9 @@
 }
 
 .alt label:last-of-type{
-    /* grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 2;
-    justify-self: center; */
     margin: auto;
     position: relative;
     float: right;
     width: 100px;
     margin-bottom: 20px;
-}
-
-
-
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-
-}
-/* @media only screen and (min-width: 600px) and (max-width: 768px) */
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen  and (max-width: 768px) {
-  
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 992px) {
-  body{
-      /* background-color: gold; */
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1200) {
-  body{
-      /* background-color: coral; */
-  }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  body{
-      /* background-color: cornflowerblue; */
-  }
-
 }

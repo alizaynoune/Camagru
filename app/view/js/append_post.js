@@ -58,9 +58,6 @@ function        append_comment(comment, contener){
     var login = document.querySelector('.login');
     var post = contener.closest('.post');
     var owner_post = post.querySelector('.owner').innerHTML;
-    // var class_name = null;
-    
-    // var owner_post = 
     login = login !== null ? login.innerHTML : login;
 
     // Create contener of old comment

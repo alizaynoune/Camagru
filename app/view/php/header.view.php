@@ -1,6 +1,5 @@
 
 <nav class="navBar navbar">
-
     <div class="navLeft nav-item">
         <?php 
                 if (!empty($_SESSION['login'])){
@@ -16,7 +15,6 @@
         ?>
     </div>
     <div class="navCenter nav-item "><p class="global_msj"></p></div>
-
     <div class="navRight nav-item">
             <?php 
                 if (!empty($_SESSION['login']))

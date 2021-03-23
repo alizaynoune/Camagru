@@ -10,12 +10,12 @@ if ((new Session())->SessionStatus() === true){
 <!DOCTYPE html>
 <html>
 	<head>
-    <meta charset="UTF-8" />
-  <title>Camagru</title>
-  <link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
-  <link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
-  <link class="_css" rel="stylesheet" type="text/css" href="../css/form.css" />
-  <link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
+    	<meta charset="UTF-8" />
+  		<title>Camagru</title>
+  		<link rel="shortcut icon" type="image/jpg" href="../../../public/icone/logo.jpg">
+  		<link class="_css" rel="stylesheet" type="text/css" href="../css/headerFooter.css"/>
+  		<link class="_css" rel="stylesheet" type="text/css" href="../css/form.css" />
+  		<link class="_css" rel="stylesheet" type="text/css" href="../css/btns.css"/>
 	</head>
 	<body>
 	<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php'; ?>

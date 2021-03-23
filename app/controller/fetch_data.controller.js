@@ -10,6 +10,11 @@ function       request_profile(login, date, contener){
     request.onload = function(){
         try{
             var ret = JSON.parse(this.responseText);
+            if (ret.length < 5){
+                var load = document.querySelector('.load_more');
+                if (load !== null)
+                    load.classList.add('hidden');
+            }
             for(var i = 0; i < ret.length; i++) {
                 element = ret[i];
                 var post = new_post(element, null);
@@ -40,6 +45,11 @@ function       request_all(date, contener){
     request.onload = function(){
         try{
             var ret = JSON.parse(this.responseText);
+            if (ret.length < 5){
+                var load = document.querySelector('.load_more');
+                if (load !== null)
+                    load.classList.add('hidden');
+            }
             for(var i = 0; i < ret.length; i++){
                 element = ret[i];
                 var post = new_post(element, null);
@@ -93,6 +103,11 @@ function        request_profile_id(date, contener){
     request.onreadystatechange = function (){
         if (this.readyState == 4 && this.status == 200){
             ret = JSON.parse(this.responseText);
+            if (ret.length < 5){
+                var load = document.querySelector('.load_more');
+                if (load !== null)
+                    load.classList.add('hidden');
+            }
             if (ret.length > 0){
                 lastdate = ret[ret.length - 1]['date'];
             }
