@@ -10,7 +10,6 @@ class db_conn {
 
 	private function Connect_init(){
 		$this->db_dns = '127.0.0.1';
-		// $this->db_dns = '10.11.5.1';
 		$this->db_user = 'Camagru1337';
 		$this->db_password = 'ali';
 		$this->db_name = 'Camagru';

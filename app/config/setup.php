@@ -1,5 +1,6 @@
 <?php
-require_once 'database.php';
+define('APP_ROOT', dirname(__DIR__));
+require_once APP_ROOT . '/config/database.php';
 
 class	db_setup extends db_conn{
 	private	$st;
@@ -17,7 +18,7 @@ class	db_setup extends db_conn{
 	private	function tables(){
 		try{
 			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$this->sql = file_get_contents('Camagru.sql');
+			$this->sql = file_get_contents(APP_ROOT . '/config/Camagru.sql');
 			$this->st = $this->conn->prepare($this->sql);
 			$this->st->execute();
 		}catch(PDOException $e){

@@ -3,7 +3,8 @@
 /////////////////////////////////////////////////////////////////
 function        valid_title(title){
     var Reg = /^\S.*\S$/;
-    
+    if (!title)
+        return(false);
     if (title.value.length === 0){
         title.classList.remove('error');
         return true;
@@ -28,11 +29,11 @@ function        valid_title(title){
 //////////////////////////////////////////////////////////////
 const form = document.querySelector('form');
 var title = form.querySelector("input[name='title']");
-title.addEventListener('input', (e)=>{
+if (title){
+    title.addEventListener('input', (e)=>{
     valid_title(title);
-        
-});
-
+    });
+}
 //////////////////////////////////////////////////////////////
 /////////// event where submit new post //////////////////////
 //////////////////////////////////////////////////////////////
@@ -126,7 +127,7 @@ form.addEventListener('submit', (e) =>{
             form.querySelector("input[name='height']").value = '';
             form.querySelector("input[name='title']").value = '';
         }catch(e){
-            _Error_.innerHTML = e;
+            _Error_.innerHTML = 'invalid informtion';
         }
     };
     request.onerror = function(){
