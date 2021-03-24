@@ -1,8 +1,8 @@
 ///////////////////////////////////////
 /////// get login user ////////////////
 ///////////////////////////////////////
-var login = document.querySelector('.login');
-login = login !== null ? login.innerHTML : login;
+var login = document.querySelector('input[name="_USER_LOGIN_"]');
+login = login !== null ? login.value : login;
 
 
 ///////////////////////////////////////////
@@ -58,6 +58,7 @@ function        toggle_like_post(e){
 ////////// like or dislike commments //////////
 ///////////////////////////////////////////////
 function    toggle_like_comment(e){
+    // console.log('tst');
     var post = e.target.closest('.post');
     var comment = e.target.closest('.old_comment');
     if (login !== null){

@@ -55,10 +55,11 @@ function       update_post_info(data){
 ////// create new commment /////////////
 ////////////////////////////////////////
 function        append_comment(comment, contener){
-    var login = document.querySelector('.login');
+    var login = document.querySelector('input[name="_USER_LOGIN_"]');
+    // console.log(login);
     var post = contener.closest('.post');
     var owner_post = post.querySelector('.owner').innerHTML;
-    login = login !== null ? login.innerHTML : login;
+    login = login !== null ? login.value : login;
 
     // Create contener of old comment
     var old_comment = document.createElement('div');
@@ -81,13 +82,11 @@ function        append_comment(comment, contener){
             like_comment.classList.add('dislike');
             like_comment.addEventListener('click', function(){
                 window.location.replace(window.location.origin + `/app/view/php/login.view.php`);
+                console.log(login);
             }, true);
         }
         else {
             comment['is_like'] === '1' ? like_comment.classList.add('like') : like_comment.classList.add('dislike');
-            // if (comment['is_like'] === '1'){
-                
-            // }
             like_comment.addEventListener('click', toggle_like_comment, true);
         }
         old_comment.appendChild(like_comment);

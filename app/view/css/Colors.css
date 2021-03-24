@@ -7,10 +7,12 @@
     --headerColor:      #f8f9fa;
     /* --brdColor:         #505050; */
     --brdColor:         #F08080;
+    /* --brdColor:            #f24c05; */
     --menuColor:        #ffffff;
     --shadow:           #000000;
     --shadow2:          rgba(0, 0, 0, 0.4);
     --headPost:         #F08080;
+    /* --headPost:              #F24C05; */
 
     --Colorfont:        #ffffff;
     --ColorMainFont:    #000000;
@@ -23,5 +25,6 @@
     --font2:              ;
     --font3:            #D5DBDB;
     --bgColor:          #ffffff;
+    /* --bgColor:          #505050; */
 }
 
