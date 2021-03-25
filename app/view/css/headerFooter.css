@@ -107,7 +107,7 @@ html, body {
     bottom:  0%;
     width: 100%;
     opacity: 0.7;
-    background-color: var(--headerColor);
+    background-color: var(--footerColor);
 }
 
 .card-footer p{

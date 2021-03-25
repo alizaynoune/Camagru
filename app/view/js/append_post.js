@@ -4,6 +4,8 @@
 ////////////////////////////////////////////////////////
 function       update_post_info(data){
     var target = document.querySelector(`input[value='${data['post_info']}']`);
+    if (target === null)
+        return (false);
     var post = target.closest('.post');
     var likes_comments = post.querySelector('.contener_like');
     var likes = likes_comments.getElementsByTagName('label')[0];
@@ -56,7 +58,6 @@ function       update_post_info(data){
 ////////////////////////////////////////
 function        append_comment(comment, contener){
     var login = document.querySelector('input[name="_USER_LOGIN_"]');
-    // console.log(login);
     var post = contener.closest('.post');
     var owner_post = post.querySelector('.owner').innerHTML;
     login = login !== null ? login.value : login;
@@ -82,7 +83,6 @@ function        append_comment(comment, contener){
             like_comment.classList.add('dislike');
             like_comment.addEventListener('click', function(){
                 window.location.replace(window.location.origin + `/app/view/php/login.view.php`);
-                console.log(login);
             }, true);
         }
         else {

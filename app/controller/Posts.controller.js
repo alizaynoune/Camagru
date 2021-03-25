@@ -167,12 +167,12 @@ function        socket_post(){
                 var request = new XMLHttpRequest();
                 request.response = 'text';
                 var url = window.location.origin + '/app/model/socket_post.model.php';
-                request.open('POST', url, true);
+                request.open('POST', url, false);
                 request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded" );
                 request.onreadystatechange = function(){
                     if (this.readyState == 4 && this.status == 200){
                         var ret = JSON.parse(this.responseText);
-                        if (ret !== false)
+                        if (ret !== false && ret !== null)
                             update_post_info(ret);
                         else{
                             e.remove();

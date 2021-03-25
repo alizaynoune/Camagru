@@ -14,7 +14,7 @@ $post = explode('_leet_', $data['post']);
 $pid = decrypt_($post[0]);
 
 $likes_comments = (new dbselect())->select($DB_SELECT['_id'], 'nbr_likes, nbr_comments', 'Posts', $pid, $PARAM['int'], 0);
-if (empty($likes_comments))
+if ($likes_comments === null || empty($likes_comments))
     exit(json_encode(false));
 $is_like = (new dbselect())->is_like_post($_SESSION['uid'], $pid);
 $likes_comments['is_like'] = !empty($is_like) ? '1' : '0';

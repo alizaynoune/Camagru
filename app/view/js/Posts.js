@@ -58,7 +58,6 @@ function        toggle_like_post(e){
 ////////// like or dislike commments //////////
 ///////////////////////////////////////////////
 function    toggle_like_comment(e){
-    // console.log('tst');
     var post = e.target.closest('.post');
     var comment = e.target.closest('.old_comment');
     if (login !== null){

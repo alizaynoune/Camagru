@@ -25,8 +25,9 @@ class	dbinsert extends db_conn {
                 return($this->stmt_id->fetch(PDO::FETCH_ASSOC));
             }
 		} catch(PDOException $e){
-            die ("Error : ". $e->getMessage());
-            exit();
+            // die ("Error : ". $e->getMessage());
+            // exit();
+            exit(false);
         }
         parent::Desconnect();
     }
@@ -42,7 +43,8 @@ class	dbinsert extends db_conn {
             $this->stmt->execute();
         }catch(PDOException $e){
             parent::Desconnect();
-            die ("Error : ". $e->getMessage());
+            // die ("Error : ". $e->getMessage());
+            exit(false);
         }
         parent::Desconnect();
     }
@@ -57,7 +59,8 @@ class	dbinsert extends db_conn {
 
         }catch(PDOException $e){
             parent::Desconnect();
-            die ("Error : ". $e->getMessage());
+            // die ("Error : ". $e->getMessage());
+            return(false);
         }
         parent::Desconnect();
     }
@@ -88,7 +91,8 @@ class   dbselect extends db_conn {
             return ($this->rslt);
         }catch(PDOException $e){
             parent::Desconnect();
-            die ("Error : ". $e->getMessage());
+            // return($e);
+            exit(null);
         }
         parent::Desconnect();
     }
@@ -116,7 +120,8 @@ class   dbselect extends db_conn {
 
         }catch(PDOException $e){
             parent::Desconnect();
-            die ("Error : ". $e->getMessage());
+            // return(null);
+            exit(null);
         }
 
         parent::Desconnect();
@@ -144,7 +149,7 @@ class   dbselect extends db_conn {
             
         }catch(PDOException $e){
             parent::Desconnect();
-            die ("Error : ". $e->getMessage());
+            return(null);
         }
         parent::Desconnect();
         return($this->rslt);
@@ -164,7 +169,7 @@ class   dbselect extends db_conn {
             return($this->rslt);
         }catch(PDOException $e){
             parent::Desconnect();
-            die("Error : " . $e->getMessage());
+            return(null);
         }
     }
 
@@ -181,7 +186,7 @@ class   dbselect extends db_conn {
             return($this->rslt);
         }catch(PDOException $e){
             parent::Desconnect();
-            die('Error : ' . $e->getMessage());
+            return(null);
         }
     }
 
@@ -198,7 +203,7 @@ class   dbselect extends db_conn {
             return($this->rslt);
         }catch(PDOException $e){
             parent::Desconnect();
-            die('Error : ' . $e->getMessage());
+            return(null);
         }
     }
 

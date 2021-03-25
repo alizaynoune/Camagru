@@ -299,7 +299,7 @@
 
 .comment_like .new_comment {
     height: 45px;
-    background-color: var(--font3);
+    background-color: var(--SCbgColor);
     border-radius: 15px;
     box-shadow: 0px 0px 12px var(--shadow);
     margin-top: 10px;

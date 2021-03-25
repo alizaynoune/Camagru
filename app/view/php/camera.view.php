@@ -29,10 +29,16 @@ if ((new Session())->SessionStatus() === false){
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/header.view.php';?>
 		<?php require_once $_SERVER['DOCUMENT_ROOT'].'/app/view/php/menu.view.php';?>
 		<div class="container page">
-			<div class="stickers container col col-xs-4 col-sm-12 col-md-12">
-				<img src="../stickers/1.png" id="img1" draggable="true" drag="true" />
+			<div class="stickers container row justify-content-around col col-xs-4 col-sm-12 col-md-12">
+				<img src="../stickers/1.png" id="img1" draggable="true" />
 				<img src="../stickers/2.png" id="img2" draggable="true" />
 				<img src="../stickers/3.png" id="img3" draggable="true" />
+				<img src="../stickers/4.png" id="img4" draggable="true" />
+				<img src="../stickers/5.png" id="img5" draggable="true" />
+				<img src="../stickers/6.png" id="img6" draggable="true" />
+				<img src="../stickers/7.png" id="img7" draggable="true" />
+				<img src="../stickers/8.png" id="img8" draggable="true" />
+				<img src="../stickers/9.png" id="img9" draggable="true" />
 			</div>
 			<div class="container-controls container row justify-content-around">
 				<label class="toggle-control control-camera">
