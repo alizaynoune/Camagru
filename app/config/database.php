@@ -25,8 +25,7 @@ class db_conn {
 		try {
 			$this->conn = new PDO("mysql:host=".$this->db_dns, $this->db_user, $this->db_password, $this->OPTIONS);
 		}catch(PDOException $e){
-			die('Database Connection failed: ' . $e->getMessage());
-			exit(false);
+			return(false);
 		}
 		return(true);
 	}
@@ -36,8 +35,7 @@ class db_conn {
 		try {
 			$this->conn = new PDO("mysql:host=".$this->db_dns.';dbname='.$this->db_name, $this->db_user, $this->db_password, $this->OPTIONS);
 		}catch(PDOException $e){
-			die('Database Connection failed: ' . $e->getMessage());
-			exit(false);
+			return(false);
 		}
 		return(true);
 	}

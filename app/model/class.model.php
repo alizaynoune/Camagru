@@ -11,7 +11,9 @@ class	dbinsert extends db_conn {
     protected   $lasr_id;
 
 	public function	insert($ins, $values, $param, $ret_id){
-        parent::connect_use();
+        if (parent::connect_use() === false){
+            return(false);
+        }
 		try{
             $this->stmt = $this->conn->prepare($ins);
             foreach ($values as $key => &$value){
@@ -25,14 +27,14 @@ class	dbinsert extends db_conn {
                 return($this->stmt_id->fetch(PDO::FETCH_ASSOC));
             }
 		} catch(PDOException $e){
-            // die ("Error : ". $e->getMessage());
-            // exit();
-            exit(false);
+            return(false);
         }
         parent::Desconnect();
     }
     public  function    update($cmd, $table, $set, $values, $param){
-        parent::connect_use();
+        if (parent::connect_use() === false){
+            return(false);
+        }
         $this->sql = str_replace(':table:', $table, $cmd);
         $this->sql = str_replace(':set:', $set, $this->sql);
         try{
@@ -43,13 +45,14 @@ class	dbinsert extends db_conn {
             $this->stmt->execute();
         }catch(PDOException $e){
             parent::Desconnect();
-            // die ("Error : ". $e->getMessage());
-            exit(false);
+            return(false);
         }
         parent::Desconnect();
     }
     public  function drop($cmd, $table, $where, $value, $param){
-        parent::connect_use();
+        if (parent::connect_use() === false){
+            return(false);
+        }
         $this->sql = str_replace(':table:', $table, $cmd);
         $this->sql = str_replace(':where:', $where, $this->sql);
         try{
@@ -59,7 +62,6 @@ class	dbinsert extends db_conn {
 
         }catch(PDOException $e){
             parent::Desconnect();
-            // die ("Error : ". $e->getMessage());
             return(false);
         }
         parent::Desconnect();
@@ -76,7 +78,9 @@ class   dbselect extends db_conn {
     private     $sql;
 
     public function    select($cmd, $select, $table, $values, $param, $fetch){
-        parent::connect_use();
+        if (parent::connect_use() === false){
+            return(null);
+        }
         $this->sql = str_replace(':select:', $select, $cmd);
         $this->sql = str_replace(':table:', $table, $this->sql);
         try{
@@ -91,14 +95,15 @@ class   dbselect extends db_conn {
             return ($this->rslt);
         }catch(PDOException $e){
             parent::Desconnect();
-            // return($e);
-            exit(null);
+            return(null);
         }
         parent::Desconnect();
     }
 
     public    function     fetch_user_post($uid, $date){
-        parent::Connect_use();
+        if (parent::connect_use() === false){
+            return(null);
+        }
 
         
         try{
@@ -120,8 +125,7 @@ class   dbselect extends db_conn {
 
         }catch(PDOException $e){
             parent::Desconnect();
-            // return(null);
-            exit(null);
+            return(null);
         }
 
         parent::Desconnect();
@@ -130,7 +134,9 @@ class   dbselect extends db_conn {
     }
 
     public      function    fetch_all_post($date){        
-        parent::Connect_use();
+        if (parent::connect_use() === false){
+            return(null);
+        }
         
         try{
             if ($date === '0'){
@@ -156,7 +162,9 @@ class   dbselect extends db_conn {
     }
 
     public function     fetch_comment($id){
-        parent::Connect_use();
+        if (parent::connect_use() === false){
+            return(null);
+        }
         
         try{
             $this->sql = 'SELECT * FROM Comments WHERE `pid`=? ORDER BY `Date` ASC';
@@ -174,7 +182,9 @@ class   dbselect extends db_conn {
     }
 
     public function     is_like_comment($uid, $cid){
-        parent::Connect_use();
+        if (parent::connect_use() === false){
+            return(null);
+        }
         try{
             $this->sql = 'SELECT id FROM CommentLikes WHERE `cid`=? AND `uid`=?;';
             $this->stmt = $this->conn->prepare($this->sql);
@@ -191,7 +201,9 @@ class   dbselect extends db_conn {
     }
 
     public  function    is_like_post($uid, $pid){
-        parent::Connect_use();
+        if (parent::connect_use() === false){
+            return(null);
+        }
         try{
             $this->sql = 'SELECT id FROM PostLikes WHERE `pid`=? AND `uid`=?;';
             $this->stmt = $this->conn->prepare($this->sql);

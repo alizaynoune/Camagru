@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/class.model.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/includes.php';
 
 function    auth($login, $pwd){
+ 
   global $ERROR;
     if (exist_login($login) === false){
       $ERROR = 'login invalide';
@@ -21,7 +22,7 @@ function    auth($login, $pwd){
       $user = new Session();
       return($user->start($login));
     }
-    
+     
 }
 
 ?>

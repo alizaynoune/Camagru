@@ -12,6 +12,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/app/model/encrypt_decrypt.model.php';
 if ($_GET['type'] === 'all'){
     $lastDate = $_GET['lastdate'];
     $info = (new dbselect())->fetch_all_post($lastDate);
+    if ($info === null)
+        return(json_encode(false));
     foreach($info as $key => &$value){
         $uid = $value['uid'];
         $user_name = (new dbselect())->select($DB_SELECT['_id'], 'login', 'Users', $value['uid'], $PARAM['int'], 0);
@@ -39,6 +41,8 @@ else if ($_GET['type'] === 'profile'){
     $login = $_GET['login'];
     $id = (new dbselect())->select($DB_SELECT['_login'], 'id', ' Users', $login, $PARAM['str'], 0);
     $info = (new dbselect())->fetch_user_post($id['id'], $lastDate);
+    if ($info === null)
+        return(json_encode(false));
     foreach($info as $key => &$value){
         $uid = $value['uid'];
         $avatar = (new dbselect())->select($DB_SELECT['_uid'], 'url', 'Avatar', $value['uid'], $PARAM['int'], 0);
@@ -63,6 +67,8 @@ else if ($_GET['type'] === 'profile'){
 else if ($_GET['type'] === 'comment'){
     $pid = decrypt_($_GET['pid']);
     $info = (new dbselect())->fetch_comment($pid);
+    if ($info === null)
+        return(json_encode(false));
     foreach($info as $key => &$value){
         $login = (new dbselect())->select($DB_SELECT['_id'], 'login', ' Users', $value['uid'], $PARAM['int'], 0);
         $value['owner'] = $login['login'];
@@ -88,6 +94,8 @@ else if ($_GET['type'] === 'profil_login'){
     else{
         $lastDate = $_GET['lastdate'];
         $info = (new dbselect())->fetch_user_post($_SESSION['uid'], $lastDate);
+        if ($info === null)
+            return(json_encode(false));
         $data = [];
         foreach($info as $key => $value){
             $data[$key]['id'] = encrypt_($value['id']);

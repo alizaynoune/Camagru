@@ -49,13 +49,21 @@ else{
 		array($PARAM['str'], $PARAM['str'], $PARAM['str'], $PARAM['str']),
 		1
 	);
+	if ($id === false){
+		header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/signup.view.php?error=sorry we cant create your account');
+		exit();
+	}
 	$token = md5(rand(1000, 5000));
-	(new dbinsert())->insert(
-		$DB_INSERT['_email_user'],
-		array($id['id'] , $email, $token),
-		array($PARAM['int'], $PARAM['str'], $PARAM['str']),
-		0
-	);
+	$ret_insert = (new dbinsert())->insert(
+				$DB_INSERT['_email_user'],
+				array($id['id'] , $email, $token),
+				array($PARAM['int'], $PARAM['str'], $PARAM['str']),
+				0
+			);
+	if ($ret_insert === false){
+		header("Location: http://".$_SERVER["HTTP_HOST"].'/app/view/php/signup.view.php?error=sorry we cant create your account');
+		exit();
+	}
 	send_mail($id['id'], $login, $email, $token, 'active');
 	$ms1 = 'Your account was successfully created';
 	$ms2 = 'open your email and click the activation link to activate your account.';

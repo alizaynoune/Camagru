@@ -23,7 +23,10 @@ function       request_profile(login, date, contener){
                 
             }
         }catch(e){
-            document.querySelector('global_msj').innerHTML = e;        
+            document.querySelector('.global_msj').innerHTML = 'error profile dont exist';
+            var load = document.querySelector('.load_more');
+            if (load !== null)
+                load.classList.add('hidden');       
         }
     };
     request.onerror = function(){
@@ -60,7 +63,10 @@ function       request_all(date, contener){
                 
             }
         }catch(e){
-            document.querySelector('global_msj').innerHTML = e; 
+            document.querySelector('.global_msj').innerHTML = 'error in fetch data';
+            var load = document.querySelector('.load_more');
+            if (load !== null)
+                load.classList.add('hidden');
         }
     };
     request.onerror = function(){        
@@ -79,10 +85,14 @@ function        request_comment(pid, contener){
     request.responseType = 'text';
     request.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            ret = JSON.parse(this.responseText);
-            for(var i = 0; i < ret.length; i++){
-                append_comment(ret[i], contener);
-                
+            try{
+                ret = JSON.parse(this.responseText);
+                for(var i = 0; i < ret.length; i++){
+                    append_comment(ret[i], contener);
+
+                }
+            }catch(e){
+                document.querySelector('.global_msj').innerHTML = 'error in fetch comments'; 
             }
         }
     };
@@ -102,18 +112,25 @@ function        request_profile_id(date, contener){
     request.responseType = 'text';
     request.onreadystatechange = function (){
         if (this.readyState == 4 && this.status == 200){
-            ret = JSON.parse(this.responseText);
-            if (ret.length < 5){
+            try{
+                ret = JSON.parse(this.responseText);
+                if (ret.length < 5){
+                    var load = document.querySelector('.load_more');
+                    if (load !== null)
+                        load.classList.add('hidden');
+                }
+                if (ret.length > 0){
+                    lastdate = ret[ret.length - 1]['date'];
+                }
+                for(var i = 0; i < ret.length; i++){
+                    var new_img = new_chose_avatar(ret[i]);
+                    contener.appendChild(new_img);
+                }
+            }catch(e){
+                document.querySelector('.global_msj').innerHTML = 'error profile dont exist';
                 var load = document.querySelector('.load_more');
                 if (load !== null)
                     load.classList.add('hidden');
-            }
-            if (ret.length > 0){
-                lastdate = ret[ret.length - 1]['date'];
-            }
-            for(var i = 0; i < ret.length; i++){
-                var new_img = new_chose_avatar(ret[i]);
-                contener.appendChild(new_img);
             }
         }
     };

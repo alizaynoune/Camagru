@@ -12,15 +12,22 @@ function        delet_Post_controller(e){
         request.responseType = 'text';
         request.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
-                var ret = JSON.parse(this.responseText);
-                if (ret === false){
+                try{
+                    var ret = JSON.parse(this.responseText);
+                    if (ret === false){
+                        var feed = post.querySelector('.feedback');
+                        feed.innerHTML = 'Permission denied';
+                        feed.classList.remove('success');
+                        feed.classList.add('error');
+                    }
+                    else{
+                        post.remove();
+                    }
+                }catch(e){
                     var feed = post.querySelector('.feedback');
                     feed.innerHTML = 'Permission denied';
                     feed.classList.remove('success');
                     feed.classList.add('error');
-                }
-                else{
-                    post.remove();
                 }
             }
         };
@@ -43,8 +50,14 @@ function        new_comment(comment, post, feedback){
     request.responseType = 'text';
     request.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            var ret = JSON.parse(this.responseText);            
-            if (ret === false){
+            try{
+                var ret = JSON.parse(this.responseText);            
+                if (ret === false){
+                    feedback.innerHTML = 'invalid information!';
+                    feedback.classList.add('error');
+                    feedback.classList.remove('success');
+                }
+            }catch(e){
                 feedback.innerHTML = 'invalid information!';
                 feedback.classList.add('error');
                 feedback.classList.remove('success');
@@ -71,15 +84,21 @@ function        like_dislike(post, flag, feedback){
     request.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
             var ret = JSON.parse(this.responseText);
-            if (ret === false){
+            try{
+                if (ret === false){
+                    feedback.innerHTML = 'invalid information!';
+                    feedback.classList.add('error');
+                    feedback.classList.remove('success');
+                }
+                else {
+                    feedback.innerHTML = '';
+                    feedback.classList.remove('error');
+                    feedback.classList.add('success');
+                }
+            }catch(e){
                 feedback.innerHTML = 'invalid information!';
                 feedback.classList.add('error');
                 feedback.classList.remove('success');
-            }
-            else {
-                feedback.innerHTML = '';
-                feedback.classList.remove('error');
-                feedback.classList.add('success');
             }
         }
     };
@@ -103,15 +122,21 @@ function    delet_comment_controller(e){
         request.responseType = 'text';
         request.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
-                var ret = JSON.parse(this.responseText);
-                if (ret === false){
-                    var feed = post.querySelector('.feedback');
+                try{
+                    var ret = JSON.parse(this.responseText);
+                    if (ret === false){
+                        var feed = post.querySelector('.feedback');
+                        feed.innerHTML = 'Permission denied';
+                        feed.classList.remove('success');
+                        feed.classList.add('error');
+                    }
+                    else{
+                        comment.remove();
+                    }
+                }catch(e){
                     feed.innerHTML = 'Permission denied';
                     feed.classList.remove('success');
                     feed.classList.add('error');
-                }
-                else{
-                    comment.remove();
                 }
             }
         };
@@ -136,8 +161,14 @@ function        like_dislike_comment(comment, flag, feedback){
     request.responseType = 'text';
     request.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            var ret = JSON.parse(this.responseText);
-            if (ret === false){
+            try{
+                var ret = JSON.parse(this.responseText);
+                if (ret === false){
+                    feedback.innerHTML = 'invalid information!';
+                    feedback.classList.add('error');
+                    feedback.classList.remove('success');
+                }
+            }catch(e){
                 feedback.innerHTML = 'invalid information!';
                 feedback.classList.add('error');
                 feedback.classList.remove('success');
@@ -167,14 +198,20 @@ function        socket_post(){
                 var request = new XMLHttpRequest();
                 request.response = 'text';
                 var url = window.location.origin + '/app/model/socket_post.model.php';
-                request.open('POST', url, false);
+                try{
+                    request.open('POST', url, false);
+                }catch(e){}
                 request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded" );
                 request.onreadystatechange = function(){
                     if (this.readyState == 4 && this.status == 200){
-                        var ret = JSON.parse(this.responseText);
-                        if (ret !== false && ret !== null)
-                            update_post_info(ret);
-                        else{
+                        try{
+                            var ret = JSON.parse(this.responseText);
+                            if (ret !== false && ret !== null)
+                                update_post_info(ret);
+                            else{
+                                e.remove();
+                            }
+                        }catch(e){
                             e.remove();
                         }
                     }
