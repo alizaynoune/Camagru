@@ -186,6 +186,39 @@ function        like_dislike_comment(comment, flag, feedback){
 ///socket (posts && commets)///
 ///////////////////////////////
 
+
+// function       onChange(e, ev){
+//     console.log(this.status);
+    
+//     if (this.readyState == 4 && this.status == 200){
+//         console.log(e);
+        
+//         try{
+//             var ret = JSON.parse(ev.responseText);
+//             if (ret !== false && ret !== null){
+//                 update_post_info(ret);
+//                 console.log('===>sss> ');
+//                 console.log(e);
+                
+
+//                 }
+//             else{
+//                 // curr.remove();
+//                 console.log('error=>');
+//                 console.log(e);
+                
+                
+//             }
+//         }catch(e){
+//             console.log('error2=>');
+//             console.log(e);
+            
+//             // curr.remove();
+//         }
+//     }
+// }
+
+
 function        socket_post(){
 
     var time_soket = setInterval(function (){
@@ -194,37 +227,38 @@ function        socket_post(){
             var e = all_post[i];
             var rect = e.getBoundingClientRect();
             if (rect.y <= window.innerHeight && rect.bottom > 0){
-                var info_post = e.querySelector('input[name="post_info"]').value;
-                var request = new XMLHttpRequest();
-                request.response = 'text';
-                var url = window.location.origin + '/app/model/socket_post.model.php';
-                try{
-                    request.open('POST', url, false);
-                }catch(e){}
-                request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded" );
-                request.onreadystatechange = function(){
-                    if (this.readyState == 4 && this.status == 200){
-                        try{
-                            var ret = JSON.parse(this.responseText);
-                            if (ret !== false && ret !== null)
-                                update_post_info(ret);
-                            else{
-                                e.remove();
+
+                    var info_post = e.querySelector('input[name="post_info"]').value;
+                    var request = new XMLHttpRequest();
+                    request.response = 'text';
+                    var url = window.location.origin + '/app/model/socket_post.model.php';
+                    request.open('POST', url, true);
+                    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded" );
+                    request.onreadystatechange = function(){
+                        if (this.readyState == 4 && this.status == 200){
+                            try{
+                                var ret = JSON.parse(this.responseText);
+                                if (ret !== false && ret !== null){
+                                    update_post_info(ret);
+
+                                    }
+                                else{
+                                    // e.remove();
+                                }
+                            }catch(err){
+                                // e.remove();
                             }
-                        }catch(e){
-                            e.remove();
                         }
-                    }
-                };
-                request.onerror = function(){
-                    var msj = document.querySelector('.navBar').querySelector('.global_msj');
-                    msj.innerHTML = 'Error Connection plaes check your connection and relaod page';
-                    msj.classList.add('error');
-                    clearInterval(time_soket);
-                    return(false);
-                };
-                var data = JSON.stringify({'post':info_post});
-                request.send(`data=${data}`);
+                    };
+                    request.onerror = function(){
+                        var msj = document.querySelector('.navBar').querySelector('.global_msj');
+                        msj.innerHTML = 'Error Connection plaes check your connection and relaod page';
+                        msj.classList.add('error');
+                        clearInterval(time_soket);
+                        return(false);
+                    };
+                    var data = JSON.stringify({'post':info_post});
+                        request.send(`data=${data}`);
             }
         }
     }, 1500);

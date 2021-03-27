@@ -11,7 +11,6 @@ class	db_setup extends db_conn{
 			$this->conn->query($cmd);
 		} catch(Exception $e){
 			die ("Error : ". $e->getMessage());
-			exit();
 		}
 	}
 
@@ -23,13 +22,14 @@ class	db_setup extends db_conn{
 			$this->st->execute();
 		}catch(PDOException $e){
 			die ("Error : ". $e->getMessage());
-			exit();
 		}
 		echo "Create tables".PHP_EOL;
 	}
 
 	private function create_DB(){
-		parent::Connect();
+		if (parent::Connect() === false){
+			die('Error Connection');
+		}
 		self::DBquery("DROP DATABASE IF EXISTS `$this->db_name`");
 		self::DBquery("CREATE DATABASE `$this->db_name`");
 		echo'Create database '.$this->db_name .PHP_EOL;

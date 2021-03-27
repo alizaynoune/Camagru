@@ -41,5 +41,9 @@ class db_conn {
 	}
 	protected function	Desconnect(){
 		$this->conn = null;
+		$this->db_dns = null;
+		$this->db_user = null;
+		$this->db_password = null;
+		$this->db_name = null;
 	}
 }
