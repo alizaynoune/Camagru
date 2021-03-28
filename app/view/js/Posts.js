@@ -41,14 +41,10 @@ function        toggle_like_post(e){
     var post = e.target.closest('.post');
     if (login !== null){
         if (e.target.className === 'like'){
-            e.target.classList.remove('like');
-            e.target.classList.add('dislike');
-            like_dislike(post, 0, post.querySelector('.feedback'));
+            like_dislike(post, 0, post.querySelector('.feedback'), e.target);
         }
         else{
-            e.target.classList.remove('dislike');
-            e.target.classList.add('like');
-            like_dislike(post, 1, post.querySelector('.feedback'));
+            like_dislike(post, 1, post.querySelector('.feedback'), e.target);
         }
     }
     
@@ -62,14 +58,10 @@ function    toggle_like_comment(e){
     var comment = e.target.closest('.old_comment');
     if (login !== null){
         if (e.target.className.search('dislike') === -1){
-            e.target.classList.remove('like');
-            e.target.classList.add('dislike');
-            like_dislike_comment(comment, 0, post.querySelector('.feedback'));
+            like_dislike_comment(comment, 0, post.querySelector('.feedback'), e.target);
         }
         else{
-            e.target.classList.remove('dislike');
-            e.target.classList.add('like');
-            like_dislike_comment(comment, 1, post.querySelector('.feedback'));
+            like_dislike_comment(comment, 1, post.querySelector('.feedback'), e.target);
         }
     }
 }

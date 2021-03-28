@@ -76,7 +76,7 @@ function        new_comment(comment, post, feedback){
 //like or dislike posts////
 ///////////////////////////
 
-function        like_dislike(post, flag, feedback){
+function        like_dislike(post, flag, feedback, target){
     var info = post.querySelector('input[name="post_info"]').value;
     var request = new XMLHttpRequest();
     var url = window.location.origin + '/app/model/posts.model.php';
@@ -89,11 +89,20 @@ function        like_dislike(post, flag, feedback){
                     feedback.innerHTML = 'invalid information!';
                     feedback.classList.add('error');
                     feedback.classList.remove('success');
+                    
                 }
                 else {
                     feedback.innerHTML = '';
                     feedback.classList.remove('error');
                     feedback.classList.add('success');
+                    if (flag === 1){
+                        target.classList.remove('dislike');
+                        target.classList.add('like');
+                    }
+                    else{
+                        target.classList.remove('like');
+                        target.classList.add('dislike');
+                    }
                 }
             }catch(e){
                 feedback.innerHTML = 'invalid information!';
@@ -154,7 +163,7 @@ function    delet_comment_controller(e){
 // like or dislike comments///
 //////////////////////////////
 
-function        like_dislike_comment(comment, flag, feedback){
+function        like_dislike_comment(comment, flag, feedback, target){
     var info = comment.querySelector('input[name="comment_info"]').value;
     var    request = new XMLHttpRequest();
     var url = window.location.origin + '/app/model/posts.model.php';
@@ -167,6 +176,19 @@ function        like_dislike_comment(comment, flag, feedback){
                     feedback.innerHTML = 'invalid information!';
                     feedback.classList.add('error');
                     feedback.classList.remove('success');
+                }
+                else {
+                    feedback.innerHTML = '';
+                    feedback.classList.remove('error');
+                    feedback.classList.add('success');
+                    if (flag === 1){
+                        target.classList.remove('dislike');
+                        target.classList.add('like');
+                    }
+                    else{
+                        target.classList.remove('like');
+                        target.classList.add('dislike');
+                    }
                 }
             }catch(e){
                 feedback.innerHTML = 'invalid information!';
@@ -186,37 +208,6 @@ function        like_dislike_comment(comment, flag, feedback){
 ///socket (posts && commets)///
 ///////////////////////////////
 
-
-// function       onChange(e, ev){
-//     console.log(this.status);
-    
-//     if (this.readyState == 4 && this.status == 200){
-//         console.log(e);
-        
-//         try{
-//             var ret = JSON.parse(ev.responseText);
-//             if (ret !== false && ret !== null){
-//                 update_post_info(ret);
-//                 console.log('===>sss> ');
-//                 console.log(e);
-                
-
-//                 }
-//             else{
-//                 // curr.remove();
-//                 console.log('error=>');
-//                 console.log(e);
-                
-                
-//             }
-//         }catch(e){
-//             console.log('error2=>');
-//             console.log(e);
-            
-//             // curr.remove();
-//         }
-//     }
-// }
 
 
 function        socket_post(){
@@ -242,12 +233,7 @@ function        socket_post(){
                                     update_post_info(ret);
 
                                     }
-                                else{
-                                    // e.remove();
-                                }
-                            }catch(err){
-                                // e.remove();
-                            }
+                            }catch(e){}
                         }
                     };
                     request.onerror = function(){
